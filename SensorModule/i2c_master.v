@@ -36,13 +36,13 @@ module i2c_master (
     /*
      * Host interface
      */
-    input  wire [6:0]  cmd_address,
-    input  wire        cmd_start,
-    input  wire        cmd_read,
-    input  wire        cmd_write,
-    input  wire        cmd_write_multiple,
-    input  wire        cmd_stop,
-    input  wire        cmd_valid,
+    input  wire [6:0]  cmd_address,              //I2C address to talk to 
+    input  wire        cmd_start,		            //forces a start command to I2C bus upon read or write
+    input  wire        cmd_read,		            //initiates I2C byte read
+    input  wire        cmd_write,	               //initiates I2C byte write
+    input  wire        cmd_write_multiple,        //initiate an I2C multiple byte write 
+    input  wire        cmd_stop,		          	//forces a stop command to I2C bus upon read or write
+    input  wire        cmd_valid,		  
     output wire        cmd_ready,
 
     input  wire [7:0]  data_in,

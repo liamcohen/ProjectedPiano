@@ -18,14 +18,19 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module CommModule(
-    input request_data,
-    output data_ready,
-    inout sda,
-    output scl,
-    output [7:0] data_out,
-    input meas_ready
-    );
 
+//I2C clock should be 375kHz which corresponds a prescale of 18 
+//for our I2C module.
+
+module CommModule(
+     input request_data,
+     output data_ready,
+     inout sda,
+     inout scl,
+     output [7:0] data_out,
+     input meas_ready,
+	  input reset
+    );
+	 
 
 endmodule
