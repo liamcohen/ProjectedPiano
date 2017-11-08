@@ -45,11 +45,13 @@ module i2c_master (
     input  wire        cmd_valid,		  
     output wire        cmd_ready,
 
+	 //for writing
     input  wire [7:0]  data_in,
     input  wire        data_in_valid,
     output wire        data_in_ready,
     input  wire        data_in_last,
 
+	 //for reading
     output wire [7:0]  data_out,
     output wire        data_out_valid,
     input  wire        data_out_ready,

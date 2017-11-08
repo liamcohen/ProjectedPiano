@@ -5757,7 +5757,7 @@ NGDBUILD Design Results Summary:
   Number of errors:   1145
   Number of warnings:   0
 
-Total memory usage is 225480 kilobytes
+Total memory usage is 225500 kilobytes
 
 
 One or more errors were found during NGDBUILD.  No NGD file will be written.

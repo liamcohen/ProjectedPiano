@@ -1,5 +1,5 @@
 NUM_USER_FILES
-6
+7
 s
 user_file_1
 labkit.v
@@ -18,4 +18,10 @@ i2c_master.v
 s
 user_file_6
 CommModule.v
+s
+user_file_7
+VL53L0X_Library.v
+s
+user_file_8
+test_module.v
 s
