@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 //
 // Pushbutton Debounce Module (video version - 24 bits)  
 //
@@ -82,77 +82,77 @@ endmodule
 ///////////////////////////////////////////////////////////////////////////////
 
 module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
-	       ac97_bit_clock,
-	       
-	       vga_out_red, vga_out_green, vga_out_blue, vga_out_sync_b,
-	       vga_out_blank_b, vga_out_pixel_clock, vga_out_hsync,
-	       vga_out_vsync,
+          ac97_bit_clock,
+          
+          vga_out_red, vga_out_green, vga_out_blue, vga_out_sync_b,
+          vga_out_blank_b, vga_out_pixel_clock, vga_out_hsync,
+          vga_out_vsync,
 
-	       tv_out_ycrcb, tv_out_reset_b, tv_out_clock, tv_out_i2c_clock,
-	       tv_out_i2c_data, tv_out_pal_ntsc, tv_out_hsync_b,
-	       tv_out_vsync_b, tv_out_blank_b, tv_out_subcar_reset,
+          tv_out_ycrcb, tv_out_reset_b, tv_out_clock, tv_out_i2c_clock,
+          tv_out_i2c_data, tv_out_pal_ntsc, tv_out_hsync_b,
+          tv_out_vsync_b, tv_out_blank_b, tv_out_subcar_reset,
 
-	       tv_in_ycrcb, tv_in_data_valid, tv_in_line_clock1,
-	       tv_in_line_clock2, tv_in_aef, tv_in_hff, tv_in_aff,
-	       tv_in_i2c_clock, tv_in_i2c_data, tv_in_fifo_read,
-	       tv_in_fifo_clock, tv_in_iso, tv_in_reset_b, tv_in_clock,
+          tv_in_ycrcb, tv_in_data_valid, tv_in_line_clock1,
+          tv_in_line_clock2, tv_in_aef, tv_in_hff, tv_in_aff,
+          tv_in_i2c_clock, tv_in_i2c_data, tv_in_fifo_read,
+          tv_in_fifo_clock, tv_in_iso, tv_in_reset_b, tv_in_clock,
 
-	       ram0_data, ram0_address, ram0_adv_ld, ram0_clk, ram0_cen_b,
-	       ram0_ce_b, ram0_oe_b, ram0_we_b, ram0_bwe_b, 
+          ram0_data, ram0_address, ram0_adv_ld, ram0_clk, ram0_cen_b,
+          ram0_ce_b, ram0_oe_b, ram0_we_b, ram0_bwe_b, 
 
-	       ram1_data, ram1_address, ram1_adv_ld, ram1_clk, ram1_cen_b,
-	       ram1_ce_b, ram1_oe_b, ram1_we_b, ram1_bwe_b,
+          ram1_data, ram1_address, ram1_adv_ld, ram1_clk, ram1_cen_b,
+          ram1_ce_b, ram1_oe_b, ram1_we_b, ram1_bwe_b,
 
-	       clock_feedback_out, clock_feedback_in,
+          clock_feedback_out, clock_feedback_in,
 
-	       flash_data, flash_address, flash_ce_b, flash_oe_b, flash_we_b,
-	       flash_reset_b, flash_sts, flash_byte_b,
+          flash_data, flash_address, flash_ce_b, flash_oe_b, flash_we_b,
+          flash_reset_b, flash_sts, flash_byte_b,
 
-	       rs232_txd, rs232_rxd, rs232_rts, rs232_cts,
+          rs232_txd, rs232_rxd, rs232_rts, rs232_cts,
 
-	       mouse_clock, mouse_data, keyboard_clock, keyboard_data,
+          mouse_clock, mouse_data, keyboard_clock, keyboard_data,
 
-	       clock_27mhz, clock1, clock2,
+          clock_27mhz, clock1, clock2,
 
-	       disp_blank, disp_data_out, disp_clock, disp_rs, disp_ce_b,
-	       disp_reset_b, disp_data_in,
+          disp_blank, disp_data_out, disp_clock, disp_rs, disp_ce_b,
+          disp_reset_b, disp_data_in,
 
-	       button0, button1, button2, button3, button_enter, button_right,
-	       button_left, button_down, button_up,
+          button0, button1, button2, button3, button_enter, button_right,
+          button_left, button_down, button_up,
 
-	       switch,
+          switch,
 
-	       led,
-	       
-	       user1, user2, user3, user4,
-	       
-	       daughtercard,
+          led,
+          
+          user1, user2, user3, user4,
+          
+          daughtercard,
 
-	       systemace_data, systemace_address, systemace_ce_b,
-	       systemace_we_b, systemace_oe_b, systemace_irq, systemace_mpbrdy,
-	       
-	       analyzer1_data, analyzer1_clock,
- 	       analyzer2_data, analyzer2_clock,
- 	       analyzer3_data, analyzer3_clock,
- 	       analyzer4_data, analyzer4_clock);
+          systemace_data, systemace_address, systemace_ce_b,
+          systemace_we_b, systemace_oe_b, systemace_irq, systemace_mpbrdy,
+          
+          analyzer1_data, analyzer1_clock,
+          analyzer2_data, analyzer2_clock,
+          analyzer3_data, analyzer3_clock,
+          analyzer4_data, analyzer4_clock);
 
    output beep, audio_reset_b, ac97_synch, ac97_sdata_out;
    input  ac97_bit_clock, ac97_sdata_in;
    
    output [7:0] vga_out_red, vga_out_green, vga_out_blue;
    output vga_out_sync_b, vga_out_blank_b, vga_out_pixel_clock,
-	  vga_out_hsync, vga_out_vsync;
+     vga_out_hsync, vga_out_vsync;
 
    output [9:0] tv_out_ycrcb;
    output tv_out_reset_b, tv_out_clock, tv_out_i2c_clock, tv_out_i2c_data,
-	  tv_out_pal_ntsc, tv_out_hsync_b, tv_out_vsync_b, tv_out_blank_b,
-	  tv_out_subcar_reset;
+     tv_out_pal_ntsc, tv_out_hsync_b, tv_out_vsync_b, tv_out_blank_b,
+     tv_out_subcar_reset;
    
    input  [19:0] tv_in_ycrcb;
    input  tv_in_data_valid, tv_in_line_clock1, tv_in_line_clock2, tv_in_aef,
-	  tv_in_hff, tv_in_aff;
+     tv_in_hff, tv_in_aff;
    output tv_in_i2c_clock, tv_in_fifo_read, tv_in_fifo_clock, tv_in_iso,
-	  tv_in_reset_b, tv_in_clock;
+     tv_in_reset_b, tv_in_clock;
    inout  tv_in_i2c_data;
         
    inout  [35:0] ram0_data;
@@ -185,7 +185,7 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    output  disp_data_out;
    
    input  button0, button1, button2, button3, button_enter, button_right,
-	  button_left, button_down, button_up;
+     button_left, button_down, button_up;
    input  [7:0] switch;
    output [7:0] led;
 
@@ -199,7 +199,7 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    input  systemace_irq, systemace_mpbrdy;
 
    output [15:0] analyzer1_data, analyzer2_data, analyzer3_data, 
-		 analyzer4_data;
+       analyzer4_data;
    output analyzer1_clock, analyzer2_clock, analyzer3_clock, analyzer4_clock;
 
    ////////////////////////////////////////////////////////////////////////////
@@ -318,7 +318,7 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer3_clock = 1'b1;
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
-			    
+             
    ////////////////////////////////////////////////////////////////////////////
    //
    // lab3 : a simple pong game
@@ -338,7 +338,7 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    // power-on reset generation
    wire power_on_reset;    // remain high for first 16 clocks
    SRL16 reset_sr (.D(1'b0), .CLK(clock_65mhz), .Q(power_on_reset),
-		   .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
+         .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
    defparam reset_sr.INIT = 16'hFFFF;
 
    // ENTER button is user reset
@@ -357,9 +357,9 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    wire [23:0] pixel;
    wire phsync,pvsync,pblank;
    piano p(.vclock(clock_65mhz),.reset(reset),
-		.hcount(hcount),.vcount(vcount),
+      .hcount(hcount),.vcount(vcount),
       .hsync(hsync),.vsync(vsync),.blank(blank),
-		.phsync(phsync),.pvsync(pvsync),.pblank(pblank),.pixel(pixel));
+      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.pixel(pixel));
 
    // switch[1:0] selects which video generator to use:
    //  00: user's pong game
@@ -371,23 +371,23 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    reg b,hs,vs;
    always @(posedge clock_65mhz) begin
       if (switch[1:0] == 2'b01) begin
-	 // 1 pixel outline of visible area (white)
-	 hs <= hsync;
-	 vs <= vsync;
-	 b <= blank;
-	 rgb <= {24{border}};
+    // 1 pixel outline of visible area (white)
+    hs <= hsync;
+    vs <= vsync;
+    b <= blank;
+    rgb <= {24{border}};
       end else if (switch[1:0] == 2'b10) begin
-	 // color bars
-	 hs <= hsync;
-	 vs <= vsync;
-	 b <= blank;
-	 rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
+    // color bars
+    hs <= hsync;
+    vs <= vsync;
+    b <= blank;
+    rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
       end else begin
          // default: pong
-	 hs <= phsync;
-	 vs <= pvsync;
-	 b <= pblank;
-	 rgb <= pixel;
+    hs <= phsync;
+    vs <= pvsync;
+    b <= pblank;
+    rgb <= pixel;
       end
    end
 
@@ -414,7 +414,7 @@ endmodule
 
 module xvga(input vclock,
             output reg [10:0] hcount,    // pixel number on current line
-            output reg [9:0] vcount,	 // line number
+            output reg [9:0] vcount,    // line number
             output reg vsync,hsync,blank);
 
    // horizontal: 1344 pixels total
@@ -458,164 +458,164 @@ endmodule
 ////////////////////////////////////////////////////////////////////////////////
 
 module piano (
-   input vclock,	// 65MHz clock
-   input reset,		// 1 to initialize module
-   input [10:0] hcount,	// horizontal index of current pixel (0..1023)
-   input [9:0] 	vcount, // vertical index of current pixel (0..767)
-   input hsync,		// XVGA horizontal sync signal (active low)
-   input vsync,		// XVGA vertical sync signal (active low)
-   input blank,		// XVGA blanking (1 means output black pixel)
- 	
-   output phsync,	// piano's horizontal sync
-   output pvsync,	// piano's vertical sync
-   output pblank,	// piano's blanking
-   output [23:0] pixel	// piano's pixel  // r=23:16, g=15:8, b=7:0 
+   input vclock,  // 65MHz clock
+   input reset,      // 1 to initialize module
+   input [10:0] hcount, // horizontal index of current pixel (0..1023)
+   input [9:0]    vcount, // vertical index of current pixel (0..767)
+   input hsync,      // XVGA horizontal sync signal (active low)
+   input vsync,      // XVGA vertical sync signal (active low)
+   input blank,      // XVGA blanking (1 means output black pixel)
+   
+   output phsync, // piano's horizontal sync
+   output pvsync, // piano's vertical sync
+   output pblank, // piano's blanking
+   output [23:0] pixel  // piano's pixel  // r=23:16, g=15:8, b=7:0 
    );
 
    parameter PRESSED = 24'hFF_00_00;
-	parameter WHITE = 24'hFF_FF_FF;
-	parameter BLACK = 24'h00_00_00;
-	parameter BOARD_WIDTH = 11'd1024;
-	parameter BOARD_HEIGHT = 10'd768;
-	parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 1;
-	parameter WHITE_KEY_WIDTH = 90;
-	parameter WHITE_KEY_START_HORIZONTAL = 11'd20;
-	parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
-	parameter BLACK_KEY_HEIGHT = WHITE_KEY_HEIGHT >> 1;
-	parameter BLACK_KEY_WIDTH = 55;
-	parameter BLACK_KEY_START_HORIZONTAL = 11'd85;
-	parameter SPACING = 95;
-	
-	wire [4:0] key_num;
-	wire [23:0] c_pixel;
-	wire [23:0] db_pixel;
-	wire [23:0] d_pixel;
-	wire [23:0] eb_pixel;
-	wire [23:0] e_pixel;
-	wire [23:0] f_pixel;
-	wire [23:0] gb_pixel;
-	wire [23:0] g_pixel;
-	wire [23:0] ab_pixel;
-	wire [23:0] a_pixel;
-	wire [23:0] bb_pixel;
-	wire [23:0] b_pixel;
-	wire [23:0] high_c_pixel;
-	wire [23:0] high_db_pixel;
-	wire [23:0] high_d_pixel;
-	wire [23:0] high_eb_pixel;
-	wire [23:0] high_e_pixel;
+   parameter WHITE = 24'hFF_FF_FF;
+   parameter BLACK = 24'h00_00_00;
+   parameter BOARD_WIDTH = 11'd1024;
+   parameter BOARD_HEIGHT = 10'd768;
+   parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 1;
+   parameter WHITE_KEY_WIDTH = 90;
+   parameter WHITE_KEY_START_HORIZONTAL = 11'd20;
+   parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
+   parameter BLACK_KEY_HEIGHT = WHITE_KEY_HEIGHT >> 1;
+   parameter BLACK_KEY_WIDTH = 55;
+   parameter BLACK_KEY_START_HORIZONTAL = 11'd85;
+   parameter SPACING = 95;
+   
+   wire [4:0] key_num;
+   wire [23:0] c_pixel;
+   wire [23:0] db_pixel;
+   wire [23:0] d_pixel;
+   wire [23:0] eb_pixel;
+   wire [23:0] e_pixel;
+   wire [23:0] f_pixel;
+   wire [23:0] gb_pixel;
+   wire [23:0] g_pixel;
+   wire [23:0] ab_pixel;
+   wire [23:0] a_pixel;
+   wire [23:0] bb_pixel;
+   wire [23:0] b_pixel;
+   wire [23:0] high_c_pixel;
+   wire [23:0] high_db_pixel;
+   wire [23:0] high_d_pixel;
+   wire [23:0] high_eb_pixel;
+   wire [23:0] high_e_pixel;
    
    assign phsync = hsync;
    assign pvsync = vsync;
    assign pblank = blank;
-	
-	// C key
-	left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-					.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT), 
-					.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		C(.x(WHITE_KEY_START_HORIZONTAL + (0 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(c_pixel));
-	
-	// Db key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		Db(.x(BLACK_KEY_START_HORIZONTAL + (0 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(db_pixel));
-	
-	// D key
-	middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-						.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-						.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		D(.x(WHITE_KEY_START_HORIZONTAL + (1 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(d_pixel));
-	
-	// Eb key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		Eb(.x(BLACK_KEY_START_HORIZONTAL + (1 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(eb_pixel));
-	
-	// E key
-	right_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-					.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-					.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		E(.x(WHITE_KEY_START_HORIZONTAL + (2 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(e_pixel));
-		
-	// F key
-	left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-					.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT), 
-					.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		F(.x(WHITE_KEY_START_HORIZONTAL + (3 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(f_pixel));
-	
-	// Gb key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		Gb(.x(BLACK_KEY_START_HORIZONTAL + (3 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(gb_pixel));
-	
-	// G key
-	middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-						.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-						.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		G(.x(WHITE_KEY_START_HORIZONTAL + (4 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(g_pixel));
-	
-	// Ab key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		Ab(.x(BLACK_KEY_START_HORIZONTAL + (4 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(ab_pixel));
-	
-	// A key
-	middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-						.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-						.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		A(.x(WHITE_KEY_START_HORIZONTAL + (5 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(a_pixel));
-	
-	// Bb key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		Bb(.x(BLACK_KEY_START_HORIZONTAL + (5 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(bb_pixel));
-	
-	// B key
-	right_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-					.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-					.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		B(.x(WHITE_KEY_START_HORIZONTAL + (6 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(b_pixel));
-	
-	// high C key
-	left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-					.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT), 
-					.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		high_C(.x(WHITE_KEY_START_HORIZONTAL + (7 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(high_c_pixel));
-	
-	// high Db key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		high_Db(.x(BLACK_KEY_START_HORIZONTAL + (7 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(high_db_pixel));
-	
-	// high D key
-	middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-						.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-						.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		high_D(.x(WHITE_KEY_START_HORIZONTAL + (8 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(high_d_pixel));
-	
-	// high Eb key
-	blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
-		high_Eb(.x(BLACK_KEY_START_HORIZONTAL + (8 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(high_eb_pixel));
-	
-	// high E key
-	right_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
-					.BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
-					.BLACK_KEY_WIDTH(25), .COLOR(WHITE))
-		high_E(.x(WHITE_KEY_START_HORIZONTAL + (9 * SPACING)), .y(KEY_START_VERTICAL),
-		.hcount(hcount), .vcount(vcount), .pixel(high_e_pixel));
-	
-	assign pixel = c_pixel | db_pixel | d_pixel | eb_pixel | e_pixel | f_pixel
-						| gb_pixel | g_pixel | ab_pixel | a_pixel | bb_pixel | b_pixel
-						| high_c_pixel | high_db_pixel | high_d_pixel | high_eb_pixel | high_e_pixel;
+   
+   // C key
+   left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+               .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT), 
+               .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      C(.x(WHITE_KEY_START_HORIZONTAL + (0 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(c_pixel));
+   
+   // Db key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      Db(.x(BLACK_KEY_START_HORIZONTAL + (0 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(db_pixel));
+   
+   // D key
+   middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+                  .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+                  .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      D(.x(WHITE_KEY_START_HORIZONTAL + (1 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(d_pixel));
+   
+   // Eb key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      Eb(.x(BLACK_KEY_START_HORIZONTAL + (1 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(eb_pixel));
+   
+   // E key
+   right_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+               .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+               .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      E(.x(WHITE_KEY_START_HORIZONTAL + (2 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(e_pixel));
+      
+   // F key
+   left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+               .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT), 
+               .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      F(.x(WHITE_KEY_START_HORIZONTAL + (3 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(f_pixel));
+   
+   // Gb key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      Gb(.x(BLACK_KEY_START_HORIZONTAL + (3 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(gb_pixel));
+   
+   // G key
+   middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+                  .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+                  .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      G(.x(WHITE_KEY_START_HORIZONTAL + (4 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(g_pixel));
+   
+   // Ab key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      Ab(.x(BLACK_KEY_START_HORIZONTAL + (4 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(ab_pixel));
+   
+   // A key
+   middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+                  .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+                  .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      A(.x(WHITE_KEY_START_HORIZONTAL + (5 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(a_pixel));
+   
+   // Bb key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      Bb(.x(BLACK_KEY_START_HORIZONTAL + (5 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(bb_pixel));
+   
+   // B key
+   right_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+               .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+               .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      B(.x(WHITE_KEY_START_HORIZONTAL + (6 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(b_pixel));
+   
+   // high C key
+   left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+               .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT), 
+               .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      high_C(.x(WHITE_KEY_START_HORIZONTAL + (7 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(high_c_pixel));
+   
+   // high Db key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      high_Db(.x(BLACK_KEY_START_HORIZONTAL + (7 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(high_db_pixel));
+   
+   // high D key
+   middle_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+                  .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+                  .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      high_D(.x(WHITE_KEY_START_HORIZONTAL + (8 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(high_d_pixel));
+   
+   // high Eb key
+   blob #(.WIDTH(BLACK_KEY_WIDTH), .HEIGHT(BLACK_KEY_HEIGHT), .COLOR(BLACK))
+      high_Eb(.x(BLACK_KEY_START_HORIZONTAL + (8 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(high_eb_pixel));
+   
+   // high E key
+   right_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
+               .BLACK_KEY_HEIGHT(BLACK_KEY_HEIGHT),
+               .BLACK_KEY_WIDTH(25), .COLOR(WHITE))
+      high_E(.x(WHITE_KEY_START_HORIZONTAL + (9 * SPACING)), .y(KEY_START_VERTICAL),
+      .hcount(hcount), .vcount(vcount), .pixel(high_e_pixel));
+   
+   assign pixel = c_pixel | db_pixel | d_pixel | eb_pixel | e_pixel | f_pixel
+                  | gb_pixel | g_pixel | ab_pixel | a_pixel | bb_pixel | b_pixel
+                  | high_c_pixel | high_db_pixel | high_d_pixel | high_eb_pixel | high_e_pixel;
      
 endmodule
