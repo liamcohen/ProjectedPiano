@@ -1,0 +1,1167 @@
+Release 10.1.03 - xst K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to /afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Parameter xsthdpdir set to /afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Reading design: labkit.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+     9.1) Device utilization summary
+     9.2) Partition Resource Summary
+     9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "labkit.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "labkit"
+Output Format                      : NGC
+Target Device                      : xc2v6000-4-bf957
+
+---- Source Options
+Top Module Name                    : labkit
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : lut
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : YES
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : YES
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Convert Tristates To Logic         : Yes
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Library Search Order               : labkit.lso
+Keep Hierarchy                     : NO
+Netlist Hierarchy                  : as_optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "i2c_write_reg.v" in library work
+Compiling verilog file "i2c_master.v" in library work
+Module <i2c_write_reg> compiled
+Compiling verilog file "../../../6.111 Labs/Lab4/ISE/CarAlarm/Timer.v" in library work
+Module <i2c_master> compiled
+Compiling verilog file "../../../6.111 Labs/Lab4/ISE/CarAlarm/divider.v" in library work
+Module <Timer> compiled
+Compiling verilog file "../../../6.111 Labs/Lab2/ise/lab2_3/display/debounce.v" in library work
+Module <divider> compiled
+Compiling verilog file "labkit.v" in library work
+Module <debounce> compiled
+Module <labkit> compiled
+No errors in compilation
+Analysis of file <"labkit.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <labkit> in library <work>.
+
+Analyzing hierarchy for module <debounce> in library <work> with parameters.
+	DELAY = "00000000000001000001111010101111"
+
+Analyzing hierarchy for module <Timer> in library <work> with parameters.
+	S_COUNT = "00000000000000000000000000000001"
+	S_STALL = "00000000000000000000000000000000"
+
+Analyzing hierarchy for module <divider> in library <work> with parameters.
+	CLOCK_PERIOD = "00000000001010010011001011100000"
+
+Analyzing hierarchy for module <i2c_write_reg> in library <work> with parameters.
+	S_CHECK_I2C_FREE = "1001"
+	S_CHECK_I2C_FREE_TIMEOUT = "1010"
+	S_RESET = "0000"
+	S_VALIDATE_BUS = "0001"
+	S_VALIDATE_TIMEOUT = "0010"
+	S_WRITE_DATA_0 = "0110"
+	S_WRITE_DATA_1 = "0111"
+	S_WRITE_DATA_TIMEOUT = "1000"
+	S_WRITE_REG_ADDRESS_0 = "0011"
+	S_WRITE_REG_ADDRESS_1 = "0100"
+	S_WRITE_REG_ADDRESS_TIMEOUT = "0101"
+
+Analyzing hierarchy for module <i2c_master> in library <work> with parameters.
+	PHY_STATE_ACTIVE = "00001"
+	PHY_STATE_IDLE = "00000"
+	PHY_STATE_READ_BIT_1 = "01001"
+	PHY_STATE_READ_BIT_2 = "01010"
+	PHY_STATE_READ_BIT_3 = "01011"
+	PHY_STATE_READ_BIT_4 = "01100"
+	PHY_STATE_REPEATED_START_1 = "00010"
+	PHY_STATE_REPEATED_START_2 = "00011"
+	PHY_STATE_START_1 = "00100"
+	PHY_STATE_START_2 = "00101"
+	PHY_STATE_STOP_1 = "01101"
+	PHY_STATE_STOP_2 = "01110"
+	PHY_STATE_STOP_3 = "01111"
+	PHY_STATE_WRITE_BIT_1 = "00110"
+	PHY_STATE_WRITE_BIT_2 = "00111"
+	PHY_STATE_WRITE_BIT_3 = "01000"
+	STATE_ACTIVE_READ = "00010"
+	STATE_ACTIVE_WRITE = "00001"
+	STATE_ADDRESS_1 = "00101"
+	STATE_ADDRESS_2 = "00110"
+	STATE_IDLE = "00000"
+	STATE_READ = "01010"
+	STATE_START = "00100"
+	STATE_START_WAIT = "00011"
+	STATE_STOP = "01011"
+	STATE_WRITE_1 = "00111"
+	STATE_WRITE_2 = "01000"
+	STATE_WRITE_3 = "01001"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <labkit>.
+Module <labkit> is correct for synthesis.
+ 
+Analyzing module <debounce> in library <work>.
+	DELAY = 32'sb00000000000001000001111010101111
+Module <debounce> is correct for synthesis.
+ 
+Analyzing module <Timer> in library <work>.
+	S_COUNT = 32'sb00000000000000000000000000000001
+	S_STALL = 32'sb00000000000000000000000000000000
+Module <Timer> is correct for synthesis.
+ 
+Analyzing module <divider> in library <work>.
+	CLOCK_PERIOD = 32'sb00000000001010010011001011100000
+Module <divider> is correct for synthesis.
+ 
+Analyzing module <i2c_write_reg> in library <work>.
+	S_CHECK_I2C_FREE = 4'b1001
+	S_CHECK_I2C_FREE_TIMEOUT = 4'b1010
+	S_RESET = 4'b0000
+	S_VALIDATE_BUS = 4'b0001
+	S_VALIDATE_TIMEOUT = 4'b0010
+	S_WRITE_DATA_0 = 4'b0110
+	S_WRITE_DATA_1 = 4'b0111
+	S_WRITE_DATA_TIMEOUT = 4'b1000
+	S_WRITE_REG_ADDRESS_0 = 4'b0011
+	S_WRITE_REG_ADDRESS_1 = 4'b0100
+	S_WRITE_REG_ADDRESS_TIMEOUT = 4'b0101
+Module <i2c_write_reg> is correct for synthesis.
+ 
+Analyzing module <i2c_master> in library <work>.
+	PHY_STATE_ACTIVE = 5'b00001
+	PHY_STATE_IDLE = 5'b00000
+	PHY_STATE_READ_BIT_1 = 5'b01001
+	PHY_STATE_READ_BIT_2 = 5'b01010
+	PHY_STATE_READ_BIT_3 = 5'b01011
+	PHY_STATE_READ_BIT_4 = 5'b01100
+	PHY_STATE_REPEATED_START_1 = 5'b00010
+	PHY_STATE_REPEATED_START_2 = 5'b00011
+	PHY_STATE_START_1 = 5'b00100
+	PHY_STATE_START_2 = 5'b00101
+	PHY_STATE_STOP_1 = 5'b01101
+	PHY_STATE_STOP_2 = 5'b01110
+	PHY_STATE_STOP_3 = 5'b01111
+	PHY_STATE_WRITE_BIT_1 = 5'b00110
+	PHY_STATE_WRITE_BIT_2 = 5'b00111
+	PHY_STATE_WRITE_BIT_3 = 5'b01000
+	STATE_ACTIVE_READ = 5'b00010
+	STATE_ACTIVE_WRITE = 5'b00001
+	STATE_ADDRESS_1 = 5'b00101
+	STATE_ADDRESS_2 = 5'b00110
+	STATE_IDLE = 5'b00000
+	STATE_READ = 5'b01010
+	STATE_START = 5'b00100
+	STATE_START_WAIT = 5'b00011
+	STATE_STOP = 5'b01011
+	STATE_WRITE_1 = 5'b00111
+	STATE_WRITE_2 = 5'b01000
+	STATE_WRITE_3 = 5'b01001
+WARNING:Xst:905 - "i2c_master.v" line 601: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <phy_release_bus>
+Module <i2c_master> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2561 - Always blocking tristate driving signal <flash_data> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <ram0_data> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user1> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user2> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user4> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <ram1_data> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <daughtercard> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <systemace_data> in unit <labkit> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <tv_in_i2c_data> in unit <labkit> is removed.
+
+Synthesizing Unit <debounce>.
+    Related source file is "../../../6.111 Labs/Lab2/ise/lab2_3/display/debounce.v".
+    Found 19-bit up counter for signal <count>.
+    Found 1-bit xor2 for signal <count$xor0000> created at line 38.
+    Found 1-bit register for signal <old>.
+    Found 1-bit register for signal <steady_reg>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   2 D-type flip-flop(s).
+Unit <debounce> synthesized.
+
+
+Synthesizing Unit <Timer>.
+    Related source file is "../../../6.111 Labs/Lab4/ISE/CarAlarm/Timer.v".
+    Found 1-bit register for signal <time_expired>.
+    Found 6-bit subtractor for signal <$sub0000> created at line 46.
+    Found 4-bit register for signal <count>.
+    Found 4-bit adder for signal <count$addsub0000> created at line 61.
+    Found 1-bit register for signal <state>.
+    Found 6-bit comparator greatequal for signal <state$cmp_ge0000> created at line 46.
+    Summary:
+	inferred   6 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <Timer> synthesized.
+
+
+Synthesizing Unit <divider>.
+    Related source file is "../../../6.111 Labs/Lab4/ISE/CarAlarm/divider.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 17-bit up counter for signal <counter>.
+    Summary:
+	inferred   1 Counter(s).
+Unit <divider> synthesized.
+
+
+Synthesizing Unit <i2c_write_reg>.
+    Related source file is "i2c_write_reg.v".
+WARNING:Xst:647 - Input <i2c_cmd_ready> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <i2c_relinquish> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <i2c_bus_free_output> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Register <i2c_cmd_stop_reg> equivalent to <i2c_cmd_start_reg> has been removed
+    Register <i2c_cmd_valid_reg> equivalent to <i2c_cmd_start_reg> has been removed
+    Register <i2c_cmd_write_multiple_reg> equivalent to <i2c_cmd_start_reg> has been removed
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 11                                             |
+    | Transitions        | 24                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 12                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Power Up State     | 0000                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <done_reg>.
+    Found 1-bit tristate buffer for signal <i2c_cmd_start_reg>.
+    Found 1-bit register for signal <i2c_control_reg>.
+    Found 1-bit tristate buffer for signal <i2c_data_in_last_reg>.
+    Found 1-bit tristate buffer for signal <i2c_data_in_valid_reg>.
+    Found 8-bit tristate buffer for signal <i2c_data_out_reg>.
+    Found 7-bit tristate buffer for signal <i2c_dev_address_reg>.
+    Found 1-bit register for signal <message_failure_reg>.
+    Found 1-bit register for signal <Mtridata_i2c_cmd_start_reg>.
+    Found 1-bit register for signal <Mtridata_i2c_data_in_last_reg>.
+    Found 1-bit register for signal <Mtridata_i2c_data_in_valid_reg>.
+    Found 8-bit register for signal <Mtridata_i2c_data_out_reg>.
+    Found 7-bit register for signal <Mtridata_i2c_dev_address_reg>.
+    Found 1-bit register for signal <Mtridata_timer_param_reg<0>>.
+    Found 1-bit register for signal <Mtridata_timer_param_reg<1>>.
+    Found 1-bit register for signal <Mtridata_timer_param_reg<2>>.
+    Found 1-bit register for signal <Mtridata_timer_start_reg>.
+    Found 1-bit register for signal <Mtrien_i2c_cmd_start_reg>.
+    Found 1-bit register for signal <Mtrien_i2c_data_in_last_reg>.
+    Found 1-bit register for signal <Mtrien_i2c_data_in_valid_reg>.
+    Found 1-bit register for signal <Mtrien_i2c_data_out_reg>.
+    Found 1-bit register for signal <Mtrien_i2c_dev_address_reg>.
+    Found 1-bit register for signal <Mtrien_timer_param_reg<0>>.
+    Found 1-bit register for signal <Mtrien_timer_param_reg<1>>.
+    Found 1-bit register for signal <Mtrien_timer_param_reg<2>>.
+    Found 1-bit register for signal <Mtrien_timer_start_reg>.
+    Found 1-bit register for signal <timer_param_reg<3>>.
+    Found 3-bit tristate buffer for signal <timer_param_reg<2:0>>.
+    Found 1-bit tristate buffer for signal <timer_start_reg>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  35 D-type flip-flop(s).
+	inferred  22 Tristate(s).
+Unit <i2c_write_reg> synthesized.
+
+
+Synthesizing Unit <i2c_master>.
+    Related source file is "i2c_master.v".
+WARNING:Xst:646 - Signal <scl_posedge> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <scl_negedge> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_1> for signal <state_reg>.
+    -----------------------------------------------------------------------
+    | States             | 12                                             |
+    | Transitions        | 41                                             |
+    | Inputs             | 15                                             |
+    | Outputs            | 14                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Clock enable       | state_reg$and0000 (negative)                   |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00000                                          |
+    | Power Up State     | 00000                                          |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Using one-hot encoding for signal <phy_state_reg>.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <phy_state_reg> of Case statement line 636 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <phy_state_reg> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found 7-bit register for signal <addr_reg>.
+    Found 4-bit register for signal <bit_count_reg>.
+    Found 4-bit subtractor for signal <bit_count_reg$addsub0000>.
+    Found 1-bit register for signal <bus_active_reg>.
+    Found 17-bit comparator greater for signal <bus_control_next$cmp_gt0000> created at line 631.
+    Found 1-bit register for signal <bus_control_reg>.
+    Found 1-bit register for signal <busy_reg>.
+    Found 1-bit register for signal <cmd_ready_reg>.
+    Found 1-bit register for signal <data_in_ready_reg>.
+    Found 1-bit register for signal <data_out_last_reg>.
+    Found 8-bit register for signal <data_out_reg>.
+    Found 1-bit register for signal <data_out_valid_reg>.
+    Found 8-bit register for signal <data_reg>.
+    Found 17-bit subtractor for signal <delay_next$addsub0000> created at line 633.
+    Found 17-bit register for signal <delay_reg>.
+    Found 1-bit register for signal <delay_scl_reg>.
+    Found 1-bit register for signal <delay_sda_reg>.
+    Found 1-bit register for signal <last_reg>.
+    Found 1-bit register for signal <last_sda_i_reg>.
+    Found 1-bit register for signal <missed_ack_reg>.
+    Found 1-bit register for signal <mode_read_reg>.
+    Found 1-bit register for signal <mode_stop_reg>.
+    Found 1-bit register for signal <mode_write_multiple_reg>.
+    Found 1-bit register for signal <phy_rx_data_reg>.
+    Found 16-bit register for signal <phy_state_reg>.
+    Found 1-bit register for signal <scl_i_reg>.
+    Found 1-bit register for signal <scl_o_reg>.
+    Found 1-bit register for signal <sda_i_reg>.
+    Found 1-bit register for signal <sda_o_reg>.
+    Found 4-bit comparator greater for signal <state_reg$cmp_gt0000> created at line 490.
+    Found 4-bit comparator greater for signal <state_reg$cmp_gt0001> created at line 495.
+    Found 7-bit comparator not equal for signal <state_reg$cmp_ne0000> created at line 378.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  80 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <i2c_master> synthesized.
+
+
+Synthesizing Unit <labkit>.
+    Related source file is "labkit.v".
+WARNING:Xst:2565 - Inout <user3<28>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<29>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<5>> is never assigned.
+WARNING:Xst:647 - Input <button2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <button3> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user3<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<9>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<10>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<11>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<11>> is never assigned.
+WARNING:Xst:647 - Input <clock1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <clock2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<12>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<13>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<13>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_aef> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<14>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<14>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_aff> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<15>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<20>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<21>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<16>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<22>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<17>> is never assigned.
+WARNING:Xst:647 - Input <systemace_irq> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<18>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<23>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<0>> is never assigned.
+WARNING:Xst:647 - Input <clock_feedback_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<19>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<24>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<1>> is never assigned.
+WARNING:Xst:647 - Input <disp_data_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user2<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<25>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<30>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<11>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<31>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<26>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<32>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<27>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<13>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<33>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<28>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<14>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<34>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<29>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<20>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<40>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<35>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<21>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<16>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<41>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<36>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<17>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<22>> is never assigned.
+WARNING:Xst:647 - Input <button_enter> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<37>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<42>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<23>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<18>> is never assigned.
+WARNING:Xst:647 - Input <keyboard_clock> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<38>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<43>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<24>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<19>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<39>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<3>> is never assigned.
+WARNING:Xst:2565 - Inout <tv_in_i2c_data> is never assigned.
+WARNING:Xst:2565 - Inout <user4<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<25>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<31>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<5>> is never assigned.
+WARNING:Xst:647 - Input <flash_sts> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user4<8>> is never assigned.
+WARNING:Xst:647 - Input <rs232_rxd> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user2<27>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<28>> is never assigned.
+WARNING:Xst:647 - Input <mouse_data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user1<7>> is never assigned.
+WARNING:Xst:647 - Input <rs232_cts> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user2<29>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<9>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<1>> is never assigned.
+WARNING:Xst:647 - Input <switch<7:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user4<11>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<13>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<14>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<20>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<15>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<6>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<16>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<21>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<7>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<22>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<17>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<11>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<8>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<23>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<18>> is never assigned.
+WARNING:Xst:647 - Input <button_left> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<9>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<19>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<24>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<13>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<0>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<25>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<14>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<1>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<31>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<20>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<27>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<16>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<21>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<7>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_data_valid> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user4<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<22>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<17>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_hff> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram0_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<10>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<29>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<23>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<18>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<11>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_ycrcb> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram0_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<24>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<19>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<12>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<11>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<7>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<25>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<13>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<2>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<31>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<14>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<13>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<32>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<9>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<27>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<20>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<14>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_line_clock1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<33>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_line_clock2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<16>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<21>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<20>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<29>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<34>> is never assigned.
+WARNING:Xst:647 - Input <keyboard_data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<17>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<22>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<21>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<16>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<35>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<18>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<23>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<22>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<17>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<24>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<19>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<23>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<18>> is never assigned.
+WARNING:Xst:647 - Input <ac97_sdata_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<11>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<25>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<30>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<24>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<19>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<31>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<25>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<30>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<13>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<27>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<31>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<26>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<7>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<14>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<32>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<27>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<29>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<33>> is never assigned.
+WARNING:Xst:647 - Input <systemace_mpbrdy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<9>> is never assigned.
+WARNING:Xst:647 - Input <button_right> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram0_data<34>> is never assigned.
+WARNING:Xst:2565 - Inout <ram0_data<29>> is never assigned.
+WARNING:Xst:647 - Input <button_down> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram0_data<35>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<10>> is never assigned.
+WARNING:Xst:647 - Input <mouse_clock> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user3<11>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<12>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<13>> is never assigned.
+WARNING:Xst:647 - Input <ac97_bit_clock> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user3<14>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<20>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<21>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<16>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<22>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<17>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<23>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<18>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<24>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<19>> is never assigned.
+WARNING:Xst:647 - Input <button_up> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user3<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<25>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<31>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<27>> is never assigned.
+WARNING:Xst:646 - Signal <i2c_write_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <i2c_control> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <i2c_cmd_ready> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <data_out_valid> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <data_out_ready> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <data_out_last> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <data_out> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cmd_ready> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit tristate buffer for signal <user3<1>>.
+    Found 1-bit tristate buffer for signal <user3<0>>.
+    Summary:
+	inferred   2 Tristate(s).
+Unit <labkit> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 4
+ 17-bit subtractor                                     : 1
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+ 6-bit subtractor                                      : 1
+# Counters                                             : 2
+ 19-bit up counter                                     : 2
+# Registers                                            : 55
+ 1-bit register                                        : 46
+ 16-bit register                                       : 1
+ 17-bit register                                       : 1
+ 4-bit register                                        : 2
+ 7-bit register                                        : 2
+ 8-bit register                                        : 3
+# Comparators                                          : 5
+ 17-bit comparator greater                             : 1
+ 4-bit comparator greater                              : 2
+ 6-bit comparator greatequal                           : 1
+ 7-bit comparator not equal                            : 1
+# Tristates                                            : 11
+ 1-bit tristate buffer                                 : 9
+ 7-bit tristate buffer                                 : 1
+ 8-bit tristate buffer                                 : 1
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <master/state_reg/FSM> on signal <state_reg[1:12]> with speed1 encoding.
+-----------------------
+ State | Encoding
+-----------------------
+ 00000 | 100000000000
+ 00001 | 000010000000
+ 00010 | 000000001000
+ 00011 | 010000000000
+ 00100 | 000001000000
+ 00101 | 001000000000
+ 00110 | 000000000100
+ 00111 | 000100000000
+ 01000 | 000000000010
+ 01001 | 000000000001
+ 01010 | 000000100000
+ 01011 | 000000010000
+-----------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <write/state> on signal <state[1:11]> with one-hot encoding.
+----------------------
+ State | Encoding
+----------------------
+ 0000  | 00000000001
+ 0001  | 00000000010
+ 0011  | 00000000100
+ 0010  | 00000001000
+ 0100  | 00000010000
+ 0101  | 00000100000
+ 0110  | 00001000000
+ 1001  | 00010000000
+ 1000  | 00100000000
+ 0111  | 01000000000
+ 1010  | 10000000000
+----------------------
+Loading device for application Rf_Device from file '2v6000.nph' in environment /afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE.
+WARNING:Xst:2404 -  FFs/Latches <Mtridata_i2c_dev_address_reg<6:6>> (without init value) have a constant value of 0 in block <i2c_write_reg>.
+WARNING:Xst:1710 - FF/Latch <Mtridata_i2c_dev_address_reg_5> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_dev_address_reg_4> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_dev_address_reg_3> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_dev_address_reg_2> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_dev_address_reg_1> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_dev_address_reg_0> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_cmd_start_reg> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_data_out_reg_7> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_data_out_reg_6> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_data_out_reg_5> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_data_out_reg_2> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_i2c_data_out_reg_0> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_timer_param_reg<0>> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_timer_param_reg<1>> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_timer_param_reg<2>> (without init value) has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <timer_param_reg_3> has a constant value of 0 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_timer_start_reg> (without init value) has a constant value of 1 in block <i2c_write_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_timer_param_reg<2> and Mtridata_timer_param_reg<1> Mtridata_timer_param_reg<1> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_timer_start_reg and Mtridata_timer_param_reg<0> Mtridata_timer_param_reg<0> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_timer_param_reg<0> and Mtridata_i2c_data_out_reg<0> Mtridata_i2c_data_out_reg<0> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_timer_param_reg<1> and Mtridata_i2c_data_out_reg<2> Mtridata_i2c_data_out_reg<2> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<0> and Mtridata_i2c_data_out_reg<5> Mtridata_i2c_data_out_reg<5> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<0> and Mtridata_i2c_data_out_reg<6> Mtridata_i2c_data_out_reg<6> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<2> and Mtridata_i2c_data_out_reg<7> Mtridata_i2c_data_out_reg<7> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<0> and Mtridata_i2c_cmd_start_reg Mtridata_i2c_cmd_start_reg signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_cmd_start_reg and Mtridata_i2c_dev_address_reg<0> Mtridata_i2c_dev_address_reg<0> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<2> and Mtridata_i2c_dev_address_reg<1> Mtridata_i2c_dev_address_reg<1> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<2> and Mtridata_i2c_dev_address_reg<2> Mtridata_i2c_dev_address_reg<2> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_cmd_start_reg and Mtridata_i2c_dev_address_reg<3> Mtridata_i2c_dev_address_reg<3> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<2> and Mtridata_i2c_dev_address_reg<4> Mtridata_i2c_dev_address_reg<4> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_cmd_start_reg and Mtridata_i2c_dev_address_reg<5> Mtridata_i2c_dev_address_reg<5> signal will be lost.
+INFO:Xst:2261 - The FF/Latch <Mtridata_i2c_data_out_reg_1> in Unit <i2c_write_reg> is equivalent to the following 2 FFs/Latches, which will be removed : <Mtridata_i2c_data_out_reg_4> <Mtridata_i2c_data_in_last_reg> 
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<1> and Mtridata_i2c_data_out_reg<4> Mtridata_i2c_data_out_reg<4> signal will be lost.
+WARNING:Xst:638 - in unit i2c_write_reg Conflict on KEEP property on signal Mtridata_i2c_data_out_reg<1> and Mtridata_i2c_data_in_last_reg Mtridata_i2c_data_in_last_reg signal will be lost.
+WARNING:Xst:1293 - FF/Latch <delay_sda_reg> has a constant value of 0 in block <i2c_master>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <time_expired> (without init value) has a constant value of 0 in block <timer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <done_reg> of sequential type is unconnected in block <write>.
+WARNING:Xst:2677 - Node <i2c_control_reg> of sequential type is unconnected in block <write>.
+WARNING:Xst:2677 - Node <data_out_last_reg> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_0> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_1> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_2> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_3> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_4> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_5> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_6> of sequential type is unconnected in block <master>.
+WARNING:Xst:2677 - Node <data_out_reg_7> of sequential type is unconnected in block <master>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 4
+ 17-bit subtractor                                     : 1
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+ 6-bit subtractor                                      : 1
+# Counters                                             : 2
+ 19-bit up counter                                     : 2
+# Registers                                            : 127
+ Flip-Flops                                            : 127
+# Comparators                                          : 5
+ 17-bit comparator greater                             : 1
+ 4-bit comparator greater                              : 2
+ 6-bit comparator greatequal                           : 1
+ 7-bit comparator not equal                            : 1
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <timer/time_expired> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <timer/state> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <timer/count_3> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <timer/count_2> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <timer/count_1> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <timer/count_0> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2042 - Unit i2c_write_reg: 22 internal tristates are replaced by logic (pull-up yes): i2c_cmd_write_multiple, i2c_data_in_last, i2c_data_in_valid, i2c_data_out<0>, i2c_data_out<1>, i2c_data_out<2>, i2c_data_out<3>, i2c_data_out<4>, i2c_data_out<5>, i2c_data_out<6>, i2c_data_out<7>, i2c_dev_address<0>, i2c_dev_address<1>, i2c_dev_address<2>, i2c_dev_address<3>, i2c_dev_address<4>, i2c_dev_address<5>, i2c_dev_address<6>, timer_param<0>, timer_param<1>, timer_param<2>, timer_start.
+
+Optimizing unit <labkit> ...
+
+Optimizing unit <i2c_write_reg> ...
+
+Optimizing unit <i2c_master> ...
+WARNING:Xst:1293 - FF/Latch <mode_read_reg> has a constant value of 0 in block <i2c_master>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <mode_read_reg> has a constant value of 0 in block <i2c_master>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <master/state_reg_FSM_FFd8> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/state_reg_FSM_FFd7> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/state_reg_FSM_FFd9> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/state_reg_FSM_FFd6> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/data_out_valid_reg> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <write/i2c_control_reg> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <write/done_reg> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_7> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_6> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_5> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_4> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_3> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_2> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_1> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_reg_0> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <master/data_out_last_reg> of sequential type is unconnected in block <labkit>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 0.
+INFO:Xst:2260 - The FF/Latch <write/Mtrien_i2c_data_in_last_reg> in Unit <labkit> is equivalent to the following FF/Latch : <write/Mtrien_i2c_data_out_reg> 
+INFO:Xst:2260 - The FF/Latch <write/Mtrien_timer_param_reg<0>> in Unit <labkit> is equivalent to the following 3 FFs/Latches : <write/Mtrien_timer_param_reg<1>> <write/Mtrien_timer_param_reg<2>> <write/Mtrien_timer_start_reg> 
+INFO:Xst:2260 - The FF/Latch <write/Mtrien_i2c_cmd_start_reg> in Unit <labkit> is equivalent to the following FF/Latch : <write/Mtrien_i2c_dev_address_reg> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 142
+ Flip-Flops                                            : 142
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : labkit.ngr
+Top Level Output File Name         : labkit
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : NO
+
+Design Statistics
+# IOs                              : 576
+
+Cell Usage :
+# BELS                             : 391
+#      GND                         : 1
+#      INV                         : 25
+#      LUT1                        : 37
+#      LUT2                        : 18
+#      LUT2_D                      : 3
+#      LUT3                        : 36
+#      LUT3_D                      : 4
+#      LUT3_L                      : 6
+#      LUT4                        : 119
+#      LUT4_D                      : 3
+#      LUT4_L                      : 8
+#      MUXCY                       : 67
+#      MUXF5                       : 8
+#      VCC                         : 1
+#      XORCY                       : 55
+# FlipFlops/Latches                : 142
+#      FD                          : 13
+#      FDE                         : 36
+#      FDR                         : 33
+#      FDRE                        : 46
+#      FDRS                        : 6
+#      FDRSE                       : 2
+#      FDS                         : 4
+#      FDSE                        : 2
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 247
+#      IBUF                        : 3
+#      IOBUF                       : 2
+#      OBUF                        : 242
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v6000bf957-4 
+
+ Number of Slices:                      138  out of  33792     0%  
+ Number of Slice Flip Flops:            142  out of  67584     0%  
+ Number of 4 input LUTs:                259  out of  67584     0%  
+ Number of IOs:                         576
+ Number of bonded IOBs:                 248  out of    684    36%  
+ Number of GCLKs:                         1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clock_27mhz                        | BUFGP                  | 142   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 7.756ns (Maximum Frequency: 128.941MHz)
+   Minimum input arrival time before clock: 3.540ns
+   Maximum output required time after clock: 8.136ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clock_27mhz'
+  Clock period: 7.756ns (frequency: 128.941MHz)
+  Total number of paths / destination ports: 3884 / 322
+-------------------------------------------------------------------------
+Delay:               7.756ns (Levels of Logic = 5)
+  Source:            master/state_reg_FSM_FFd5 (FF)
+  Destination:       master/delay_reg_16 (FF)
+  Source Clock:      clock_27mhz rising
+  Destination Clock: clock_27mhz rising
+
+  Data Path: master/state_reg_FSM_FFd5 to master/delay_reg_16
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q            13   0.568   1.162  master/state_reg_FSM_FFd5 (master/state_reg_FSM_FFd5)
+     LUT3_D:I1->O          2   0.439   0.741  master/state_reg_FSM_FFd3-In11 (master/N17)
+     LUT4:I3->O           11   0.439   0.942  master/phy_start_bit1 (master/phy_start_bit)
+     LUT4:I2->O            2   0.439   0.742  master/delay_next<7>1111 (master/N63)
+     LUT4:I3->O           16   0.439   1.035  master/delay_next<7>140 (master/N0)
+     LUT4:I2->O            1   0.439   0.000  master/delay_next<7> (master/delay_next<7>)
+     FDR:D                     0.370          master/delay_reg_7
+    ----------------------------------------
+    Total                      7.756ns (3.133ns logic, 4.622ns route)
+                                       (40.4% logic, 59.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
+  Total number of paths / destination ports: 92 / 48
+-------------------------------------------------------------------------
+Offset:              3.540ns (Levels of Logic = 2)
+  Source:            button0 (PAD)
+  Destination:       db_button0/count_0 (FF)
+  Destination Clock: clock_27mhz rising
+
+  Data Path: button0 to db_button0/count_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   0.825   0.955  button0_IBUF (button0_IBUF)
+     LUT3:I1->O           20   0.439   1.041  db_button0/count_or00001 (db_button0/count_or0000)
+     FDRE:R                    0.280          db_button0/count_0
+    ----------------------------------------
+    Total                      3.540ns (1.544ns logic, 1.996ns route)
+                                       (43.6% logic, 56.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
+  Total number of paths / destination ports: 22 / 7
+-------------------------------------------------------------------------
+Offset:              8.136ns (Levels of Logic = 3)
+  Source:            write/state_FFd5 (FF)
+  Destination:       led<1> (PAD)
+  Source Clock:      clock_27mhz rising
+
+  Data Path: write/state_FFd5 to led<1>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               9   0.568   1.070  write/state_FFd5 (write/state_FFd5)
+     LUT2:I1->O            2   0.439   0.741  write/Mtridata_i2c_data_in_valid_reg_not00011 (write/Mtridata_i2c_data_in_valid_reg_not0001)
+     LUT4:I3->O            1   0.439   0.517  led_not0001<1> (led_1_OBUF)
+     OBUF:I->O                 4.361          led_1_OBUF (led<1>)
+    ----------------------------------------
+    Total                      8.136ns (5.807ns logic, 2.329ns route)
+                                       (71.4% logic, 28.6% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 4.03 secs
+ 
+--> 
+
+
+Total memory usage is 467240 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  391 (   0 filtered)
+Number of infos    :   47 (   0 filtered)
+

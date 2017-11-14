@@ -279,7 +279,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    // disp_data_in is an input
 
    // Buttons, Switches, and Individual LEDs
-   assign led = 8'hFF;
+   // assign led = 8'hFF;
    // button0, button1, button2, button3, button_enter, button_right,
    // button_left, button_down, button_up, and switches are inputs
 
@@ -309,5 +309,189 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer3_clock = 1'b1;
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
+	
+	//Testing I2C master
+	wire clean_button0;
+	wire clean_button1;
+	
+	//assign led = {7'b1111111, ~button1 ? 1'b0 : 1'b1};
+	
+	debounce db_button0 (
+		.clock(clock_27mhz),
+		.reset(switch[0]),
+		.bouncey(~button0),
+		.steady(clean_button0)
+	);
+	
+	debounce db_button1 (
+		.clock(clock_27mhz),
+		.reset(switch[0]),
+		.bouncey(~button1),
+		.steady(clean_button1)
+	);
+	
+	wire clk_1000Hz;	
+	wire timer_start;
+	wire [3:0] timer_param;
+	wire timer_exp;
+	
+	Timer timer (
+		.clk(clock_27mhz),
+		.reset(clean_button0),
+		.startTimer(timer_start),
+		.value(timer_param),
+		.enable(clk_1000Hz),
+		.time_expired(timer_exp)
+	);
+	
+	divider div (
+		.clk(clock_27mhz),
+		.reset(clean_button0),
+		.clk_1000Hz(clk_1000Hz)
+	);
+	
+	
+	wire [6:0] dev_address;
+	wire [7:0] reg_address;
+   wire [7:0] data;
+
+	wire i2c_write_done;
+	wire i2c_data_in_ready;
+	wire i2c_cmd_ready;
+	wire i2c_bus_busy;
+	wire i2c_bus_control;
+	wire i2c_bus_active;
+	wire i2c_missed_ack;
+	
+	wire [7:0] i2c_data_out;
+	wire [6:0] i2c_dev_address;
+	 
+	wire i2c_cmd_start;
+	wire i2c_cmd_write_multiple;
+	wire i2c_cmd_stop;
+	wire i2c_cmd_valid;
+	wire i2c_data_in_valid;
+	wire i2c_data_in_last;
+	wire [3:0] state_out;
+	 
+	wire message_failure;
+	wire i2c_control;
+	wire i2c_relinquish;
+	
+	i2c_write_reg write (
+		.dev_address(dev_address),
+		.reg_address(reg_address),
+		.data(data),
+		
+		.clk(clock_27mhz),
+		.reset(clean_button0),
+		.start(clean_button1),
+		.done(i2c_write_done),
+		
+		.timer_exp(timer_exp),
+		.timer_param(timer_param),
+		.timer_start(timer_start),
+		
+		.i2c_data_in_ready(i2c_data_in_ready),
+		.i2c_cmd_ready(i2c_cmd_ready),
+		.i2c_bus_busy(i2c_bus_busy),
+		.i2c_bus_control(i2c_bus_control),
+	   .i2c_bus_active(i2c_bus_active),
+	   .i2c_missed_ack(i2c_missed_ack),
+		
+		.i2c_data_out(i2c_data_out),
+		.i2c_dev_address(i2c_dev_address),
+		
+		.i2c_cmd_start(i2c_cmd_start),
+		.i2c_cmd_write_multiple(i2c_cmd_write_multiple),
+		.i2c_cmd_stop(i2c_cmd_stop),
+		.i2c_cmd_valid(i2c_cmd_valid),
+		.i2c_data_in_valid(i2c_data_in_valid),
+		.i2c_data_in_last(i2c_data_in_last),
+		.state_out(state_out),
+		
+		.message_failure(message_failure),
+		.i2c_control(i2c_control),
+		.i2c_relinquish(i2c_relinquish)
+	);
+	
+	
+	wire cmd_read;
+	wire cmd_write;
+	wire cmd_ready;
+	wire [7:0] data_out;
+	wire data_out_valid;
+	wire data_out_ready;
+	wire data_out_last;
+	
+	wire [15:0] prescale;
+	wire stop_on_idle;
+	
+	wire sda_i;
+	wire sda_o;
+	wire scl_i;
+	wire scl_o;
+	wire sda_t;
+	wire scl_t;
+	
+	i2c_master master (
+		.clk(clock_27mhz),
+		.rst(clean_button0),
+		.cmd_address(i2c_dev_address),
+		.cmd_start(i2c_cmd_start),		            
+		.cmd_read(cmd_read),		            
+		.cmd_write(cmd_write),	          
+      .cmd_write_multiple(i2c_cmd_write_multiple), 
+		.cmd_stop(i2c_cmd_stop),		          	
+      .cmd_valid(i2c_cmd_valid),		  
+		.cmd_ready(cmd_ready),
+
+		//for writing
+      .data_in(i2c_data_out),
+		.data_in_valid(i2c_data_in_valid),
+      .data_in_ready(i2c_data_in_ready),
+      .data_in_last(i2c_data_in_last),
+
+		//for reading
+      .data_out(data_out),
+		.data_out_valid(data_out_valid),
+		.data_out_ready(data_out_ready),
+		.data_out_last(data_out_last),
+
+      .scl_i(scl_i),
+      .scl_o(scl_o),
+      .scl_t(scl_t),
+      .sda_i(sda_i),
+	   .sda_o(sda_o),
+      .sda_t(sda_t),
+
+      .busy(i2c_bus_busy),
+      .bus_control(i2c_bus_control),
+      .bus_active(i2c_bus_active),
+      .missed_ack(i2c_missed_ack), 
+
+      .prescale(prescale),
+      .stop_on_idle(stop_on_idle)
+	);
+	
+	assign reg_address = 8'h69;
+	assign dev_address = 7'h29;
+	assign data = 8'h73;
+	
+	assign prescale = 16'h40;
+	assign stop_on_idle = 1'b1;
+	
+	assign cmd_read = 1'b0;
+	assign cmd_write = 1'b0;
+	assign i2c_relinquish = 1'b0;
+	
+	assign user3[2] = message_failure; //see if timer starts
+	assign led = {4'hF, ~state_out};
+	assign user3[3] = clk_1000Hz;
+	
+	assign scl_i = user3[0];
+	assign user3[0] = scl_t ? 1'bz : scl_o;
+	assign sda_i = user3[1];
+	assign user3[1] = sda_t ? 1'bz : sda_o;
 			    
 endmodule
