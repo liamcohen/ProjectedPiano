@@ -11,27 +11,27 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Thu Nov 16 15:53:36 2017
+Mapped Date    : Fri Nov 17 15:51:24 2017
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  332
+Number of warnings:  331
 Logic Utilization:
-  Number of Slice Flip Flops:           150 out of  67,584    1%
-  Number of 4 input LUTs:               294 out of  67,584    1%
+  Number of Slice Flip Flops:           192 out of  67,584    1%
+  Number of 4 input LUTs:               352 out of  67,584    1%
 Logic Distribution:
-  Number of occupied Slices:            182 out of  33,792    1%
-    Number of Slices containing only related logic:     182 out of     182 100%
-    Number of Slices containing unrelated logic:          0 out of     182   0%
+  Number of occupied Slices:            228 out of  33,792    1%
+    Number of Slices containing only related logic:     228 out of     228 100%
+    Number of Slices containing unrelated logic:          0 out of     228   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         331 out of  67,584    1%
-    Number used as logic:               294
-    Number used as a route-thru:         37
+  Total Number of 4 input LUTs:         407 out of  67,584    1%
+    Number used as logic:               352
+    Number used as a route-thru:         55
   Number of bonded IOBs:                576 out of     684   84%
   Number of BUFGMUXs:                     1 out of      16    6%
 
-Peak Memory Usage:  480 MB
+Peak Memory Usage:  482 MB
 Total REAL time to MAP completion:  1 secs 
 Total CPU time to MAP completion:   1 secs 
 
@@ -76,7 +76,7 @@ Section 1 - Errors
 Section 2 - Warnings
 --------------------
 WARNING:LIT:243 - Logical network user3<28>_IBUF has no load.
-WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 329
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 341
    more times for the following (max. 5 shown):
    user3<4>_IBUF,
    user3<29>_IBUF,
@@ -261,8 +261,6 @@ WARNING:PhysDesignRules:367 - The signal <clock1_IBUF> is incomplete. The signal
 WARNING:PhysDesignRules:367 - The signal <clock2_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <button_right_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button1_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <button2_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
@@ -754,15 +752,171 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   2 block(s) optimized away
+  46 block(s) removed
+  11 block(s) optimized away
+  44 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "read/fifo/valid" is sourceless and has been removed.
+The signal "read/fifo/full" is sourceless and has been removed.
+The signal "read/fifo/empty" is sourceless and has been removed.
+The signal "read/fifo/underflow" is sourceless and has been removed.
+The signal "read/fifo/dout<7>" is sourceless and has been removed.
+The signal "read/fifo/dout<6>" is sourceless and has been removed.
+The signal "read/fifo/dout<5>" is sourceless and has been removed.
+The signal "read/fifo/dout<4>" is sourceless and has been removed.
+The signal "read/fifo/dout<3>" is sourceless and has been removed.
+The signal "read/fifo/dout<2>" is sourceless and has been removed.
+The signal "read/fifo/dout<1>" is sourceless and has been removed.
+The signal "read/fifo/dout<0>" is sourceless and has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" is sourceless and
+has been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" (FF) removed.
+  The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" is sourceless and
+has been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg" (FF) removed.
+  The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg" is sourceless and has
+been removed.
+   Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" (FF) removed.
+The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>" is sourceless and has
+been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_0" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_1" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_2" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_3" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_4" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_5" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_6" (FF) removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_7" (FF) removed.
+The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i" is
+sourceless and has been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/UNDERFLOW" (FF)
+removed.
+The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_i" is
+sourceless and has been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_d1" (FF)
+removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<0>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<1>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<2>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<3>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<4>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<5>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<6>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<7>" is sourceless and
+has been removed.
+The signal "read/fifo/BU2/Result<0>" is sourceless and has been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_0" (FF) removed.
+  The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<0>" is sourceless and
+has been removed.
+   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<2>11"
+(ROM) removed.
+    The signal "read/fifo/BU2/Result<2>" is sourceless and has been removed.
+     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_2" (FF) removed.
+      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<2>" is sourceless and
+has been removed.
+       Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW2" (ROM) removed.
+        The signal "read/fifo/BU2/N40" is sourceless and has been removed.
+         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1"
+(ROM) removed.
+          The signal "read/fifo/BU2/Result<3>" is sourceless and has been removed.
+           Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_3" (FF) removed.
+            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<3>" is sourceless and
+has been removed.
+       Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW3" (ROM) removed.
+        The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW3/O"
+is sourceless and has been removed.
+   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<1>11"
+(ROM) removed.
+    The signal "read/fifo/BU2/Result<1>" is sourceless and has been removed.
+     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_1" (FF) removed.
+      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<1>" is sourceless and
+has been removed.
+   Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<0>11_INV_0" (BUF)
+removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "master/data_out_reg<0>" is unused and has been removed.
+ Unused block "master/data_out_reg_0" (FF) removed.
+The signal "master/data_out_reg<1>" is unused and has been removed.
+ Unused block "master/data_out_reg_1" (FF) removed.
+The signal "master/data_out_reg<2>" is unused and has been removed.
+ Unused block "master/data_out_reg_2" (FF) removed.
+The signal "master/data_out_reg<3>" is unused and has been removed.
+ Unused block "master/data_out_reg_3" (FF) removed.
+The signal "master/data_out_reg<4>" is unused and has been removed.
+ Unused block "master/data_out_reg_4" (FF) removed.
+The signal "master/data_out_reg<5>" is unused and has been removed.
+ Unused block "master/data_out_reg_5" (FF) removed.
+The signal "master/data_out_reg<6>" is unused and has been removed.
+ Unused block "master/data_out_reg_6" (FF) removed.
+The signal "master/data_out_reg<7>" is unused and has been removed.
+ Unused block "master/data_out_reg_7" (FF) removed.
+Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_i1" (ROM)
+removed.
+Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i1" (ROM)
+removed.
+Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_i" (FF) removed.
+Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i" (FF) removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[0].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[1].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[2].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[3].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[4].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[5].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[6].gv4.srl16" () removed.
+Unused block
+"read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[7].gv4.srl16" () removed.
+Unused block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_0" (FF) removed.
+Unused block "read/fifo/GND" (ZERO) removed.
+Unused block "read/fifo/VCC" (ONE) removed.
 
 Optimized Block(s):
 TYPE 		BLOCK
 GND 		XST_GND
 VCC 		XST_VCC
+LUT4 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<3>1_SW2
+LUT4_L 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb16
+LOCALBUF 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb16/LUT4_L_BUF
+LUT2 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb6
+LUT2_D 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb15
+LOCALBUF 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb15/LUT2_D_BUF
+LUT3_L 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb5
+LOCALBUF 		read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb5/LUT3_L_BUF
+GND 		read/fifo/BU2/XST_GND
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.

@@ -10,6 +10,9 @@ xc2v6000-bf957-4 labkit.ngc labkit.ngd
 Reading NGO file
 "/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/
 SensorModule/labkit.ngc" ...
+Loading design module
+"/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/
+SensorModule/FIFO.ngc"...
 Reading in constraint information from 'labkit.ucf'...
 Gathering constraint information from source properties...
 Done.
@@ -311,7 +314,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings: 274
 
-Total memory usage is 227552 kilobytes
+Total memory usage is 228208 kilobytes
 
 Writing NGD file "labkit.ngd" ...
 

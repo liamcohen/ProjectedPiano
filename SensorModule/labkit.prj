@@ -1,4 +1,5 @@
-verilog work "i2c_write_reg.v"
+verilog work "./FIFO.v"
+verilog work "i2c_read_reg.v"
 verilog work "i2c_master.v"
 verilog work "../../../6.111 Labs/Lab4/ISE/CarAlarm/Timer.v"
 verilog work "../../../6.111 Labs/Lab4/ISE/CarAlarm/divider.v"

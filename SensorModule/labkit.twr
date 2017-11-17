@@ -37,10 +37,11 @@ Setup/Hold to clock clock_27mhz
             |  Setup to  |  Hold to   |                    | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s)   | Phase  |
 ------------+------------+------------+--------------------+--------+
-button0     |    5.086(R)|   -3.087(R)|analyzer3_clock_OBUF|   0.000|
-switch<0>   |    5.674(R)|   -3.735(R)|analyzer3_clock_OBUF|   0.000|
-user3<0>    |    2.397(R)|   -2.125(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>    |    4.005(R)|   -3.733(R)|analyzer3_clock_OBUF|   0.000|
+button0     |    3.850(R)|   -2.450(R)|analyzer3_clock_OBUF|   0.000|
+button1     |    3.742(R)|   -2.261(R)|analyzer3_clock_OBUF|   0.000|
+switch<0>   |    7.044(R)|   -2.900(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |    1.847(R)|   -1.575(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |    3.451(R)|   -3.179(R)|analyzer3_clock_OBUF|   0.000|
 ------------+------------+------------+--------------------+--------+
 
 Clock clock_27mhz to Pad
@@ -48,17 +49,17 @@ Clock clock_27mhz to Pad
                  | clk (edge) |                    | Clock  |
 Destination      |   to PAD   |Internal Clock(s)   | Phase  |
 -----------------+------------+--------------------+--------+
-analyzer3_data<2>|   15.451(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<3>|   14.977(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<4>|   14.855(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<5>|   15.292(R)|analyzer3_clock_OBUF|   0.000|
-led<0>           |   17.922(R)|analyzer3_clock_OBUF|   0.000|
-led<1>           |   16.009(R)|analyzer3_clock_OBUF|   0.000|
-led<2>           |   14.992(R)|analyzer3_clock_OBUF|   0.000|
-led<3>           |   15.029(R)|analyzer3_clock_OBUF|   0.000|
-user3<0>         |   15.058(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>         |   14.423(R)|analyzer3_clock_OBUF|   0.000|
-user3<2>         |   14.433(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<2>|   15.576(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<3>|   15.854(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<4>|   16.222(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<5>|   15.328(R)|analyzer3_clock_OBUF|   0.000|
+led<0>           |   18.144(R)|analyzer3_clock_OBUF|   0.000|
+led<1>           |   17.253(R)|analyzer3_clock_OBUF|   0.000|
+led<2>           |   18.440(R)|analyzer3_clock_OBUF|   0.000|
+led<3>           |   16.315(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>         |   14.332(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>         |   14.684(R)|analyzer3_clock_OBUF|   0.000|
+user3<2>         |   15.161(R)|analyzer3_clock_OBUF|   0.000|
 -----------------+------------+--------------------+--------+
 
 Clock to Setup on destination clock clock_27mhz
@@ -66,7 +67,7 @@ Clock to Setup on destination clock clock_27mhz
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock_27mhz    |    6.980|         |         |         |
+clock_27mhz    |    7.085|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
@@ -79,14 +80,14 @@ user3<1>       |analyzer3_data<1>|   14.394|
 ---------------+-----------------+---------+
 
 
-Analysis completed Thu Nov 16 15:54:06 2017 
+Analysis completed Fri Nov 17 15:51:56 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 340 MB
+Peak Memory Usage: 341 MB
 
 
 
