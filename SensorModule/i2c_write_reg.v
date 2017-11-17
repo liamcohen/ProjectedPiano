@@ -38,7 +38,7 @@ module i2c_write_reg(
 	 //communication bus with I2C master module
 	 //combined with read module, all I2C master inputs should
 	 //be well defined
-	 input i2c_data_in_ready,
+	 input i2c_data_out_ready,
 	 input i2c_cmd_ready,
 	 input i2c_bus_busy,
 	 input i2c_bus_control,
@@ -52,8 +52,8 @@ module i2c_write_reg(
 	 output i2c_cmd_write_multiple,
 	 output i2c_cmd_stop,
 	 output i2c_cmd_valid,
-	 output i2c_data_in_valid,
-	 output i2c_data_in_last,
+	 output i2c_data_out_valid,
+	 output i2c_data_out_last,
 	 output [3:0] state_out,
 	 
 	 //status
@@ -88,18 +88,18 @@ module i2c_write_reg(
 	//for 16/32 bit I2C register writes, then any potentially shared connection
 	//should be tristated.
 	reg done_reg = 1'b0;
-	reg timer_start_reg = 1'bz;
-	reg [3:0] timer_param_reg = 3'bzzz;
+	reg timer_start_reg = 1'b0;
+	reg [3:0] timer_param_reg = 3'b001;
 	
-	reg [7:0] i2c_data_out_reg = 8'hzz;
-	reg [6:0] i2c_dev_address_reg = 7'bzzzzzzz;
+	reg [7:0] i2c_data_out_reg = 8'h00;
+	reg [6:0] i2c_dev_address_reg = 7'b0000000;
 	
-	reg i2c_cmd_start_reg = 1'bz;
-	reg i2c_cmd_write_multiple_reg = 1'bz;
-	reg i2c_cmd_stop_reg = 1'bz;
-	reg i2c_cmd_valid_reg = 1'bz;
-	reg i2c_data_in_valid_reg = 1'bz;
-	reg i2c_data_in_last_reg = 1'bz;
+	reg i2c_cmd_start_reg = 1'b0;
+	reg i2c_cmd_write_multiple_reg = 1'b0;
+	reg i2c_cmd_stop_reg = 1'b0;
+	reg i2c_cmd_valid_reg = 1'b0;
+	reg i2c_data_out_valid_reg = 1'b0;
+	reg i2c_data_out_last_reg = 1'b0;
 	
 	reg message_failure_reg = 1'b0;
 	reg i2c_control_reg = 1'b0;
@@ -114,150 +114,153 @@ module i2c_write_reg(
 	//and state outputs 
 	always @(posedge clk) begin
 		if(reset | i2c_relinquish) state <= S_RESET;
-		if(i2c_missed_ack) begin
+		else if(i2c_missed_ack) begin
 			state <= S_RESET;
 			message_failure_reg <= 1'b1; //missed_ack --> pulse message_failure 
 		end
-		case(state)
-			S_RESET: begin
-				if(start) begin
-					state <= S_VALIDATE_BUS;
+		else begin
+			case(state)
+				S_RESET: begin
+					if(start) begin
+						state <= S_VALIDATE_BUS;
+					end
+					else begin
+						state <= S_RESET;
+					end
+					
+					//reset values
+					done_reg <= 1'b0;
+					timer_start_reg <= 1'b0;
+					timer_param_reg <= 3'b001;
+					
+					i2c_data_out_reg <= 8'h00;
+					i2c_dev_address_reg <= dev_address;
+					
+					i2c_cmd_start_reg <= 1'b0;
+					i2c_cmd_write_multiple_reg <= 1'b0;
+					i2c_cmd_stop_reg <= 1'b0;
+					i2c_cmd_valid_reg <= 1'b0;
+					i2c_data_out_valid_reg <= 1'b0;
+					i2c_data_out_last_reg <= 1'b0;
+					
+					message_failure_reg <= 1'b0;
+					i2c_control_reg <= 1'b0;
 				end
-				else begin
-					state <= S_RESET;
+				S_VALIDATE_BUS: begin
+					if(bus_valid) begin
+						state <= S_WRITE_REG_ADDRESS_0;			
+					end
+					else begin
+						state <= S_VALIDATE_TIMEOUT;
+					end
+					//outputs for S_VALIDATE_BUS state -- take ownership of the 
+					//communication channel:
+					i2c_control_reg <= 1'b1;
 				end
-				
-				//reset values
-				done_reg <= 1'b0;
-				timer_start_reg <= 1'bz;
-				timer_param_reg <= 3'bzzz;
-				
-				i2c_data_out_reg <= 8'hzz;
-				i2c_dev_address_reg <= 7'bzzzzzzz;
-				
-				i2c_cmd_start_reg <= 1'bz;
-				i2c_cmd_write_multiple_reg <= 1'bz;
-				i2c_cmd_stop_reg <= 1'bz;
-				i2c_cmd_valid_reg <= 1'bz;
-				i2c_data_in_valid_reg <= 1'bz;
-				i2c_data_in_last_reg <= 1'bz;
-				
-				message_failure_reg <= 1'b0;
-				i2c_control_reg <= 1'b0;
-			end
-			S_VALIDATE_BUS: begin
-				if(bus_valid) begin
-					state <= S_WRITE_REG_ADDRESS_0;			
+				S_VALIDATE_TIMEOUT: begin
+					if(timer_exp) begin
+						state <= S_RESET;
+					end
+					else if(bus_valid) begin
+						state <= S_WRITE_REG_ADDRESS_0;
+					end
+					else begin
+						state <= S_VALIDATE_TIMEOUT;
+					end
+					timer_start_reg <= 1'b1;
+					timer_param_reg <= 3'b001;
 				end
-				else begin
-					state <= S_VALIDATE_TIMEOUT;
+				S_WRITE_REG_ADDRESS_0: begin
+					if(i2c_data_out_ready) begin
+						state <= S_WRITE_REG_ADDRESS_1;
+					end
+					else begin
+						state <= S_WRITE_REG_ADDRESS_TIMEOUT;
+					end
+					//This state is designed to validate whether or not
+					//the I2C master is ready to accept data, so we need
+					//to tell the master we're getting ready to write.
+					i2c_data_out_reg <= reg_address;
+					i2c_dev_address_reg <= dev_address;
+					i2c_cmd_start_reg <= 1'b1;
+					i2c_cmd_write_multiple_reg <= 1'b1;
+					i2c_cmd_stop_reg <= 1'b1;
+					i2c_cmd_valid_reg <= 1'b1;
+					i2c_data_out_valid_reg <= 1'b0;
+					i2c_data_out_last_reg <= 1'b0;
 				end
-				//outputs for S_VALIDATE_BUS state -- take ownership of the 
-				//communication channel:
-				i2c_control_reg <= 1'b1;
-			end
-			S_VALIDATE_TIMEOUT: begin
-				if(timer_exp) begin
-					state <= S_RESET;
+				S_WRITE_REG_ADDRESS_1: begin
+					state <= S_WRITE_DATA_0;
+					i2c_data_out_valid_reg <= 1'b1;
 				end
-				else if(bus_valid) begin
-					state <= S_WRITE_REG_ADDRESS_0;
+				S_WRITE_REG_ADDRESS_TIMEOUT: begin
+					if(timer_exp) begin
+						state <= S_RESET;
+					end
+					else if(i2c_data_out_ready) begin
+						state <= S_WRITE_REG_ADDRESS_1;
+					end
+					else begin
+						state <= S_WRITE_REG_ADDRESS_TIMEOUT;
+					end
+					timer_start_reg <= 1'b1;
+					timer_param_reg <= 3'b001;
 				end
-				else begin
-					state <= S_VALIDATE_TIMEOUT;
+				S_WRITE_DATA_0: begin
+					if(i2c_data_out_ready) begin
+						state <= S_WRITE_DATA_1;
+					end
+					else begin
+						state <= S_WRITE_DATA_TIMEOUT;
+					end
+					i2c_data_out_reg <= data;
+					i2c_data_out_valid_reg <= 1'b0;
+					i2c_data_out_last_reg <= 1'b1;
 				end
-				timer_start_reg <= 1'b1;
-				timer_param_reg <= 3'b001;
-			end
-			S_WRITE_REG_ADDRESS_0: begin
-				if(i2c_data_in_ready) begin
-					state <= S_WRITE_REG_ADDRESS_1;
-				end
-				else begin
-					state <= S_WRITE_REG_ADDRESS_TIMEOUT;
-				end
-				//This state is designed to validate whether or not
-				//the I2C master is ready to accept data, so we need
-				//to tell the master we're getting ready to write.
-				i2c_data_out_reg <= reg_address;
-				i2c_dev_address_reg <= dev_address;
-				i2c_cmd_start_reg <= 1'b1;
-				i2c_cmd_write_multiple_reg <= 1'b1;
-				i2c_cmd_stop_reg <= 1'b1;
-				i2c_cmd_valid_reg <= 1'b1;
-				i2c_data_in_valid_reg <= 1'b0;
-				i2c_data_in_last_reg <= 1'b0;
-			end
-			S_WRITE_REG_ADDRESS_1: begin
-				state <= S_WRITE_DATA_0;
-				i2c_data_in_valid_reg <= 1'b1;
-			end
-			S_WRITE_REG_ADDRESS_TIMEOUT: begin
-				if(timer_exp) begin
-					state <= S_RESET;
-				end
-				else if(i2c_data_in_ready) begin
-					state <= S_WRITE_REG_ADDRESS_1;
-				end
-				else begin
-					state <= S_WRITE_REG_ADDRESS_TIMEOUT;
-				end
-				timer_start_reg <= 1'b1;
-				timer_param_reg <= 3'b001;
-			end
-			S_WRITE_DATA_0: begin
-				if(i2c_data_in_ready) begin
+				S_WRITE_DATA_1: begin
 					state <= S_CHECK_I2C_FREE;
+					i2c_data_out_valid_reg <= 1'b1;
 				end
-				else begin
-					state <= S_WRITE_DATA_TIMEOUT;
+				S_WRITE_DATA_TIMEOUT: begin
+					if(timer_exp) begin
+						state <= S_RESET;
+					end
+					else if(i2c_data_out_ready) begin
+						state <= S_WRITE_DATA_1;
+					end
+					else begin
+						state <= S_WRITE_DATA_TIMEOUT;
+					end
+					timer_start_reg <= 1'b1;
+					timer_param_reg <= 3'b001;
 				end
-				i2c_data_out_reg <= data;
-				i2c_data_in_valid_reg <= 1'b0;
-				i2c_data_in_last_reg <= 1'b1;
-			end
-			S_WRITE_DATA_1: begin
-				state <= S_CHECK_I2C_FREE;
-				i2c_data_in_valid_reg <= 1'b1;
-			end
-			S_WRITE_DATA_TIMEOUT: begin
-				if(timer_exp) begin
-					state <= S_RESET;
+				S_CHECK_I2C_FREE: begin
+					if(i2c_bus_free) begin
+						state <= S_RESET;
+					end
+					else begin
+						state <= S_CHECK_I2C_FREE_TIMEOUT;
+					end
 				end
-				else if(i2c_data_in_ready) begin
-					state <= S_WRITE_DATA_1;
+				S_CHECK_I2C_FREE_TIMEOUT: begin
+					if(timer_exp) begin
+						state <= S_RESET;
+						message_failure_reg <= 1'b1;
+					end
+					else if(i2c_bus_free) begin
+						state <= S_RESET;
+					end
+					else begin
+						state <= S_CHECK_I2C_FREE_TIMEOUT;
+					end
+					done_reg <= 1'b1;
+					i2c_cmd_valid_reg <= 1'b0;
+					timer_start_reg <= 1'b1;
+					timer_param_reg <= 3'b001;
 				end
-				else begin
-					state <= S_WRITE_DATA_TIMEOUT;
-				end
-				timer_start_reg <= 1'b1;
-				timer_param_reg <= 3'b001;
-			end
-			S_CHECK_I2C_FREE: begin
-				if(i2c_bus_free) begin
-					state <= S_RESET;
-				end
-				else begin
-					state <= S_CHECK_I2C_FREE_TIMEOUT;
-				end
-			end
-			S_CHECK_I2C_FREE_TIMEOUT: begin
-				if(timer_exp) begin
-					state <= S_RESET;
-					message_failure_reg <= 1'b1;
-				end
-				else if(i2c_bus_free) begin
-					state <= S_RESET;
-				end
-				else begin
-					state <= S_CHECK_I2C_FREE_TIMEOUT;
-				end
-				done_reg <= 1'b1;
-				timer_start_reg <= 1'b1;
-				timer_param_reg <= 3'b001;
-			end
-			default: state <= S_RESET;
-		endcase
+				default: state <= S_RESET;
+			endcase
+		end
 	end
 		
 	//assign registers to outputs	
@@ -272,8 +275,8 @@ module i2c_write_reg(
 	assign i2c_cmd_write_multiple = i2c_cmd_write_multiple_reg;
 	assign i2c_cmd_stop = i2c_cmd_stop_reg;
 	assign i2c_cmd_valid = i2c_cmd_valid_reg;
-	assign i2c_data_in_valid = i2c_data_in_valid_reg;
-	assign i2c_data_in_last = i2c_data_in_last_reg;
+	assign i2c_data_out_valid = i2c_data_out_valid_reg;
+	assign i2c_data_out_last = i2c_data_out_last_reg;
 	
 	assign message_failure = message_failure_reg;
 	assign i2c_control = i2c_control_reg;

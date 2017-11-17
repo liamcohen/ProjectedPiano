@@ -11,17 +11,6 @@ setMode -bs
 setMode -bs
 setMode -bs
 Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
-Program -p 2 
 saveProjectFile -file "/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/SensorModule.ipf"
 setMode -bs
 deleteDevice -position 3

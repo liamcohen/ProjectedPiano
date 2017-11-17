@@ -305,8 +305,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer1_clock = 1'b1;
    assign analyzer2_data = 16'h0;
    assign analyzer2_clock = 1'b1;
-   assign analyzer3_data = 16'h0;
-   assign analyzer3_clock = 1'b1;
+   //assign analyzer3_data = 16'h0;
+   //assign analyzer3_clock = 1'b1;
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
 	
@@ -356,7 +356,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    wire [7:0] data;
 
 	wire i2c_write_done;
-	wire i2c_data_in_ready;
+	wire i2c_data_out_ready;
 	wire i2c_cmd_ready;
 	wire i2c_bus_busy;
 	wire i2c_bus_control;
@@ -370,8 +370,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire i2c_cmd_write_multiple;
 	wire i2c_cmd_stop;
 	wire i2c_cmd_valid;
-	wire i2c_data_in_valid;
-	wire i2c_data_in_last;
+	wire i2c_data_out_valid;
+	wire i2c_data_out_last;
 	wire [3:0] state_out;
 	 
 	wire message_failure;
@@ -385,14 +385,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(clean_button0),
-		.start(clean_button1),
+		.start(clk_1000Hz),
 		.done(i2c_write_done),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param),
 		.timer_start(timer_start),
 		
-		.i2c_data_in_ready(i2c_data_in_ready),
+		.i2c_data_out_ready(i2c_data_out_ready),
 		.i2c_cmd_ready(i2c_cmd_ready),
 		.i2c_bus_busy(i2c_bus_busy),
 		.i2c_bus_control(i2c_bus_control),
@@ -406,8 +406,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.i2c_cmd_write_multiple(i2c_cmd_write_multiple),
 		.i2c_cmd_stop(i2c_cmd_stop),
 		.i2c_cmd_valid(i2c_cmd_valid),
-		.i2c_data_in_valid(i2c_data_in_valid),
-		.i2c_data_in_last(i2c_data_in_last),
+		.i2c_data_out_valid(i2c_data_out_valid),
+		.i2c_data_out_last(i2c_data_out_last),
 		.state_out(state_out),
 		
 		.message_failure(message_failure),
@@ -448,9 +448,9 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 
 		//for writing
       .data_in(i2c_data_out),
-		.data_in_valid(i2c_data_in_valid),
-      .data_in_ready(i2c_data_in_ready),
-      .data_in_last(i2c_data_in_last),
+		.data_in_valid(i2c_data_out_valid),
+      .data_in_ready(i2c_data_out_ready),
+      .data_in_last(i2c_data_out_last),
 
 		//for reading
       .data_out(data_out),
@@ -474,11 +474,11 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
       .stop_on_idle(stop_on_idle)
 	);
 	
-	assign reg_address = 8'h69;
-	assign dev_address = 7'h29;
-	assign data = 8'h73;
+	assign reg_address = 8'hFF; // 8'b1111_1111
+	assign dev_address = 7'h29; // 8'b0101_0010
+	assign data = 8'h73; //8'b0111_0011
 	
-	assign prescale = 16'h40;
+	assign prescale = 16'h80;
 	assign stop_on_idle = 1'b1;
 	
 	assign cmd_read = 1'b0;
@@ -487,11 +487,13 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	assign user3[2] = message_failure; //see if timer starts
 	assign led = {4'hF, ~state_out};
-	assign user3[3] = clk_1000Hz;
 	
 	assign scl_i = user3[0];
 	assign user3[0] = scl_t ? 1'bz : scl_o;
 	assign sda_i = user3[1];
 	assign user3[1] = sda_t ? 1'bz : sda_o;
+	
+	assign analyzer3_data = {10'd0, state_out, sda_t ? 1'bz : sda_o, scl_t ? 1'bz : scl_o};
+	assign analyzer3_clock = clock_27mhz;
 			    
 endmodule

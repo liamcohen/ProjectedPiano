@@ -1,0 +1,4 @@
+set -tmpdir "./xst/projnav.tmp"
+elaborate
+-ifn i2c_read_reg.prj
+-ifmt mixed

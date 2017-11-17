@@ -839,9 +839,11 @@ proc restore { { project_dir "" } } {
       "../../../6.111 Labs/Lab2/ise/lab2_3/display/debounce.v" 
       "../../../6.111 Labs/Lab4/ISE/CarAlarm/Timer.v" 
       "../../../6.111 Labs/Lab4/ISE/CarAlarm/divider.v" 
+      "FIFO.xco" 
       "axis_fifo.v" 
       "i2c_init.v" 
       "i2c_master.v" 
+      "i2c_read_reg.v" 
       "i2c_write_reg.v" 
       "labkit.ucf" 
       "labkit.v" 
@@ -852,6 +854,13 @@ proc restore { { project_dir "" } } {
   } "A problem occured while restoring user files."
 
   set imported_files { 
+      "FIFO.asy" 
+      "FIFO.ngc" 
+      "FIFO.sym" 
+      "FIFO.v" 
+      "FIFO.veo" 
+      "FIFO.vhd" 
+      "FIFO.vho" 
       "labkit_guide.ncd"}
 
   set origination 2
@@ -875,6 +884,7 @@ proc restore { { project_dir "" } } {
       "A" "" "" "" "PROP_CompxlibOverwriteLib" "Overwrite" 
       "A" "" "" "" "PROP_CompxlibSimPrimatives" "true" 
       "A" "" "" "" "PROP_CompxlibXlnxCoreLib" "true" 
+      "A" "" "" "" "PROP_CorgenRegenCore" "Under Current Project Setting" 
       "A" "" "" "" "PROP_CurrentFloorplanFile" "" 
       "A" "" "" "" "PROP_DesignName" "SensorModule" 
       "A" "" "" "" "PROP_Dummy" "dum1" 
@@ -1207,6 +1217,7 @@ proc restore { { project_dir "" } } {
       "E" "" "" "" "PROP_PreferredLanguage" "Verilog" 
       "F" "" "" "" "PROP_ChangeDevSpeed" "-4" 
       "F" "" "" "" "PROP_SimModelTarget" "Verilog" 
+      "F" "" "" "" "PROP_coregenFuncModelTargetLang" "Verilog" 
       "F" "" "" "" "PROP_tbwTestbenchTargetLang" "Verilog" 
       "F" "" "" "" "PROP_xilxPostTrceSpeed" "-4" 
       "F" "" "" "" "PROP_xilxPreTrceSpeed" "-4" 

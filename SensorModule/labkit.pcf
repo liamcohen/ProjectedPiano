@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map K.39 on Tue Nov 14 18:35:43 2017
+// Written by: Map K.39 on Thu Nov 16 15:53:37 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -534,11 +534,11 @@ COMP "user3<28>" LOCATE = SITE "G14" LEVEL 1;
 COMP "user3<2>" LOCATE = SITE "A6" LEVEL 1;
 COMP "flash_data<9>" LOCATE = SITE "AH12" LEVEL 1;
 COMP "flash_address<9>" LOCATE = SITE "AL17" LEVEL 1;
+COMP "user3<3>" LOCATE = SITE "A7" LEVEL 1;
 COMP "user2<7>" LOCATE = SITE "H22" LEVEL 1;
 COMP "user4<21>" LOCATE = SITE "D24" LEVEL 1;
 COMP "user4<13>" LOCATE = SITE "E23" LEVEL 1;
 COMP "user3<29>" LOCATE = SITE "J13" LEVEL 1;
-COMP "user3<3>" LOCATE = SITE "A7" LEVEL 1;
 COMP "tv_out_clock" LOCATE = SITE "L27" LEVEL 1;
 COMP "user2<8>" LOCATE = SITE "A18" LEVEL 1;
 COMP "user4<30>" LOCATE = SITE "A27" LEVEL 1;
@@ -579,7 +579,5 @@ COMP "tv_in_line_clock2" LOCATE = SITE "AD17" LEVEL 1;
 COMP "user4<9>" LOCATE = SITE "B19" LEVEL 1;
 COMP "ram0_adv_ld" LOCATE = SITE "V26" LEVEL 1;
 COMP "clock_feedback_out" LOCATE = SITE "AL28" LEVEL 1;
-NET "clock_27mhz_BUFGP/IBUFG" BEL "clock_27mhz_BUFGP/BUFG.GCLKMUX"
-        USELOCALCONNECT;
 SCHEMATIC END;
 

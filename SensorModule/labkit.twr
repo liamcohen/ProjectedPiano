@@ -33,48 +33,60 @@ Data Sheet report:
 All values displayed in nanoseconds (ns)
 
 Setup/Hold to clock clock_27mhz
-------------+------------+------------+------------------+--------+
-            |  Setup to  |  Hold to   |                  | Clock  |
-Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
-------------+------------+------------+------------------+--------+
-button0     |    2.773(R)|   -1.637(R)|clock_27mhz_BUFGP |   0.000|
-button1     |    4.385(R)|   -2.517(R)|clock_27mhz_BUFGP |   0.000|
-switch<0>   |    5.703(R)|   -3.767(R)|clock_27mhz_BUFGP |   0.000|
-user3<0>    |    0.858(R)|   -0.586(R)|clock_27mhz_BUFGP |   0.000|
-user3<1>    |    0.492(R)|   -0.220(R)|clock_27mhz_BUFGP |   0.000|
-------------+------------+------------+------------------+--------+
+------------+------------+------------+--------------------+--------+
+            |  Setup to  |  Hold to   |                    | Clock  |
+Source      | clk (edge) | clk (edge) |Internal Clock(s)   | Phase  |
+------------+------------+------------+--------------------+--------+
+button0     |    5.086(R)|   -3.087(R)|analyzer3_clock_OBUF|   0.000|
+switch<0>   |    5.674(R)|   -3.735(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |    2.397(R)|   -2.125(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |    4.005(R)|   -3.733(R)|analyzer3_clock_OBUF|   0.000|
+------------+------------+------------+--------------------+--------+
 
 Clock clock_27mhz to Pad
-------------+------------+------------------+--------+
-            | clk (edge) |                  | Clock  |
-Destination |   to PAD   |Internal Clock(s) | Phase  |
-------------+------------+------------------+--------+
-led<0>      |   17.130(R)|clock_27mhz_BUFGP |   0.000|
-led<1>      |   15.290(R)|clock_27mhz_BUFGP |   0.000|
-led<2>      |   14.741(R)|clock_27mhz_BUFGP |   0.000|
-led<3>      |   15.421(R)|clock_27mhz_BUFGP |   0.000|
-user3<0>    |   14.072(R)|clock_27mhz_BUFGP |   0.000|
-user3<1>    |   13.971(R)|clock_27mhz_BUFGP |   0.000|
-user3<2>    |   14.826(R)|clock_27mhz_BUFGP |   0.000|
-------------+------------+------------------+--------+
+-----------------+------------+--------------------+--------+
+                 | clk (edge) |                    | Clock  |
+Destination      |   to PAD   |Internal Clock(s)   | Phase  |
+-----------------+------------+--------------------+--------+
+analyzer3_data<2>|   15.451(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<3>|   14.977(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<4>|   14.855(R)|analyzer3_clock_OBUF|   0.000|
+analyzer3_data<5>|   15.292(R)|analyzer3_clock_OBUF|   0.000|
+led<0>           |   17.922(R)|analyzer3_clock_OBUF|   0.000|
+led<1>           |   16.009(R)|analyzer3_clock_OBUF|   0.000|
+led<2>           |   14.992(R)|analyzer3_clock_OBUF|   0.000|
+led<3>           |   15.029(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>         |   15.058(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>         |   14.423(R)|analyzer3_clock_OBUF|   0.000|
+user3<2>         |   14.433(R)|analyzer3_clock_OBUF|   0.000|
+-----------------+------------+--------------------+--------+
 
 Clock to Setup on destination clock clock_27mhz
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock_27mhz    |    6.241|         |         |         |
+clock_27mhz    |    6.980|         |         |         |
 ---------------+---------+---------+---------+---------+
 
+Pad to Pad
+---------------+-----------------+---------+
+Source Pad     |Destination Pad  |  Delay  |
+---------------+-----------------+---------+
+clock_27mhz    |analyzer3_clock  |    9.905|
+user3<0>       |analyzer3_data<0>|   15.215|
+user3<1>       |analyzer3_data<1>|   14.394|
+---------------+-----------------+---------+
 
-Analysis completed Tue Nov 14 18:36:11 2017 
+
+Analysis completed Thu Nov 16 15:54:06 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 339 MB
+Peak Memory Usage: 340 MB
 
 
 

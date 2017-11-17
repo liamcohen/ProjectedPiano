@@ -1,0 +1,2 @@
+verilog work "./FIFO.v"
+verilog work "i2c_read_reg.v"

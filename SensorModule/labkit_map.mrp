@@ -11,27 +11,27 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Tue Nov 14 18:35:42 2017
+Mapped Date    : Thu Nov 16 15:53:36 2017
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  330
+Number of warnings:  332
 Logic Utilization:
-  Number of Slice Flip Flops:           137 out of  67,584    1%
-  Number of 4 input LUTs:               217 out of  67,584    1%
+  Number of Slice Flip Flops:           150 out of  67,584    1%
+  Number of 4 input LUTs:               294 out of  67,584    1%
 Logic Distribution:
-  Number of occupied Slices:            151 out of  33,792    1%
-    Number of Slices containing only related logic:     151 out of     151 100%
-    Number of Slices containing unrelated logic:          0 out of     151   0%
+  Number of occupied Slices:            182 out of  33,792    1%
+    Number of Slices containing only related logic:     182 out of     182 100%
+    Number of Slices containing unrelated logic:          0 out of     182   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         254 out of  67,584    1%
-    Number used as logic:               217
+  Total Number of 4 input LUTs:         331 out of  67,584    1%
+    Number used as logic:               294
     Number used as a route-thru:         37
   Number of bonded IOBs:                576 out of     684   84%
   Number of BUFGMUXs:                     1 out of      16    6%
 
-Peak Memory Usage:  479 MB
+Peak Memory Usage:  480 MB
 Total REAL time to MAP completion:  1 secs 
 Total CPU time to MAP completion:   1 secs 
 
@@ -75,14 +75,14 @@ Section 1 - Errors
 
 Section 2 - Warnings
 --------------------
-WARNING:LIT:243 - Logical network write/Mtrien_i2c_cmd_start_reg has no load.
-WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 332
+WARNING:LIT:243 - Logical network user3<28>_IBUF has no load.
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 329
    more times for the following (max. 5 shown):
-   write/Mtrien_timer_param_reg<0>,
-   write/Mtrien_timer_param_reg<1>,
-   write/Mtrien_timer_param_reg<2>,
-   write/Mtrien_timer_start_reg,
-   user3<28>_IBUF
+   user3<4>_IBUF,
+   user3<29>_IBUF,
+   user3<5>_IBUF,
+   user3<6>_IBUF,
+   user3<7>_IBUF
    To see the details of these warning messages, please use the -detail switch.
 WARNING:PhysDesignRules:367 - The signal <ram1_data<0>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
@@ -261,6 +261,8 @@ WARNING:PhysDesignRules:367 - The signal <clock1_IBUF> is incomplete. The signal
 WARNING:PhysDesignRules:367 - The signal <clock2_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <button_right_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button1_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <button2_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
@@ -658,6 +660,8 @@ WARNING:PhysDesignRules:367 - The signal <user3<28>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <flash_data<9>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <user3<3>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user2<7>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user4<21>_IBUF> is incomplete. The
@@ -750,39 +754,10 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   7 block(s) removed
    2 block(s) optimized away
-   7 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
-
-The trimmed logic report below shows the logic removed from your design due to
-sourceless or loadless signals, and VCC or ground connections.  If the removal
-of a signal or symbol results in the subsequent removal of an additional signal
-or symbol, the message explaining that second removal will be indented.  This
-indentation will be repeated as a chain of related logic is removed.
-
-To quickly locate the original cause for the removal of a chain of logic, look
-above the place where that logic is listed in the trimming report, then locate
-the lines that are least indented (begin at the leftmost edge).
-
-The signal "write/Mtrien_i2c_cmd_start_reg" is loadless and has been removed.
- Loadless block "write/Mtrien_i2c_cmd_start_reg" (FF) removed.
-The signal "write/Mtrien_timer_param_reg<0>" is loadless and has been removed.
- Loadless block "write/Mtrien_timer_param_reg<0>" (FF) removed.
-  The signal "write/Mtrien_timer_start_reg_not0001" is loadless and has been
-removed.
-   Loadless block "write/Mtrien_timer_start_reg_not0001_f5" (MUX) removed.
-    The signal "write/Mtrien_timer_start_reg_not00011" is loadless and has been
-removed.
-     Loadless block "write/Mtrien_timer_start_reg_not00011" (ROM) removed.
-The signal "write/Mtrien_timer_param_reg<1>" is loadless and has been removed.
- Loadless block "write/Mtrien_timer_param_reg<1>" (FF) removed.
-The signal "write/Mtrien_timer_param_reg<2>" is loadless and has been removed.
- Loadless block "write/Mtrien_timer_param_reg<2>" (FF) removed.
-The signal "write/Mtrien_timer_start_reg" is loadless and has been removed.
- Loadless block "write/Mtrien_timer_start_reg" (FF) removed.
 
 Optimized Block(s):
 TYPE 		BLOCK
@@ -1285,7 +1260,7 @@ Section 6 - IOB Properties
 | user3<0>                           | IOB              | BIDIR     | LVTTL                | 12       | SLOW |              |          |          |
 | user3<1>                           | IOB              | BIDIR     | LVTTL                | 12       | SLOW |              |          |          |
 | user3<2>                           | IOB              | OUTPUT    | LVTTL                | 12       | SLOW |              |          |          |
-| user3<3>                           | IOB              | OUTPUT    | LVTTL                | 12       | SLOW |              |          |          |
+| user3<3>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<4>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<5>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<6>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |

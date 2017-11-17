@@ -1,0 +1,10 @@
+NEWPROJECT "/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/"
+SETPROJECT "/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/"
+SET BusFormat = BusFormatAngleBracketNotRipped
+SET devicefamily = virtex2
+SET device = xc2v6000
+SET package = bf957
+SET speedgrade = -4
+SET FlowVendor = Foundation_iSE
+SET VerilogSim = True
+SET VHDLSim = True
