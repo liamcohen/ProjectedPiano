@@ -13,6 +13,9 @@
 <msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;28&gt;</arg>&apos; has no legal driver
 </msg>
 
+<msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;4&gt;</arg>&apos; has no legal driver
+</msg>
+
 <msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;29&gt;</arg>&apos; has no legal driver
 </msg>
 
@@ -823,7 +826,13 @@
 <msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;31&gt;</arg>&apos; has no legal driver
 </msg>
 
+<msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;2&gt;</arg>&apos; has no legal driver
+</msg>
+
 <msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;27&gt;</arg>&apos; has no legal driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="470" delta="unknown" ><arg fmt="%s" index="1">bidirect</arg> pad net &apos;<arg fmt="%s" index="2">user3&lt;3&gt;</arg>&apos; has no legal driver
 </msg>
 
 </messages>

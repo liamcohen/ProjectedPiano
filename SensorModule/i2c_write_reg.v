@@ -89,18 +89,18 @@ module i2c_write_reg(
 	//for 16/32 bit I2C register writes, then any potentially shared connection
 	//should be tristated.
 	reg done_reg = 1'b0;
-	reg timer_start_reg = 1'b0;
-	reg [3:0] timer_param_reg = 3'b001;
-	reg timer_reset_reg = 1'b1;
+	reg timer_start_reg = 1'bz;
+	reg [3:0] timer_param_reg = 4'bzzzz;
+	reg timer_reset_reg = 1'bz;
 	
-	reg [7:0] i2c_data_out_reg = 8'h00;
-	reg [6:0] i2c_dev_address_reg = 7'b0000000;
+	reg [7:0] i2c_data_out_reg = 8'hzz;
+	reg [6:0] i2c_dev_address_reg = 7'bzzzzzzz;
 	
-	reg i2c_cmd_start_reg = 1'b0;
+	reg i2c_cmd_start_reg = 1'bz;
 	reg i2c_cmd_write_multiple_reg = 1'b0;
-	reg i2c_cmd_stop_reg = 1'b0;
-	reg i2c_cmd_valid_reg = 1'b0;
-	reg i2c_data_out_valid_reg = 1'b0;
+	reg i2c_cmd_stop_reg = 1'bz;
+	reg i2c_cmd_valid_reg = 1'bz;
+	reg i2c_data_out_valid_reg = 1'bz;
 	reg i2c_data_out_last_reg = 1'b0;
 	
 	reg message_failure_reg = 1'b0;
@@ -132,17 +132,18 @@ module i2c_write_reg(
 					
 					//reset values
 					done_reg <= 1'b0;
-					timer_start_reg <= 1'b0;
-					timer_param_reg <= 3'b001;
+					timer_start_reg <= 1'bz;
+					timer_param_reg <= 4'bzzzz;
+					timer_reset_reg <= 1'bz;
 					
-					i2c_data_out_reg <= 8'h00;
-					i2c_dev_address_reg <= dev_address;
+					i2c_data_out_reg <= 8'hzz;
+					i2c_dev_address_reg <= 7'bzzzzzzz;
 					
-					i2c_cmd_start_reg <= 1'b0;
+					i2c_cmd_start_reg <= 1'bz;
 					i2c_cmd_write_multiple_reg <= 1'b0;
-					i2c_cmd_stop_reg <= 1'b0;
-					i2c_cmd_valid_reg <= 1'b0;
-					i2c_data_out_valid_reg <= 1'b0;
+					i2c_cmd_stop_reg <= 1'bz;
+					i2c_cmd_valid_reg <= 1'bz;
+					i2c_data_out_valid_reg <= 1'bz;
 					i2c_data_out_last_reg <= 1'b0;
 					
 					message_failure_reg <= 1'b0;
@@ -160,6 +161,18 @@ module i2c_write_reg(
 					//outputs for S_VALIDATE_BUS state -- take ownership of the 
 					//communication channel:
 					i2c_control_reg <= 1'b1;
+					
+					//reset high impedance values
+					done_reg <= 1'b0;
+					timer_param_reg <= 3'b001;
+					
+					i2c_data_out_reg <= 8'h00;
+					i2c_dev_address_reg <= 7'b0000000;
+					
+					i2c_cmd_start_reg <= 1'b0;
+					i2c_cmd_stop_reg <= 1'b0;
+					i2c_cmd_valid_reg <= 1'b0;
+					i2c_data_out_valid_reg <= 1'b0;
 				end
 				S_VALIDATE_TIMEOUT: begin
 					if(timer_exp) begin
@@ -281,6 +294,7 @@ module i2c_write_reg(
 	assign done = done_reg;
 	assign timer_start = timer_start_reg;
 	assign timer_param = timer_param_reg;
+	assign timer_reset = timer_reset_reg;
 	
 	assign i2c_data_out = i2c_data_out_reg;
 	assign i2c_dev_address = i2c_dev_address_reg;
