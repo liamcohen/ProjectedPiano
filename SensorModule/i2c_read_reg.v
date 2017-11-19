@@ -15,7 +15,44 @@
 //
 // Revision: 
 // Revision 0.01 - File Created
-// Additional Comments: 
+// Additional Comments:
+//
+// This module is designed to read the contents of a register of an I2C 
+// connected device.  The module utilizes the I2C master module created by
+// Alex Forencich.  The module requires as an input the 7 bit device I2C address 
+// and the 8-bit register address one wishes to read from. The end result is the
+// specified number of bytes that are requested from the I2C slave are stored into 
+// a FIFO and it is up to the user to retrieve this information before the next use 
+// of this module since the FIFO is cleared upon reset.
+//
+//  Here's a description of the inputs and what their function is: 
+//
+// [6:0] dev_address: I2C device address - 0x29 default for VL53L0X TOF Sensor
+// [7:0] reg_address: byte wide register address for I2C device
+// 
+// clk: 27mhz system clock 
+// reset: FSM reset
+// start: FSM start
+// done: FSM done - flashes high when all bytes are read
+// byte_width: number of bytes to be read from I2C slave
+//
+// timer_exp: signal goes high when external timer module has expired its count
+// timer_start: module sets signal high when it wishes to begin a timeout stage
+// [3:0] timer_param: number of milliseconds each timeout should be
+// timer_reset: resets timer for each timeout stage
+//
+// i2c_data_out_ready: data out to i2c master is ready
+// i2c_cmd_ready: unused
+// i2c_bus_busy: input from i2c master indicating if master module is communicating over bus
+// i2c_bus_control: input from i2c master indicating if master has control over bus
+// i2c_bus_active: input from i2c master indicating if i2c bus is active (not necessarily under master's control)
+// i2c_missed_ack: input from i2c master indicating if acknoledge bit has been missed
+//
+// [7:0] i2c_data_out: data byte out to i2c master
+// [7:0] i2c_data_in: data byte in from i2c master
+// [6:0] i2c_dev_address: output to master providing i2c device address
+//
+// 
 //
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -207,6 +244,8 @@ module i2c_read_reg(
 					end
 					else begin
 						state <= S_VALIDATE_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 					//outputs for S_VALIDATE_BUS state -- take ownership of the 
 					//communication channel:
@@ -221,14 +260,12 @@ module i2c_read_reg(
 					end
 					else if(bus_valid) begin
 						state <= S_WRITE_REG_ADDRESS_0;
-						timer_start_reg <= 1'b0;
-						timer_reset_reg <= 1'b1;
 					end
 					else begin
 						state <= S_VALIDATE_TIMEOUT;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b0;
 					end
+					timer_start_reg <= 1'b0;
+					timer_start_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_WRITE_REG_ADDRESS_0: begin
@@ -237,6 +274,8 @@ module i2c_read_reg(
 					end
 					else begin
 						state <= S_WRITE_REG_ADDRESS_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 					//This state is designed to validate whether or not
 					//the I2C master is ready to accept data, so we need
@@ -260,14 +299,12 @@ module i2c_read_reg(
 					end
 					else if(i2c_data_out_ready) begin
 						state <= S_WRITE_REG_ADDRESS_1;
-						timer_start_reg <= 1'b0;
-						timer_reset_reg <= 1'b1;
 					end
 					else begin
 						state <= S_WRITE_REG_ADDRESS_TIMEOUT;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b0;
 					end
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_READ_DATA_0: begin
@@ -284,6 +321,8 @@ module i2c_read_reg(
 					end
 					else begin
 						state <= S_READ_DATA_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 					i2c_data_in_ready_reg <= 1'b1;
 				end
@@ -298,11 +337,15 @@ module i2c_read_reg(
 						message_failure_reg <= 1'b1;
 					end
 					else begin
-						if(data_read_count != 4'b0000) begin
+						if(data_read_count > 4'b0001) begin
 							state <= S_FIFO_WRITE_ACK_TIMEOUT_0;
+							timer_start_reg <= 1'b1;
+							timer_reset_reg <= 1'b1;
 						end
 						else begin
 							state <= S_FIFO_WRITE_ACK_TIMEOUT_1;
+							timer_start_reg <= 1'b1;
+							timer_reset_reg <= 1'b1;
 							i2c_cmd_stop_reg <= 1'b1;
 						end
 						data_read_count <= data_read_count - 1;
@@ -316,15 +359,13 @@ module i2c_read_reg(
 					end
 					else if(i2c_data_in_valid) begin
 						state <= S_READ_DATA_2;
-						timer_start_reg <= 1'b0;
-						timer_reset_reg <= 1'b1;
 					end
 					else begin
 						state <= S_READ_DATA_TIMEOUT;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b0;
 					end
 					i2c_cmd_valid_reg <= 1'b1;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_FIFO_WRITE_ACK_TIMEOUT_0: begin
@@ -334,14 +375,12 @@ module i2c_read_reg(
 					end
 					else if(fifo_write_ack) begin
 						state <= S_READ_DATA_1;
-						timer_start_reg <= 1'b0;
-						timer_reset_reg <= 1'b1;
 					end
 					else begin
 						state <= S_FIFO_WRITE_ACK_TIMEOUT_0;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b0;
 					end
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					fifo_write_en_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
@@ -352,15 +391,13 @@ module i2c_read_reg(
 					end
 					else if(fifo_write_ack) begin
 						state <= S_CHECK_I2C_FREE;
-						timer_start_reg <= 1'b0;
-						timer_reset_reg <= 1'b1;
 					end
 					else begin
 						state <= S_FIFO_WRITE_ACK_TIMEOUT_1;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b0;
 					end
 					fifo_write_en_reg <= 1'b0;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_CHECK_I2C_FREE: begin
@@ -369,6 +406,8 @@ module i2c_read_reg(
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 				end
 				S_CHECK_I2C_FREE_TIMEOUT: begin
@@ -378,16 +417,14 @@ module i2c_read_reg(
 					end
 					else if(i2c_bus_free) begin
 						state <= S_RESET;
-						timer_start_reg <= 1'b0;
-						timer_reset_reg <= 1'b1;
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b0;
 					end
 					done_reg <= 1'b1;
 					i2c_cmd_valid_reg <= 1'b0;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				default: state <= S_RESET;

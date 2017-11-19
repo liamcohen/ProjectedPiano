@@ -34,6 +34,7 @@ module i2c_write_reg(
 	 input timer_exp,
 	 output timer_start,
 	 output [3:0] timer_param,
+	 output timer_reset,
 	 
 	 //communication bus with I2C master module
 	 //combined with read module, all I2C master inputs should
@@ -90,6 +91,7 @@ module i2c_write_reg(
 	reg done_reg = 1'b0;
 	reg timer_start_reg = 1'b0;
 	reg [3:0] timer_param_reg = 3'b001;
+	reg timer_reset_reg = 1'b1;
 	
 	reg [7:0] i2c_data_out_reg = 8'h00;
 	reg [6:0] i2c_dev_address_reg = 7'b0000000;
@@ -152,6 +154,8 @@ module i2c_write_reg(
 					end
 					else begin
 						state <= S_VALIDATE_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 					//outputs for S_VALIDATE_BUS state -- take ownership of the 
 					//communication channel:
@@ -167,7 +171,8 @@ module i2c_write_reg(
 					else begin
 						state <= S_VALIDATE_TIMEOUT;
 					end
-					timer_start_reg <= 1'b1;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_WRITE_REG_ADDRESS_0: begin
@@ -176,6 +181,8 @@ module i2c_write_reg(
 					end
 					else begin
 						state <= S_WRITE_REG_ADDRESS_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 					//This state is designed to validate whether or not
 					//the I2C master is ready to accept data, so we need
@@ -203,7 +210,8 @@ module i2c_write_reg(
 					else begin
 						state <= S_WRITE_REG_ADDRESS_TIMEOUT;
 					end
-					timer_start_reg <= 1'b1;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_WRITE_DATA_0: begin
@@ -212,6 +220,8 @@ module i2c_write_reg(
 					end
 					else begin
 						state <= S_WRITE_DATA_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 					i2c_data_out_reg <= data;
 					i2c_data_out_valid_reg <= 1'b0;
@@ -231,7 +241,8 @@ module i2c_write_reg(
 					else begin
 						state <= S_WRITE_DATA_TIMEOUT;
 					end
-					timer_start_reg <= 1'b1;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_CHECK_I2C_FREE: begin
@@ -240,6 +251,8 @@ module i2c_write_reg(
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
 					end
 				end
 				S_CHECK_I2C_FREE_TIMEOUT: begin
@@ -255,7 +268,8 @@ module i2c_write_reg(
 					end
 					done_reg <= 1'b1;
 					i2c_cmd_valid_reg <= 1'b0;
-					timer_start_reg <= 1'b1;
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				default: state <= S_RESET;

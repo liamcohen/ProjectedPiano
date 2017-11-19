@@ -11,23 +11,23 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Fri Nov 17 15:51:24 2017
+Mapped Date    : Sun Nov 19 15:15:35 2017
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  331
+Number of warnings:  330
 Logic Utilization:
-  Number of Slice Flip Flops:           192 out of  67,584    1%
-  Number of 4 input LUTs:               352 out of  67,584    1%
+  Number of Slice Flip Flops:           190 out of  67,584    1%
+  Number of 4 input LUTs:               348 out of  67,584    1%
 Logic Distribution:
-  Number of occupied Slices:            228 out of  33,792    1%
-    Number of Slices containing only related logic:     228 out of     228 100%
-    Number of Slices containing unrelated logic:          0 out of     228   0%
+  Number of occupied Slices:            224 out of  33,792    1%
+    Number of Slices containing only related logic:     224 out of     224 100%
+    Number of Slices containing unrelated logic:          0 out of     224   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         407 out of  67,584    1%
-    Number used as logic:               352
-    Number used as a route-thru:         55
+  Total Number of 4 input LUTs:         401 out of  67,584    1%
+    Number used as logic:               348
+    Number used as a route-thru:         53
   Number of bonded IOBs:                576 out of     684   84%
   Number of BUFGMUXs:                     1 out of      16    6%
 
@@ -76,13 +76,13 @@ Section 1 - Errors
 Section 2 - Warnings
 --------------------
 WARNING:LIT:243 - Logical network user3<28>_IBUF has no load.
-WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 341
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 340
    more times for the following (max. 5 shown):
-   user3<4>_IBUF,
    user3<29>_IBUF,
    user3<5>_IBUF,
    user3<6>_IBUF,
-   user3<7>_IBUF
+   user3<7>_IBUF,
+   user3<8>_IBUF
    To see the details of these warning messages, please use the -detail switch.
 WARNING:PhysDesignRules:367 - The signal <ram1_data<0>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
@@ -261,6 +261,8 @@ WARNING:PhysDesignRules:367 - The signal <clock1_IBUF> is incomplete. The signal
 WARNING:PhysDesignRules:367 - The signal <clock2_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <button_right_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button1_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <button2_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
@@ -658,8 +660,6 @@ WARNING:PhysDesignRules:367 - The signal <user3<28>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <flash_data<9>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <user3<3>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user2<7>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user4<21>_IBUF> is incomplete. The
@@ -677,8 +677,6 @@ WARNING:PhysDesignRules:367 - The signal <user4<22>_IBUF> is incomplete. The
 WARNING:PhysDesignRules:367 - The signal <user4<14>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user4<0>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <user3<4>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user2<9>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
@@ -1414,8 +1412,8 @@ Section 6 - IOB Properties
 | user3<0>                           | IOB              | BIDIR     | LVTTL                | 12       | SLOW |              |          |          |
 | user3<1>                           | IOB              | BIDIR     | LVTTL                | 12       | SLOW |              |          |          |
 | user3<2>                           | IOB              | OUTPUT    | LVTTL                | 12       | SLOW |              |          |          |
-| user3<3>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
-| user3<4>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
+| user3<3>                           | IOB              | OUTPUT    | LVTTL                | 12       | SLOW |              |          |          |
+| user3<4>                           | IOB              | OUTPUT    | LVTTL                | 12       | SLOW |              |          |          |
 | user3<5>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<6>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<7>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |

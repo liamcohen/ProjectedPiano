@@ -331,14 +331,15 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	);
 	
 	wire clk_1000Hz;
-	wire clkc_5000Hz;
+	wire clk_200Hz;
 	wire timer_start;
 	wire [3:0] timer_param;
 	wire timer_exp;
+	wire timer_reset;
 	
 	Timer timer (
 		.clk(clock_27mhz),
-		.reset(clean_button0),
+		.reset(timer_reset),
 		.startTimer(timer_start),
 		.value(timer_param),
 		.enable(clk_1000Hz),
@@ -347,8 +348,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	divider div (
 		.clk(clock_27mhz),
-		.reset(clean_button0),
+		.reset(timer_start),
 		.clk_1000Hz(clk_1000Hz)
+	);
+	
+	divider #(130000) div2 (
+		.clk(clock_27mhz),
+		.reset(clean_button0),
+		.clk_1000Hz(clk_200Hz)
 	);
 	
 	wire [6:0] dev_address;
@@ -400,12 +407,13 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(clean_button0),
-		.start(clean_button1),
+		.start(clk_200Hz),
 		.done(i2c_read_done),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param),
 		.timer_start(timer_start),
+		.timer_reset(timer_reset),
 		
 		.i2c_data_out_ready(i2c_data_out_ready),
 		.i2c_cmd_ready(i2c_cmd_ready),
@@ -542,7 +550,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign dev_address = 7'h29; // 8'b0101_0010
 	assign data = 8'h73; //8'b0111_0011
 	assign i2c_data_out_last = 1'b0;
-	assign byte_width = 4'b0010;
+	assign byte_width = 4'b0011;
 	
 	assign prescale = 16'h80;
 	assign stop_on_idle = 1'b1;
@@ -552,7 +560,9 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign i2c_cmd_write_multiple = 1'b0;
 	assign i2c_relinquish = 1'b0;
 	
-	assign user3[2] = message_failure; //see if timer starts
+	assign user3[2] = message_failure; //see if600 timer starts
+	assign user3[3] = timer_start;
+	assign user3[4] = timer_exp;
 	assign led = {4'hF, ~state_out};
 	
 	assign scl_i = user3[0];
@@ -560,7 +570,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign sda_i = user3[1];
 	assign user3[1] = sda_t ? 1'bz : sda_o;
 	
-	assign analyzer3_data = {10'd0, state_out, sda_t ? 1'bz : sda_o, scl_t ? 1'bz : scl_o};
+	assign analyzer3_data = {9'd0, clk_200Hz, state_out, sda_t ? 1'bz : sda_o, scl_t ? 1'bz : scl_o};
 	assign analyzer3_clock = clock_27mhz;
 			    
 endmodule
