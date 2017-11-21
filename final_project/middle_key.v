@@ -23,19 +23,17 @@ module middle_key
                HEIGHT = 64,           // default height: 64 pixels
                BLACK_KEY_HEIGHT = 64,  // default black key height: 64 pixels
                BLACK_KEY_WIDTH = 15,   // default black key width: 15 pixels
-               WHITE_KEY_WIDTH = 90,   // default white key width: 90 pixels
-               COLOR = 24'hFF_FF_FF)  // default color: white
-   (input [10:0] x,
-    input [10:0] hcount,
-    input [9:0] y,
-    input [9:0] vcount,
+               WHITE_KEY_WIDTH = 90)   // default white key width: 90 pixels
+   (input [10:0] x, hcount,
+    input [9:0] y, vcount,
+	 input [23:0] color,
     output reg [23:0] pixel
     );
     
     always @ * begin
       if (((hcount >= (x+WHITE_KEY_WIDTH-BLACK_KEY_WIDTH)) && (vcount < (y+BLACK_KEY_HEIGHT))) ||
             ((hcount < (x+BLACK_KEY_WIDTH)) && (vcount < (y+BLACK_KEY_HEIGHT)))) pixel = 0;
-      else if ((hcount >= x && hcount < (x+WIDTH)) && (vcount >= y && vcount < (y+HEIGHT))) pixel = COLOR;
+      else if ((hcount >= x && hcount < (x+WIDTH)) && (vcount >= y && vcount < (y+HEIGHT))) pixel = color;
       else pixel = 0;
    end
 
