@@ -572,6 +572,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	wire [7:0] data_in_write_multi;
 	wire write_en_write_multi;
+	wire ext_reset_write_multi;
 	wire full_write_multi;
 	wire write_ack_write_multi;
 	wire overflow_write_multi;
@@ -583,7 +584,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(clean_button0),
-		.start(test_write_multi_done),
+		.start(clk_200Hz),
 		.done(i2c_write_multi_done),
 		.byte_width(4'b0010),
 		
@@ -611,26 +612,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.i2c_data_out_last(i2c_data_out_last_write_multi),
 		.state_out(state_out_write_multi),
 		
-		.data(data_in_write_multi),
-		.fifo_wr_en(write_en_write_multi),
+		//.data(data_in_write_multi),
+		//.fifo_wr_en(write_en_write_multi),
+		.fifo_ext_reset(ext_reset_write_multi),
 		.fifo_full(full_write_multi),
 		.fifo_write_ack(write_ack_write_multi),
 		.fifo_overflow(overflow_write_multi),
 		
 		.message_failure(message_failure_write_multi)
-	);
-	
-	test_write_multi test (
-		.clk(clock_27mhz),
-      .reset(clean_button0),
-      .start(clk_200Hz),
-      .done(test_write_multi_done),
-	 
-      .data_out(data_in_write_multi),
-	   .write_en(write_en_write_multi),
-	   .full(full_write_multi),
-	   .write_ack(write_ack_write_multi),
-	   .overflow(overflow_write_multi)
 	);
 	
 	wire [6:0] cmd_address;

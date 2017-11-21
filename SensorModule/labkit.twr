@@ -37,10 +37,10 @@ Setup/Hold to clock clock_27mhz
             |  Setup to  |  Hold to   |                    | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s)   | Phase  |
 ------------+------------+------------+--------------------+--------+
-button0     |    4.713(R)|   -2.172(R)|analyzer3_clock_OBUF|   0.000|
-switch<0>   |    6.417(R)|   -3.931(R)|analyzer3_clock_OBUF|   0.000|
-user3<0>    |    1.465(R)|   -1.193(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>    |    1.227(R)|   -0.955(R)|analyzer3_clock_OBUF|   0.000|
+button0     |    5.419(R)|   -1.781(R)|analyzer3_clock_OBUF|   0.000|
+switch<0>   |    6.969(R)|   -3.988(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |    1.108(R)|   -0.836(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |    0.908(R)|   -0.636(R)|analyzer3_clock_OBUF|   0.000|
 ------------+------------+------------+--------------------+--------+
 
 Clock clock_27mhz to Pad
@@ -48,9 +48,9 @@ Clock clock_27mhz to Pad
             | clk (edge) |                    | Clock  |
 Destination |   to PAD   |Internal Clock(s)   | Phase  |
 ------------+------------+--------------------+--------+
-user3<0>    |   13.302(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>    |   13.322(R)|analyzer3_clock_OBUF|   0.000|
-user3<4>    |   12.104(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |   12.974(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |   12.962(R)|analyzer3_clock_OBUF|   0.000|
+user3<4>    |   12.784(R)|analyzer3_clock_OBUF|   0.000|
 ------------+------------+--------------------+--------+
 
 Clock to Setup on destination clock clock_27mhz
@@ -58,7 +58,7 @@ Clock to Setup on destination clock clock_27mhz
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock_27mhz    |    7.363|         |         |         |
+clock_27mhz    |    7.418|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
@@ -66,12 +66,12 @@ Pad to Pad
 Source Pad     |Destination Pad  |  Delay  |
 ---------------+-----------------+---------+
 clock_27mhz    |analyzer3_clock  |    9.905|
-user3<0>       |analyzer3_data<0>|   15.247|
+user3<0>       |analyzer3_data<0>|   15.215|
 user3<1>       |analyzer3_data<1>|   14.387|
 ---------------+-----------------+---------+
 
 
-Analysis completed Mon Nov 20 23:40:12 2017 
+Analysis completed Tue Nov 21 18:44:28 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:

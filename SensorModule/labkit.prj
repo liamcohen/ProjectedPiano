@@ -1,6 +1,5 @@
 verilog work "./FIFO.v"
 verilog work "write_multi.v"
-verilog work "test_write_multi.v"
 verilog work "mux4.v"
 verilog work "i2c_write_reg.v"
 verilog work "i2c_read_reg.v"

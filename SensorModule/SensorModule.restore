@@ -849,7 +849,6 @@ proc restore { { project_dir "" } } {
       "labkit.v" 
       "mux4.v" 
       "test_i2c_write_reg.v" 
-      "test_write_multi.v" 
       "write_multi.v"}
 
   HandleException {

@@ -10,10 +10,30 @@ setMode -bs
 setMode -bs
 setMode -bs
 setMode -bs
+assignFile -p 2 -file "/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit"
 Program -p 2 
 Program -p 2 
 Program -p 2 
-ReadIdcode -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
+Program -p 2 
 Program -p 2 
 Program -p 2 
 Program -p 2 

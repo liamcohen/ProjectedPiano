@@ -1,0 +1,41 @@
+
+
+
+// Instantiate the module
+i2c_write_reg_multi instance_name (
+    .dev_address(dev_address), 
+    .reg_address(reg_address), 
+    .clk(clk), 
+    .reset(reset), 
+    .start(start), 
+    .done(done), 
+    .byte_width(byte_width), 
+    .timer_exp(timer_exp), 
+    .timer_start(timer_start), 
+    .timer_param(timer_param), 
+    .timer_reset(timer_reset), 
+    .i2c_data_out_ready(i2c_data_out_ready), 
+    .i2c_cmd_ready(i2c_cmd_ready), 
+    .i2c_bus_busy(i2c_bus_busy), 
+    .i2c_bus_control(i2c_bus_control), 
+    .i2c_bus_active(i2c_bus_active), 
+    .i2c_missed_ack(i2c_missed_ack), 
+    .i2c_data_out(i2c_data_out), 
+    .i2c_dev_address(i2c_dev_address), 
+    .i2c_cmd_start(i2c_cmd_start), 
+    .i2c_cmd_write_multiple(i2c_cmd_write_multiple), 
+    .i2c_cmd_stop(i2c_cmd_stop), 
+    .i2c_cmd_valid(i2c_cmd_valid), 
+    .i2c_data_out_valid(i2c_data_out_valid), 
+    .i2c_data_out_last(i2c_data_out_last), 
+    .state_out(state_out), 
+    .data(data), 
+    .fifo_wr_en(fifo_wr_en), 
+    .fifo_ext_reset(fifo_ext_reset), 
+    .fifo_full(fifo_full), 
+    .fifo_write_ack(fifo_write_ack), 
+    .fifo_overflow(fifo_overflow), 
+    .message_failure(message_failure)
+    );
+
+
