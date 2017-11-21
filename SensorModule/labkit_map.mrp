@@ -11,27 +11,28 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Sun Nov 19 16:17:10 2017
+Mapped Date    : Mon Nov 20 23:39:43 2017
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  331
+Number of warnings:  332
 Logic Utilization:
-  Number of Slice Flip Flops:           254 out of  67,584    1%
-  Number of 4 input LUTs:               439 out of  67,584    1%
+  Number of Slice Flip Flops:           208 out of  67,584    1%
+  Number of 4 input LUTs:               363 out of  67,584    1%
 Logic Distribution:
-  Number of occupied Slices:            308 out of  33,792    1%
-    Number of Slices containing only related logic:     308 out of     308 100%
-    Number of Slices containing unrelated logic:          0 out of     308   0%
+  Number of occupied Slices:            235 out of  33,792    1%
+    Number of Slices containing only related logic:     235 out of     235 100%
+    Number of Slices containing unrelated logic:          0 out of     235   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         514 out of  67,584    1%
-    Number used as logic:               439
-    Number used as a route-thru:         75
+  Total Number of 4 input LUTs:         416 out of  67,584    1%
+    Number used as logic:               355
+    Number used as a route-thru:         53
+    Number used as Shift registers:       8
   Number of bonded IOBs:                576 out of     684   84%
   Number of BUFGMUXs:                     1 out of      16    6%
 
-Peak Memory Usage:  483 MB
+Peak Memory Usage:  482 MB
 Total REAL time to MAP completion:  1 secs 
 Total CPU time to MAP completion:   1 secs 
 
@@ -76,14 +77,290 @@ Section 1 - Errors
 Section 2 - Warnings
 --------------------
 WARNING:LIT:243 - Logical network user3<28>_IBUF has no load.
-WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 341
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 348
    more times for the following (max. 5 shown):
-   user3<4>_IBUF,
    user3<29>_IBUF,
    user3<5>_IBUF,
    user3<6>_IBUF,
-   user3<7>_IBUF
+   user3<7>_IBUF,
+   user3<8>_IBUF
    To see the details of these warning messages, please use the -detail switch.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<0>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<1>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<2>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<3>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<4>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<5>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<6>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<7>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<8>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<9>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <disp_data_in_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_data_valid_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button_up_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<0>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<1>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<2>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<3>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<4>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<5>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<6>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<7>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<8>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<9>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<10>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<11>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<20>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<12>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<21>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<13>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<30>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<22>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<14>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<31>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<23>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<15>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<32>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<24>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<16>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<33>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<25>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<17>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<34>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<26>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<18>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<35>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<27>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<19>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<0>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<28>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<1>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ram1_data<29>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<2>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<3>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<4>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<5>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<6>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<7>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<8>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<9>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<0>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<1>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<2>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<3>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<4>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<5>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<6>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<7>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<8>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<9>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<10>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<11>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<12>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<13>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<14>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<15>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<16>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<17>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<18>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button_enter_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<19>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<10>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<11>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<12>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<13>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<14>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <systemace_data<15>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clock1_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clock2_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button_right_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button1_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button2_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button3_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<1>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<2>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<3>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<4>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<5>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<6>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<10>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <switch<7>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clock_feedback_in_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<11>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<20>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<12>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<21>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<13>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<30>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<22>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<14>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<31>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<23>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<15>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<40>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<32>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<24>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<16>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<41>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<33>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<25>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<17>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<42>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<34>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<26>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<18>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<43>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<35>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<27>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<19>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<36>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<28>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<37>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<29>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<38>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <daughtercard<39>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <flash_sts_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button_left_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <rs232_cts_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <button_down_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <ram0_data<10>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <ram0_data<11>_IBUF> is incomplete. The
@@ -406,8 +683,6 @@ WARNING:PhysDesignRules:367 - The signal <user4<14>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user4<0>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <user3<4>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user2<9>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user4<31>_IBUF> is incomplete. The
@@ -470,278 +745,6 @@ WARNING:PhysDesignRules:367 - The signal <tv_in_line_clock2_IBUF> is incomplete.
    The signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <user4<9>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<0>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<1>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<2>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<3>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<4>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<5>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<6>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<7>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<8>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<9>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <disp_data_in_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_data_valid_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button_up_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<0>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<1>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<2>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<3>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<4>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<5>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<6>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<7>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<8>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<9>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<10>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<11>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<20>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<12>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<21>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<13>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<30>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<22>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<14>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<31>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<23>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<15>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<32>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<24>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<16>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<33>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<25>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<17>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<34>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<26>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<18>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<35>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<27>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<19>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<0>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<28>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<1>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <ram1_data<29>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<2>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<3>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<4>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<5>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<6>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<7>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<8>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<9>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<0>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<1>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<2>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<3>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<4>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<5>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<6>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<7>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<8>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<9>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<10>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<11>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<12>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<13>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<14>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<15>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<16>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<17>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<18>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button_enter_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tv_in_ycrcb<19>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<10>_IBUF> is
-   incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<11>_IBUF> is
-   incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<12>_IBUF> is
-   incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<13>_IBUF> is
-   incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<14>_IBUF> is
-   incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <systemace_data<15>_IBUF> is
-   incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <clock1_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <clock2_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button_right_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button3_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<1>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<2>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<3>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<4>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<5>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<6>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<10>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <switch<7>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <clock_feedback_in_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<11>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<20>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<12>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<21>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<13>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<30>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<22>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<14>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<31>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<23>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<15>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<40>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<32>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<24>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<16>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<41>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<33>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<25>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<17>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<42>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<34>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<26>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<18>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<43>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<35>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<27>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<19>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<36>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<28>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<37>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<29>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<38>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <daughtercard<39>_IBUF> is incomplete.
-   The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <flash_sts_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button_left_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <rs232_cts_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <button_down_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
 
 Section 3 - Informational
 -------------------------
@@ -752,9 +755,9 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-  46 block(s) removed
+ 101 block(s) removed
    3 block(s) optimized away
-  44 signal(s) removed
+  97 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -770,8 +773,10 @@ above the place where that logic is listed in the trimming report, then locate
 the lines that are least indented (begin at the leftmost edge).
 
 The signal "read/fifo/valid" is sourceless and has been removed.
+The signal "read/fifo/overflow" is sourceless and has been removed.
 The signal "read/fifo/full" is sourceless and has been removed.
 The signal "read/fifo/empty" is sourceless and has been removed.
+The signal "read/fifo/wr_ack" is sourceless and has been removed.
 The signal "read/fifo/underflow" is sourceless and has been removed.
 The signal "read/fifo/dout<7>" is sourceless and has been removed.
 The signal "read/fifo/dout<6>" is sourceless and has been removed.
@@ -781,33 +786,224 @@ The signal "read/fifo/dout<3>" is sourceless and has been removed.
 The signal "read/fifo/dout<2>" is sourceless and has been removed.
 The signal "read/fifo/dout<1>" is sourceless and has been removed.
 The signal "read/fifo/dout<0>" is sourceless and has been removed.
-The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" is sourceless and
-has been removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" (FF) removed.
-  The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" is sourceless and
-has been removed.
+The signal "read/fifo/BU2/rd_data_count<0>" is sourceless and has been removed.
  Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg" (FF) removed.
   The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg" is sourceless and has
 been removed.
    Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" (FF) removed.
-The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>" is sourceless and has
+    The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" is sourceless and
+has been removed.
+     Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" (FF) removed.
+      The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" is sourceless and
+has been removed.
+ Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg" (FF) removed.
+  The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg" is sourceless and has
 been removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_0" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_1" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_2" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_3" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_4" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_5" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_6" (FF) removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_7" (FF) removed.
-The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i" is
-sourceless and has been removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/UNDERFLOW" (FF)
+   Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg_d1" (FF) removed.
+    The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg_d1" is sourceless and
+has been removed.
+     Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg_d2" (FF) removed.
+      The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg_d2" is sourceless and
+has been removed.
+       Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_comb1" (ROM) removed.
+        The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_comb" is sourceless and has
+been removed.
+         Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_1" (FF) removed.
+          The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<1>" is sourceless and has
+been removed.
+           Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_fb_i" (FF)
 removed.
-The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_i" is
+            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_fb_i" is
 sourceless and has been removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_d1" (FF)
+             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i1"
+(ROM) removed.
+              The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i" is
+sourceless and has been removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/UNDERFLOW" (FF)
 removed.
+             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb44"
+(ROM) removed.
+              The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb" is
+sourceless and has been removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_i" (FF)
+removed.
+             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb25" (ROM)
+removed.
+              The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb25" is
+sourceless and has been removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb49" (ROM)
+removed.
+                The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb" is sourceless
+and has been removed.
+                 Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i" (FF)
+removed.
+                 Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_fb_i" (FF)
+removed.
+                  The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_fb_i" is sourceless
+and has been removed.
+                   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/overflow_i1" (ROM)
+removed.
+                    The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/overflow_i" is
+sourceless and has been removed.
+                     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/OVERFLOW" (FF)
+removed.
+                   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/wr_ack_i1" (ROM)
+removed.
+                    The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/wr_ack_i" is sourceless
+and has been removed.
+                     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/WR_ACK" (FF)
+removed.
+                   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb111"
+(ROM) removed.
+                    The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb11" is
+sourceless and has been removed.
+                   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb37" (ROM)
+removed.
+                    The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb37" is
+sourceless and has been removed.
+                   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb29"
+(ROM) removed.
+                    The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb29" is
+sourceless and has been removed.
+                   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/Mxor_cntr_en_Result1" (ROM)
+removed.
+                    The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/cntr_en" is sourceless and has
+been removed.
+                     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count_0" (FF) removed.
+                      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count<0>" is sourceless and
+has been removed.
+                       Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<2>11"
+(ROM) removed.
+                        The signal "read/fifo/BU2/Result<2>1" is sourceless and has been removed.
+                         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count_2" (FF) removed.
+                          The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count<2>" is sourceless and
+has been removed.
+                           Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<3>11_SW0" (ROM) removed.
+                            The signal "read/fifo/BU2/N43" is sourceless and has been removed.
+                             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<3>11"
+(ROM) removed.
+                              The signal "read/fifo/BU2/Result<3>1" is sourceless and has been removed.
+                               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count_3" (FF) removed.
+                                The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count<3>" is sourceless and
+has been removed.
+                           Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<3>11_SW1" (ROM) removed.
+                            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<3>11_SW1/O"
+is sourceless and has been removed.
+                       Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<1>11"
+(ROM) removed.
+                        The signal "read/fifo/BU2/Result<1>1" is sourceless and has been removed.
+                         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count_1" (FF) removed.
+                          The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/count<1>" is sourceless and
+has been removed.
+                       Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/c1/Mcount_count_xor<0>11_INV_0" (BUF)
+removed.
+                        The signal "read/fifo/BU2/Result<0>1" is sourceless and has been removed.
+                     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count_0" (FF) removed.
+                      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count<0>" is sourceless and
+has been removed.
+                       Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<2>11"
+(ROM) removed.
+                        The signal "read/fifo/BU2/Result<2>2" is sourceless and has been removed.
+                         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count_2" (FF) removed.
+                          The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count<2>" is sourceless and
+has been removed.
+                           Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb21"
+(ROM) removed.
+                            The signal "read/fifo/BU2/N14" is sourceless and has been removed.
+                             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb5" (ROM)
+removed.
+                              The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb5/O" is
+sourceless and has been removed.
+                           Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<3>1"
+(ROM) removed.
+                            The signal "read/fifo/BU2/Result<3>2" is sourceless and has been removed.
+                             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count_3" (FF) removed.
+                              The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count<3>" is sourceless and
+has been removed.
+                               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb6" (ROM)
+removed.
+                                The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb6" is
+sourceless and has been removed.
+                                 Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb16"
+(ROM) removed.
+                                  The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_comb16/O" is
+sourceless and has been removed.
+                       Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<1>11"
+(ROM) removed.
+                        The signal "read/fifo/BU2/Result<1>2" is sourceless and has been removed.
+                         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count_1" (FF) removed.
+                          The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/count<1>" is sourceless and
+has been removed.
+                           Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<3>1_SW2" (ROM) removed.
+                            The signal "read/fifo/BU2/N46" is sourceless and has been removed.
+                           Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<3>1_SW3" (ROM) removed.
+                            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<3>1_SW3/O" is
+sourceless and has been removed.
+                       Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/c0/Mcount_count_xor<0>11_INV_0" (BUF)
+removed.
+                        The signal "read/fifo/BU2/Result<0>2" is sourceless and has been removed.
+                     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_0" (FF) removed.
+                      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<0>" is sourceless and
+has been removed.
+                       Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<2>11"
+(ROM) removed.
+                        The signal "read/fifo/BU2/Result<2>" is sourceless and has been removed.
+                         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_2" (FF) removed.
+                          The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<2>" is sourceless and
+has been removed.
+                           Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW2" (ROM) removed.
+                            The signal "read/fifo/BU2/N40" is sourceless and has been removed.
+                             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1"
+(ROM) removed.
+                              The signal "read/fifo/BU2/Result<3>" is sourceless and has been removed.
+                               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_3" (FF) removed.
+                                The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<3>" is sourceless and
+has been removed.
+                           Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW3" (ROM) removed.
+                            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW3/O"
+is sourceless and has been removed.
+                       Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<1>11"
+(ROM) removed.
+                        The signal "read/fifo/BU2/Result<1>" is sourceless and has been removed.
+                         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_1" (FF) removed.
+                          The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<1>" is sourceless and
+has been removed.
+                       Sourceless block
+"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<0>11_INV_0" (BUF)
+removed.
+                        The signal "read/fifo/BU2/Result<0>" is sourceless and has been removed.
+             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_i1"
+(ROM) removed.
+              The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_i" is
+sourceless and has been removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_d1" (FF)
+removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_0" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_1" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_2" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_3" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_4" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_5" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_6" (FF) removed.
+               Sourceless block "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_7" (FF) removed.
+             Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_comb15" (ROM)
+removed.
+              The signal "read/fifo/BU2/N01" is sourceless and has been removed.
+           Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/wr_rst_d1" (FF)
+removed.
+            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/wr_rst_d1" is sourceless and
+has been removed.
+         Sourceless block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_0" (FF) removed.
+          The signal "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>" is sourceless and has
+been removed.
 The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<0>" is sourceless and
 has been removed.
 The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<1>" is sourceless and
@@ -824,38 +1020,25 @@ The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<6>" is sourceless and
 has been removed.
 The signal "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_mem<7>" is sourceless and
 has been removed.
-The signal "read/fifo/BU2/Result<0>" is sourceless and has been removed.
- Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_0" (FF) removed.
-  The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<0>" is sourceless and
-has been removed.
-   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<2>11"
-(ROM) removed.
-    The signal "read/fifo/BU2/Result<2>" is sourceless and has been removed.
-     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_2" (FF) removed.
-      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<2>" is sourceless and
-has been removed.
-       Sourceless block
-"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW2" (ROM) removed.
-        The signal "read/fifo/BU2/N40" is sourceless and has been removed.
-         Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1"
-(ROM) removed.
-          The signal "read/fifo/BU2/Result<3>" is sourceless and has been removed.
-           Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_3" (FF) removed.
-            The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<3>" is sourceless and
-has been removed.
-       Sourceless block
-"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW3" (ROM) removed.
-        The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<3>1_SW3/O"
-is sourceless and has been removed.
-   Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<1>11"
-(ROM) removed.
-    The signal "read/fifo/BU2/Result<1>" is sourceless and has been removed.
-     Sourceless block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_1" (FF) removed.
-      The signal "read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count<1>" is sourceless and
-has been removed.
-   Sourceless block
-"read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/Mcount_count_xor<0>11_INV_0" (BUF)
+The signal "write_multi/fifo/overflow" is sourceless and has been removed.
+The signal "write_multi/fifo/full" is sourceless and has been removed.
+The signal "write_multi/fifo/empty" is sourceless and has been removed.
+The signal "write_multi/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" is sourceless
+and has been removed.
+ Sourceless block "write_multi/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" (FF)
 removed.
+  The signal "write_multi/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d2" is sourceless
+and has been removed.
+ Sourceless block "write_multi/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg" (FF)
+removed.
+  The signal "write_multi/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg" is sourceless
+and has been removed.
+   Sourceless block "write_multi/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" (FF)
+removed.
+The signal "write_multi/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/overflow_i" is
+sourceless and has been removed.
+ Sourceless block "write_multi/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/OVERFLOW"
+(FF) removed.
 
 The trimmed logic reported below is either:
    1. part of a cycle
@@ -878,12 +1061,8 @@ The signal "master/data_out_reg<6>" is unused and has been removed.
  Unused block "master/data_out_reg_6" (FF) removed.
 The signal "master/data_out_reg<7>" is unused and has been removed.
  Unused block "master/data_out_reg_7" (FF) removed.
-Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/ram_valid_i1" (ROM)
-removed.
-Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i1" (ROM)
-removed.
-Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_i" (FF) removed.
-Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i" (FF) removed.
+The signal "read/fifo_reset_reg" is unused and has been removed.
+ Unused block "read/fifo_reset_reg" (FF) removed.
 Unused block
 "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[0].gv4.srl16" () removed.
 Unused block
@@ -900,15 +1079,23 @@ Unused block
 "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[6].gv4.srl16" () removed.
 Unused block
 "read/fifo/BU2/U0/grf.rf/mem/gsm.sm/gsm1.sm1/gram.gsms[7].gv4.srl16" () removed.
-Unused block "read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_0" (FF) removed.
+Unused block "read/fifo/BU2/XST_GND" (ZERO) removed.
 Unused block "read/fifo/GND" (ZERO) removed.
 Unused block "read/fifo/VCC" (ONE) removed.
+Unused block "write_multi/fifo/BU2/U0/grf.rf/gl1.lsshft/gwhf.whf/overflow_i1"
+(ROM) removed.
+Unused block "write_multi/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_i" (FF)
+removed.
+Unused block "write_multi/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i" (FF)
+removed.
+Unused block "write_multi/fifo/GND" (ZERO) removed.
+Unused block "write_multi/fifo/VCC" (ONE) removed.
 
 Optimized Block(s):
 TYPE 		BLOCK
 GND 		XST_GND
 VCC 		XST_VCC
-GND 		read/fifo/BU2/XST_GND
+GND 		write_multi/fifo/BU2/XST_GND
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.
@@ -1407,7 +1594,7 @@ Section 6 - IOB Properties
 | user3<1>                           | IOB              | BIDIR     | LVTTL                | 12       | SLOW |              |          |          |
 | user3<2>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<3>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
-| user3<4>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
+| user3<4>                           | IOB              | OUTPUT    | LVTTL                | 12       | SLOW |              |          |          |
 | user3<5>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<6>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |
 | user3<7>                           | IOB              | INPUT     | LVTTL                |          |      |              |          |          |

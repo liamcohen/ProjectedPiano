@@ -847,7 +847,10 @@ proc restore { { project_dir "" } } {
       "i2c_write_reg.v" 
       "labkit.ucf" 
       "labkit.v" 
-      "test_i2c_write_reg.v"}
+      "mux4.v" 
+      "test_i2c_write_reg.v" 
+      "test_write_multi.v" 
+      "write_multi.v"}
 
   HandleException {
     AddUserFiles $iProjHelper $user_files

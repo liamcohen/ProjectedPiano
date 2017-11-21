@@ -24,6 +24,8 @@ FIFO YourInstanceName (
 
  
 		</Template>
+		<Template label="reg_rom" treetype="template">
+		</Template>
 	</Folder>
 	<Folder label="VHDL Component Instantiation" treetype="folder">
 		<Template label="FIFO" treetype="template">
@@ -69,6 +71,8 @@ your_instance_name : FIFO
             underflow =&gt; underflow,
             wr_ack =&gt; wr_ack);
  
+		</Template>
+		<Template label="reg_rom" treetype="template">
 		</Template>
 	</Folder>
 </RootFolder>

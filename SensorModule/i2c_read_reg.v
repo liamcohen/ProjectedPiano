@@ -108,9 +108,7 @@ module i2c_read_reg(
 	 output fifo_underflow,
 	 
 	 //status
-	 output message_failure,
-	 output i2c_control,
-	 input i2c_relinquish //from other i2c comm modules, forces tristate of necessary busses
+	 output message_failure
 	);
 	//write_reg_i2c acts as a module which will, given that the I2C bus is available,
 	//upon start, will take the data available at reg_address and data and upon
@@ -143,24 +141,23 @@ module i2c_read_reg(
 	//for 16/32 bit I2C register writes, then any potentially shared connection
 	//should be tristated.
 	reg done_reg = 1'b0;
-	reg timer_start_reg = 1'bz;
-	reg [3:0] timer_param_reg = 4'bzzzz;
-	reg timer_reset_reg = 1'bz;
+	reg timer_start_reg = 1'b0;
+	reg [3:0] timer_param_reg = 4'b0001;
+	reg timer_reset_reg = 1'b1;
 	
-	reg [7:0] i2c_data_out_reg = 8'hzz;
-	reg [6:0] i2c_dev_address_reg = 7'bzzzzzzz;
+	reg [7:0] i2c_data_out_reg = 8'h00;
+	reg [6:0] i2c_dev_address_reg = 7'b0000000;
 	
-	reg i2c_cmd_start_reg = 1'bz;
+	reg i2c_cmd_start_reg = 1'b0;
 	reg i2c_cmd_write_reg = 1'b0;
-	reg i2c_cmd_read_reg = 1'bz;
-	reg i2c_cmd_stop_reg = 1'bz;
-	reg i2c_cmd_valid_reg = 1'bz;
+	reg i2c_cmd_read_reg = 1'b0;
+	reg i2c_cmd_stop_reg = 1'b0;
+	reg i2c_cmd_valid_reg = 1'b0;
 	
 	reg i2c_data_in_ready_reg = 1'b0;
-	reg i2c_data_out_valid_reg = 1'bz;
+	reg i2c_data_out_valid_reg = 1'b0;
 
 	reg message_failure_reg = 1'b0;
-	reg i2c_control_reg = 1'b0;
 	
 	//define combinational logic
 	wire bus_valid;
@@ -199,7 +196,7 @@ module i2c_read_reg(
 	//define state transition diagram
 	//and state outputs 
 	always @(posedge clk) begin
-		if(reset | i2c_relinquish) state <= S_RESET;
+		if(reset) state <= S_RESET;
 		else if(i2c_missed_ack) begin
 			state <= S_RESET;
 			message_failure_reg <= 1'b1; //missed_ack --> pulse message_failure 
@@ -216,25 +213,24 @@ module i2c_read_reg(
 					
 					//reset values
 					done_reg <= 1'b0;
-					timer_start_reg <= 1'bz;
-					timer_param_reg <= 4'bzzzz;
-					timer_reset_reg <= 1'bz;
+					timer_start_reg <= 1'b0;
+					timer_param_reg <= 4'b0001;
+					timer_reset_reg <= 1'b1;
 					data_read_count <= byte_width;
 					
-					i2c_data_out_reg <= 8'hzz;
-					i2c_dev_address_reg <= 7'bzzzzzzz;
+					i2c_data_out_reg <= 8'h00;
+					i2c_dev_address_reg <= 7'b0000000;
 					
-					i2c_cmd_start_reg <= 1'bz;
+					i2c_cmd_start_reg <= 1'b0;
 					i2c_cmd_write_reg <= 1'b0;
-					i2c_cmd_read_reg <= 1'bz;
-					i2c_cmd_stop_reg <= 1'bz;
-					i2c_cmd_valid_reg <= 1'bz;
+					i2c_cmd_read_reg <= 1'b0;
+					i2c_cmd_stop_reg <= 1'b0;
+					i2c_cmd_valid_reg <= 1'b0;
 					
 					i2c_data_in_ready_reg <= 1'b0;
-					i2c_data_out_valid_reg <= 1'bz;
+					i2c_data_out_valid_reg <= 1'b0;
 					
 					message_failure_reg <= 1'b0;
-					i2c_control_reg <= 1'b0;
 					
 					fifo_reset_reg <= 1'b1;
 				end
@@ -247,24 +243,8 @@ module i2c_read_reg(
 						timer_start_reg <= 1'b1;
 						timer_reset_reg <= 1'b1;
 					end
-					//outputs for S_VALIDATE_BUS state -- take ownership of the 
-					//communication channel:
-					i2c_control_reg <= 1'b1;
+					
 					fifo_reset_reg <= 1'b0; //clear fifo before reading from I2C slave
-					
-					//setting high impedance values
-					timer_param_reg <= 3'b001;
-					
-					i2c_data_out_reg <= 8'h00;
-					i2c_dev_address_reg <= dev_address;
-					
-					i2c_cmd_start_reg <= 1'b0;
-					i2c_cmd_write_reg <= 1'b0;
-					i2c_cmd_read_reg <= 1'b0;
-					i2c_cmd_stop_reg <= 1'b0;
-					i2c_cmd_valid_reg <= 1'b0;
-					
-					i2c_data_out_valid_reg <= 1'b0;
 				end
 				S_VALIDATE_TIMEOUT: begin
 					if(timer_exp) begin
@@ -327,6 +307,7 @@ module i2c_read_reg(
 					i2c_cmd_stop_reg <= 1'b0;
 					i2c_cmd_write_reg <= 1'b0;
 					i2c_cmd_valid_reg <= 1'b0;
+					i2c_data_in_ready_reg <= 1'b1;
 				end
 				S_READ_DATA_1: begin
 					if(i2c_data_in_valid) begin
@@ -359,7 +340,6 @@ module i2c_read_reg(
 							state <= S_FIFO_WRITE_ACK_TIMEOUT_1;
 							timer_start_reg <= 1'b1;
 							timer_reset_reg <= 1'b1;
-							i2c_cmd_stop_reg <= 1'b1;
 						end
 						data_read_count <= data_read_count - 1;
 						fifo_write_en_reg <= 1'b1;
@@ -378,6 +358,9 @@ module i2c_read_reg(
 					end
 					i2c_cmd_valid_reg <= 1'b1;
 					timer_start_reg <= 1'b0;
+					if(data_read_count == 4'b0001) i2c_cmd_stop_reg <= 1'b1;
+					else i2c_cmd_stop_reg <= 1'b0;
+					
 					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
@@ -463,7 +446,6 @@ module i2c_read_reg(
 	assign i2c_cmd_valid = i2c_cmd_valid_reg;
 	
 	assign message_failure = message_failure_reg;
-	assign i2c_control = i2c_control_reg;
 	
 	//debugging
 	assign state_out = state;

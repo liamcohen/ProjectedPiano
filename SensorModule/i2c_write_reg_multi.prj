@@ -1,0 +1,2 @@
+verilog work "./FIFO.v"
+verilog work "write_multi.v"

@@ -1,8 +1,10 @@
 iMPACT Version: 10.1.03
 
-iMPACT log file Started on Sun Nov 19 13:14:55 2017
+iMPACT log file Started on Mon Nov 20 20:21:49 2017
 
 // *** BATCH CMD : loadProjectFile -file"/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/SensorModule.ipf"
+Reusing A0010001 key.
+Reusing 24010001 key.
  Using libusb.
 Connecting to cable (Usb Port - USB21).
 Checking cable driver.
@@ -52,696 +54,349 @@ Active mode is BS
 // *** BATCH CMD : setMode -bs
 // *** BATCH CMD : setMode -bs
 // *** BATCH CMD : setMode -bs
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
+// *** BATCH CMD : assignFile -p 2 -file"/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit"
+'2': Loading file'/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit' ...
 done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      5 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      5 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      5 sec.
-Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
-// *** BATCH CMD : Program -p 2 
-Maximum TCK operating frequency for this device chain: 15000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-'2': Programming device...
-PROGRESS_START - Starting Operation.
- Match_cycle = 2.
-done.
-'2': Reading status register contents...
-CRC error                                         :         0
-Decryptor security set                            :         0
-DCM locked                                        :         1
-DCI matched                                       :         1
-legacy input error                                :         0
-status of GTS_CFG_B                               :         1
-status of GWE                                     :         1
-status of GHIGH                                   :         1
-value of MODE pin M0                              :         1
-value of MODE pin M1                              :         0
-value of MODE pin M2                              :         1
-value of CFG_RDY (INIT_B)                         :         1
-DONEIN input from DONE pin                        :         1
-IDCODE not validated while trying to write FDRI   :         0
-write FDRI issued before or after decrypt operation:         0
-Decryptor keys not used in proper sequence        :         0
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '2': Completed downloading bit file to device.
- Match_cycle = 2.
-INFO:iMPACT - '2': Checking done pin....done.
-'2': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      6 sec.
-// *** BATCH CMD : saveProjectFile -file"/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/SensorModule.ipf"
-// *** BATCH CMD : setMode -bs
-// *** BATCH CMD : deleteDevice -position 1
 ----------------------------------------------------------------------
-// *** BATCH CMD : deleteDevice -position 1
+INFO:iMPACT:501 - '2': Added Device xc2v6000 successfully.
 ----------------------------------------------------------------------
-// *** BATCH CMD : deleteDevice -position 1
-// *** BATCH CMD : setMode -ss
-// *** BATCH CMD : setMode -sm
-// *** BATCH CMD : setMode -hw140
-// *** BATCH CMD : setMode -spi
-// *** BATCH CMD : setMode -acecf
-// *** BATCH CMD : setMode -acempm
-// *** BATCH CMD : setMode -pff
-// *** BATCH CMD : setMode -bs
+----------------------------------------------------------------------
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.
+Updating config file/afs/athena.mit.edu/user/l/c/lc2017/Desktop/6.111_Final_Project/ProjectedPiano/SensorModule/labkit.bit...
+// *** BATCH CMD : Program -p 2 
+Maximum TCK operating frequency for this device chain: 15000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+'2': Programming device...
+PROGRESS_START - Starting Operation.
+ Match_cycle = 2.
+done.
+'2': Reading status register contents...
+CRC error                                         :         0
+Decryptor security set                            :         0
+DCM locked                                        :         1
+DCI matched                                       :         1
+legacy input error                                :         0
+status of GTS_CFG_B                               :         1
+status of GWE                                     :         1
+status of GHIGH                                   :         1
+value of MODE pin M0                              :         1
+value of MODE pin M1                              :         0
+value of MODE pin M2                              :         1
+value of CFG_RDY (INIT_B)                         :         1
+DONEIN input from DONE pin                        :         1
+IDCODE not validated while trying to write FDRI   :         0
+write FDRI issued before or after decrypt operation:         0
+Decryptor keys not used in proper sequence        :         0
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '2': Completed downloading bit file to device.
+ Match_cycle = 2.
+INFO:iMPACT - '2': Checking done pin....done.
+'2': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      6 sec.

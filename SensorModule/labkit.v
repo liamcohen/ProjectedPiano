@@ -1,3 +1,4 @@
+`default_nettype none
 ///////////////////////////////////////////////////////////////////////////////
 //
 // 6.111 FPGA Labkit -- Template Toplevel Module
@@ -279,7 +280,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    // disp_data_in is an input
 
    // Buttons, Switches, and Individual LEDs
-   assign led = 8'hFF;
+   //assign led = 8'hFF;
    // button0, button1, button2, button3, button_enter, button_right,
    // button_left, button_down, button_up, and switches are inputs
 
@@ -305,8 +306,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer1_clock = 1'b1;
    assign analyzer2_data = 16'h0;
    assign analyzer2_clock = 1'b1;
-   assign analyzer3_data = 16'h0;
-   assign analyzer3_clock = 1'b1;
+   //assign analyzer3_data = 16'h0;
+   //assign analyzer3_clock = 1'b1;
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
 	
@@ -316,6 +317,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire clean_button2;
 	
 	//assign led = {7'b1111111, ~button1 ? 1'b0 : 1'b1};
+	
+	wire [1:0] fnc_sel;
 	
 	debounce db_button0 (
 		.clock(clock_27mhz),
@@ -340,10 +343,51 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	wire clk_1000Hz;
 	wire clk_200Hz;
+	assign fnc_sel = {1'b1, 1'b1};
+	
+	wire timer_start_read;
+	wire timer_start_write;
+	wire timer_start_write_multi;
 	wire timer_start;
+	
+	wire [3:0] timer_param_read;
+	wire [3:0] timer_param_write;
+	wire [3:0] timer_param_write_multi;
 	wire [3:0] timer_param;
+	
 	wire timer_exp;
+	
+	wire timer_reset_read;
+	wire timer_reset_write;
+	wire timer_reset_write_multi;
 	wire timer_reset;
+	
+	mux4 m_timer_start (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(timer_start_read),
+		.signal2(timer_start_write),
+		.signal3(timer_start_write_multi),
+		.out(timer_start)
+	);
+	
+	mux4 #(.SIGNAL_WIDTH(4)) m_timer_param (
+		.sel(fnc_sel),
+		.signal0(4'b0000),
+		.signal1(timer_param_read),
+		.signal2(timer_param_write),
+		.signal3(timer_param_write_multi),
+		.out(timer_param)
+	);
+	
+	mux4 m_timer_reset (
+		.sel(fnc_sel),
+		.signal0(1'b1),
+		.signal1(timer_reset_read),
+		.signal2(timer_reset_write),
+		.signal3(timer_reset_write_multi),
+		.out(timer_reset)
+	);
 	
 	Timer timer (
 		.clk(clock_27mhz),
@@ -373,6 +417,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 
 	wire i2c_write_done;
 	wire i2c_read_done;
+	wire i2c_write_multi_done;
 	wire i2c_data_out_ready;
 	wire i2c_cmd_ready;
 	wire i2c_bus_busy;
@@ -380,9 +425,15 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire i2c_bus_active;
 	wire i2c_missed_ack;
 	
-	wire [7:0] i2c_data_out;
+	wire [7:0] i2c_data_out_read;
+	wire [7:0] i2c_data_out_write;
+	wire [7:0] i2c_data_out_write_multi;
+	
 	wire [7:0] i2c_data_in;
-	wire [6:0] i2c_dev_address;
+	
+	wire [6:0] i2c_dev_address_write;
+	wire [6:0] i2c_dev_address_read;
+	wire [6:0] i2c_dev_address_write_multi;
 	
 	wire [7:0] read_data_out;
 	wire read_data_en;
@@ -391,24 +442,46 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire read_data_underflow;
 	
 	wire i2c_data_in_valid;
-	wire i2c_data_in_ready;
+	wire i2c_data_in_ready_read;
+	
 	wire i2c_data_in_last;
 	 
-	wire i2c_cmd_start;
-	wire i2c_cmd_write_multiple;
-	wire i2c_cmd_write;
-	wire i2c_cmd_read;
-	wire i2c_cmd_stop;
-	wire i2c_cmd_valid;
-	wire i2c_data_out_valid;
-	wire i2c_data_out_last;
+	wire i2c_cmd_start_read;
+	wire i2c_cmd_start_write;
+	wire i2c_cmd_start_write_multi;
+	
+	wire i2c_cmd_write_multiple_write;
+	wire i2c_cmd_write_multiple_write_multi;
+	
+	wire i2c_cmd_write_read;
+	wire i2c_cmd_read_read;
+	
+	wire i2c_cmd_stop_read;
+	wire i2c_cmd_stop_write;
+	wire i2c_cmd_stop_write_multi;
+	
+	wire i2c_cmd_valid_read;
+	wire i2c_cmd_valid_write;
+	wire i2c_cmd_valid_write_multi;
+	
+	wire i2c_data_out_valid_read;
+	wire i2c_data_out_valid_write;
+	wire i2c_data_out_valid_write_multi;
+	
+	wire i2c_data_out_last_write;
+	wire i2c_data_out_last_write_multi;
+	
 	wire [3:0] state_out_read;
 	wire [3:0] state_out_write;
+	wire [3:0] state_out_write_multi;
 	 
 	wire message_failure_read;
 	wire message_failure_write;
+	wire message_failure_write_multi;
+	wire message_failure;
 	wire i2c_control_read;
 	wire i2c_control_write;
+	wire i2c_control_default;
 	
 	//need to write i2c default such that when no modules are running
 	//i2c master is fed valid inputs.
@@ -420,13 +493,13 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(clean_button0),
-		.start(clean_button1),
+		.start(1'b0),
 		.done(i2c_read_done),
 		
 		.timer_exp(timer_exp),
-		.timer_param(timer_param),
-		.timer_start(timer_start),
-		.timer_reset(timer_reset),
+		.timer_param(timer_param_read),
+		.timer_start(timer_start_read),
+		.timer_reset(timer_reset_read),
 		
 		.i2c_data_out_ready(i2c_data_out_ready),
 		.i2c_cmd_ready(i2c_cmd_ready),
@@ -436,19 +509,19 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .i2c_missed_ack(i2c_missed_ack),
 		
 		.i2c_data_in_valid(i2c_data_in_valid),
-		.i2c_data_in_ready(i2c_data_in_ready),
+		.i2c_data_in_ready(i2c_data_in_ready_read),
 		.i2c_data_in_last(i2c_data_in_last),
 		
-		.i2c_data_out(i2c_data_out),
+		.i2c_data_out(i2c_data_out_read),
 		.i2c_data_in(i2c_data_in),
-		.i2c_dev_address(i2c_dev_address),
+		.i2c_dev_address(i2c_dev_address_read),
 		
-		.i2c_cmd_start(i2c_cmd_start),
-		.i2c_cmd_write(i2c_cmd_write),
-		.i2c_cmd_read(i2c_cmd_read),
-		.i2c_cmd_stop(i2c_cmd_stop),
-		.i2c_cmd_valid(i2c_cmd_valid),
-		.i2c_data_out_valid(i2c_data_out_valid),
+		.i2c_cmd_start(i2c_cmd_start_read),
+		.i2c_cmd_write(i2c_cmd_write_read),
+		.i2c_cmd_read(i2c_cmd_read_read),
+		.i2c_cmd_stop(i2c_cmd_stop_read),
+		.i2c_cmd_valid(i2c_cmd_valid_read),
+		.i2c_data_out_valid(i2c_data_out_valid_read),
 		.state_out(state_out_read),
 		
 		.data_out(read_data_out),
@@ -457,9 +530,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.fifo_read_valid(read_data_valid),
 		.fifo_underflow(read_data_underflow),
 		
-		.message_failure(message_failure_read),
-		.i2c_control(i2c_control_read),
-		.i2c_relinquish(i2c_control_write)
+		.message_failure(message_failure_read)
 	);
 	
 	i2c_write_reg write (
@@ -469,13 +540,13 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(clean_button0),
-		.start(clean_button2),
+		.start(1'b0),
 		.done(i2c_write_done),
 		
 		.timer_exp(timer_exp),
-		.timer_param(timer_param),
-		.timer_start(timer_start),
-		.timer_reset(timer_reset),
+		.timer_param(timer_param_write),
+		.timer_start(timer_start_write),
+		.timer_reset(timer_reset_write),
 		
 		.i2c_data_out_ready(i2c_data_out_ready),
 		.i2c_cmd_ready(i2c_cmd_ready),
@@ -484,20 +555,195 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .i2c_bus_active(i2c_bus_active),
 	   .i2c_missed_ack(i2c_missed_ack),
 		
-		.i2c_data_out(i2c_data_out),
-		.i2c_dev_address(i2c_dev_address),
+		.i2c_data_out(i2c_data_out_write),
+		.i2c_dev_address(i2c_dev_address_write),
 		
-		.i2c_cmd_start(i2c_cmd_start),
-		.i2c_cmd_write_multiple(i2c_cmd_write_multiple),
-		.i2c_cmd_stop(i2c_cmd_stop),
-		.i2c_cmd_valid(i2c_cmd_valid),
-		.i2c_data_out_valid(i2c_data_out_valid),
-		.i2c_data_out_last(i2c_data_out_last),
+		.i2c_cmd_start(i2c_cmd_start_write),
+		.i2c_cmd_write_multiple(i2c_cmd_write_multiple_write),
+		.i2c_cmd_stop(i2c_cmd_stop_write),
+		.i2c_cmd_valid(i2c_cmd_valid_write),
+		
+		.i2c_data_out_valid(i2c_data_out_valid_write),
+		.i2c_data_out_last(i2c_data_out_last_write),
 		.state_out(state_out_write),
 		
-		.message_failure(message_failure_write),
-		.i2c_control(i2c_control_write),
-		.i2c_relinquish(i2c_control_read)
+		.message_failure(message_failure_write)
+	);
+	
+	wire [7:0] data_in_write_multi;
+	wire write_en_write_multi;
+	wire full_write_multi;
+	wire write_ack_write_multi;
+	wire overflow_write_multi;
+	wire test_write_multi_done;
+	
+	i2c_write_reg_multi write_multi (
+		.dev_address(dev_address),
+		.reg_address(reg_address),
+		
+		.clk(clock_27mhz),
+		.reset(clean_button0),
+		.start(test_write_multi_done),
+		.done(i2c_write_multi_done),
+		.byte_width(4'b0010),
+		
+		.timer_exp(timer_exp),
+		.timer_param(timer_param_write_multi),
+		.timer_start(timer_start_write_multi),
+		.timer_reset(timer_reset_write_multi),
+		
+		.i2c_data_out_ready(i2c_data_out_ready),
+		.i2c_cmd_ready(i2c_cmd_ready),
+		.i2c_bus_busy(i2c_bus_busy),
+		.i2c_bus_control(i2c_bus_control),
+	   .i2c_bus_active(i2c_bus_active),
+	   .i2c_missed_ack(i2c_missed_ack),
+		
+		.i2c_data_out(i2c_data_out_write_multi),
+		.i2c_dev_address(i2c_dev_address_write_multi),
+		
+		.i2c_cmd_start(i2c_cmd_start_write_multi),
+		.i2c_cmd_write_multiple(i2c_cmd_write_multiple_write_multi),
+		.i2c_cmd_stop(i2c_cmd_stop_write_multi),
+		.i2c_cmd_valid(i2c_cmd_valid_write_multi),
+		
+		.i2c_data_out_valid(i2c_data_out_valid_write_multi),
+		.i2c_data_out_last(i2c_data_out_last_write_multi),
+		.state_out(state_out_write_multi),
+		
+		.data(data_in_write_multi),
+		.fifo_wr_en(write_en_write_multi),
+		.fifo_full(full_write_multi),
+		.fifo_write_ack(write_ack_write_multi),
+		.fifo_overflow(overflow_write_multi),
+		
+		.message_failure(message_failure_write_multi)
+	);
+	
+	test_write_multi test (
+		.clk(clock_27mhz),
+      .reset(clean_button0),
+      .start(clk_200Hz),
+      .done(test_write_multi_done),
+	 
+      .data_out(data_in_write_multi),
+	   .write_en(write_en_write_multi),
+	   .full(full_write_multi),
+	   .write_ack(write_ack_write_multi),
+	   .overflow(overflow_write_multi)
+	);
+	
+	wire [6:0] cmd_address;
+	wire cmd_start;
+	wire cmd_read;
+	wire cmd_write;
+	wire cmd_write_multiple;
+	wire cmd_stop;
+	wire cmd_valid;
+	
+	wire [7:0] data_in;
+	wire data_in_valid;
+	wire data_in_last;
+	wire data_out_ready;
+	
+	mux4 #(.SIGNAL_WIDTH(7)) m_cmd_address (
+		.sel(fnc_sel),
+		.signal0(7'b0000000),
+		.signal1(i2c_dev_address_read),
+		.signal2(i2c_dev_address_write),
+		.signal3(i2c_dev_address_write_multi),
+		.out(cmd_address)
+	);
+	
+	mux4 m_cmd_start (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_cmd_start_read),
+		.signal2(i2c_cmd_start_write),
+		.signal3(i2c_cmd_start_write_multi),
+		.out(cmd_start)
+	);
+	
+	mux4 m_cmd_read (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_cmd_read_read),
+		.signal2(1'b0),
+		.signal3(1'b0),
+		.out(cmd_read)
+	);
+	
+	mux4 m_cmd_write (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_cmd_write_read),
+		.signal2(1'b0),
+		.signal3(1'b0),
+		.out(cmd_write)
+	);
+	
+	mux4 m_cmd_write_multiple (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(1'b0),
+		.signal2(i2c_cmd_write_multiple_write),
+		.signal3(i2c_cmd_write_multiple_write_multi),
+		.out(cmd_write_multiple)
+	);
+	
+	mux4 m_cmd_stop (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_cmd_stop_read),
+		.signal2(i2c_cmd_stop_write),
+		.signal3(i2c_cmd_stop_write_multi),
+		.out(cmd_stop)
+	);
+	
+	mux4 m_cmd_valid (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_cmd_valid_read),
+		.signal2(i2c_cmd_valid_write),
+		.signal3(i2c_cmd_valid_write_multi),
+		.out(cmd_valid)
+	);
+	
+	
+	mux4 #(.SIGNAL_WIDTH(8)) m_data_in (
+		.sel(fnc_sel),
+		.signal0(8'h00),
+		.signal1(i2c_data_out_read),
+		.signal2(i2c_data_out_write),
+		.signal3(i2c_data_out_write_multi),
+		.out(data_in)
+	);
+	
+	mux4 m_data_in_valid (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_data_out_valid_read),
+		.signal2(i2c_data_out_valid_write),
+		.signal3(i2c_data_out_valid_write_multi),
+		.out(data_in_valid)
+	);
+	
+	mux4 m_data_in_last (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(1'b0),
+		.signal2(i2c_data_out_last_write),
+		.signal3(i2c_data_out_last_write_multi),
+		.out(data_in_last)
+	);
+	
+	mux4 m_data_out_ready (
+		.sel(fnc_sel),
+		.signal0(1'b0),
+		.signal1(i2c_data_in_ready_read),
+		.signal2(1'b0),
+		.signal3(1'b0),
+		.out(data_out_ready)
 	);
 	
 	wire cmd_ready;
@@ -514,25 +760,25 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	i2c_master master (
 		.clk(clock_27mhz),
 		.rst(clean_button0),
-		.cmd_address(i2c_dev_address),
-		.cmd_start(i2c_cmd_start),		            
-		.cmd_read(i2c_cmd_read),		            
-		.cmd_write(i2c_cmd_write),	          
-      .cmd_write_multiple(i2c_cmd_write_multiple), 
-		.cmd_stop(i2c_cmd_stop),		          	
-      .cmd_valid(i2c_cmd_valid),		  
+		.cmd_address(cmd_address),
+		.cmd_start(cmd_start),		            
+		.cmd_read(cmd_read),		            
+		.cmd_write(cmd_write),	          
+      .cmd_write_multiple(cmd_write_multiple), 
+		.cmd_stop(cmd_stop),		          	
+      .cmd_valid(cmd_valid),		  
 		.cmd_ready(cmd_ready),
 
 		//for writing
-      .data_in(i2c_data_out),
-		.data_in_valid(i2c_data_out_valid),
+      .data_in(data_in),
+		.data_in_valid(data_in_valid),
       .data_in_ready(i2c_data_out_ready),
-      .data_in_last(i2c_data_out_last),
+      .data_in_last(data_in_last),
 
 		//for reading
       .data_out(i2c_data_in),
 		.data_out_valid(i2c_data_in_valid),
-		.data_out_ready(i2c_data_in_ready),
+		.data_out_ready(data_out_ready),
 		.data_out_last(i2c_data_in_last),
 
       .scl_i(scl_i),
@@ -559,9 +805,16 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign prescale = 16'h80;
 	assign stop_on_idle = 1'b1;
 	
+	assign user3[4] = cmd_stop;
+	assign analyzer3_clock = clock_27mhz;
+	assign analyzer3_data = {9'd0, state_out_read, user3[1], user3[0]};
+	assign led = {4'hF, ~state_out_read};
+	
 	assign scl_i = user3[0];
 	assign user3[0] = scl_t ? 1'bz : scl_o;
 	assign sda_i = user3[1];
 	assign user3[1] = sda_t ? 1'bz : sda_o;
+	
+	assign message_failure = message_failure_write | message_failure_read | message_failure_write_multi;
 			    
 endmodule
