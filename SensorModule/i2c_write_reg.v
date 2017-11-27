@@ -158,6 +158,7 @@ module i2c_write_reg(
 				S_VALIDATE_TIMEOUT: begin
 					if(timer_exp) begin
 						state <= S_RESET;
+						message_failure_reg <= 1'b1;
 					end
 					else if(bus_valid) begin
 						state <= S_WRITE_REG_ADDRESS_0;
@@ -187,16 +188,17 @@ module i2c_write_reg(
 					i2c_cmd_write_multiple_reg <= 1'b1;
 					i2c_cmd_stop_reg <= 1'b1;
 					i2c_cmd_valid_reg <= 1'b1;
-					i2c_data_out_valid_reg <= 1'b0;
+					i2c_data_out_valid_reg <= 1'b1;
 					i2c_data_out_last_reg <= 1'b0;
 				end
 				S_WRITE_REG_ADDRESS_1: begin
 					state <= S_WRITE_DATA_0;
-					i2c_data_out_valid_reg <= 1'b1;
+					i2c_data_out_valid_reg <= 1'b0;
 				end
 				S_WRITE_REG_ADDRESS_TIMEOUT: begin
 					if(timer_exp) begin
 						state <= S_RESET;
+						message_failure_reg <= 1'b1;
 					end
 					else if(i2c_data_out_ready) begin
 						state <= S_WRITE_REG_ADDRESS_1;
@@ -218,16 +220,17 @@ module i2c_write_reg(
 						timer_reset_reg <= 1'b1;
 					end
 					i2c_data_out_reg <= data;
-					i2c_data_out_valid_reg <= 1'b0;
+					i2c_data_out_valid_reg <= 1'b1;
 					i2c_data_out_last_reg <= 1'b1;
 				end
 				S_WRITE_DATA_1: begin
 					state <= S_CHECK_I2C_FREE;
-					i2c_data_out_valid_reg <= 1'b1;
+					i2c_data_out_valid_reg <= 1'b0;
 				end
 				S_WRITE_DATA_TIMEOUT: begin
 					if(timer_exp) begin
 						state <= S_RESET;
+						message_failure_reg <= 1'b1;
 					end
 					else if(i2c_data_out_ready) begin
 						state <= S_WRITE_DATA_1;

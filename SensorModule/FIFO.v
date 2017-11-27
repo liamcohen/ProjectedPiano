@@ -43,6 +43,7 @@ module FIFO(
 	rd_en,
 	rst,
 	wr_en,
+	data_count,
 	dout,
 	empty,
 	full,
@@ -57,6 +58,7 @@ input [7 : 0] din;
 input rd_en;
 input rst;
 input wr_en;
+output [3 : 0] data_count;
 output [7 : 0] dout;
 output empty;
 output full;
@@ -81,7 +83,7 @@ output wr_ack;
 		.C_HAS_ALMOST_EMPTY(0),
 		.C_HAS_ALMOST_FULL(0),
 		.C_HAS_BACKUP(0),
-		.C_HAS_DATA_COUNT(0),
+		.C_HAS_DATA_COUNT(1),
 		.C_HAS_INT_CLK(0),
 		.C_HAS_MEMINIT_FILE(0),
 		.C_HAS_OVERFLOW(1),
@@ -133,6 +135,7 @@ output wr_ack;
 		.RD_EN(rd_en),
 		.RST(rst),
 		.WR_EN(wr_en),
+		.DATA_COUNT(data_count),
 		.DOUT(dout),
 		.EMPTY(empty),
 		.FULL(full),
@@ -156,7 +159,6 @@ output wr_ack;
 		.WR_RST(),
 		.ALMOST_EMPTY(),
 		.ALMOST_FULL(),
-		.DATA_COUNT(),
 		.PROG_EMPTY(),
 		.PROG_FULL(),
 		.RD_DATA_COUNT(),

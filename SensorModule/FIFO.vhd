@@ -47,6 +47,7 @@ ENTITY FIFO IS
 	rd_en: IN std_logic;
 	rst: IN std_logic;
 	wr_en: IN std_logic;
+	data_count: OUT std_logic_VECTOR(3 downto 0);
 	dout: OUT std_logic_VECTOR(7 downto 0);
 	empty: OUT std_logic;
 	full: OUT std_logic;
@@ -65,6 +66,7 @@ component wrapped_FIFO
 	rd_en: IN std_logic;
 	rst: IN std_logic;
 	wr_en: IN std_logic;
+	data_count: OUT std_logic_VECTOR(3 downto 0);
 	dout: OUT std_logic_VECTOR(7 downto 0);
 	empty: OUT std_logic;
 	full: OUT std_logic;
@@ -121,7 +123,7 @@ end component;
 			c_wr_data_count_width => 4,
 			c_preload_regs => 0,
 			c_dout_rst_val => "0",
-			c_has_data_count => 0,
+			c_has_data_count => 1,
 			c_prog_full_thresh_negate_val => 13,
 			c_wr_depth => 16,
 			c_prog_empty_thresh_negate_val => 3,
@@ -146,6 +148,7 @@ U0 : wrapped_FIFO
 			rd_en => rd_en,
 			rst => rst,
 			wr_en => wr_en,
+			data_count => data_count,
 			dout => dout,
 			empty => empty,
 			full => full,

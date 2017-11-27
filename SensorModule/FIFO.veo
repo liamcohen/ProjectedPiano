@@ -37,6 +37,7 @@ FIFO YourInstanceName (
 	.rd_en(rd_en),
 	.rst(rst),
 	.wr_en(wr_en),
+	.data_count(data_count), // Bus [3 : 0] 
 	.dout(dout), // Bus [7 : 0] 
 	.empty(empty),
 	.full(full),

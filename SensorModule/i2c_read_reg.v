@@ -52,8 +52,6 @@
 // [7:0] i2c_data_in: data byte in from i2c master
 // [6:0] i2c_dev_address: output to master providing i2c device address
 //
-// 
-//
 //////////////////////////////////////////////////////////////////////////////////
 
 module i2c_read_reg(

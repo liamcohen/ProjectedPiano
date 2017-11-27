@@ -14,6 +14,7 @@ FIFO YourInstanceName (
     .rd_en(rd_en),
     .rst(rst),
     .wr_en(wr_en),
+    .data_count(data_count), // Bus [3 : 0] 
     .dout(dout), // Bus [7 : 0] 
     .empty(empty),
     .full(full),
@@ -40,6 +41,7 @@ component FIFO
     rd_en: IN std_logic;
     rst: IN std_logic;
     wr_en: IN std_logic;
+    data_count: OUT std_logic_VECTOR(3 downto 0);
     dout: OUT std_logic_VECTOR(7 downto 0);
     empty: OUT std_logic;
     full: OUT std_logic;
@@ -63,6 +65,7 @@ your_instance_name : FIFO
             rd_en =&gt; rd_en,
             rst =&gt; rst,
             wr_en =&gt; wr_en,
+            data_count =&gt; data_count,
             dout =&gt; dout,
             empty =&gt; empty,
             full =&gt; full,

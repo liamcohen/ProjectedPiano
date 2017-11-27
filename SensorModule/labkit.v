@@ -311,20 +311,25 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
 	
-	//Testing I2C master
-	wire clean_button0;
+	//Buttons for initiating i2c communications -- for testing (plus overall system reset)
+	wire reset_button;
 	wire clean_button1;
 	wire clean_button2;
 	
-	//assign led = {7'b1111111, ~button1 ? 1'b0 : 1'b1};
-	
+	//sel for i2c_write, i2c_read, or i2c_write_multi 
+	//2'b00: none
+	//2'b01: read
+	//2'b10: write
+	//2'b11: write_multi
 	wire [1:0] fnc_sel;
+	assign fnc_sel = {1'b1, 1'b1};
 	
+	//debouncers to clean up button presses
 	debounce db_button0 (
 		.clock(clock_27mhz),
 		.reset(switch[0]),
 		.bouncey(~button0),
-		.steady(clean_button0)
+		.steady(reset_button)
 	);
 	
 	debounce db_button1 (
@@ -341,10 +346,11 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.steady(clean_button2)
 	);
 	
+	//pulse signals of varying lengths
 	wire clk_1000Hz;
 	wire clk_200Hz;
-	assign fnc_sel = {1'b1, 1'b1};
 	
+	//signals for connecting to timer module
 	wire timer_start_read;
 	wire timer_start_write;
 	wire timer_start_write_multi;
@@ -362,6 +368,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire timer_reset_write_multi;
 	wire timer_reset;
 	
+	//muxes to timer module
 	mux4 m_timer_start (
 		.sel(fnc_sel),
 		.signal0(1'b0),
@@ -389,6 +396,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.out(timer_reset)
 	);
 	
+	//declaration of timer module -- only one per i2c_xxx module to minimize hardware
 	Timer timer (
 		.clk(clock_27mhz),
 		.reset(timer_reset),
@@ -398,26 +406,46 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.time_expired(timer_exp)
 	);
 	
+	//divider modules for producing single clock high pulses of varying frequency
 	divider div (
 		.clk(clock_27mhz),
-		.reset(timer_start),
+		.reset(timer_start), //synchronized with timer_start signal
 		.clk_1000Hz(clk_1000Hz)
 	);
 	
 	divider #(130000) div2 (
 		.clk(clock_27mhz),
-		.reset(clean_button0),
+		.reset(reset_button), //always on
 		.clk_1000Hz(clk_200Hz)
 	);
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// Signals for i2c_write, i2c_read, and i2c_write_multi modules
+	// Way to read signal names:
+	// lowercase --> signal type (or signal name)
+	// uppercase --> signal origin (i.e., i2c_read, i2c_write, i2c_write_multi modules)
+	// i2c_ prefix --> signal is between i2c_write, i2c_write, or i2c_write_multi, and the i2c master
+	// 
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//signals essential to i2c module communication
 	wire [6:0] dev_address;
 	wire [7:0] reg_address;
    wire [7:0] data;
-	wire [3:0] byte_width;
+	wire [3:0] n_bytes;
 
-	wire i2c_write_done;
-	wire i2c_read_done;
-	wire i2c_write_multi_done;
+	//FSM output status signals
+	wire i2c_done_WRITE;
+	wire i2c_done_READ;
+	wire i2c_done_WRITEMULTI;
+	
+	wire message_failure_READ;
+	wire message_failure_WRITE;
+	wire message_failure_WRITEMULTI;
+	wire message_failure; //system failure -- or of all three modules
+	
+	//FSM input signals
 	wire i2c_data_out_ready;
 	wire i2c_cmd_ready;
 	wire i2c_bus_busy;
@@ -425,76 +453,99 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire i2c_bus_active;
 	wire i2c_missed_ack;
 	
-	wire [7:0] i2c_data_out_read;
-	wire [7:0] i2c_data_out_write;
-	wire [7:0] i2c_data_out_write_multi;
+	//single byte parallel outputs to i2c master module
+	wire [7:0] i2c_data_out_READ;
+	wire [7:0] i2c_data_out_WRITE;
+	wire [7:0] i2c_data_out_WRITEMULTI;
 	
+	//single byte parallel input to i2c_read module from i2c master
 	wire [7:0] i2c_data_in;
 	
-	wire [6:0] i2c_dev_address_write;
-	wire [6:0] i2c_dev_address_read;
-	wire [6:0] i2c_dev_address_write_multi;
+	//output of device address to i2c master from i2c_xxxx modules
+	//haven't decided yet if device addresses are going to be static
+	//so I don't know if these signals are superfluous yet or not
+	wire [6:0] i2c_dev_address_WRITE;
+	wire [6:0] i2c_dev_address_READ;
+	wire [6:0] i2c_dev_address_WRITEMULTI;
 	
+	//controls to access i2c_read FIFO
 	wire [7:0] read_data_out;
 	wire read_data_en;
 	wire read_data_empty;
 	wire read_data_valid;
 	wire read_data_underflow;
 	
+	//controls for access to i2c_write_multi FIFO
+	wire [7:0] data_in_WRITEMULTI;
+	wire write_en_WRITEMULTI;
+	wire ext_reset_WRITEMULTI;
+	wire full_WRITEMULTI;
+	wire write_ack_WRITEMULTI;
+	wire overflow_WRITEMULTI;
+	wire test_write_WRITEMULTI;
+	
+	//FSM input/output for i2c_read
 	wire i2c_data_in_valid;
-	wire i2c_data_in_ready_read;
-	
+	wire i2c_data_in_ready;
 	wire i2c_data_in_last;
-	 
-	wire i2c_cmd_start_read;
-	wire i2c_cmd_start_write;
-	wire i2c_cmd_start_write_multi;
 	
-	wire i2c_cmd_write_multiple_write;
-	wire i2c_cmd_write_multiple_write_multi;
+	//cmd control for i2c_master
+	wire i2c_cmd_start_READ;
+	wire i2c_cmd_start_WRITE;
+	wire i2c_cmd_start_WRITEMULTI;
 	
-	wire i2c_cmd_write_read;
-	wire i2c_cmd_read_read;
+	wire i2c_cmd_write_multiple_WRITE;
+	wire i2c_cmd_write_multiple_WRITEMULTI;
 	
-	wire i2c_cmd_stop_read;
-	wire i2c_cmd_stop_write;
-	wire i2c_cmd_stop_write_multi;
+	wire i2c_cmd_write_READ;
 	
-	wire i2c_cmd_valid_read;
-	wire i2c_cmd_valid_write;
-	wire i2c_cmd_valid_write_multi;
+	wire i2c_cmd_read_READ;
 	
-	wire i2c_data_out_valid_read;
-	wire i2c_data_out_valid_write;
-	wire i2c_data_out_valid_write_multi;
+	wire i2c_cmd_stop_READ;
+	wire i2c_cmd_stop_WRITE;
+	wire i2c_cmd_stop_WRITEMULTI;
 	
-	wire i2c_data_out_last_write;
-	wire i2c_data_out_last_write_multi;
+	wire i2c_cmd_valid_READ;
+	wire i2c_cmd_valid_WRITE;
+	wire i2c_cmd_valid_WRITEMULTI;
 	
-	wire [3:0] state_out_read;
-	wire [3:0] state_out_write;
-	wire [3:0] state_out_write_multi;
-	 
-	wire message_failure_read;
-	wire message_failure_write;
-	wire message_failure_write_multi;
-	wire message_failure;
-	wire i2c_control_read;
-	wire i2c_control_write;
-	wire i2c_control_default;
+	//FSM output to i2c_master for controlling byte-wide data output
+	wire i2c_data_out_valid_READ;
+	wire i2c_data_out_valid_WRITE;
+	wire i2c_data_out_valid_WRITEMULTI;
 	
-	//need to write i2c default such that when no modules are running
-	//i2c master is fed valid inputs.
+	wire i2c_data_out_last_WRITE;
+	wire i2c_data_out_last_WRITEMULTI;
+	
+	wire [3:0] state_out_READ;
+	wire [3:0] state_out_WRITE;
+	wire [3:0] state_out_WRITEMULTI;
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// DECLARATION OF MAIN FSMs: read, write, and write_multi
+	//
+	// These modules have the main task of controlling the i2c master and providing it data
+	// at the correct time such that one can read or write some number of bytes from the slave
+	// device. 
+	//
+	// i2c_write: writes one byte of data to the slave at a specified byte register
+	// i2c_read: incrementally reads bytes into a FIFO from slave starting at a specified register - 
+	// 			 resets FIFO upon start of transmission
+	// i2c_write_multi: incrementally writes multiple bytes from a FIFO to the slave starting at 
+	//						  a specified register - resets FIFO at the end of transmission
+	// 
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	
 	i2c_read_reg read (
 		.dev_address(dev_address),
 		.reg_address(reg_address),
-		.byte_width(byte_width),
+		.byte_width(n_bytes),
 		
 		.clk(clock_27mhz),
-		.reset(clean_button0),
+		.reset(reset_button),
 		.start(1'b0),
-		.done(i2c_read_done),
+		.done(i2c_done_READ),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param_read),
@@ -509,20 +560,20 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .i2c_missed_ack(i2c_missed_ack),
 		
 		.i2c_data_in_valid(i2c_data_in_valid),
-		.i2c_data_in_ready(i2c_data_in_ready_read),
+		.i2c_data_in_ready(i2c_data_in_ready),
 		.i2c_data_in_last(i2c_data_in_last),
 		
-		.i2c_data_out(i2c_data_out_read),
+		.i2c_data_out(i2c_data_out_READ),
 		.i2c_data_in(i2c_data_in),
-		.i2c_dev_address(i2c_dev_address_read),
+		.i2c_dev_address(i2c_dev_address_READ),
 		
-		.i2c_cmd_start(i2c_cmd_start_read),
-		.i2c_cmd_write(i2c_cmd_write_read),
-		.i2c_cmd_read(i2c_cmd_read_read),
-		.i2c_cmd_stop(i2c_cmd_stop_read),
-		.i2c_cmd_valid(i2c_cmd_valid_read),
-		.i2c_data_out_valid(i2c_data_out_valid_read),
-		.state_out(state_out_read),
+		.i2c_cmd_start(i2c_cmd_start_READ),
+		.i2c_cmd_write(i2c_cmd_write_READ),
+		.i2c_cmd_read(i2c_cmd_read_READ),
+		.i2c_cmd_stop(i2c_cmd_stop_READ),
+		.i2c_cmd_valid(i2c_cmd_valid_READ),
+		.i2c_data_out_valid(i2c_data_out_valid_READ),
+		.state_out(state_out_READ),
 		
 		.data_out(read_data_out),
 		.fifo_read_en(read_data_en),
@@ -530,7 +581,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.fifo_read_valid(read_data_valid),
 		.fifo_underflow(read_data_underflow),
 		
-		.message_failure(message_failure_read)
+		.message_failure(message_failure_READ)
 	);
 	
 	i2c_write_reg write (
@@ -539,9 +590,9 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.data(data),
 		
 		.clk(clock_27mhz),
-		.reset(clean_button0),
+		.reset(reset_button),
 		.start(1'b0),
-		.done(i2c_write_done),
+		.done(i2c_done_WRITE),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param_write),
@@ -555,37 +606,50 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .i2c_bus_active(i2c_bus_active),
 	   .i2c_missed_ack(i2c_missed_ack),
 		
-		.i2c_data_out(i2c_data_out_write),
-		.i2c_dev_address(i2c_dev_address_write),
+		.i2c_data_out(i2c_data_out_WRITE),
+		.i2c_dev_address(i2c_dev_address_WRITE),
 		
-		.i2c_cmd_start(i2c_cmd_start_write),
-		.i2c_cmd_write_multiple(i2c_cmd_write_multiple_write),
-		.i2c_cmd_stop(i2c_cmd_stop_write),
-		.i2c_cmd_valid(i2c_cmd_valid_write),
+		.i2c_cmd_start(i2c_cmd_start_WRITE),
+		.i2c_cmd_write_multiple(i2c_cmd_write_multiple_WRITE),
+		.i2c_cmd_stop(i2c_cmd_stop_WRITE),
+		.i2c_cmd_valid(i2c_cmd_valid_WRITE),
 		
-		.i2c_data_out_valid(i2c_data_out_valid_write),
-		.i2c_data_out_last(i2c_data_out_last_write),
-		.state_out(state_out_write),
+		.i2c_data_out_valid(i2c_data_out_valid_WRITE),
+		.i2c_data_out_last(i2c_data_out_last_WRITE),
+		.state_out(state_out_WRITE),
 		
-		.message_failure(message_failure_write)
+		.message_failure(message_failure_WRITE)
 	);
 	
-	wire [7:0] data_in_write_multi;
-	wire write_en_write_multi;
-	wire ext_reset_write_multi;
-	wire full_write_multi;
-	wire write_ack_write_multi;
-	wire overflow_write_multi;
-	wire test_write_multi_done;
+	wire test_done_WRITEMULTI;
+	
+	test_write_multi test (
+		.clk(clock_27mhz),
+		.reset(reset_button),
+		.start(clk_200Hz),
+		.restart(i2c_done_WRITEMULTI),
+		.done(test_done_WRITEMULTI),
+		
+		.data_out(data_in_WRITEMULTI),
+		.write_en(write_en_WRITEMULTI),
+		.ext_reset(ext_reset_WRITEMULTI),
+		.full(full_WRITEMULTI),
+		.write_ack(write_ack_WRITEMULTI),
+		.overflow(overflow_WRITEMULTI)
+	);
+	
+	wire fifo_underflow_debug;
+	wire [3:0] data_count_debug;
+	wire [7:0] fifo_out_debug;
 	
 	i2c_write_reg_multi write_multi (
 		.dev_address(dev_address),
 		.reg_address(reg_address),
 		
 		.clk(clock_27mhz),
-		.reset(clean_button0),
-		.start(clk_200Hz),
-		.done(i2c_write_multi_done),
+		.reset(reset_button),
+		.start(test_done_WRITEMULTI),
+		.done(i2c_done_WRITEMULTI),
 		.byte_width(4'b0010),
 		
 		.timer_exp(timer_exp),
@@ -600,139 +664,143 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .i2c_bus_active(i2c_bus_active),
 	   .i2c_missed_ack(i2c_missed_ack),
 		
-		.i2c_data_out(i2c_data_out_write_multi),
-		.i2c_dev_address(i2c_dev_address_write_multi),
+		.i2c_data_out(i2c_data_out_WRITEMULTI),
+		.i2c_dev_address(i2c_dev_address_WRITEMULTI),
 		
-		.i2c_cmd_start(i2c_cmd_start_write_multi),
-		.i2c_cmd_write_multiple(i2c_cmd_write_multiple_write_multi),
-		.i2c_cmd_stop(i2c_cmd_stop_write_multi),
-		.i2c_cmd_valid(i2c_cmd_valid_write_multi),
+		.i2c_cmd_start(i2c_cmd_start_WRITEMULTI),
+		.i2c_cmd_write_multiple(i2c_cmd_write_multiple_WRITEMULTI),
+		.i2c_cmd_stop(i2c_cmd_stop_WRITEMULTI),
+		.i2c_cmd_valid(i2c_cmd_valid_WRITEMULTI),
 		
-		.i2c_data_out_valid(i2c_data_out_valid_write_multi),
-		.i2c_data_out_last(i2c_data_out_last_write_multi),
-		.state_out(state_out_write_multi),
+		.i2c_data_out_valid(i2c_data_out_valid_WRITEMULTI),
+		.i2c_data_out_last(i2c_data_out_last_WRITEMULTI),
+		.state_out(state_out_WRITEMULTI),
 		
-		//.data(data_in_write_multi),
-		//.fifo_wr_en(write_en_write_multi),
-		.fifo_ext_reset(ext_reset_write_multi),
-		.fifo_full(full_write_multi),
-		.fifo_write_ack(write_ack_write_multi),
-		.fifo_overflow(overflow_write_multi),
+		.data(data_in_WRITEMULTI),
+		.fifo_wr_en(write_en_WRITEMULTI),
+		.fifo_ext_reset(ext_reset_WRITEMULTI),
+		.fifo_full(full_WRITEMULTI),
+		.fifo_write_ack(write_ack_WRITEMULTI),
+		.fifo_overflow(overflow_WRITEMULTI),
 		
-		.message_failure(message_failure_write_multi)
+		.message_failure(message_failure_WRITEMULTI),
+		
+		.FIFO_UNDERFLOW_DEBUG(fifo_underflow_debug),
+		.DATA_COUNT_DEBUG(data_count_debug),
+		.FIFO_OUT_DEBUG(fifo_out_debug)
 	);
 	
-	wire [6:0] cmd_address;
-	wire cmd_start;
-	wire cmd_read;
-	wire cmd_write;
-	wire cmd_write_multiple;
-	wire cmd_stop;
-	wire cmd_valid;
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// DECLARATION OF SIGNALS AND SIGNAL MUXES FOR I2C MASTER MODULE
+	//
+	// One will notice that as defined, signals come out of the FSMs
+	// meaning that signals going into the i2c master should have opposite parity i.e., out/in
+	// not out/out or in/in.
+	// 
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	
-	wire [7:0] data_in;
-	wire data_in_valid;
-	wire data_in_last;
-	wire data_out_ready;
+	wire [6:0] i2c_dev_address;
+	wire i2c_cmd_start;
+	wire i2c_cmd_read;
+	wire i2c_cmd_write;
+	wire i2c_cmd_write_multiple;
+	wire i2c_cmd_stop;
+	wire i2c_cmd_valid;
 	
-	mux4 #(.SIGNAL_WIDTH(7)) m_cmd_address (
+	wire [7:0] i2c_data_out;
+	wire i2c_data_out_valid;
+	wire i2c_data_out_last;
+	
+	mux4 #(.SIGNAL_WIDTH(7)) m_i2c_dev_address (
 		.sel(fnc_sel),
 		.signal0(7'b0000000),
-		.signal1(i2c_dev_address_read),
-		.signal2(i2c_dev_address_write),
-		.signal3(i2c_dev_address_write_multi),
-		.out(cmd_address)
+		.signal1(i2c_dev_address_READ),
+		.signal2(i2c_dev_address_WRITE),
+		.signal3(i2c_dev_address_WRITEMULTI),
+		.out(i2c_dev_address)
 	);
 	
-	mux4 m_cmd_start (
+	mux4 m_i2c_cmd_start (
 		.sel(fnc_sel),
 		.signal0(1'b0),
-		.signal1(i2c_cmd_start_read),
-		.signal2(i2c_cmd_start_write),
-		.signal3(i2c_cmd_start_write_multi),
-		.out(cmd_start)
+		.signal1(i2c_cmd_start_READ),
+		.signal2(i2c_cmd_start_WRITE),
+		.signal3(i2c_cmd_start_WRITEMULTI),
+		.out(i2c_cmd_start)
 	);
 	
-	mux4 m_cmd_read (
+	mux4 m_i2c_cmd_read (
 		.sel(fnc_sel),
 		.signal0(1'b0),
-		.signal1(i2c_cmd_read_read),
+		.signal1(i2c_cmd_read_READ),
 		.signal2(1'b0),
 		.signal3(1'b0),
-		.out(cmd_read)
+		.out(i2c_cmd_read)
 	);
 	
-	mux4 m_cmd_write (
+	mux4 m_i2c_cmd_write (
 		.sel(fnc_sel),
 		.signal0(1'b0),
-		.signal1(i2c_cmd_write_read),
+		.signal1(i2c_cmd_write_READ),
 		.signal2(1'b0),
 		.signal3(1'b0),
-		.out(cmd_write)
+		.out(i2c_cmd_write)
 	);
 	
-	mux4 m_cmd_write_multiple (
+	mux4 m_i2c_cmd_write_multiple (
 		.sel(fnc_sel),
 		.signal0(1'b0),
 		.signal1(1'b0),
-		.signal2(i2c_cmd_write_multiple_write),
-		.signal3(i2c_cmd_write_multiple_write_multi),
-		.out(cmd_write_multiple)
+		.signal2(i2c_cmd_write_multiple_WRITE),
+		.signal3(i2c_cmd_write_multiple_WRITEMULTI),
+		.out(i2c_cmd_write_multiple)
 	);
 	
-	mux4 m_cmd_stop (
+	mux4 m_i2c_cmd_stop (
 		.sel(fnc_sel),
 		.signal0(1'b0),
-		.signal1(i2c_cmd_stop_read),
-		.signal2(i2c_cmd_stop_write),
-		.signal3(i2c_cmd_stop_write_multi),
-		.out(cmd_stop)
+		.signal1(i2c_cmd_stop_READ),
+		.signal2(i2c_cmd_stop_WRITE),
+		.signal3(i2c_cmd_stop_WRITEMULTI),
+		.out(i2c_cmd_stop)
 	);
 	
-	mux4 m_cmd_valid (
+	mux4 m_i2c_cmd_valid (
 		.sel(fnc_sel),
 		.signal0(1'b0),
-		.signal1(i2c_cmd_valid_read),
-		.signal2(i2c_cmd_valid_write),
-		.signal3(i2c_cmd_valid_write_multi),
-		.out(cmd_valid)
+		.signal1(i2c_cmd_valid_READ),
+		.signal2(i2c_cmd_valid_WRITE),
+		.signal3(i2c_cmd_valid_WRITEMULTI),
+		.out(i2c_cmd_valid)
 	);
 	
 	
-	mux4 #(.SIGNAL_WIDTH(8)) m_data_in (
+	mux4 #(.SIGNAL_WIDTH(8)) m_i2c_data_out (
 		.sel(fnc_sel),
 		.signal0(8'h00),
-		.signal1(i2c_data_out_read),
-		.signal2(i2c_data_out_write),
-		.signal3(i2c_data_out_write_multi),
-		.out(data_in)
+		.signal1(i2c_data_out_READ),
+		.signal2(i2c_data_out_WRITE),
+		.signal3(i2c_data_out_WRITEMULTI),
+		.out(i2c_data_out)
 	);
 	
-	mux4 m_data_in_valid (
+	mux4 m_i2c_data_out_valid (
 		.sel(fnc_sel),
 		.signal0(1'b0),
-		.signal1(i2c_data_out_valid_read),
-		.signal2(i2c_data_out_valid_write),
-		.signal3(i2c_data_out_valid_write_multi),
-		.out(data_in_valid)
+		.signal1(i2c_data_out_valid_READ),
+		.signal2(i2c_data_out_valid_WRITE),
+		.signal3(i2c_data_out_valid_WRITEMULTI),
+		.out(i2c_data_out_valid)
 	);
 	
-	mux4 m_data_in_last (
+	mux4 m_i2c_data_out_last (
 		.sel(fnc_sel),
 		.signal0(1'b0),
 		.signal1(1'b0),
-		.signal2(i2c_data_out_last_write),
-		.signal3(i2c_data_out_last_write_multi),
-		.out(data_in_last)
-	);
-	
-	mux4 m_data_out_ready (
-		.sel(fnc_sel),
-		.signal0(1'b0),
-		.signal1(i2c_data_in_ready_read),
-		.signal2(1'b0),
-		.signal3(1'b0),
-		.out(data_out_ready)
+		.signal2(i2c_data_out_last_WRITE),
+		.signal3(i2c_data_out_last_WRITEMULTI),
+		.out(i2c_data_out_last)
 	);
 	
 	wire cmd_ready;
@@ -748,26 +816,26 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	i2c_master master (
 		.clk(clock_27mhz),
-		.rst(clean_button0),
-		.cmd_address(cmd_address),
-		.cmd_start(cmd_start),		            
-		.cmd_read(cmd_read),		            
-		.cmd_write(cmd_write),	          
-      .cmd_write_multiple(cmd_write_multiple), 
-		.cmd_stop(cmd_stop),		          	
-      .cmd_valid(cmd_valid),		  
-		.cmd_ready(cmd_ready),
+		.rst(reset_button),
+		.cmd_address(i2c_dev_address),
+		.cmd_start(i2c_cmd_start),		            
+		.cmd_read(i2c_cmd_read),		            
+		.cmd_write(i2c_cmd_write),	          
+      .cmd_write_multiple(i2c_cmd_write_multiple), 
+		.cmd_stop(i2c_cmd_stop),		          	
+      .cmd_valid(i2c_cmd_valid),		  
+		.cmd_ready(i2c_cmd_ready),
 
 		//for writing
-      .data_in(data_in),
-		.data_in_valid(data_in_valid),
+      .data_in(i2c_data_out),
+		.data_in_valid(i2c_data_out_valid),
       .data_in_ready(i2c_data_out_ready),
-      .data_in_last(data_in_last),
+      .data_in_last(i2c_data_out_last),
 
 		//for reading
       .data_out(i2c_data_in),
 		.data_out_valid(i2c_data_in_valid),
-		.data_out_ready(data_out_ready),
+		.data_out_ready(i2c_data_in_ready),
 		.data_out_last(i2c_data_in_last),
 
       .scl_i(scl_i),
@@ -786,24 +854,29 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
       .stop_on_idle(stop_on_idle)
 	);
 	
+	//assigned constants for testing modules
 	assign reg_address = 8'hC0; // 8'b1111_1111
 	assign dev_address = 7'h29; // 8'b0101_0010
 	assign data = 8'hFF; //8'b0111_0011
-	assign byte_width = 4'b0001;
+	assign n_bytes = 4'b0001;
 	
 	assign prescale = 16'h80;
 	assign stop_on_idle = 1'b1;
 	
-	assign user3[4] = cmd_stop;
+	//logic analyzer outputs for debugging
+	assign user3[4] = timer_exp;
 	assign analyzer3_clock = clock_27mhz;
-	assign analyzer3_data = {9'd0, state_out_read, user3[1], user3[0]};
-	assign led = {4'hF, ~state_out_read};
+	assign analyzer3_data = {fifo_out_debug, user3[1], user3[0], fifo_underflow_debug, state_out_WRITEMULTI, test_done_WRITEMULTI};
+	//assign analyzer3_data = {i2c_data_out_WRITE, user3[1], user3[0], 1'b0, state_out_WRITE, clk_200Hz};
+	assign led = {4'hF, ~state_out_READ};
 	
+	//physical pin delegation for i2c communication to slave
 	assign scl_i = user3[0];
 	assign user3[0] = scl_t ? 1'bz : scl_o;
 	assign sda_i = user3[1];
 	assign user3[1] = sda_t ? 1'bz : sda_o;
 	
-	assign message_failure = message_failure_write | message_failure_read | message_failure_write_multi;
+	//declaration of total failure logic
+	assign message_failure = message_failure_WRITE | message_failure_READ | message_failure_WRITEMULTI;
 			    
 endmodule

@@ -36,6 +36,7 @@ component FIFO
 	rd_en: IN std_logic;
 	rst: IN std_logic;
 	wr_en: IN std_logic;
+	data_count: OUT std_logic_VECTOR(3 downto 0);
 	dout: OUT std_logic_VECTOR(7 downto 0);
 	empty: OUT std_logic;
 	full: OUT std_logic;
@@ -62,6 +63,7 @@ your_instance_name : FIFO
 			rd_en => rd_en,
 			rst => rst,
 			wr_en => wr_en,
+			data_count => data_count,
 			dout => dout,
 			empty => empty,
 			full => full,

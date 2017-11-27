@@ -58,15 +58,20 @@ module i2c_write_reg_multi(
 	 output [3:0] state_out,
 	 
 	 //FIFO input
-	 //input [7:0] data,
-	 //input fifo_wr_en,
+	 input [7:0] data,
+	 input fifo_wr_en,
 	 input fifo_ext_reset,
 	 output fifo_full,
 	 output fifo_write_ack,
 	 output fifo_overflow,
 	 
 	 //status
-	 output message_failure
+	 output message_failure,
+	 
+	 //debug signals - to be deleted
+	 output FIFO_UNDERFLOW_DEBUG,
+	 output [3:0] DATA_COUNT_DEBUG,
+	 output [7:0] FIFO_OUT_DEBUG
 	);
 	//write_reg_i2c acts as a module which will, given that the I2C bus is available,
 	//upon start, will take the data available at reg_address and data and upon
@@ -82,16 +87,18 @@ module i2c_write_reg_multi(
  	parameter S_WRITE_REG_ADDRESS_TIMEOUT = 4'b0101;
 	parameter S_WRITE_DATA_0 = 4'b0110;
 	parameter S_WRITE_DATA_1 = 4'b0111;
-	parameter S_WRITE_DATA_TIMEOUT = 4'b1000;
-	parameter S_FIFO_READ_VALID_TIMEOUT_0 = 4'b1001;
-	parameter S_FIFO_READ_VALID_TIMEOUT_1 = 4'b1010;
-	parameter S_CHECK_I2C_FREE = 4'b1011;
-	parameter S_CHECK_I2C_FREE_TIMEOUT = 4'b1100;
+	parameter S_WRITE_DATA_1_LAST = 4'b1000;
+	parameter S_WRITE_DATA_2 = 4'b1001;
+	parameter S_WRITE_DATA_TIMEOUT = 4'b1010;
+	parameter S_WRITE_DATA_TIMEOUT_LAST = 4'b1011;
+	parameter S_FIFO_READ_VALID_TIMEOUT_0 = 4'b1100;
+	parameter S_FIFO_READ_VALID_TIMEOUT_1 = 4'b1101;
+	parameter S_CHECK_I2C_FREE = 4'b1110;
+	parameter S_CHECK_I2C_FREE_TIMEOUT = 4'b1111;
 	
 	//define state registers and counters
 	reg [3:0] state = 4'b0000;
 	reg [3:0] data_read_count = 4'b0000;
-	reg [1:0] fifo_init_count = 2'b11;
 
 	//define output registers -- outputs that are shared with
 	//other I2C communication modules should be tristated as to prevent
@@ -102,9 +109,6 @@ module i2c_write_reg_multi(
 	reg timer_start_reg = 1'b0;
 	reg [3:0] timer_param_reg = 4'b0001;
 	reg timer_reset_reg = 1'b1;
-	
-	reg fifo_write_en = 1'b0;
-	reg [7:0] data = 8'h00;
 	
 	reg [7:0] i2c_data_out_reg = 8'h00;
 	reg [6:0] i2c_dev_address_reg = 7'b0000000;
@@ -133,24 +137,28 @@ module i2c_write_reg_multi(
 	
 	reg fifo_reset_reg = 1'b0;
 	reg fifo_read_en_reg = 1'b0;
-	reg fifo_enable = 1'b0;
+	wire [3:0] data_count;
 	
-	FIFO fifo(
+	FIFO fifo_1(
 		.din(data),
 		.dout(fifo_data_out),
-		.wr_en(fifo_write_en),
+		.wr_en(fifo_wr_en),
 		.rd_en(fifo_read_en_reg),
 		.clk(clk),
-		.rst(fifo_reset_reg),
+		.rst(fifo_reset),
 		.full(fifo_full),
 		.empty(fifo_empty),
 		.valid(fifo_read_valid),
 		.wr_ack(fifo_write_ack),
 		.overflow(fifo_overflow),
-		.underflow(fifo_underflow)
+		.underflow(fifo_underflow),
+		.data_count(data_count)
 	);
 	
 	assign fifo_reset = fifo_reset_reg | fifo_ext_reset;
+	assign FIFO_UNDERFLOW_DEBUG = fifo_underflow;
+	assign DATA_COUNT_DEBUG = data_count;
+	assign FIFO_OUT_DEBUG = fifo_data_out;
 	
 	//define state transition diagram
 	//and state outputs 
@@ -177,7 +185,6 @@ module i2c_write_reg_multi(
 					timer_reset_reg <= 1'b1;
 					data_read_count <= byte_width;
 					
-					fifo_enable <= 1'b0;
 					fifo_reset_reg <= 1'b0;
 					fifo_read_en_reg <= 1'b0;
 					
@@ -192,24 +199,10 @@ module i2c_write_reg_multi(
 					i2c_data_out_last_reg <= 1'b0;
 					
 					message_failure_reg <= 1'b0;
-					
-					fifo_init_count <= 2'b11;
-					fifo_write_en <= 1'b0;
 				end
 				S_VALIDATE_BUS: begin
 					if(bus_valid) begin
 						state <= S_WRITE_REG_ADDRESS_0;			
-					end
-					else if(fifo_init_count > 2'b00) begin
-						state <= S_VALIDATE_BUS;
-						//testing fifo init:
-						case(fifo_init_count)
-							2'b11: data <= 8'hAA;
-							2'b10: fifo_write_en <= 1'b1;
-							2'b01: data <= 8'hBB;
-							2'b00: fifo_write_en <= 1'b1;
-						endcase
-						fifo_init_count <= fifo_init_count - 1;
 					end
 					else begin
 						state <= S_VALIDATE_TIMEOUT;
@@ -249,12 +242,12 @@ module i2c_write_reg_multi(
 					i2c_cmd_write_multiple_reg <= 1'b1;
 					i2c_cmd_stop_reg <= 1'b1;
 					i2c_cmd_valid_reg <= 1'b1;
-					i2c_data_out_valid_reg <= 1'b0;
+					i2c_data_out_valid_reg <= 1'b1;
 					i2c_data_out_last_reg <= 1'b0;
 				end
 				S_WRITE_REG_ADDRESS_1: begin
 					state <= S_WRITE_DATA_0;
-					i2c_data_out_valid_reg <= 1'b1;
+					i2c_data_out_valid_reg <= 1'b0;
 				end
 				S_WRITE_REG_ADDRESS_TIMEOUT: begin
 					if(timer_exp) begin
@@ -271,17 +264,6 @@ module i2c_write_reg_multi(
 					timer_param_reg <= 3'b001;
 				end
 				S_WRITE_DATA_0: begin
-					if(i2c_data_out_ready) begin
-						state <= S_WRITE_DATA_1;
-					end
-					else begin
-						state <= S_WRITE_DATA_TIMEOUT;
-						timer_start_reg <= 1'b1;
-						timer_reset_reg <= 1'b1;
-					end
-					fifo_enable <= 1'b1;
-				end
-				S_WRITE_DATA_1: begin
 					if(fifo_underflow) begin
 						state <= S_RESET;
 						message_failure_reg <= 1'b1;
@@ -299,17 +281,63 @@ module i2c_write_reg_multi(
 						end
 						data_read_count <= data_read_count - 1;
 						fifo_read_en_reg <= 1'b1;
+						i2c_data_out_valid_reg <= 1'b0;
 					end
+				end
+				S_WRITE_DATA_1: begin
+					if(i2c_data_out_ready) begin
+						state <= S_WRITE_DATA_0;
+					end
+					else begin
+						state <= S_WRITE_DATA_TIMEOUT;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
+					end
+					i2c_data_out_valid_reg <= 1'b1;
+					i2c_data_out_reg <= fifo_data_out;
+				end
+				S_WRITE_DATA_1_LAST: begin
+					if(i2c_data_out_ready) begin
+						state <= S_WRITE_DATA_2;
+					end
+					else begin
+						state <= S_WRITE_DATA_TIMEOUT_LAST;
+						timer_start_reg <= 1'b1;
+						timer_reset_reg <= 1'b1;
+					end
+					i2c_data_out_valid_reg <= 1'b1;
+					i2c_data_out_reg <= fifo_data_out;
+					i2c_data_out_last_reg <= 1'b1;
+				end
+				S_WRITE_DATA_2: begin
+					state <= S_CHECK_I2C_FREE;
+					i2c_data_out_valid_reg <= 1'b0;
 				end
 				S_WRITE_DATA_TIMEOUT: begin
 					if(timer_exp) begin
 						state <= S_RESET;
+						message_failure_reg <= 1'b1;
 					end
 					else if(i2c_data_out_ready) begin
-						state <= S_WRITE_DATA_1;
+						state <= S_WRITE_DATA_0;
 					end
 					else begin
 						state <= S_WRITE_DATA_TIMEOUT;
+					end
+					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
+					timer_param_reg <= 3'b001;
+				end
+				S_WRITE_DATA_TIMEOUT_LAST: begin
+					if(timer_exp) begin
+						state <= S_RESET;
+						message_failure_reg <= 1'b1;
+					end
+					else if(i2c_data_out_ready) begin
+						state <= S_WRITE_DATA_2;
+					end
+					else begin
+						state <= S_WRITE_DATA_TIMEOUT_LAST;
 					end
 					timer_start_reg <= 1'b0;
 					timer_reset_reg <= 1'b0;
@@ -321,8 +349,7 @@ module i2c_write_reg_multi(
 						message_failure_reg <= 1'b1;
 					end
 					else if(fifo_read_valid) begin
-						state <= S_WRITE_DATA_0;
-						i2c_data_out_valid_reg <= 1'b1;
+						state <= S_WRITE_DATA_1;
 					end
 					else begin
 						state <= S_FIFO_READ_VALID_TIMEOUT_0;
@@ -339,8 +366,7 @@ module i2c_write_reg_multi(
 						message_failure_reg <= 1'b1;
 					end
 					else if(fifo_read_valid) begin
-						state <= S_CHECK_I2C_FREE;
-						i2c_data_out_valid_reg <= 1'b1;
+						state <= S_WRITE_DATA_1_LAST;
 					end
 					else begin
 						state <= S_FIFO_READ_VALID_TIMEOUT_1;
@@ -375,9 +401,10 @@ module i2c_write_reg_multi(
 					done_reg <= 1'b1;
 					
 					fifo_reset_reg <= 1'b1;
-					fifo_enable <= 1'b0;
 					
+					i2c_data_out_valid_reg <= 1'b0;
 					i2c_cmd_valid_reg <= 1'b0;
+					
 					timer_start_reg <= 1'b0;
 					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
@@ -393,7 +420,7 @@ module i2c_write_reg_multi(
 	assign timer_param = timer_param_reg;
 	assign timer_reset = timer_reset_reg;
 	
-	assign i2c_data_out = fifo_enable ? fifo_data_out : i2c_data_out_reg;
+	assign i2c_data_out = i2c_data_out_reg;
 	assign i2c_dev_address = i2c_dev_address_reg;
 	
 	assign i2c_cmd_start = i2c_cmd_start_reg;

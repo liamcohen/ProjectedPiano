@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version K.39
-# Date: Thu Nov 16 22:03:03 2017
+# Date: Sun Nov 26 21:40:39 2017
 #
 ##############################################################
 #
@@ -38,7 +38,7 @@ SELECT Fifo_Generator family Xilinx,_Inc. 4.4
 CSET almost_empty_flag=false
 CSET almost_full_flag=false
 CSET component_name=FIFO
-CSET data_count=false
+CSET data_count=true
 CSET data_count_width=4
 CSET disable_timing_violations=false
 CSET dout_reset_value=0
@@ -78,5 +78,5 @@ CSET write_data_count=false
 CSET write_data_count_width=4
 # END Parameters
 GENERATE
-# CRC: 1ca164a8
+# CRC: ea99b01f
 
