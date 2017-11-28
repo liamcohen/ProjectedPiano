@@ -321,7 +321,7 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
              
    ////////////////////////////////////////////////////////////////////////////
    //
-   // lab3 : a simple pong game
+   // visual module
    //
    ////////////////////////////////////////////////////////////////////////////
 
@@ -363,21 +363,22 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	debounce db_down(.reset(reset), .clock(clock_65mhz), .noisy(~button_down), .clean(down));
 	debounce db_up(.reset(reset), .clock(clock_65mhz), .noisy(~button_up), .clean(up));
 
-   // feed XVGA signals to user's pong game
+   // feed XVGA signals to piano
    wire [23:0] pixel;
    wire phsync,pvsync,pblank;
 	wire [16:0] key_num = {left, up, down, right, enter, b3, b2, b1, b0, switch};
 	wire note_ready = 1;
-   piano p(.vclock(clock_65mhz),.reset(reset),
+   keystoning ks(.clk(clock_65mhz),.reset(reset),
       .hcount(hcount),.vcount(vcount),
       .hsync(hsync),.vsync(vsync),.blank(blank),
 		.key_num(key_num), .note_ready(note_ready),
-      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.pixel(pixel));
+      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
 
    // switch[1:0] selects which video generator to use:
-   //  00: user's pong game
+   //  00: piano
    //  01: 1 pixel outline of active video area (adjust screen controls)
    //  10: color bars
+	//  11: piano
    reg [23:0] rgb;
    wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767);
    
@@ -396,7 +397,7 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
     b <= blank;
     rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
       end else begin
-         // default: pong
+         // default: piano
     hs <= phsync;
     vs <= pvsync;
     b <= pblank;

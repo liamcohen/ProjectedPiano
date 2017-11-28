@@ -5,14 +5,14 @@ Parameter TMPDIR set to /afs/athena.mit.edu/user/z/k/zklawans/Desktop/6.111/Fina
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.02 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/z/k/zklawans/Desktop/6.111/FinalProject/GitHub/ProjectedPiano/final_project/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.02 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: lab3.prj
@@ -120,8 +120,10 @@ Compiling verilog file "blob.v" in library work
 Module <key_colors> compiled
 Compiling verilog file "piano.v" in library work
 Module <blob> compiled
-Compiling verilog file "visual_module.v" in library work
+Compiling verilog file "keystoning.v" in library work
 Module <piano> compiled
+Compiling verilog file "visual_module.v" in library work
+Module <keystoning> compiled
 Module <debounce> compiled
 Module <lab3> compiled
 Module <xvga> compiled
@@ -138,6 +140,13 @@ Analyzing hierarchy for module <xvga> in library <work>.
 
 Analyzing hierarchy for module <debounce> in library <work>.
 
+Analyzing hierarchy for module <keystoning> in library <work> with parameters.
+	BOARD_HEIGHT = "1100000000"
+	KEY_START_VERTICAL = "0011000000"
+	PIANO_MIDDLE = "00000000000000000000000111101100"
+	WHITE_KEY_HEIGHT = "00000000000000000000000100110000"
+	WHITE_KEY_WIDTH = "00000000000000000000000001011010"
+
 Analyzing hierarchy for module <piano> in library <work> with parameters.
 	BLACK = "000000000000000000000000"
 	BLACK_KEY_HEIGHT = "0011000000"
@@ -145,11 +154,19 @@ Analyzing hierarchy for module <piano> in library <work> with parameters.
 	BLACK_KEY_WIDTH = "00000000000000000000000000110011"
 	BOARD_HEIGHT = "1100000000"
 	BOARD_WIDTH = "10000000000"
+	BOTTOM_LEFT_CORNER_X = "00000010100"
+	BOTTOM_LEFT_CORNER_Y = "00000000000000000000000111110000"
+	BOTTOM_RIGHT_CORNER_X = "00000000000000000000001111000101"
+	BOTTOM_RIGHT_CORNER_Y = "00000000000000000000000111110000"
 	KEY_START_VERTICAL = "0011000000"
 	PRESSED = "111111110000000000000000"
 	SPACING = "00000000000000000000000001011111"
+	TOP_LEFT_CORNER_X = "00000010100"
+	TOP_LEFT_CORNER_Y = "0011000000"
+	TOP_RIGHT_CORNER_X = "00000000000000000000001111000101"
+	TOP_RIGHT_CORNER_Y = "0011000000"
 	WHITE = "111111111111111111111111"
-	WHITE_KEY_HEIGHT = "0110000000"
+	WHITE_KEY_HEIGHT = "00000000000000000000000100110000"
 	WHITE_KEY_START_HORIZONTAL = "00000010100"
 	WHITE_KEY_WIDTH = "00000000000000000000000001011010"
 
@@ -161,7 +178,7 @@ Analyzing hierarchy for module <key_colors> in library <work> with parameters.
 Analyzing hierarchy for module <left_key> in library <work> with parameters.
 	BLACK_KEY_HEIGHT = "0011000000"
 	BLACK_KEY_WIDTH = "00000000000000000000000000011001"
-	HEIGHT = "0110000000"
+	HEIGHT = "00000000000000000000000100110000"
 	WHITE_KEY_WIDTH = "00000000000000000000000001011010"
 	WIDTH = "00000000000000000000000001011010"
 
@@ -172,14 +189,14 @@ Analyzing hierarchy for module <blob> in library <work> with parameters.
 Analyzing hierarchy for module <middle_key> in library <work> with parameters.
 	BLACK_KEY_HEIGHT = "0011000000"
 	BLACK_KEY_WIDTH = "00000000000000000000000000011001"
-	HEIGHT = "0110000000"
+	HEIGHT = "00000000000000000000000100110000"
 	WHITE_KEY_WIDTH = "00000000000000000000000001011010"
 	WIDTH = "00000000000000000000000001011010"
 
 Analyzing hierarchy for module <right_key> in library <work> with parameters.
 	BLACK_KEY_HEIGHT = "0011000000"
 	BLACK_KEY_WIDTH = "00000000000000000000000000011001"
-	HEIGHT = "0110000000"
+	HEIGHT = "00000000000000000000000100110000"
 	WHITE_KEY_WIDTH = "00000000000000000000000001011010"
 	WIDTH = "00000000000000000000000001011010"
 
@@ -217,6 +234,14 @@ Module <xvga> is correct for synthesis.
 Analyzing module <debounce> in library <work>.
 Module <debounce> is correct for synthesis.
  
+Analyzing module <keystoning> in library <work>.
+	BOARD_HEIGHT = 10'b1100000000
+	KEY_START_VERTICAL = 10'b0011000000
+	PIANO_MIDDLE = 32'sb00000000000000000000000111101100
+	WHITE_KEY_HEIGHT = 32'b00000000000000000000000100110000
+	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001011010
+Module <keystoning> is correct for synthesis.
+ 
 Analyzing module <piano> in library <work>.
 	BLACK = 24'b000000000000000000000000
 	BLACK_KEY_HEIGHT = 10'b0011000000
@@ -224,11 +249,19 @@ Analyzing module <piano> in library <work>.
 	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000110011
 	BOARD_HEIGHT = 10'b1100000000
 	BOARD_WIDTH = 11'b10000000000
+	BOTTOM_LEFT_CORNER_X = 11'b00000010100
+	BOTTOM_LEFT_CORNER_Y = 32'b00000000000000000000000111110000
+	BOTTOM_RIGHT_CORNER_X = 32'b00000000000000000000001111000101
+	BOTTOM_RIGHT_CORNER_Y = 32'b00000000000000000000000111110000
 	KEY_START_VERTICAL = 10'b0011000000
 	PRESSED = 24'b111111110000000000000000
 	SPACING = 32'sb00000000000000000000000001011111
+	TOP_LEFT_CORNER_X = 11'b00000010100
+	TOP_LEFT_CORNER_Y = 10'b0011000000
+	TOP_RIGHT_CORNER_X = 32'b00000000000000000000001111000101
+	TOP_RIGHT_CORNER_Y = 10'b0011000000
 	WHITE = 24'b111111111111111111111111
-	WHITE_KEY_HEIGHT = 10'b0110000000
+	WHITE_KEY_HEIGHT = 32'b00000000000000000000000100110000
 	WHITE_KEY_START_HORIZONTAL = 11'b00000010100
 	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001011010
 Module <piano> is correct for synthesis.
@@ -242,7 +275,7 @@ Module <key_colors> is correct for synthesis.
 Analyzing module <left_key> in library <work>.
 	BLACK_KEY_HEIGHT = 10'b0011000000
 	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000011001
-	HEIGHT = 10'b0110000000
+	HEIGHT = 32'b00000000000000000000000100110000
 	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001011010
 	WIDTH = 32'sb00000000000000000000000001011010
 Module <left_key> is correct for synthesis.
@@ -255,7 +288,7 @@ Module <blob> is correct for synthesis.
 Analyzing module <middle_key> in library <work>.
 	BLACK_KEY_HEIGHT = 10'b0011000000
 	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000011001
-	HEIGHT = 10'b0110000000
+	HEIGHT = 32'b00000000000000000000000100110000
 	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001011010
 	WIDTH = 32'sb00000000000000000000000001011010
 Module <middle_key> is correct for synthesis.
@@ -263,7 +296,7 @@ Module <middle_key> is correct for synthesis.
 Analyzing module <right_key> in library <work>.
 	BLACK_KEY_HEIGHT = 10'b0011000000
 	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000011001
-	HEIGHT = 10'b0110000000
+	HEIGHT = 32'b00000000000000000000000100110000
 	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001011010
 	WIDTH = 32'sb00000000000000000000000001011010
 Module <right_key> is correct for synthesis.
@@ -341,14 +374,14 @@ Synthesizing Unit <left_key>.
     Related source file is "left_key.v".
     Found 14-bit subtractor for signal <$sub0000> created at line 34.
     Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 34.
+    Found 10-bit adder carry out for signal <add0001$addsub0000> created at line 35.
     Found 10-bit adder for signal <pixel$addsub0000> created at line 34.
-    Found 10-bit adder for signal <pixel$addsub0001> created at line 35.
     Found 14-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 34.
     Found 11-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 35.
     Found 10-bit comparator greatequal for signal <pixel$cmp_ge0002> created at line 35.
     Found 10-bit comparator less for signal <pixel$cmp_lt0000> created at line 34.
     Found 12-bit comparator less for signal <pixel$cmp_lt0001> created at line 35.
-    Found 10-bit comparator less for signal <pixel$cmp_lt0002> created at line 35.
+    Found 11-bit comparator less for signal <pixel$cmp_lt0002> created at line 35.
     Summary:
 	inferred   4 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
@@ -374,15 +407,15 @@ Synthesizing Unit <middle_key>.
     Found 14-bit subtractor for signal <$sub0000> created at line 34.
     Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 34.
     Found 11-bit adder carry out for signal <add0001$addsub0000> created at line 34.
+    Found 10-bit adder carry out for signal <add0002$addsub0000> created at line 36.
     Found 10-bit adder for signal <pixel$addsub0000> created at line 34.
-    Found 10-bit adder for signal <pixel$addsub0001> created at line 36.
     Found 14-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 34.
     Found 11-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 36.
     Found 10-bit comparator greatequal for signal <pixel$cmp_ge0002> created at line 36.
     Found 10-bit comparator less for signal <pixel$cmp_lt0000> created at line 34.
     Found 12-bit comparator less for signal <pixel$cmp_lt0001> created at line 34.
     Found 12-bit comparator less for signal <pixel$cmp_lt0002> created at line 36.
-    Found 10-bit comparator less for signal <pixel$cmp_lt0003> created at line 36.
+    Found 11-bit comparator less for signal <pixel$cmp_lt0003> created at line 36.
     Summary:
 	inferred   5 Adder/Subtractor(s).
 	inferred   7 Comparator(s).
@@ -393,14 +426,14 @@ Synthesizing Unit <right_key>.
     Related source file is "right_key.v".
     Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 34.
     Found 11-bit adder carry out for signal <add0001$addsub0000> created at line 35.
+    Found 10-bit adder carry out for signal <add0002$addsub0000> created at line 35.
     Found 10-bit adder for signal <pixel$addsub0000> created at line 34.
-    Found 10-bit adder for signal <pixel$addsub0001> created at line 35.
     Found 11-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 35.
     Found 10-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 35.
     Found 12-bit comparator less for signal <pixel$cmp_lt0000> created at line 34.
     Found 10-bit comparator less for signal <pixel$cmp_lt0001> created at line 34.
     Found 12-bit comparator less for signal <pixel$cmp_lt0002> created at line 35.
-    Found 10-bit comparator less for signal <pixel$cmp_lt0003> created at line 35.
+    Found 11-bit comparator less for signal <pixel$cmp_lt0003> created at line 35.
     Summary:
 	inferred   4 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
@@ -410,6 +443,33 @@ Unit <right_key> synthesized.
 Synthesizing Unit <piano>.
     Related source file is "piano.v".
 Unit <piano> synthesized.
+
+
+Synthesizing Unit <keystoning>.
+    Related source file is "keystoning.v".
+WARNING:Xst:1780 - Signal <tan_angle> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <pvcount> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 7-bit updown counter for signal <angle>.
+    Found 1-bit xor2 for signal <angle$xor0000> created at line 56.
+    Found 1-bit xor2 for signal <angle$xor0001> created at line 57.
+    Found 1-bit register for signal <angle_down>.
+    Found 1-bit register for signal <angle_up>.
+    Found 1-bit register for signal <old_angle_down>.
+    Found 1-bit register for signal <old_angle_up>.
+    Found 11-bit register for signal <phcount>.
+    Found 10-bit adder carry out for signal <phcount$addsub0001> created at line 65.
+    Found 12-bit comparator less for signal <phcount$cmp_lt0000> created at line 65.
+    Found 11x2-bit multiplier for signal <phcount$mult0000> created at line 65.
+    Found 11-bit addsub for signal <phcount$mux0000>.
+    Found 11-bit register for signal <x>.
+    Found 11-bit subtractor for signal <x$sub0000> created at line 64.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  26 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred   1 Multiplier(s).
+	inferred   1 Comparator(s).
+Unit <keystoning> synthesized.
 
 
 Synthesizing Unit <lab3>.
@@ -726,35 +786,41 @@ WARNING:Xst:2565 - Inout <user3<3>> is never assigned.
 	inferred  27 Multiplexer(s).
 Unit <lab3> synthesized.
 
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 58
- 10-bit adder                                          : 20
- 10-bit adder carry out                                : 7
+# Multipliers                                          : 1
+ 11x2-bit multiplier                                   : 1
+# Adders/Subtractors                                   : 61
+ 10-bit adder                                          : 10
+ 10-bit adder carry out                                : 18
  11-bit adder carry out                                : 24
+ 11-bit addsub                                         : 1
+ 11-bit subtractor                                     : 1
  14-bit subtractor                                     : 7
 # Counters                                             : 11
  10-bit up counter                                     : 1
  11-bit up counter                                     : 1
  20-bit up counter                                     : 9
-# Registers                                            : 44
- 1-bit register                                        : 26
+# Registers                                            : 50
+ 1-bit register                                        : 30
+ 11-bit register                                       : 2
  24-bit register                                       : 18
-# Comparators                                          : 92
+# Comparators                                          : 93
  10-bit comparator greatequal                          : 17
- 10-bit comparator less                                : 20
+ 10-bit comparator less                                : 10
  11-bit comparator greatequal                          : 17
- 11-bit comparator less                                : 7
- 12-bit comparator less                                : 24
+ 11-bit comparator less                                : 17
+ 12-bit comparator less                                : 25
  14-bit comparator greatequal                          : 7
 # Multiplexers                                         : 4
  1-bit 4-to-1 multiplexer                              : 3
  24-bit 4-to-1 multiplexer                             : 1
-# Xors                                                 : 9
- 1-bit xor2                                            : 9
+# Xors                                                 : 11
+ 1-bit xor2                                            : 11
 
 =========================================================================
 
@@ -763,6 +829,10 @@ Macro Statistics
 =========================================================================
 
 Loading device for application Rf_Device from file '2v6000.nph' in environment /afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE.
+
+Synthesizing (advanced) Unit <keystoning>.
+INFO:Xst:2385 - HDL ADVISOR - You can improve the performance of the multiplier Mmult_phcount_mult0000 by adding 1 register level(s).
+Unit <keystoning> synthesized (advanced).
 WARNING:Xst:1710 - FF/Latch <bb_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
@@ -972,40 +1042,62 @@ INFO:Xst:2261 - The FF/Latch <high_c_color_0> in Unit <key_colors> is equivalent
 INFO:Xst:2261 - The FF/Latch <b_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <b_color_1> <b_color_2> <b_color_3> <b_color_4> <b_color_5> <b_color_6> <b_color_7> <b_color_8> <b_color_9> <b_color_10> <b_color_11> <b_color_12> <b_color_13> <b_color_14> <b_color_15> 
 INFO:Xst:2261 - The FF/Latch <high_e_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <high_e_color_1> <high_e_color_2> <high_e_color_3> <high_e_color_4> <high_e_color_5> <high_e_color_6> <high_e_color_7> <high_e_color_8> <high_e_color_9> <high_e_color_10> <high_e_color_11> <high_e_color_12> <high_e_color_13> <high_e_color_14> <high_e_color_15> 
 INFO:Xst:2261 - The FF/Latch <bb_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <bb_color_17> <bb_color_18> <bb_color_19> <bb_color_20> <bb_color_21> <bb_color_22> <bb_color_23> 
+WARNING:Xst:2677 - Node <angle_up> of sequential type is unconnected in block <ks>.
+WARNING:Xst:2677 - Node <angle_down> of sequential type is unconnected in block <ks>.
+WARNING:Xst:2677 - Node <old_angle_up> of sequential type is unconnected in block <ks>.
+WARNING:Xst:2677 - Node <old_angle_down> of sequential type is unconnected in block <ks>.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 58
- 10-bit adder                                          : 20
- 10-bit adder carry out                                : 7
+# Multipliers                                          : 1
+ 11x2-bit multiplier                                   : 1
+# Adders/Subtractors                                   : 61
+ 10-bit adder                                          : 10
+ 10-bit adder carry out                                : 18
  11-bit adder carry out                                : 24
+ 11-bit addsub                                         : 1
+ 11-bit subtractor                                     : 1
  14-bit subtractor                                     : 7
 # Counters                                             : 11
  10-bit up counter                                     : 1
  11-bit up counter                                     : 1
  20-bit up counter                                     : 9
-# Registers                                            : 67
- Flip-Flops                                            : 67
-# Comparators                                          : 92
+# Registers                                            : 93
+ Flip-Flops                                            : 93
+# Comparators                                          : 93
  10-bit comparator greatequal                          : 17
- 10-bit comparator less                                : 20
+ 10-bit comparator less                                : 10
  11-bit comparator greatequal                          : 17
- 11-bit comparator less                                : 7
- 12-bit comparator less                                : 24
+ 11-bit comparator less                                : 17
+ 12-bit comparator less                                : 25
  14-bit comparator greatequal                          : 7
 # Multiplexers                                         : 4
  1-bit 4-to-1 multiplexer                              : 3
  24-bit 4-to-1 multiplexer                             : 1
-# Xors                                                 : 9
- 1-bit xor2                                            : 9
+# Xors                                                 : 11
+ 1-bit xor2                                            : 11
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:2677 - Node <angle_up> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <angle_down> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <old_angle_up> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <old_angle_down> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_0> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_1> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_2> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_3> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_4> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_5> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_6> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_7> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_8> of sequential type is unconnected in block <keystoning>.
+WARNING:Xst:2677 - Node <x_9> of sequential type is unconnected in block <keystoning>.
 
 Optimizing unit <lab3> ...
 
@@ -1023,33 +1115,28 @@ Optimizing unit <right_key> ...
 
 Optimizing unit <piano> ...
 
+Optimizing unit <keystoning> ...
+
 Mapping all equations...
 Building and optimizing final netlist ...
 INFO:Xst:2261 - The FF/Latch <rgb_0> in Unit <lab3> is equivalent to the following 7 FFs/Latches, which will be removed : <rgb_1> <rgb_2> <rgb_3> <rgb_4> <rgb_5> <rgb_6> <rgb_7> 
 INFO:Xst:2261 - The FF/Latch <rgb_8> in Unit <lab3> is equivalent to the following 7 FFs/Latches, which will be removed : <rgb_9> <rgb_10> <rgb_11> <rgb_12> <rgb_13> <rgb_14> <rgb_15> 
 INFO:Xst:2261 - The FF/Latch <rgb_16> in Unit <lab3> is equivalent to the following 7 FFs/Latches, which will be removed : <rgb_17> <rgb_18> <rgb_19> <rgb_20> <rgb_21> <rgb_22> <rgb_23> 
 Found area constraint ratio of 100 (+ 5) on block lab3, actual ratio is 2.
-FlipFlop xvga1/hcount_0 has been replicated 7 time(s)
-FlipFlop xvga1/hcount_1 has been replicated 7 time(s)
-FlipFlop xvga1/hcount_10 has been replicated 5 time(s)
-FlipFlop xvga1/hcount_2 has been replicated 4 time(s)
-FlipFlop xvga1/hcount_3 has been replicated 6 time(s)
-FlipFlop xvga1/hcount_4 has been replicated 6 time(s)
-FlipFlop xvga1/hcount_5 has been replicated 5 time(s)
-FlipFlop xvga1/hcount_6 has been replicated 7 time(s)
-FlipFlop xvga1/hcount_7 has been replicated 4 time(s)
-FlipFlop xvga1/hcount_8 has been replicated 5 time(s)
-FlipFlop xvga1/hcount_9 has been replicated 4 time(s)
-FlipFlop xvga1/vcount_0 has been replicated 9 time(s)
-FlipFlop xvga1/vcount_1 has been replicated 9 time(s)
-FlipFlop xvga1/vcount_2 has been replicated 9 time(s)
-FlipFlop xvga1/vcount_3 has been replicated 9 time(s)
-FlipFlop xvga1/vcount_4 has been replicated 9 time(s)
-FlipFlop xvga1/vcount_5 has been replicated 9 time(s)
-FlipFlop xvga1/vcount_6 has been replicated 2 time(s)
-FlipFlop xvga1/vcount_7 has been replicated 2 time(s)
-FlipFlop xvga1/vcount_8 has been replicated 5 time(s)
-FlipFlop xvga1/vcount_9 has been replicated 7 time(s)
+FlipFlop ks/phcount_0 has been replicated 7 time(s)
+FlipFlop ks/phcount_1 has been replicated 7 time(s)
+FlipFlop ks/phcount_2 has been replicated 5 time(s)
+FlipFlop ks/phcount_3 has been replicated 7 time(s)
+FlipFlop ks/phcount_4 has been replicated 6 time(s)
+FlipFlop ks/phcount_5 has been replicated 5 time(s)
+FlipFlop ks/phcount_6 has been replicated 5 time(s)
+FlipFlop ks/phcount_7 has been replicated 4 time(s)
+FlipFlop ks/phcount_8 has been replicated 5 time(s)
+FlipFlop xvga1/vcount_0 has been replicated 2 time(s)
+FlipFlop xvga1/vcount_4 has been replicated 2 time(s)
+FlipFlop xvga1/vcount_5 has been replicated 2 time(s)
+FlipFlop xvga1/vcount_6 has been replicated 1 time(s)
+FlipFlop xvga1/vcount_7 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -1057,8 +1144,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 377
- Flip-Flops                                            : 377
+# Registers                                            : 318
+ Flip-Flops                                            : 318
 
 =========================================================================
 
@@ -1087,26 +1174,27 @@ Design Statistics
 # IOs                              : 576
 
 Cell Usage :
-# BELS                             : 2791
+# BELS                             : 2876
 #      GND                         : 1
-#      INV                         : 662
-#      LUT1                        : 544
-#      LUT2                        : 4
-#      LUT3                        : 29
-#      LUT3_D                      : 2
-#      LUT3_L                      : 5
-#      LUT4                        : 98
-#      LUT4_D                      : 7
-#      LUT4_L                      : 12
-#      MUXCY                       : 1222
+#      INV                         : 632
+#      LUT1                        : 575
+#      LUT2                        : 12
+#      LUT3                        : 43
+#      LUT3_D                      : 3
+#      LUT3_L                      : 6
+#      LUT4                        : 103
+#      LUT4_D                      : 9
+#      LUT4_L                      : 9
+#      MULT_AND                    : 1
+#      MUXCY                       : 1257
 #      MUXF5                       : 3
 #      VCC                         : 1
-#      XORCY                       : 201
-# FlipFlops/Latches                : 377
-#      FD                          : 5
+#      XORCY                       : 221
+# FlipFlops/Latches                : 318
+#      FD                          : 68
 #      FDE                         : 18
-#      FDR                         : 78
-#      FDRE                        : 262
+#      FDR                         : 18
+#      FDRE                        : 200
 #      FDS                         : 14
 # Shift Registers                  : 1
 #      SRL16                       : 1
@@ -1125,10 +1213,10 @@ Device utilization summary:
 
 Selected Device : 2v6000bf957-4 
 
- Number of Slices:                      789  out of  33792     2%  
- Number of Slice Flip Flops:            377  out of  67584     0%  
- Number of 4 input LUTs:               1364  out of  67584     2%  
-    Number used as logic:              1363
+ Number of Slices:                      769  out of  33792     2%  
+ Number of Slice Flip Flops:            318  out of  67584     0%  
+ Number of 4 input LUTs:               1393  out of  67584     2%  
+    Number used as logic:              1392
     Number used as Shift registers:       1
  Number of IOs:                         576
  Number of bonded IOBs:                 258  out of    684    37%  
@@ -1156,7 +1244,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clock_27mhz                        | vclk1:CLKFX            | 378   |
+clock_27mhz                        | vclk1:CLKFX            | 319   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -1167,7 +1255,7 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 21.149ns (Maximum Frequency: 47.284MHz)
+   Minimum period: 21.368ns (Maximum Frequency: 46.798MHz)
    Minimum input arrival time before clock: 5.479ns
    Maximum output required time after clock: 6.403ns
    Maximum combinational path delay: 7.120ns
@@ -1178,34 +1266,40 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock_27mhz'
-  Clock period: 21.149ns (frequency: 47.284MHz)
-  Total number of paths / destination ports: 15285 / 975
+  Clock period: 21.368ns (frequency: 46.798MHz)
+  Total number of paths / destination ports: 18763 / 732
 -------------------------------------------------------------------------
-Delay:               8.812ns (Levels of Logic = 10)
-  Source:            xvga1/vcount_6_2 (FF)
+Delay:               8.904ns (Levels of Logic = 16)
+  Source:            ks/phcount_1 (FF)
   Destination:       rgb_0 (FF)
   Source Clock:      clock_27mhz rising 2.4X
   Destination Clock: clock_27mhz rising 2.4X
 
-  Data Path: xvga1/vcount_6_2 to rgb_0
+  Data Path: ks/phcount_1 to rgb_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q            16   0.568   1.285  xvga1/vcount_6_2 (xvga1/vcount_6_2)
-     LUT1:I0->O            1   0.439   0.000  p/B/Mcompar_pixel_cmp_lt0003_cy<6>_rt (p/B/Mcompar_pixel_cmp_lt0003_cy<6>_rt)
-     MUXCY:S->O            1   0.298   0.000  p/B/Mcompar_pixel_cmp_lt0003_cy<6> (p/B/Mcompar_pixel_cmp_lt0003_cy<6>)
-     MUXCY:CI->O           1   0.053   0.000  p/B/Mcompar_pixel_cmp_lt0003_cy<7> (p/B/Mcompar_pixel_cmp_lt0003_cy<7>)
-     MUXCY:CI->O           1   0.053   0.000  p/B/Mcompar_pixel_cmp_lt0003_cy<8> (p/B/Mcompar_pixel_cmp_lt0003_cy<8>)
-     MUXCY:CI->O           1   0.942   0.803  p/B/Mcompar_pixel_cmp_lt0003_cy<9> (p/B/Mcompar_pixel_cmp_lt0003_cy<9>)
-     LUT3_L:I0->LO         1   0.439   0.134  p/B/pixel<0>2_SW1 (N30)
-     LUT4:I2->O            2   0.439   0.735  p/B/pixel<0>2 (p/b_pixel<16>)
-     LUT4:I2->O            1   0.439   0.803  Mmux_rgb_mux000079 (Mmux_rgb_mux0000129)
-     LUT3_L:I0->LO         1   0.439   0.134  Mmux_rgb_mux0000723_SW0_SW0 (N48)
+     FD:C->Q              19   0.568   1.320  ks/phcount_1 (ks/p/A/Mcompar_pixel_cmp_ge0001_lut<1>)
+     LUT1:I0->O            1   0.439   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<1>_rt (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<1>_rt)
+     MUXCY:S->O            1   0.298   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<1> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<2> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<3> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<4> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<5> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<6> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<7> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<7>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<8> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<8>)
+     MUXCY:CI->O           1   0.053   0.000  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<9> (ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<9>)
+     MUXCY:CI->O           1   0.942   0.803  ks/p/high_E/Mcompar_pixel_cmp_ge0000_cy<10> (ks/p/high_E/pixel_cmp_ge0000)
+     LUT3:I0->O            1   0.439   0.552  ks/p/high_E/pixel<0>2_SW1 (N28)
+     LUT4_D:I2->LO         1   0.439   0.134  ks/p/high_E/pixel<0>2 (N64)
+     LUT4:I2->O            1   0.439   0.726  Mmux_rgb_mux0000742 (Mmux_rgb_mux00001242)
+     LUT3_L:I1->LO         1   0.439   0.134  Mmux_rgb_mux0000723_SW0 (N40)
      LUT4:I2->O            2   0.439   0.000  Mmux_rgb_mux000017711 (Mmux_rgb_mux00001277)
      FDS:D                     0.370          rgb_0
     ----------------------------------------
-    Total                      8.812ns (4.918ns logic, 3.894ns route)
-                                       (55.8% logic, 44.2% route)
+    Total                      8.904ns (5.236ns logic, 3.668ns route)
+                                       (58.8% logic, 41.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
@@ -1213,18 +1307,18 @@ Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
 -------------------------------------------------------------------------
 Offset:              5.479ns (Levels of Logic = 4)
   Source:            switch<0> (PAD)
-  Destination:       rgb_8 (FF)
+  Destination:       rgb_0 (FF)
   Destination Clock: clock_27mhz rising 2.4X
 
-  Data Path: switch<0> to rgb_8
+  Data Path: switch<0> to rgb_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             6   0.825   1.079  switch_0_IBUF (switch_0_IBUF)
      LUT2:I0->O            1   0.439   0.725  Mmux_rgb_mux0000110209 (Mmux_rgb_mux0000110209)
      LUT4_D:I1->O          2   0.439   0.735  Mmux_rgb_mux0000110213 (N1)
-     LUT4:I2->O            1   0.439   0.518  Mmux_rgb_mux0000251 (N4)
-     FDS:S                     0.280          rgb_8
+     LUT4:I2->O            1   0.439   0.518  Mmux_rgb_mux00001111 (N2)
+     FDS:S                     0.280          rgb_0
     ----------------------------------------
     Total                      5.479ns (2.422ns logic, 3.057ns route)
                                        (44.2% logic, 55.8% route)
@@ -1262,7 +1356,7 @@ Delay:               7.120ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             6   0.825   0.793  switch_1_IBUF (switch_1_IBUF)
-     INV:I->O              2   0.439   0.701  led<1>1_INV_0 (led_1_OBUF)
+     INV:I->O              2   0.439   0.701  led<1>1_INV_0 (ks/p/kc/key_num<1>_inv)
      OBUF:I->O                 4.361          led_1_OBUF (led<1>)
     ----------------------------------------
     Total                      7.120ns (5.625ns logic, 1.495ns route)
@@ -1272,14 +1366,14 @@ Delay:               7.120ns (Levels of Logic = 3)
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.53 secs
+Total CPU time to Xst completion: 8.82 secs
  
 --> 
 
 
-Total memory usage is 486064 kilobytes
+Total memory usage is 489076 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  513 (   0 filtered)
-Number of infos    :   30 (   0 filtered)
+Number of warnings :  533 (   0 filtered)
+Number of infos    :   32 (   0 filtered)
 
