@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Map" timeStamp="Mon Nov 27 18:19:28 2017">
+  <application stringID="Map" timeStamp="Fri Dec  1 16:00:14 2017">
     <task stringID="MAP_PACK_REPORT">
       <section stringID="MAP_DESIGN_INFORMATION">
         <item stringID="MAP_PART" value="2v6000bf957-4"/>
@@ -17,30 +17,30 @@
       <section stringID="MAP_DESIGN_SUMMARY">
         <item dataType="int" stringID="MAP_NUM_ERRORS" value="0"/>
         <item dataType="int" stringID="MAP_FILTERED_WARNINGS" value="0"/>
-        <item dataType="int" stringID="MAP_NUM_WARNINGS" value="332"/>
-        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="494104"/>
-        <item stringID="MAP_TOTAL_REAL_TIME" value="1 secs "/>
+        <item dataType="int" stringID="MAP_NUM_WARNINGS" value="356"/>
+        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="500272"/>
+        <item stringID="MAP_TOTAL_REAL_TIME" value="2 secs "/>
         <item stringID="MAP_TOTAL_CPU_TIME" value="1 secs "/>
       </section>
       <section stringID="MAP_SLICE_REPORTING"/>
       <section stringID="MAP_LOGIC_UTILIZATION">
-        <item dataType="int" stringID="MAP_NUM_SLICE_FF" value="224"/>
+        <item dataType="int" stringID="MAP_NUM_SLICE_FF" value="404"/>
         <item dataType="int" stringID="MAP_NUM_SLICE_LATCH" value="0"/>
         <item dataType="int" stringID="MAP_NUM_SLICE" value="33792"/>
         <item dataType="int" stringID="MAP_FLOPS_PER_SLICE" value="2"/>
-        <item dataType="int" stringID="MAP_NUM_4_INPUT_LUT" value="398"/>
-        <item dataType="int" stringID="MAP_NUM_LUT_RT" value="398"/>
+        <item dataType="int" stringID="MAP_NUM_4_INPUT_LUT" value="793"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT" value="793"/>
       </section>
       <section stringID="MAP_LOGIC_DISTRIBUTION">
-        <item dataType="int" stringID="MAP_AGG_SLICE" value="254"/>
+        <item dataType="int" stringID="MAP_AGG_SLICE" value="483"/>
         <item dataType="int" stringID="MAP_NUM_SLICE_UNRELATED" value="0"/>
-        <item dataType="int" stringID="MAP_NUM_4_INPUT_LUT" value="451"/>
-        <item dataType="int" stringID="MAP_NUM_LUT_RT" value="53"/>
+        <item dataType="int" stringID="MAP_NUM_4_INPUT_LUT" value="882"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT" value="89"/>
         <item dataType="int" stringID="MAP_NUM_DP_RAM" value="0"/>
         <item dataType="int" stringID="MAP_NUM_RAM32" value="0"/>
         <item dataType="int" stringID="MAP_NUM_RAM16" value="0"/>
         <item dataType="int" stringID="MAP_NUM_ROM16" value="0"/>
-        <item dataType="int" stringID="MAP_NUM_SHIFT" value="8"/>
+        <item dataType="int" stringID="MAP_NUM_SHIFT" value="16"/>
       </section>
       <section stringID="MAP_IOB_REPORTING">
         <item AVAILABLE="684" dataType="int" stringID="MAP_AGG_BONDED_IO" value="576"/>
@@ -50,7 +50,7 @@
       </section>
       <section stringID="MAP_HARD_IP_REPORTING">
         <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_JTAGPPC" value="0"/>
-        <item AVAILABLE="144" dataType="int" stringID="MAP_NUM_RAMB16" value="0"/>
+        <item AVAILABLE="144" dataType="int" stringID="MAP_NUM_RAMB16" value="1"/>
         <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_ICAP" value="0"/>
         <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_STARTUP" value="0"/>
         <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_BSCAN" value="0"/>
@@ -3826,7 +3826,60 @@
       <section stringID="MAP_AREA_GROUPS_PARTITIONS"/>
       <section stringID="MAP_TIMING_REPORT"/>
       <section stringID="MAP_CONFIGURATION_STRING_DETAILS"/>
-      <section stringID="MAP_GENERAL_CONFIG_DATA"></section>
+      <section stringID="MAP_GENERAL_CONFIG_DATA">
+        <item stringID="MAP_INITP_00" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_01" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_02" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_03" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_04" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_05" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_06" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INITP_07" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_00" value="0000000000000000030303030000000102000000000000010200020000000000"/>
+        <item stringID="MAP_INIT_01" value="0303030300000001020000000000000003030303000000000000000000000001"/>
+        <item stringID="MAP_INIT_02" value="0001000000000000000002010000000003030303000000000000000000000000"/>
+        <item stringID="MAP_INIT_03" value="0103010100000000000201010303030300020100000000010001000100000000"/>
+        <item stringID="MAP_INIT_04" value="0003000000020000010002000000000001000302000203000303030300000001"/>
+        <item stringID="MAP_INIT_05" value="0003000100000100010101000000000000030000000002010303030300000000"/>
+        <item stringID="MAP_INIT_06" value="0102000000000000010001020002010101000000020000030003000200000003"/>
+        <item stringID="MAP_INIT_07" value="0101000202010102010100010000000001010000000001020002010300000000"/>
+        <item stringID="MAP_INIT_08" value="0102000200000000010200010000000001010103000300000101010200000200"/>
+        <item stringID="MAP_INIT_09" value="0303030300000001010201020202000001020101000000000102010000000000"/>
+        <item stringID="MAP_INIT_10" value="0100010000000000030303030000000001000301000001000100030000000101"/>
+        <item stringID="MAP_INIT_11" value="0102010300000000010002000002020001000103000002000100010100020000"/>
+        <item stringID="MAP_INIT_12" value="0103010200000000010300020303030201030001000000010103000000000100"/>
+        <item stringID="MAP_INIT_13" value="0303030300000000000003010000000103030303000000010103010300000000"/>
+        <item stringID="MAP_INIT_14" value="0200030200000001030303030000000100000001030302000200000000000001"/>
+        <item stringID="MAP_INIT_15" value="0000000000000000020000000000000003030303000000000000000000000001"/>
+        <item stringID="MAP_INIT_16" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_17" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_18" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_19" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_20" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_21" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_22" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_23" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_24" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_25" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_26" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_27" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_28" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_29" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_30" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_31" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_32" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_33" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_34" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_35" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_36" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_37" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_38" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_39" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <item stringID="MAP_INIT_A" value="000000000"/>
+        <item stringID="MAP_SRVAL_A" value="000000000"/>
+        <item stringID="MAP_INIT_B" value="000000000"/>
+        <item stringID="MAP_SRVAL_B" value="000000000"/>
+      </section>
       <section stringID="MAP_CONTROL_SET_INFORMATION"/>
     </task>
   </application>

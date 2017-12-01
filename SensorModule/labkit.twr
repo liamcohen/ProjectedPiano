@@ -37,62 +37,46 @@ Setup/Hold to clock clock_27mhz
             |  Setup to  |  Hold to   |                    | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s)   | Phase  |
 ------------+------------+------------+--------------------+--------+
-button0     |    6.436(R)|   -3.765(R)|analyzer3_clock_OBUF|   0.000|
-switch<0>   |    6.850(R)|   -4.247(R)|analyzer3_clock_OBUF|   0.000|
-user3<0>    |    3.618(R)|   -3.346(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>    |    3.680(R)|   -3.408(R)|analyzer3_clock_OBUF|   0.000|
+button0     |    2.907(R)|   -0.727(R)|analyzer3_clock_OBUF|   0.000|
+switch<0>   |    6.517(R)|   -4.411(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |    1.343(R)|   -1.071(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |    1.020(R)|   -0.748(R)|analyzer3_clock_OBUF|   0.000|
 ------------+------------+------------+--------------------+--------+
 
 Clock clock_27mhz to Pad
-------------------+------------+--------------------+--------+
-                  | clk (edge) |                    | Clock  |
-Destination       |   to PAD   |Internal Clock(s)   | Phase  |
-------------------+------------+--------------------+--------+
-analyzer3_data<0> |   15.582(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<1> |   15.000(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<2> |   14.553(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<3> |   13.566(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<4> |   14.487(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<5> |   12.274(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<8> |   11.459(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<9> |   12.405(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<10>|   11.408(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<11>|   10.572(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<12>|   11.021(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<13>|   12.061(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<14>|   11.803(R)|analyzer3_clock_OBUF|   0.000|
-analyzer3_data<15>|   12.514(R)|analyzer3_clock_OBUF|   0.000|
-user3<0>          |   14.972(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>          |   14.989(R)|analyzer3_clock_OBUF|   0.000|
-user3<4>          |   14.605(R)|analyzer3_clock_OBUF|   0.000|
-------------------+------------+--------------------+--------+
+------------+------------+--------------------+--------+
+            | clk (edge) |                    | Clock  |
+Destination |   to PAD   |Internal Clock(s)   | Phase  |
+------------+------------+--------------------+--------+
+user3<0>    |   14.459(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |   14.148(R)|analyzer3_clock_OBUF|   0.000|
+user3<4>    |   11.913(R)|analyzer3_clock_OBUF|   0.000|
+------------+------------+--------------------+--------+
 
 Clock to Setup on destination clock clock_27mhz
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock_27mhz    |    6.713|         |         |         |
+clock_27mhz    |    7.854|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
----------------+-----------------+---------+
-Source Pad     |Destination Pad  |  Delay  |
----------------+-----------------+---------+
-clock_27mhz    |analyzer3_clock  |    9.905|
-user3<0>       |analyzer3_data<6>|   13.327|
-user3<1>       |analyzer3_data<7>|   13.617|
----------------+-----------------+---------+
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+clock_27mhz    |analyzer3_clock|    9.905|
+---------------+---------------+---------+
 
 
-Analysis completed Mon Nov 27 18:19:57 2017 
+Analysis completed Fri Dec  1 16:00:55 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 343 MB
+Peak Memory Usage: 352 MB
 
 
 

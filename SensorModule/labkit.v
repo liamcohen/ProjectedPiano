@@ -322,7 +322,6 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	//2'b10: write
 	//2'b11: write_multi
 	wire [1:0] fnc_sel;
-	assign fnc_sel = {1'b1, 1'b1};
 	
 	//debouncers to clean up button presses
 	debounce db_button0 (
@@ -418,6 +417,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.reset(reset_button), //always on
 		.clk_1000Hz(clk_200Hz)
 	);
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -521,6 +521,16 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire [3:0] state_out_WRITE;
 	wire [3:0] state_out_WRITEMULTI;
 	
+	//FSM inputs controled by VL53L0x Module that control start of I2C FSMs
+	wire write_start;
+   wire write_done;
+	
+   wire write_multi_start;
+   wire write_multi_done;
+   
+	wire read_start;
+   wire read_done;
+	
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	// DECLARATION OF MAIN FSMs: read, write, and write_multi
@@ -544,8 +554,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(reset_button),
-		.start(1'b0),
-		.done(i2c_done_READ),
+		.start(read_start),
+		.done(read_done),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param_read),
@@ -573,7 +583,6 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.i2c_cmd_stop(i2c_cmd_stop_READ),
 		.i2c_cmd_valid(i2c_cmd_valid_READ),
 		.i2c_data_out_valid(i2c_data_out_valid_READ),
-		.state_out(state_out_READ),
 		
 		.data_out(read_data_out),
 		.fifo_read_en(read_data_en),
@@ -591,8 +600,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.clk(clock_27mhz),
 		.reset(reset_button),
-		.start(1'b0),
-		.done(i2c_done_WRITE),
+		.start(write_start),
+		.done(write_done),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param_write),
@@ -621,35 +630,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.message_failure(message_failure_WRITE)
 	);
 	
-	wire test_done_WRITEMULTI;
-	
-	test_write_multi test (
-		.clk(clock_27mhz),
-		.reset(reset_button),
-		.start(clk_200Hz),
-		.restart(i2c_done_WRITEMULTI),
-		.done(test_done_WRITEMULTI),
-		
-		.data_out(data_in_WRITEMULTI),
-		.write_en(write_en_WRITEMULTI),
-		.ext_reset(ext_reset_WRITEMULTI),
-		.full(full_WRITEMULTI),
-		.write_ack(write_ack_WRITEMULTI),
-		.overflow(overflow_WRITEMULTI)
-	);
-	
-	wire fifo_underflow_debug;
-	wire [3:0] data_count_debug;
-	wire [7:0] fifo_out_debug;
-	
 	i2c_write_reg_multi write_multi (
 		.dev_address(dev_address),
 		.reg_address(reg_address),
 		
 		.clk(clock_27mhz),
 		.reset(reset_button),
-		.start(test_done_WRITEMULTI),
-		.done(i2c_done_WRITEMULTI),
+		.start(write_multi_start),
+		.done(write_multi_done),
 		.byte_width(4'b0010),
 		
 		.timer_exp(timer_exp),
@@ -683,11 +671,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.fifo_write_ack(write_ack_WRITEMULTI),
 		.fifo_overflow(overflow_WRITEMULTI),
 		
-		.message_failure(message_failure_WRITEMULTI),
-		
-		.FIFO_UNDERFLOW_DEBUG(fifo_underflow_debug),
-		.DATA_COUNT_DEBUG(data_count_debug),
-		.FIFO_OUT_DEBUG(fifo_out_debug)
+		.message_failure(message_failure_WRITEMULTI)
 	);
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -854,19 +838,123 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
       .stop_on_idle(stop_on_idle)
 	);
 	
+	//declaration of total failure logic
+	assign message_failure = message_failure_WRITE | message_failure_READ | message_failure_WRITEMULTI;
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// Signals for initialization for VL53L0X
+	// 
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	
+	wire clk_10Hz;
+	
+	wire timer_exp_init;
+	wire timer_start_init;
+	wire [3:0] timer_param_init;
+	wire timer_reset_init;
+	
+	//declaration of timer module -- 100ms timer for counting VL53L0x timeout
+	Timer timer2 (
+		.clk(clock_27mhz),
+		.reset(timer_reset_init),
+		.startTimer(timer_start_init),
+		.value(timer_param_init),
+		.enable(clk_10Hz),
+		.time_expired(timer_exp_init)
+	);
+	
+	//divider modules for producing single clock high pulses of varying frequency
+	
+	divider #(2700000) div3 ( //pulse every 100ms
+		.clk(clock_27mhz),
+		.reset(timer_start_init),
+		.clk_1000Hz(clk_10Hz)
+	);
+	
+	wire init_done;
+	
+	wire [7:0] ram_addr;
+	wire [7:0] ram_data_out;
+	wire [7:0] ram_data_in;
+	wire ram_wr_en;
+	
+	wire init_error;
+	
+	VL53L0X_INIT sensor_init(
+		.reset(reset_button),
+		.clk(clock_27mhz),
+		.start(clk_10Hz),
+		.done(init_done),
+		.comm_error(message_failure),
+		
+		.write_start(write_start),
+		.write_done(write_done),
+		.write_multi_start(write_multi_start),
+		.write_multi_done(write_multi_done),
+		.read_start(read_start),
+		.read_done(read_done),
+		
+		.timer_exp(timer_exp_init),
+		.timer_start(timer_start_init),
+		.timer_param(timer_param_init),
+		.timer_reset(timer_reset_init),
+		
+		.reg_address_out(reg_address),
+		.data_out(data),
+		.n_bytes(n_bytes),
+		
+		.fnc_sel(fnc_sel),
+		
+		.fifo_data_out(data_in_WRITEMULTI),
+		.fifo_wr_en(write_en_WRITEMULTI),
+	   .fifo_ext_reset(ext_reset_WRITEMULTI),
+	   .fifo_full(full_WRITEMULTI),
+	   .fifo_write_ack(write_ack_WRITEMULTI),
+	   .fifo_overflow(test_write_WRITEMULTI),
+		
+		.fifo_data_in(read_data_out),
+	   .fifo_read_en(read_data_en),
+	   .fifo_empty(read_data_empty),
+	   .fifo_read_valid(read_data_valid),
+	   .fifo_underflow(read_data_underflow),
+		
+		.ram_addr(ram_addr),
+	   .ram_data_out(ram_data_out),
+	   .ram_data_in(ram_data_in),
+	   .ram_wr_en(ram_wr_en),
+		
+		.init_error(init_error)
+	);
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// Gobal Ram for data storage
+	// 
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	
+	RAM ram(
+		.addra(ram_addr),
+		.dina(ram_data_out),
+		.douta(ram_data_in),
+		.wea(ram_wr_en),
+		.clka(clock_27mhz)
+	);
+	
 	//assigned constants for testing modules
-	assign reg_address = 8'hC0; // 8'b1111_1111
+	//assign reg_address = 8'hC0; // 8'b1111_1111
 	assign dev_address = 7'h29; // 8'b0101_0010
-	assign data = 8'hFF; //8'b0111_0011
-	assign n_bytes = 4'b0001;
+	//assign data = 8'hFF; //8'b0111_0011
+	//assign n_bytes = 4'b0001;
 	
 	assign prescale = 16'h80;
 	assign stop_on_idle = 1'b1;
 	
 	//logic analyzer outputs for debugging
-	assign user3[4] = timer_exp;
+	assign user3[4] = read_data_en;
 	assign analyzer3_clock = clock_27mhz;
-	assign analyzer3_data = {fifo_out_debug, user3[1], user3[0], fifo_underflow_debug, state_out_WRITEMULTI, test_done_WRITEMULTI};
+	assign analyzer3_data = 16'b0;
+	//assign analyzer3_data = {fifo_out_debug, user3[1], user3[0], fifo_underflow_debug, state_out_WRITEMULTI, test_done_WRITEMULTI};
 	//assign analyzer3_data = {i2c_data_out_WRITE, user3[1], user3[0], 1'b0, state_out_WRITE, clk_200Hz};
 	assign led = {4'hF, ~state_out_READ};
 	
@@ -875,8 +963,5 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign user3[0] = scl_t ? 1'bz : scl_o;
 	assign sda_i = user3[1];
 	assign user3[1] = sda_t ? 1'bz : sda_o;
-	
-	//declaration of total failure logic
-	assign message_failure = message_failure_WRITE | message_failure_READ | message_failure_WRITEMULTI;
 			    
 endmodule

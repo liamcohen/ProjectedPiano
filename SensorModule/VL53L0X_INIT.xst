@@ -1,0 +1,4 @@
+set -tmpdir "./xst/projnav.tmp"
+elaborate
+-ifn VL53L0X_INIT.prj
+-ifmt mixed

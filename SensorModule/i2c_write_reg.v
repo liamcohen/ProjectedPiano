@@ -17,6 +17,11 @@
 // Revision 0.01 - File Created
 // Additional Comments: 
 //
+// MODULE USE: provide dev_address, reg_address, and data in parallel, then apply
+// and active high start pulse.  This module will then time the FSM correctly such
+// that it communicates with the I2C master and sends data, to reg_address, on
+// dev_address.
+//
 //////////////////////////////////////////////////////////////////////////////////
 module i2c_write_reg(
    //data inputs
@@ -37,8 +42,6 @@ module i2c_write_reg(
 	 output timer_reset,
 	 
 	 //communication bus with I2C master module
-	 //combined with read module, all I2C master inputs should
-	 //be well defined
 	 input i2c_data_out_ready,
 	 input i2c_cmd_ready,
 	 input i2c_bus_busy,
@@ -60,10 +63,6 @@ module i2c_write_reg(
 	 //status
 	 output message_failure
 	);
-	//write_reg_i2c acts as a module which will, given that the I2C bus is available,
-	//upon start, will take the data available at reg_address and data and upon
-   //response from an i2C master send the register address and the corresponding data 
-	//in the appropriate manner to write to the given register.
 	
 	//define state parameters
 	parameter S_RESET = 4'b0000;
@@ -81,11 +80,7 @@ module i2c_write_reg(
 	//define state registers and counters
 	reg [3:0] state = 4'b0000;
 
-	//define output registers -- outputs that are shared with
-	//other I2C communication modules should be tristated as to prevent
-	//bus contention -- looking to the future if I have a read/write module
-	//for 16/32 bit I2C register writes, then any potentially shared connection
-	//should be tristated.
+	//define output registers
 	reg done_reg = 1'b0;
 	reg timer_start_reg = 1'b0;
 	reg [3:0] timer_param_reg = 4'b0001;
@@ -107,7 +102,6 @@ module i2c_write_reg(
 	wire bus_valid;
 	assign bus_valid = ~i2c_bus_busy & ~i2c_bus_active;
 	wire i2c_bus_free = ~i2c_bus_busy & ~i2c_bus_control;
-	assign i2c_bus_free_output = i2c_bus_free;
 	
 	//define state transition diagram
 	//and state outputs 
@@ -259,11 +253,11 @@ module i2c_write_reg(
 					end
 					else if(i2c_bus_free) begin
 						state <= S_RESET;
+						done_reg <= 1'b1;
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;
-					end
-					done_reg <= 1'b1;
+					end					
 					i2c_cmd_valid_reg <= 1'b0;
 					timer_start_reg <= 1'b0;
 					timer_reset_reg <= 1'b0;

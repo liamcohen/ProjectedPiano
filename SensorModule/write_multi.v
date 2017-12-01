@@ -66,12 +66,7 @@ module i2c_write_reg_multi(
 	 output fifo_overflow,
 	 
 	 //status
-	 output message_failure,
-	 
-	 //debug signals - to be deleted
-	 output FIFO_UNDERFLOW_DEBUG,
-	 output [3:0] DATA_COUNT_DEBUG,
-	 output [7:0] FIFO_OUT_DEBUG
+	 output message_failure
 	);
 	//write_reg_i2c acts as a module which will, given that the I2C bus is available,
 	//upon start, will take the data available at reg_address and data and upon
@@ -126,7 +121,6 @@ module i2c_write_reg_multi(
 	wire bus_valid;
 	assign bus_valid = ~i2c_bus_busy & ~i2c_bus_active;
 	wire i2c_bus_free = ~i2c_bus_busy & ~i2c_bus_control;
-	assign i2c_bus_free_output = i2c_bus_free;
 	
 	//define I2C read FIFO
 	wire fifo_reset;
@@ -135,7 +129,7 @@ module i2c_write_reg_multi(
 	wire fifo_underflow;
 	wire [7:0] fifo_data_out;
 	
-	reg fifo_reset_reg = 1'b0;
+	reg fifo_reset_reg = 1'b1;
 	reg fifo_read_en_reg = 1'b0;
 	wire [3:0] data_count;
 	
@@ -156,9 +150,6 @@ module i2c_write_reg_multi(
 	);
 	
 	assign fifo_reset = fifo_reset_reg | fifo_ext_reset;
-	assign FIFO_UNDERFLOW_DEBUG = fifo_underflow;
-	assign DATA_COUNT_DEBUG = data_count;
-	assign FIFO_OUT_DEBUG = fifo_data_out;
 	
 	//define state transition diagram
 	//and state outputs 
@@ -394,12 +385,11 @@ module i2c_write_reg_multi(
 					end
 					else if(i2c_bus_free) begin
 						state <= S_RESET;
+						done_reg <= 1'b1;
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;
 					end
-					done_reg <= 1'b1;
-					
 					fifo_reset_reg <= 1'b1;
 					
 					i2c_data_out_valid_reg <= 1'b0;

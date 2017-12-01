@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`default_nettype none
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -96,11 +97,10 @@ module i2c_read_reg(
 	 output i2c_cmd_stop,
 	 output i2c_cmd_valid,
 	 output i2c_data_out_valid,
-	 output [3:0] state_out,
 	 
 	 //FIFO outputs
 	 output [7:0] data_out,
-	 output fifo_read_en,
+	 input fifo_read_en,
 	 output fifo_empty,
 	 output fifo_read_valid,
 	 output fifo_underflow,
@@ -161,7 +161,6 @@ module i2c_read_reg(
 	wire bus_valid;
 	assign bus_valid = ~i2c_bus_busy & ~i2c_bus_active;
 	wire i2c_bus_free = ~i2c_bus_busy & ~i2c_bus_control;
-	assign i2c_bus_free_output = i2c_bus_free;
 	
 	//define I2C read FIFO
 	wire fifo_reset;
@@ -170,7 +169,7 @@ module i2c_read_reg(
 	wire fifo_write_ack;
 	wire fifo_overflow;
 	
-	reg fifo_reset_reg = 1'b0;
+	reg fifo_reset_reg = 1'b1;
 	reg fifo_write_en_reg = 1'b0;
 	
 	FIFO fifo(
@@ -230,7 +229,7 @@ module i2c_read_reg(
 					
 					message_failure_reg <= 1'b0;
 					
-					fifo_reset_reg <= 1'b1;
+					fifo_reset_reg <= 1'b0;
 				end
 				S_VALIDATE_BUS: begin
 					if(bus_valid) begin
@@ -256,7 +255,7 @@ module i2c_read_reg(
 						state <= S_VALIDATE_TIMEOUT;
 					end
 					timer_start_reg <= 1'b0;
-					timer_start_reg <= 1'b0;
+					timer_reset_reg <= 1'b0;
 					timer_param_reg <= 3'b001;
 				end
 				S_WRITE_REG_ADDRESS_0: begin
@@ -411,11 +410,11 @@ module i2c_read_reg(
 					end
 					else if(i2c_bus_free) begin
 						state <= S_RESET;
+						done_reg <= 1'b1;
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;
 					end
-					done_reg <= 1'b1;
 					i2c_cmd_valid_reg <= 1'b0;
 					timer_start_reg <= 1'b0;
 					timer_reset_reg <= 1'b0;
@@ -444,9 +443,6 @@ module i2c_read_reg(
 	assign i2c_cmd_valid = i2c_cmd_valid_reg;
 	
 	assign message_failure = message_failure_reg;
-	
-	//debugging
-	assign state_out = state;
 
 endmodule 
 
