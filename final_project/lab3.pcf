@@ -1,18 +1,8 @@
 //! **************************************************************************
-// Written by: Map K.39 on Tue Nov 28 17:42:12 2017
+// Written by: Map K.39 on Thu Nov 30 22:43:36 2017
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "daughtercard<37>" LOCATE = SITE "M6" LEVEL 1;
-COMP "daughtercard<29>" LOCATE = SITE "L9" LEVEL 1;
-COMP "daughtercard<38>" LOCATE = SITE "M7" LEVEL 1;
-COMP "daughtercard<39>" LOCATE = SITE "K2" LEVEL 1;
-COMP "vga_out_hsync" LOCATE = SITE "AC13" LEVEL 1;
-COMP "beep" LOCATE = SITE "AC19" LEVEL 1;
-COMP "ram1_cen_b" LOCATE = SITE "V5" LEVEL 1;
-COMP "disp_ce_b" LOCATE = SITE "AF13" LEVEL 1;
-COMP "tv_in_fifo_read" LOCATE = SITE "AC22" LEVEL 1;
-COMP "flash_sts" LOCATE = SITE "AL9" LEVEL 1;
 COMP "button_left" LOCATE = SITE "AL5" LEVEL 1;
 COMP "rs232_cts" LOCATE = SITE "N8" LEVEL 1;
 COMP "button_down" LOCATE = SITE "AK6" LEVEL 1;
@@ -579,5 +569,15 @@ COMP "daughtercard<19>" LOCATE = SITE "E3" LEVEL 1;
 COMP "daughtercard<36>" LOCATE = SITE "M3" LEVEL 1;
 COMP "daughtercard<28>" LOCATE = SITE "K8" LEVEL 1;
 COMP "ram0_cen_b" LOCATE = SITE "U25" LEVEL 1;
+COMP "daughtercard<37>" LOCATE = SITE "M6" LEVEL 1;
+COMP "daughtercard<29>" LOCATE = SITE "L9" LEVEL 1;
+COMP "daughtercard<38>" LOCATE = SITE "M7" LEVEL 1;
+COMP "daughtercard<39>" LOCATE = SITE "K2" LEVEL 1;
+COMP "vga_out_hsync" LOCATE = SITE "AC13" LEVEL 1;
+COMP "beep" LOCATE = SITE "AC19" LEVEL 1;
+COMP "ram1_cen_b" LOCATE = SITE "V5" LEVEL 1;
+COMP "disp_ce_b" LOCATE = SITE "AF13" LEVEL 1;
+COMP "tv_in_fifo_read" LOCATE = SITE "AC22" LEVEL 1;
+COMP "flash_sts" LOCATE = SITE "AL9" LEVEL 1;
 SCHEMATIC END;
 

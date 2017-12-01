@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Zoe Klawans
 // 
 // Create Date:    15:24:29 11/28/2017 
 // Design Name: 
@@ -36,13 +36,15 @@ module keystoning(
     );
 	
 	parameter WHITE_KEY_WIDTH = 90;
-	parameter PIANO_MIDDLE = (5 * WHITE_KEY_WIDTH) + 42;
+	parameter SPACE = 5;
+	parameter PIANO_MIDDLE = (5 * WHITE_KEY_WIDTH) + (4 * SPACE) + 22; // 22 approx= white key start horizontal + .5 * 5
 	parameter BOARD_HEIGHT = 10'd768;
 	parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
    parameter WHITE_KEY_HEIGHT = (BOARD_HEIGHT >> 1) - 80;
-	parameter PIANO_LENGTH = 
+	parameter PIANO_LENGTH = (10 * WHITE_KEY_WIDTH) + (9 * SPACE);
+	parameter PIANO_HALF = PIANO_LENGTH >> 1;
 	
-	reg [6:0] angle = 20;
+	reg [3:0] angle = 12;
 	reg angle_up;
 	reg angle_down;
 	reg old_angle_up;
@@ -51,23 +53,31 @@ module keystoning(
 	reg [9:0] pvcount;
 	reg signed [10:0] x;
 	wire tan_angle;
+	reg [4:0] counter = 0;
 	
 	always @(posedge clk)
 	begin
-		if (angle_up && (angle_up != old_angle_up)) angle <= angle + 1;
-		if (angle_down && (angle_down != old_angle_down)) angle <= angle - 1;
+//		if (angle_up && (angle_up != old_angle_up)) angle <= angle + 1;
+//		if (angle_down && (angle_down != old_angle_down)) angle <= angle - 1;
+//		
+//		old_angle_up <= angle_up;
+//		old_angle_down <= angle_down;
+//		angle_up <= key_num[15];
+//		angle_down <= key_num[14];
 		
-		old_angle_up <= angle_up;
-		old_angle_down <= angle_down;
-		angle_up <= key_num[15];
-		angle_down <= key_num[14];
+//		if (counter == 40)
+//		begin
+//		end
+//		else
+//		begin
+//		end
 		
 		x <= hcount - PIANO_MIDDLE;
-		if (x < 0) phcount <= hcount - (((KEY_START_VERTICAL + WHITE_KEY_HEIGHT - vcount) * 3) >> 3);
-		else phcount <= hcount + (((KEY_START_VERTICAL + WHITE_KEY_HEIGHT - vcount) * 3) >> 3 );
+		if (x < 0) phcount <= hcount - (((vcount - KEY_START_VERTICAL) * 7) >> 5);
+		else phcount <= hcount + (((vcount - KEY_START_VERTICAL) * 7) >> 5);
 	end
 	
-	piano p(.vclock(clk), .reset(reset), .hcount(phcount), .vcount(vcount),
+	piano p(.vclock(clk), .reset(reset), .hcount(hcount), .vcount(vcount),
 			.hsync(hsync), .vsync(vsync), .blank(blank), .key_num(key_num),
 			.note_ready(note_ready), .phsync(phsync), .pvsync(pvsync),
 			.pblank(pblank), .pixel(keystoned_pixel));
