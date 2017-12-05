@@ -35,12 +35,12 @@ module keystoning(
     output [23:0] keystoned_pixel
     );
 	
-	parameter WHITE_KEY_WIDTH = 90;
-	parameter SPACE = 5;
-	parameter PIANO_MIDDLE = (5 * WHITE_KEY_WIDTH) + (4 * SPACE) + 22; // 22 approx= white key start horizontal + .5 * 5
+	parameter WHITE_KEY_WIDTH = 99;
+	parameter SPACE = 4;
+	parameter PIANO_MIDDLE = (5 * WHITE_KEY_WIDTH) + (4 * SPACE) + 2;
 	parameter BOARD_HEIGHT = 10'd768;
 	parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
-   parameter WHITE_KEY_HEIGHT = (BOARD_HEIGHT >> 1) - 80;
+   parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 2;
 	parameter PIANO_LENGTH = (10 * WHITE_KEY_WIDTH) + (9 * SPACE);
 	parameter PIANO_HALF = PIANO_LENGTH >> 1;
 	
@@ -73,11 +73,12 @@ module keystoning(
 //		end
 		
 		x <= hcount - PIANO_MIDDLE;
-		if (x < 0) phcount <= hcount - (((vcount - KEY_START_VERTICAL) * 7) >> 5);
-		else phcount <= hcount + (((vcount - KEY_START_VERTICAL) * 7) >> 5);
+//		if (x < 0) phcount <= hcount - (((vcount - KEY_START_VERTICAL) * (x * -1)) >> 9);
+//		else phcount <= hcount - (((vcount - KEY_START_VERTICAL) * (x * -1)) >> 9);
+		phcount <= hcount - (((vcount - KEY_START_VERTICAL) * (x * -1)) >> 10);
 	end
 	
-	piano p(.vclock(clk), .reset(reset), .hcount(hcount), .vcount(vcount),
+	piano p(.vclock(clk), .reset(reset), .hcount(phcount), .vcount(vcount),
 			.hsync(hsync), .vsync(vsync), .blank(blank), .key_num(key_num),
 			.note_ready(note_ready), .phsync(phsync), .pvsync(pvsync),
 			.pblank(pblank), .pixel(keystoned_pixel));

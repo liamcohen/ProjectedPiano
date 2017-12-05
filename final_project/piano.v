@@ -46,24 +46,14 @@ module piano (
    parameter BLACK = 24'h00_00_00;
    parameter BOARD_WIDTH = 11'd1024;
    parameter BOARD_HEIGHT = 10'd768;
-   parameter WHITE_KEY_HEIGHT = (BOARD_HEIGHT >> 2);
-   parameter WHITE_KEY_WIDTH = 100;
+   parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 2;
+   parameter WHITE_KEY_WIDTH = 99;
    parameter WHITE_KEY_START_HORIZONTAL = 0;
    parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
    parameter BLACK_KEY_HEIGHT = BOARD_HEIGHT >> 3;
-   parameter BLACK_KEY_WIDTH = 61;
-   parameter BLACK_KEY_START_HORIZONTAL = 70;
-   parameter SPACING = 105;
-	
-	// For perspective skew
-	parameter TOP_LEFT_CORNER_X = WHITE_KEY_START_HORIZONTAL;
-	parameter TOP_LEFT_CORNER_Y = KEY_START_VERTICAL;
-	parameter TOP_RIGHT_CORNER_X = TOP_LEFT_CORNER_X + (9 * SPACING) + WHITE_KEY_WIDTH;
-	parameter TOP_RIGHT_CORNER_Y = TOP_LEFT_CORNER_Y;
-	parameter BOTTOM_LEFT_CORNER_X = TOP_LEFT_CORNER_X;
-	parameter BOTTOM_LEFT_CORNER_Y = TOP_LEFT_CORNER_Y + WHITE_KEY_HEIGHT;
-	parameter BOTTOM_RIGHT_CORNER_X = TOP_RIGHT_CORNER_X;
-	parameter BOTTOM_RIGHT_CORNER_Y = BOTTOM_LEFT_CORNER_Y;
+   parameter BLACK_KEY_WIDTH = 60;
+   parameter BLACK_KEY_START_HORIZONTAL = 69;
+   parameter SPACING = 103;
    
    wire [23:0] c_pixel, db_pixel, d_pixel, eb_pixel, e_pixel, f_pixel, gb_pixel,
 					g_pixel, ab_pixel, a_pixel, bb_pixel, b_pixel, high_c_pixel,

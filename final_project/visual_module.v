@@ -81,7 +81,7 @@ endmodule
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
+module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
           ac97_bit_clock,
           
           vga_out_red, vga_out_green, vga_out_blue, vga_out_sync_b,
@@ -319,23 +319,23 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
              
-   ////////////////////////////////////////////////////////////////////////////
-   //
-   // visual module
-   //
-   ////////////////////////////////////////////////////////////////////////////
-
-   // use FPGA's digital clock manager to produce a
-   // 65MHz clock (actually 64.8MHz)
-   wire clock_65mhz_unbuf,clock_65mhz;
-   DCM vclk1(.CLKIN(clock_27mhz),.CLKFX(clock_65mhz_unbuf));
-   // synthesis attribute CLKFX_DIVIDE of vclk1 is 10
-   // synthesis attribute CLKFX_MULTIPLY of vclk1 is 24
-   // synthesis attribute CLK_FEEDBACK of vclk1 is NONE
-   // synthesis attribute CLKIN_PERIOD of vclk1 is 37
-   BUFG vclk2(.O(clock_65mhz),.I(clock_65mhz_unbuf));
-
-   // power-on reset generation
+//   ////////////////////////////////////////////////////////////////////////////
+//   //
+//   // visual module
+//   //
+//   ////////////////////////////////////////////////////////////////////////////
+//
+//   // use FPGA's digital clock manager to produce a
+//   // 65MHz clock (actually 64.8MHz)
+//   wire clock_65mhz_unbuf,clock_65mhz;
+//   DCM vclk1(.CLKIN(clock_27mhz),.CLKFX(clock_65mhz_unbuf));
+//   // synthesis attribute CLKFX_DIVIDE of vclk1 is 10
+//   // synthesis attribute CLKFX_MULTIPLY of vclk1 is 24
+//   // synthesis attribute CLK_FEEDBACK of vclk1 is NONE
+//   // synthesis attribute CLKIN_PERIOD of vclk1 is 37
+//   BUFG vclk2(.O(clock_65mhz),.I(clock_65mhz_unbuf));
+//
+//   // power-on reset generation
    wire power_on_reset;    // remain high for first 16 clocks
    SRL16 reset_sr (.D(1'b0), .CLK(clock_65mhz), .Q(power_on_reset),
          .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
@@ -343,15 +343,15 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 
    // ENTER button is user reset
    wire reset = power_on_reset;
-
-   // generate basic XVGA video signals
-   wire [10:0] hcount;
-   wire [9:0]  vcount;
-   wire hsync,vsync,blank;
-   xvga xvga1(.vclock(clock_65mhz),.hcount(hcount),.vcount(vcount),
-              .hsync(hsync),.vsync(vsync),.blank(blank));
-	
-	// debounce all buttons
+//
+//   // generate basic XVGA video signals
+//   wire [10:0] hcount;
+//   wire [9:0]  vcount;
+//   wire hsync,vsync,blank;
+//   xvga xvga1(.vclock(clock_65mhz),.hcount(hcount),.vcount(vcount),
+//              .hsync(hsync),.vsync(vsync),.blank(blank));
+//	
+//	// debounce all buttons
 	wire b0, b1, b2, b3, enter, right, left, down, up;
 	debounce db0(.reset(reset), .clock(clock_65mhz), .noisy(~button0), .clean(b0));
 	debounce db1(.reset(reset), .clock(clock_65mhz), .noisy(~button1), .clean(b1));
@@ -362,106 +362,66 @@ module lab3   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	debounce db_left(.reset(reset), .clock(clock_65mhz), .noisy(~button_left), .clean(left));
 	debounce db_down(.reset(reset), .clock(clock_65mhz), .noisy(~button_down), .clean(down));
 	debounce db_up(.reset(reset), .clock(clock_65mhz), .noisy(~button_up), .clean(up));
-
-   // feed XVGA signals to piano
-   wire [23:0] pixel;
-   wire phsync,pvsync,pblank;
+//
+//   // feed XVGA signals to piano
+//   wire [23:0] pixel;
+//   wire phsync,pvsync,pblank;
 	wire [16:0] key_num = {left, up, down, right, enter, b3, b2, b1, b0, switch};
 	wire note_ready = 1;
-   keystoning ks(.clk(clock_65mhz),.reset(reset),
-      .hcount(hcount),.vcount(vcount),
-      .hsync(hsync),.vsync(vsync),.blank(blank),
-		.key_num(key_num), .note_ready(note_ready),
-      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
-
-   // switch[1:0] selects which video generator to use:
-   //  00: piano
-   //  01: 1 pixel outline of active video area (adjust screen controls)
-   //  10: color bars
-	//  11: piano
-   reg [23:0] rgb;
-   wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767);
-   
-   reg b,hs,vs;
-   always @(posedge clock_65mhz) begin
-      if (switch[1:0] == 2'b01) begin
-    // 1 pixel outline of visible area (white)
-    hs <= hsync;
-    vs <= vsync;
-    b <= blank;
-    rgb <= {24{border}};
-      end else if (switch[1:0] == 2'b10) begin
-    // color bars
-    hs <= hsync;
-    vs <= vsync;
-    b <= blank;
-    rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
-      end else begin
-         // default: piano
-    hs <= phsync;
-    vs <= pvsync;
-    b <= pblank;
-    rgb <= pixel;
-      end
-   end
+	visual vmod(.clock_27mhz(clock_27mhz), .key_num(key_num), .note_ready(note_ready),
+					.reset(reset), .switch(switch), .vga_out_red(vga_out_red),
+					.vga_out_green(vga_out_green), .vga_out_blue(vga_out_blue),
+					.vga_out_sync_b(vga_out_sync_b), .vga_out_blank_b(vga_out_blank_b),
+					.vga_out_pixel_clock(vga_out_pixel_clock), .vga_out_hsync(vga_out_hsync),
+					.vga_out_vsync(vga_out_vsync));
+//   keystoning ks(.clk(clock_65mhz),.reset(reset),
+//      .hcount(hcount),.vcount(vcount),
+//      .hsync(hsync),.vsync(vsync),.blank(blank),
+//		.key_num(key_num), .note_ready(note_ready),
+//      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
+//
+//   // switch[1:0] selects which video generator to use:
+//   //  00: piano
+//   //  01: 1 pixel outline of active video area (adjust screen controls)
+//   //  10: color bars
+//	//  11: piano
+//   reg [23:0] rgb;
+//   wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767);
+//   
+//   reg b,hs,vs;
+//   always @(posedge clock_65mhz) begin
+//      if (switch[1:0] == 2'b01) begin
+//    // 1 pixel outline of visible area (white)
+//    hs <= hsync;
+//    vs <= vsync;
+//    b <= blank;
+//    rgb <= {24{border}};
+//      end else if (switch[1:0] == 2'b10) begin
+//    // color bars
+//    hs <= hsync;
+//    vs <= vsync;
+//    b <= blank;
+//    rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
+//      end else begin
+//         // default: piano
+//    hs <= phsync;
+//    vs <= pvsync;
+//    b <= pblank;
+//    rgb <= pixel;
+//      end
+//   end
 
    // VGA Output.  In order to meet the setup and hold times of the
    // AD7125, we send it ~clock_65mhz.
-   assign vga_out_red = rgb[23:16];
-   assign vga_out_green = rgb[15:8];
-   assign vga_out_blue = rgb[7:0];
-   assign vga_out_sync_b = 1'b1;    // not used
-   assign vga_out_blank_b = ~b;
-   assign vga_out_pixel_clock = ~clock_65mhz;
-   assign vga_out_hsync = hs;
-   assign vga_out_vsync = vs;
+//   assign vga_out_red = rgb[23:16];
+//   assign vga_out_green = rgb[15:8];
+//   assign vga_out_blue = rgb[7:0];
+//   assign vga_out_sync_b = 1'b1;    // not used
+//   assign vga_out_blank_b = ~b;
+//   assign vga_out_pixel_clock = ~clock_65mhz;
+//   assign vga_out_hsync = hs;
+//   assign vga_out_vsync = vs;
    
    assign led = ~switch;
 
 endmodule
-
-////////////////////////////////////////////////////////////////////////////////
-//
-// xvga: Generate XVGA display signals (1024 x 768 @ 60Hz)
-//
-////////////////////////////////////////////////////////////////////////////////
-
-module xvga(input vclock,
-            output reg [10:0] hcount,    // pixel number on current line
-            output reg [9:0] vcount,    // line number
-            output reg vsync,hsync,blank);
-
-   // horizontal: 1344 pixels total
-   // display 1024 pixels per line
-   reg hblank,vblank;
-   wire hsyncon,hsyncoff,hreset,hblankon;
-   assign hblankon = (hcount == 1023);    
-   assign hsyncon = (hcount == 1047);
-   assign hsyncoff = (hcount == 1183);
-   assign hreset = (hcount == 1343);
-
-   // vertical: 806 lines total
-   // display 768 lines
-   wire vsyncon,vsyncoff,vreset,vblankon;
-   assign vblankon = hreset & (vcount == 767);    
-   assign vsyncon = hreset & (vcount == 776);
-   assign vsyncoff = hreset & (vcount == 782);
-   assign vreset = hreset & (vcount == 805);
-
-   // sync and blanking
-   wire next_hblank,next_vblank;
-   assign next_hblank = hreset ? 0 : hblankon ? 1 : hblank;
-   assign next_vblank = vreset ? 0 : vblankon ? 1 : vblank;
-   always @(posedge vclock) begin
-      hcount <= hreset ? 0 : hcount + 1;
-      hblank <= next_hblank;
-      hsync <= hsyncon ? 0 : hsyncoff ? 1 : hsync;  // active low
-
-      vcount <= hreset ? (vreset ? 0 : vcount + 1) : vcount;
-      vblank <= next_vblank;
-      vsync <= vsyncon ? 0 : vsyncoff ? 1 : vsync;  // active low
-
-      blank <= next_vblank | (next_hblank & ~hreset);
-   end
-endmodule
-
