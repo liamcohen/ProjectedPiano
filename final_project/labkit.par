@@ -1,7 +1,7 @@
 Release 10.1.03 par K.39 (lin64)
 Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
 
-eecs-digital-36::  Tue Dec 05 16:29:39 2017
+eecs-digital-36::  Tue Dec 05 16:38:48 2017
 
 par -w -intstyle ise -ol std -t 1 labkit_map.ncd labkit.ncd labkit.pcf 
 
@@ -427,7 +427,7 @@ CPU  time consumed by placer: 5 secs
 Writing design to file labkit.ncd
 
 
-Total REAL time to Placer completion: 6 secs 
+Total REAL time to Placer completion: 5 secs 
 Total CPU time to Placer completion: 5 secs 
 
 Starting Router
@@ -442,13 +442,13 @@ Phase 4: 221 unrouted; (2878)      REAL time: 11 secs
 
 Phase 5: 219 unrouted; (0)      REAL time: 11 secs 
 
-Phase 6: 0 unrouted; (0)      REAL time: 12 secs 
+Phase 6: 0 unrouted; (0)      REAL time: 11 secs 
 
-Phase 7: 0 unrouted; (0)      REAL time: 12 secs 
+Phase 7: 0 unrouted; (0)      REAL time: 11 secs 
 
-Phase 8: 0 unrouted; (0)      REAL time: 12 secs 
+Phase 8: 0 unrouted; (0)      REAL time: 11 secs 
 
-Phase 9: 0 unrouted; (0)      REAL time: 12 secs 
+Phase 9: 0 unrouted; (0)      REAL time: 11 secs 
 
 Phase 10: 0 unrouted; (0)      REAL time: 12 secs 
 
@@ -507,7 +507,7 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 327 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 22 secs 
+Total REAL time to PAR completion: 18 secs 
 Total CPU time to PAR completion: 14 secs 
 
 Peak Memory Usage:  598 MB

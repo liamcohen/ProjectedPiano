@@ -1,23 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////
-//
-// Pushbutton Debounce Module (video version - 24 bits)  
-//
-///////////////////////////////////////////////////////////////////////////////
-
-module debounce (input reset, clock, noisy,
-                 output reg clean);
-
-   reg [19:0] count;
-   reg new;
-
-   always @(posedge clock)
-     if (reset) begin new <= noisy; clean <= noisy; count <= 0; end
-     else if (noisy != new) begin new <= noisy; count <= 0; end
-     else if (count == 650000) clean <= new;
-     else count <= count+1;
-
-endmodule
-
 ///////////////////////////////////////////////////////////////////////////////
 //
 // 6.111 FPGA Labkit -- Template Toplevel Module
@@ -318,24 +298,8 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer3_clock = 1'b1;
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
-             
-//   ////////////////////////////////////////////////////////////////////////////
-//   //
-//   // visual module
-//   //
-//   ////////////////////////////////////////////////////////////////////////////
-//
-//   // use FPGA's digital clock manager to produce a
-//   // 65MHz clock (actually 64.8MHz)
-//   wire clock_65mhz_unbuf,clock_65mhz;
-//   DCM vclk1(.CLKIN(clock_27mhz),.CLKFX(clock_65mhz_unbuf));
-//   // synthesis attribute CLKFX_DIVIDE of vclk1 is 10
-//   // synthesis attribute CLKFX_MULTIPLY of vclk1 is 24
-//   // synthesis attribute CLK_FEEDBACK of vclk1 is NONE
-//   // synthesis attribute CLKIN_PERIOD of vclk1 is 37
-//   BUFG vclk2(.O(clock_65mhz),.I(clock_65mhz_unbuf));
-//
-//   // power-on reset generation
+
+   // power-on reset generation
    wire power_on_reset;    // remain high for first 16 clocks
    SRL16 reset_sr (.D(1'b0), .CLK(clock_65mhz), .Q(power_on_reset),
          .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
@@ -343,15 +307,8 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 
    // ENTER button is user reset
    wire reset = power_on_reset;
-//
-//   // generate basic XVGA video signals
-//   wire [10:0] hcount;
-//   wire [9:0]  vcount;
-//   wire hsync,vsync,blank;
-//   xvga xvga1(.vclock(clock_65mhz),.hcount(hcount),.vcount(vcount),
-//              .hsync(hsync),.vsync(vsync),.blank(blank));
-//	
-//	// debounce all buttons
+
+	// debounce all buttons
 	wire b0, b1, b2, b3, enter, right, left, down, up;
 	debounce db0(.reset(reset), .clock(clock_65mhz), .noisy(~button0), .clean(b0));
 	debounce db1(.reset(reset), .clock(clock_65mhz), .noisy(~button1), .clean(b1));
@@ -362,10 +319,8 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	debounce db_left(.reset(reset), .clock(clock_65mhz), .noisy(~button_left), .clean(left));
 	debounce db_down(.reset(reset), .clock(clock_65mhz), .noisy(~button_down), .clean(down));
 	debounce db_up(.reset(reset), .clock(clock_65mhz), .noisy(~button_up), .clean(up));
-//
-//   // feed XVGA signals to piano
-//   wire [23:0] pixel;
-//   wire phsync,pvsync,pblank;
+
+   // instantiate visual module
 	wire [16:0] key_num = {left, up, down, right, enter, b3, b2, b1, b0, switch};
 	wire note_ready = 1;
 	visual vmod(.clock_27mhz(clock_27mhz), .key_num(key_num), .note_ready(note_ready),
@@ -374,53 +329,6 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 					.vga_out_sync_b(vga_out_sync_b), .vga_out_blank_b(vga_out_blank_b),
 					.vga_out_pixel_clock(vga_out_pixel_clock), .vga_out_hsync(vga_out_hsync),
 					.vga_out_vsync(vga_out_vsync));
-//   keystoning ks(.clk(clock_65mhz),.reset(reset),
-//      .hcount(hcount),.vcount(vcount),
-//      .hsync(hsync),.vsync(vsync),.blank(blank),
-//		.key_num(key_num), .note_ready(note_ready),
-//      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
-//
-//   // switch[1:0] selects which video generator to use:
-//   //  00: piano
-//   //  01: 1 pixel outline of active video area (adjust screen controls)
-//   //  10: color bars
-//	//  11: piano
-//   reg [23:0] rgb;
-//   wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767);
-//   
-//   reg b,hs,vs;
-//   always @(posedge clock_65mhz) begin
-//      if (switch[1:0] == 2'b01) begin
-//    // 1 pixel outline of visible area (white)
-//    hs <= hsync;
-//    vs <= vsync;
-//    b <= blank;
-//    rgb <= {24{border}};
-//      end else if (switch[1:0] == 2'b10) begin
-//    // color bars
-//    hs <= hsync;
-//    vs <= vsync;
-//    b <= blank;
-//    rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
-//      end else begin
-//         // default: piano
-//    hs <= phsync;
-//    vs <= pvsync;
-//    b <= pblank;
-//    rgb <= pixel;
-//      end
-//   end
-
-   // VGA Output.  In order to meet the setup and hold times of the
-   // AD7125, we send it ~clock_65mhz.
-//   assign vga_out_red = rgb[23:16];
-//   assign vga_out_green = rgb[15:8];
-//   assign vga_out_blue = rgb[7:0];
-//   assign vga_out_sync_b = 1'b1;    // not used
-//   assign vga_out_blank_b = ~b;
-//   assign vga_out_pixel_clock = ~clock_65mhz;
-//   assign vga_out_hsync = hs;
-//   assign vga_out_vsync = vs;
    
    assign led = ~switch;
 

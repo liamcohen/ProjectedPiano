@@ -126,8 +126,9 @@ Compiling verilog file "keystoning.v" in library work
 Module <xvga> compiled
 Compiling verilog file "visual.v" in library work
 Module <keystoning> compiled
-Compiling verilog file "visual_module.v" in library work
+Compiling verilog file "debounce.v" in library work
 Module <visual> compiled
+Compiling verilog file "visual_module.v" in library work
 Module <debounce> compiled
 Module <labkit> compiled
 No errors in compilation
@@ -317,10 +318,10 @@ INFO:Xst:2561 - Always blocking tristate driving signal <systemace_data> in unit
 INFO:Xst:2561 - Always blocking tristate driving signal <tv_in_i2c_data> in unit <labkit> is removed.
 
 Synthesizing Unit <debounce>.
-    Related source file is "visual_module.v".
+    Related source file is "debounce.v".
     Found 1-bit register for signal <clean>.
     Found 20-bit up counter for signal <count>.
-    Found 1-bit xor2 for signal <count$xor0000> created at line 15.
+    Found 1-bit xor2 for signal <count$xor0000> created at line 35.
     Found 1-bit register for signal <new>.
     Summary:
 	inferred   1 Counter(s).
@@ -1367,13 +1368,13 @@ Delay:               7.166ns (Levels of Logic = 3)
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 6.69 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 6.60 secs
  
 --> 
 
 
-Total memory usage is 483540 kilobytes
+Total memory usage is 483536 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  559 (   0 filtered)
