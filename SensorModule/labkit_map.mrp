@@ -11,31 +11,31 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Fri Dec  1 16:00:12 2017
+Mapped Date    : Mon Dec  4 22:02:56 2017
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:  356
 Logic Utilization:
-  Number of Slice Flip Flops:           404 out of  67,584    1%
-  Number of 4 input LUTs:               793 out of  67,584    1%
+  Number of Slice Flip Flops:           459 out of  67,584    1%
+  Number of 4 input LUTs:             1,202 out of  67,584    1%
 Logic Distribution:
-  Number of occupied Slices:            483 out of  33,792    1%
-    Number of Slices containing only related logic:     483 out of     483 100%
-    Number of Slices containing unrelated logic:          0 out of     483   0%
+  Number of occupied Slices:            694 out of  33,792    2%
+    Number of Slices containing only related logic:     694 out of     694 100%
+    Number of Slices containing unrelated logic:          0 out of     694   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         882 out of  67,584    1%
-    Number used as logic:               777
-    Number used as a route-thru:         89
+  Total Number of 4 input LUTs:       1,290 out of  67,584    1%
+    Number used as logic:             1,186
+    Number used as a route-thru:         88
     Number used as Shift registers:      16
   Number of bonded IOBs:                576 out of     684   84%
   Number of RAMB16s:                      1 out of     144    1%
   Number of BUFGMUXs:                     1 out of      16    6%
 
-Peak Memory Usage:  489 MB
+Peak Memory Usage:  493 MB
 Total REAL time to MAP completion:  2 secs 
-Total CPU time to MAP completion:   1 secs 
+Total CPU time to MAP completion:   2 secs 
 
 NOTES:
 
@@ -78,7 +78,7 @@ Section 1 - Errors
 Section 2 - Warnings
 --------------------
 WARNING:LIT:243 - Logical network user3<28>_IBUF has no load.
-WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 345
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 344
    more times for the following (max. 5 shown):
    user3<29>_IBUF,
    user3<5>_IBUF,
@@ -828,9 +828,9 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-  25 block(s) removed
+  24 block(s) removed
    6 block(s) optimized away
-  24 signal(s) removed
+  23 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -856,7 +856,6 @@ The signal "ram/douta<0>" is sourceless and has been removed.
 The signal "ram/BU2/doutb<0>" is sourceless and has been removed.
 The signal "ram/BU2/N1" is sourceless and has been removed.
 The signal "read/fifo/full" is sourceless and has been removed.
-The signal "read/fifo/empty" is sourceless and has been removed.
 The signal "read/fifo/underflow" is sourceless and has been removed.
 The signal "read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg_d1" is sourceless and
 has been removed.
@@ -899,7 +898,6 @@ Unused block "ram/GND" (ZERO) removed.
 Unused block "ram/VCC" (ONE) removed.
 Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/grhf.rhf/underflow_i1" (ROM)
 removed.
-Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/rsts/ram_empty_i" (FF) removed.
 Unused block "read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i" (FF) removed.
 Unused block "read/fifo/GND" (ZERO) removed.
 Unused block "read/fifo/VCC" (ONE) removed.

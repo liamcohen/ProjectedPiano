@@ -638,7 +638,7 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.reset(reset_button),
 		.start(write_multi_start),
 		.done(write_multi_done),
-		.byte_width(4'b0010),
+		.byte_width(n_bytes),
 		
 		.timer_exp(timer_exp),
 		.timer_param(timer_param_write_multi),
@@ -881,6 +881,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	wire init_error;
 	
+	wire [3:0] instruction_count_debug;
+	
 	VL53L0X_INIT sensor_init(
 		.reset(reset_button),
 		.clk(clock_27mhz),
@@ -924,7 +926,9 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .ram_data_in(ram_data_in),
 	   .ram_wr_en(ram_wr_en),
 		
-		.init_error(init_error)
+		.init_error(init_error), 
+		
+		.instruction_count_debug(instruction_count_debug)
 	);
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -951,12 +955,12 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign stop_on_idle = 1'b1;
 	
 	//logic analyzer outputs for debugging
-	assign user3[4] = read_data_en;
+	assign user3[4] = read_data_empty;
 	assign analyzer3_clock = clock_27mhz;
 	assign analyzer3_data = 16'b0;
 	//assign analyzer3_data = {fifo_out_debug, user3[1], user3[0], fifo_underflow_debug, state_out_WRITEMULTI, test_done_WRITEMULTI};
 	//assign analyzer3_data = {i2c_data_out_WRITE, user3[1], user3[0], 1'b0, state_out_WRITE, clk_200Hz};
-	assign led = {4'hF, ~state_out_READ};
+	assign led = {4'hF, ~instruction_count_debug};
 	
 	//physical pin delegation for i2c communication to slave
 	assign scl_i = user3[0];

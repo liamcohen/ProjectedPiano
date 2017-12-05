@@ -144,21 +144,6 @@
 <msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">done_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
-<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">timer_start_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
-</msg>
-
-<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">timer_param_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">0001</arg> during circuit operation. The register is replaced by logic.
-</msg>
-
-<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">timer_reset_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">1</arg> during circuit operation. The register is replaced by logic.
-</msg>
-
-<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">fifo_ext_reset_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">1</arg> during circuit operation. The register is replaced by logic.
-</msg>
-
-<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">ram_addr_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">00000000</arg> during circuit operation. The register is replaced by logic.
-</msg>
-
 <msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">init_error_reg</arg>&gt; in unit &lt;<arg fmt="%s" index="2">VL53L0X_INIT</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
@@ -270,22 +255,7 @@
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">data_count</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">fifo_empty</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-</msg>
-
-<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">fifo_underflow</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-</msg>
-
 <msg type="warning" file="Xst" num="1305" delta="unknown" >Output &lt;<arg fmt="%s" index="1">ram_data_out</arg>&gt; is never assigned. Tied to value <arg fmt="%s" index="2">00000000</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">timer_exp</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-</msg>
-
-<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">fifo_overflow</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-</msg>
-
-<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">ram_data_in</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
 <msg type="warning" file="Xst" num="1305" delta="unknown" >Output &lt;<arg fmt="%s" index="1">ram_addr</arg>&gt; is never assigned. Tied to value <arg fmt="%s" index="2">00000000</arg>.
@@ -294,112 +264,13 @@
 <msg type="warning" file="Xst" num="1305" delta="unknown" >Output &lt;<arg fmt="%s" index="1">ram_wr_en</arg>&gt; is never assigned. Tied to value <arg fmt="%s" index="2">0</arg>.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">fifo_full</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">write_start_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">write_multi_start_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">write_multi_done_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">write_done_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">timer_start_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">timer_reset_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">timer_param_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">timer_exp_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">spad_start</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">spad_error</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">spad_done</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">reg_address_out_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">read_start_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">read_done_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_wr_en_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_wr_en_reg</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_data_out_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_data_out_reg</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_data_in_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">00000000</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_addr_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">ram_addr_reg</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">n_bytes_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fnc_sel_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_write_ack_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_wr_en_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_underflow_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_read_valid_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_read_en_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_overflow_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_full_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_ext_reset_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_empty_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_data_out_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">fifo_data_in_spad</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">00000000</arg>.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">data_out_spad</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="2565" delta="unknown" >Inout &lt;<arg fmt="%s" index="1">user3&lt;28&gt;</arg>&gt; is never assigned.
@@ -1320,7 +1191,7 @@
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">state_out_WRITE</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">state_out_READ</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0000</arg>.
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">state_out_READ</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">overflow_WRITEMULTI</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -1399,37 +1270,31 @@ This instance will be removed from the design along with all underlying logic
 <msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">i2c_dev_address_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">i2c_write_reg_multi</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">timer_param_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">timer_param_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_7</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">VL53L0X_INIT</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">count_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">timer2</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">state</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">timer2</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_data_out_reg_7</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sensor_init</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">steady_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">db_button1</arg>&gt;.
@@ -1441,99 +1306,7 @@ This instance will be removed from the design along with all underlying logic
 <msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">data_out_last_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">master</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">time_expired_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">timer2</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">get_spad_info</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">sensor_init</arg>&gt;.
-It will be removed from the design.
-</msg>
-
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">count_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">timer2</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">count_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">timer2</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">count_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">timer2</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">fifo_reset_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">write_multi</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">timer2</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
-It will be removed from the design.
-</msg>
-
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">timer_start_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">spad_error_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">instruction_count_FFd3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">instruction_count_FFd2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">instruction_count_FFd1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">fifo_read_en_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fnc_sel_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_7</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_5</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_5</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">read_start_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">spad_error_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">get_spad_info</arg>&gt;.
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">db_button2/steady_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
@@ -1548,37 +1321,22 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">db_button1/old</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">done_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">timer_reset_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">state_FSM_FFd1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">state_FSM_FFd2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">write_start_reg</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">reg_address_out_reg_7</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">data_out_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">fnc_sel_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">instruction_count_FFd4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">n_bytes_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">get_spad_info</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1293" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">master/addr_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
@@ -1593,28 +1351,40 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">master/addr_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">timer2/time_expired_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_7</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">timer2/state</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">timer2/count_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">timer2/count_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">timer2/count_1</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">timer2/count_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/fifo_data_out_reg_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/n_bytes_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/timer_param_reg_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">sensor_init/timer_param_reg_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">labkit</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">master/data_out_last_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">write_multi/fifo_reset_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">sensor_init/get_spad_info/spad_error_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">labkit</arg>&gt;.
 </msg>
 
 <msg type="info" file="Xst" num="2260" delta="unknown" >The FF/Latch &lt;<arg fmt="%s" index="1">U0/grf.rf/rstblk/rd_rst_reg_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">BU2</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg> : <arg fmt="%s" index="4">&lt;U0/grf.rf/rstblk/rd_rst_reg_0&gt; </arg>

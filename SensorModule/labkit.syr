@@ -109,7 +109,7 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling verilog file "ROM.v" in library work
+Compiling verilog file "./ROM.v" in library work
 Compiling verilog file "get_spad_info.v" in library work
 Module <ROM> compiled
 Compiling verilog file "./FIFO.v" in library work
@@ -281,6 +281,7 @@ Analyzing hierarchy for module <VL53L0X_INIT> in library <work> with parameters.
 	IDENTIFICATION_REVISION_ID = "11000010"
 	MSRC_CONFIG_CONTROL = "01100000"
 	MSRC_CONFIG_TIMEOUT_MACROP = "01000110"
+	NEXT_VARIABLE = "000001001"
 	OSC_CALIBRATE_VAL = "11111000"
 	POWER_MANAGEMENT_GO1_POWER_FORCE = "10000000"
 	PRE_RANGE_CONFIG_MIN_SNR = "00100111"
@@ -292,6 +293,7 @@ Analyzing hierarchy for module <VL53L0X_INIT> in library <work> with parameters.
 	PRE_RANGE_CONFIG_VALID_PHASE_LOW = "01010110"
 	PRE_RANGE_CONFIG_VCSEL_PERIOD = "01010000"
 	PRE_RANGE_MIN_COUNT_RATE_RTN_LIMIT = "01100100"
+	REF_SPAD_MAP = "00000011"
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_REF = "11010000"
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_RTN = "10111100"
 	RESULT_CORE_RANGING_TOTAL_EVENTS_REF = "11010100"
@@ -348,6 +350,7 @@ Analyzing hierarchy for module <get_spad_info> in library <work> with parameters
 	IDENTIFICATION_REVISION_ID = "11000010"
 	MSRC_CONFIG_CONTROL = "01100000"
 	MSRC_CONFIG_TIMEOUT_MACROP = "01000110"
+	NEXT_VARIABLE = "000001001"
 	OSC_CALIBRATE_VAL = "11111000"
 	POWER_MANAGEMENT_GO1_POWER_FORCE = "10000000"
 	PRE_RANGE_CONFIG_MIN_SNR = "00100111"
@@ -359,6 +362,7 @@ Analyzing hierarchy for module <get_spad_info> in library <work> with parameters
 	PRE_RANGE_CONFIG_VALID_PHASE_LOW = "01010110"
 	PRE_RANGE_CONFIG_VCSEL_PERIOD = "01010000"
 	PRE_RANGE_MIN_COUNT_RATE_RTN_LIMIT = "01100100"
+	REF_SPAD_MAP = "00000011"
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_REF = "11010000"
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_RTN = "10111100"
 	RESULT_CORE_RANGING_TOTAL_EVENTS_REF = "11010100"
@@ -542,6 +546,7 @@ Analyzing module <VL53L0X_INIT> in library <work>.
 	IDENTIFICATION_REVISION_ID = 8'b11000010
 	MSRC_CONFIG_CONTROL = 8'b01100000
 	MSRC_CONFIG_TIMEOUT_MACROP = 8'b01000110
+	NEXT_VARIABLE = 9'b000001001
 	OSC_CALIBRATE_VAL = 8'b11111000
 	POWER_MANAGEMENT_GO1_POWER_FORCE = 8'b10000000
 	PRE_RANGE_CONFIG_MIN_SNR = 8'b00100111
@@ -553,6 +558,7 @@ Analyzing module <VL53L0X_INIT> in library <work>.
 	PRE_RANGE_CONFIG_VALID_PHASE_LOW = 8'b01010110
 	PRE_RANGE_CONFIG_VCSEL_PERIOD = 8'b01010000
 	PRE_RANGE_MIN_COUNT_RATE_RTN_LIMIT = 8'b01100100
+	REF_SPAD_MAP = 8'b00000011
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_REF = 8'b11010000
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_RTN = 8'b10111100
 	RESULT_CORE_RANGING_TOTAL_EVENTS_REF = 8'b11010100
@@ -610,6 +616,7 @@ Analyzing module <get_spad_info> in library <work>.
 	IDENTIFICATION_REVISION_ID = 8'b11000010
 	MSRC_CONFIG_CONTROL = 8'b01100000
 	MSRC_CONFIG_TIMEOUT_MACROP = 8'b01000110
+	NEXT_VARIABLE = 9'b000001001
 	OSC_CALIBRATE_VAL = 8'b11111000
 	POWER_MANAGEMENT_GO1_POWER_FORCE = 8'b10000000
 	PRE_RANGE_CONFIG_MIN_SNR = 8'b00100111
@@ -621,6 +628,7 @@ Analyzing module <get_spad_info> in library <work>.
 	PRE_RANGE_CONFIG_VALID_PHASE_LOW = 8'b01010110
 	PRE_RANGE_CONFIG_VCSEL_PERIOD = 8'b01010000
 	PRE_RANGE_MIN_COUNT_RATE_RTN_LIMIT = 8'b01100100
+	REF_SPAD_MAP = 8'b00000011
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_REF = 8'b11010000
 	RESULT_CORE_AMBIENT_WINDOW_EVENTS_RTN = 8'b10111100
 	RESULT_CORE_RANGING_TOTAL_EVENTS_REF = 8'b11010100
@@ -699,11 +707,6 @@ INFO:Xst:2679 - Register <timer_param_reg> in unit <i2c_read_reg> has a constant
 INFO:Xst:2679 - Register <timer_param_reg> in unit <i2c_write_reg> has a constant value of 0001 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <timer_param_reg> in unit <i2c_write_reg_multi> has a constant value of 0001 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <done_reg> in unit <VL53L0X_INIT> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <timer_start_reg> in unit <VL53L0X_INIT> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <timer_param_reg> in unit <VL53L0X_INIT> has a constant value of 0001 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <timer_reset_reg> in unit <VL53L0X_INIT> has a constant value of 1 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <fifo_ext_reset_reg> in unit <VL53L0X_INIT> has a constant value of 1 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <ram_addr_reg> in unit <VL53L0X_INIT> has a constant value of 00000000 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <init_error_reg> in unit <VL53L0X_INIT> has a constant value of 0 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <write_multi_start_reg> in unit <get_spad_info> has a constant value of 0 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <timer_param_reg> in unit <get_spad_info> has a constant value of 0101 during circuit operation. The register is replaced by logic.
@@ -928,8 +931,8 @@ WARNING:Xst:646 - Signal <ram_addr_reg> is assigned but never used. This unconne
     Found finite state machine <FSM_2> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
-    | Transitions        | 35                                             |
-    | Inputs             | 19                                             |
+    | Transitions        | 37                                             |
+    | Inputs             | 20                                             |
     | Outputs            | 4                                              |
     | Clock              | clk (rising_edge)                              |
     | Reset              | reset (positive)                               |
@@ -1061,56 +1064,18 @@ Unit <i2c_write_reg_multi> synthesized.
 
 Synthesizing Unit <VL53L0X_INIT>.
     Related source file is "VL53L0X_INIT.v".
-WARNING:Xst:647 - Input <fifo_empty> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <fifo_underflow> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1305 - Output <ram_data_out> is never assigned. Tied to value 00000000.
-WARNING:Xst:647 - Input <timer_exp> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <fifo_overflow> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <ram_data_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1305 - Output <ram_addr> is never assigned. Tied to value 00000000.
 WARNING:Xst:1305 - Output <ram_wr_en> is never assigned. Tied to value 0.
-WARNING:Xst:647 - Input <fifo_full> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <write_start_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <write_multi_start_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <write_multi_done_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <write_done_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <timer_start_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <timer_reset_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <timer_param_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <timer_exp_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <spad_start> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:646 - Signal <spad_error> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <spad_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <reg_address_out_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <read_start_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <read_done_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <ram_wr_en_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ram_wr_en_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <ram_data_out_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ram_data_out_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <ram_data_in_spad> is used but never assigned. This sourceless signal will be automatically connected to value 00000000.
-WARNING:Xst:646 - Signal <ram_addr_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <ram_addr_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <n_bytes_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <fnc_sel_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <fifo_write_ack_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <fifo_wr_en_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <fifo_underflow_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <fifo_read_valid_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <fifo_read_en_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <fifo_overflow_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <fifo_full_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <fifo_ext_reset_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <fifo_empty_spad> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <fifo_data_out_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <fifo_data_in_spad> is used but never assigned. This sourceless signal will be automatically connected to value 00000000.
-WARNING:Xst:646 - Signal <data_out_spad> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found finite state machine <FSM_6> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 2                                              |
-    | Transitions        | 18                                             |
-    | Inputs             | 16                                             |
-    | Outputs            | 2                                              |
+    | States             | 3                                              |
+    | Transitions        | 32                                             |
+    | Inputs             | 17                                             |
+    | Outputs            | 3                                              |
     | Clock              | clk (rising_edge)                              |
     | Reset              | state$or0000 (positive)                        |
     | Reset type         | synchronous                                    |
@@ -1122,8 +1087,8 @@ WARNING:Xst:646 - Signal <data_out_spad> is assigned but never used. This unconn
     Found finite state machine <FSM_7> for signal <instruction_count>.
     -----------------------------------------------------------------------
     | States             | 16                                             |
-    | Transitions        | 65                                             |
-    | Inputs             | 9                                              |
+    | Transitions        | 90                                             |
+    | Inputs             | 12                                             |
     | Outputs            | 16                                             |
     | Clock              | clk (rising_edge)                              |
     | Clock enable       | state$or0000 (negative)                        |
@@ -1133,23 +1098,31 @@ WARNING:Xst:646 - Signal <data_out_spad> is assigned but never used. This unconn
     -----------------------------------------------------------------------
     Found 8-bit register for signal <data_out_reg>.
     Found 8-bit register for signal <fifo_data_out_reg>.
+    Found 1-bit register for signal <fifo_ext_reset_reg>.
     Found 1-bit register for signal <fifo_read_en_reg>.
     Found 1-bit register for signal <fifo_wr_en_reg>.
     Found 2-bit register for signal <fnc_sel_reg>.
-    Found 8-bit comparator less for signal <instruction_count$cmp_lt0000> created at line 405.
-    Found 8-bit comparator less for signal <instruction_count$cmp_lt0001> created at line 472.
+    Found 8-bit comparator lessequal for signal <instruction_count$cmp_le0000> created at line 695.
+    Found 8-bit comparator less for signal <instruction_count$cmp_lt0000> created at line 401.
+    Found 8-bit comparator less for signal <instruction_count$cmp_lt0001> created at line 468.
     Found 4-bit register for signal <n_bytes_reg>.
+    Found 8-bit register for signal <ram_addr_reg>.
+    Found 8-bit adder for signal <ram_addr_reg$addsub0000> created at line 698.
     Found 1-bit register for signal <read_start_reg>.
     Found 8-bit register for signal <reg_address_out_reg>.
     Found 8-bit register for signal <rom_addr_reg>.
-    Found 8-bit adder for signal <rom_addr_reg$share0000> created at line 349.
+    Found 8-bit adder for signal <rom_addr_reg$share0000> created at line 345.
+    Found 1-bit register for signal <spad_start>.
+    Found 4-bit register for signal <timer_param_reg>.
+    Found 1-bit register for signal <timer_reset_reg>.
+    Found 1-bit register for signal <timer_start_reg>.
     Found 1-bit register for signal <write_multi_start_reg>.
     Found 1-bit register for signal <write_start_reg>.
     Summary:
 	inferred   2 Finite State Machine(s).
-	inferred  43 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
-	inferred   2 Comparator(s).
+	inferred  59 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   3 Comparator(s).
 Unit <VL53L0X_INIT> synthesized.
 
 
@@ -1461,7 +1434,7 @@ WARNING:Xst:2565 - Inout <user3<3>> is never assigned.
 WARNING:Xst:653 - Signal <test_write_WRITEMULTI> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:646 - Signal <state_out_WRITEMULTI> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <state_out_WRITE> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <state_out_READ> is used but never assigned. This sourceless signal will be automatically connected to value 0000.
+WARNING:Xst:1780 - Signal <state_out_READ> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <overflow_WRITEMULTI> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <init_error> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <init_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -1486,29 +1459,30 @@ WARNING:Xst:524 - All outputs of the instance <div2> of the block <divider_2> ar
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 7
+# Adders/Subtractors                                   : 8
  17-bit subtractor                                     : 1
  4-bit adder                                           : 2
  4-bit subtractor                                      : 3
- 8-bit adder                                           : 1
+ 8-bit adder                                           : 2
 # Counters                                             : 5
  19-bit up counter                                     : 3
  32-bit up counter                                     : 2
-# Registers                                            : 100
- 1-bit register                                        : 74
+# Registers                                            : 106
+ 1-bit register                                        : 78
  16-bit register                                       : 1
  17-bit register                                       : 1
  2-bit register                                        : 2
- 4-bit register                                        : 7
+ 4-bit register                                        : 8
  7-bit register                                        : 4
- 8-bit register                                        : 11
-# Comparators                                          : 12
+ 8-bit register                                        : 12
+# Comparators                                          : 13
  17-bit comparator greater                             : 1
  32-bit comparator less                                : 2
  4-bit comparator greatequal                           : 2
  4-bit comparator greater                              : 4
  7-bit comparator not equal                            : 1
  8-bit comparator less                                 : 2
+ 8-bit comparator lessequal                            : 1
 # Multiplexers                                         : 13
  1-bit 4-to-1 multiplexer                              : 10
  4-bit 4-to-1 multiplexer                              : 1
@@ -1526,12 +1500,13 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_6> for best encoding.
-Optimizing FSM <sensor_init/state/FSM> on signal <state[1:1]> with gray encoding.
+Optimizing FSM <sensor_init/state/FSM> on signal <state[1:2]> with sequential encoding.
 -------------------
  State | Encoding
 -------------------
- 00    | 0
- 01    | 1
+ 00    | 00
+ 01    | 01
+ 10    | 10
 -------------------
 Analyzing FSM <FSM_5> for best encoding.
 Optimizing FSM <write_multi/state/FSM> on signal <state[1:16]> with one-hot encoding.
@@ -1685,51 +1660,42 @@ WARNING:Xst:1293 - FF/Latch <i2c_dev_address_reg_1> has a constant value of 0 in
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <i2c_dev_address_reg_2> has a constant value of 0 in block <i2c_write_reg_multi>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <i2c_dev_address_reg_4> has a constant value of 0 in block <i2c_write_reg_multi>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <i2c_dev_address_reg_6> has a constant value of 0 in block <i2c_write_reg_multi>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_0> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fifo_data_out_reg_1> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fifo_data_out_reg_2> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fifo_data_out_reg_3> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fifo_data_out_reg_4> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fifo_data_out_reg_6> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fifo_data_out_reg_7> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <n_bytes_reg_2> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_3> has a constant value of 0 in block <VL53L0X_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <count_0> has a constant value of 0 in block <timer2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <state> (without init value) has a constant value of 0 in block <timer2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_param_reg_1> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_param_reg_3> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_0> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_1> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_2> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_3> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_4> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_6> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fifo_data_out_reg_7> has a constant value of 0 in block <sensor_init>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <steady_reg> of sequential type is unconnected in block <db_button1>.
 WARNING:Xst:2677 - Node <steady_reg> of sequential type is unconnected in block <db_button2>.
 WARNING:Xst:2677 - Node <data_out_last_reg> of sequential type is unconnected in block <master>.
-WARNING:Xst:2677 - Node <time_expired_reg> of sequential type is unconnected in block <timer2>.
-WARNING:Xst:1290 - Hierarchical block <get_spad_info> is unconnected in block <sensor_init>.
-   It will be removed from the design.
-WARNING:Xst:1293 - FF/Latch <count_1> has a constant value of 0 in block <timer2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <count_2> has a constant value of 0 in block <timer2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <count_3> has a constant value of 0 in block <timer2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <fifo_reset_reg> of sequential type is unconnected in block <write_multi>.
-WARNING:Xst:1290 - Hierarchical block <timer2> is unconnected in block <labkit>.
-   It will be removed from the design.
+WARNING:Xst:2677 - Node <spad_error_reg> of sequential type is unconnected in block <get_spad_info>.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 7
+# Adders/Subtractors                                   : 8
  17-bit subtractor                                     : 1
  4-bit adder                                           : 2
  4-bit subtractor                                      : 3
- 8-bit adder                                           : 1
+ 8-bit adder                                           : 2
 # Counters                                             : 5
  19-bit up counter                                     : 3
  32-bit up counter                                     : 2
-# Registers                                            : 309
- Flip-Flops                                            : 309
-# Comparators                                          : 12
+# Registers                                            : 335
+ Flip-Flops                                            : 335
+# Comparators                                          : 13
  17-bit comparator greater                             : 1
  32-bit comparator less                                : 2
  4-bit comparator greatequal                           : 2
  4-bit comparator greater                              : 4
  7-bit comparator not equal                            : 1
  8-bit comparator less                                 : 2
+ 8-bit comparator lessequal                            : 1
 # Multiplexers                                         : 13
  1-bit 4-to-1 multiplexer                              : 10
  4-bit 4-to-1 multiplexer                              : 1
@@ -1743,51 +1709,24 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1293 - FF/Latch <timer_start_reg> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <spad_error_reg> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <instruction_count_FFd3> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <instruction_count_FFd2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <instruction_count_FFd1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <fifo_read_en_reg> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fnc_sel_reg_0> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_3> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_0> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_7> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_6> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_5> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_4> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_3> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_6> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_5> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_4> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_3> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <read_start_reg> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <db_button2/steady_reg> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <db_button2/old> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <db_button1/steady_reg> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <db_button1/old> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:1293 - FF/Latch <done_reg> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <timer_reset_reg> has a constant value of 1 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <state_FSM_FFd1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <state_FSM_FFd2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <write_start_reg> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_0> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <reg_address_out_reg_7> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_out_reg_0> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <fnc_sel_reg_1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <instruction_count_FFd4> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <labkit> ...
 
 Optimizing unit <i2c_write_reg> ...
 
 Optimizing unit <i2c_master> ...
+
+Optimizing unit <get_spad_info> ...
+WARNING:Xst:1293 - FF/Latch <n_bytes_reg_1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_3> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <n_bytes_reg_1> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_2> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <n_bytes_reg_3> has a constant value of 0 in block <get_spad_info>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <i2c_read_reg> ...
 
@@ -1798,18 +1737,22 @@ WARNING:Xst:1293 - FF/Latch <master/addr_reg_6> has a constant value of 0 in blo
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/addr_reg_4> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/addr_reg_2> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master/addr_reg_1> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <timer2/time_expired_reg> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:2677 - Node <timer2/state> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:2677 - Node <timer2/count_3> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:2677 - Node <timer2/count_2> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:2677 - Node <timer2/count_1> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:2677 - Node <timer2/count_0> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_7> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_6> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_4> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_3> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_2> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_1> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/fifo_data_out_reg_0> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/n_bytes_reg_3> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/timer_param_reg_3> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <sensor_init/timer_param_reg_1> has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <master/data_out_last_reg> of sequential type is unconnected in block <labkit>.
-WARNING:Xst:2677 - Node <write_multi/fifo_reset_reg> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <sensor_init/get_spad_info/spad_error_reg> of sequential type is unconnected in block <labkit>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 1.
+Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 2.
 INFO:Xst:2260 - The FF/Latch <U0/grf.rf/rstblk/rd_rst_reg_1> in Unit <BU2> is equivalent to the following FF/Latch : <U0/grf.rf/rstblk/rd_rst_reg_0> 
 INFO:Xst:2260 - The FF/Latch <U0/grf.rf/gl1.lsshft/rsts/ram_empty_fb_i> in Unit <BU2> is equivalent to the following FF/Latch : <U0/grf.rf/gl1.lsshft/rsts/ram_empty_i> 
 INFO:Xst:2260 - The FF/Latch <U0/grf.rf/gl1.lsshft/wsts/ram_full_i> in Unit <BU2> is equivalent to the following FF/Latch : <U0/grf.rf/gl1.lsshft/wsts/ram_full_fb_i> 
@@ -1830,8 +1773,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 342
- Flip-Flops                                            : 342
+# Registers                                            : 396
+ Flip-Flops                                            : 396
 
 =========================================================================
 
@@ -1860,33 +1803,33 @@ Design Statistics
 # IOs                              : 576
 
 Cell Usage :
-# BELS                             : 1165
+# BELS                             : 1582
 #      GND                         : 5
-#      INV                         : 39
+#      INV                         : 38
 #      LUT1                        : 88
-#      LUT2                        : 64
-#      LUT2_D                      : 6
-#      LUT2_L                      : 2
-#      LUT3                        : 162
-#      LUT3_D                      : 8
-#      LUT3_L                      : 20
-#      LUT4                        : 431
-#      LUT4_D                      : 14
-#      LUT4_L                      : 35
+#      LUT2                        : 94
+#      LUT2_D                      : 16
+#      LUT2_L                      : 9
+#      LUT3                        : 216
+#      LUT3_D                      : 18
+#      LUT3_L                      : 24
+#      LUT4                        : 690
+#      LUT4_D                      : 34
+#      LUT4_L                      : 58
 #      MUXCY                       : 137
-#      MUXF5                       : 51
+#      MUXF5                       : 52
 #      VCC                         : 3
 #      XORCY                       : 100
-# FlipFlops/Latches                : 416
-#      FD                          : 24
+# FlipFlops/Latches                : 470
+#      FD                          : 28
 #      FDC                         : 8
 #      FDCE                        : 30
-#      FDE                         : 151
+#      FDE                         : 196
 #      FDP                         : 10
 #      FDPE                        : 14
-#      FDR                         : 130
+#      FDR                         : 134
 #      FDRE                        : 30
-#      FDRS                        : 11
+#      FDRS                        : 12
 #      FDRSE                       : 2
 #      FDS                         : 5
 #      FDSE                        : 1
@@ -1907,10 +1850,10 @@ Device utilization summary:
 
 Selected Device : 2v6000bf957-4 
 
- Number of Slices:                      479  out of  33792     1%  
- Number of Slice Flip Flops:            416  out of  67584     0%  
- Number of 4 input LUTs:                885  out of  67584     1%  
-    Number used as logic:               869
+ Number of Slices:                      692  out of  33792     2%  
+ Number of Slice Flip Flops:            470  out of  67584     0%  
+ Number of 4 input LUTs:               1301  out of  67584     1%  
+    Number used as logic:              1285
     Number used as Shift registers:      16
  Number of IOs:                         576
  Number of bonded IOBs:                 246  out of    684    35%  
@@ -1938,31 +1881,31 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clock_27mhz                        | IBUF+BUFG              | 434   |
+clock_27mhz                        | IBUF+BUFG              | 488   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
--------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+-------+
-Control Signal                                                                                               | Buffer(FF name)                                             | Load  |
--------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+-------+
-read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<1>(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_1:Q)                  | NONE(read/fifo/BU2/U0/grf.rf/gl1.lsshft/crd/count_0)        | 19    |
-write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg<1>(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg_1:Q)| NONE(write_multi/fifo_1/BU2/U0/grf.rf/gl1.lsshft/c1/count_0)| 19    |
-read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_0:Q)                  | NONE(read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_5)           | 8     |
-write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg_0:Q)| NONE(write_multi/fifo_1/BU2/U0/grf.rf/mem/gsm.sm/dout_i_2)  | 8     |
-analyzer4_clock_OBUF(XST_VCC:P)                                                                              | NONE(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/wr_rst_asreg)  | 2     |
-read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_comb(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_comb1:O)                    | NONE(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_1)           | 2     |
-read/fifo_reset_reg(read/fifo_reset_reg:Q)                                                                   | NONE(read/fifo/BU2/U0/grf.rf/rstblk/wr_rst_asreg)           | 2     |
-write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_comb(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_comb1:O)  | NONE(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg_0)  | 2     |
--------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+-------+
+-------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+-------+
+Control Signal                                                                                               | Buffer(FF name)                                                  | Load  |
+-------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+-------+
+read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<1>(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_1:Q)                  | NONE(read/fifo/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i)         | 19    |
+write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg<1>(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg_1:Q)| NONE(write_multi/fifo_1/BU2/U0/grf.rf/gl1.lsshft/wsts/ram_full_i)| 19    |
+read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_0:Q)                  | NONE(read/fifo/BU2/U0/grf.rf/mem/gsm.sm/dout_i_6)                | 8     |
+write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg<0>(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg_0:Q)| NONE(write_multi/fifo_1/BU2/U0/grf.rf/mem/gsm.sm/dout_i_2)       | 8     |
+read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_comb(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_comb1:O)                    | NONE(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_reg_1)                | 2     |
+read/fifo_reset_reg(read/fifo_reset_reg:Q)                                                                   | NONE(read/fifo/BU2/U0/grf.rf/rstblk/rd_rst_asreg)                | 2     |
+write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_comb(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_comb1:O)  | NONE(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/rd_rst_reg_1)       | 2     |
+write_multi/fifo_reset(write_multi/fifo_reset1:O)                                                            | NONE(write_multi/fifo_1/BU2/U0/grf.rf/rstblk/wr_rst_asreg)       | 2     |
+-------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 10.000ns (Maximum Frequency: 100.000MHz)
+   Minimum period: 9.983ns (Maximum Frequency: 100.170MHz)
    Minimum input arrival time before clock: 3.540ns
-   Maximum output required time after clock: 5.953ns
+   Maximum output required time after clock: 9.935ns
    Maximum combinational path delay: 5.887ns
 
 Timing Detail:
@@ -1971,10 +1914,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock_27mhz'
-  Clock period: 10.000ns (frequency: 100.000MHz)
-  Total number of paths / destination ports: 14562 / 924
+  Clock period: 9.983ns (frequency: 100.170MHz)
+  Total number of paths / destination ports: 17139 / 1029
 -------------------------------------------------------------------------
-Delay:               10.000ns (Levels of Logic = 8)
+Delay:               9.983ns (Levels of Logic = 8)
   Source:            sensor_init/fnc_sel_reg_0_1 (FF)
   Destination:       master/delay_reg_16 (FF)
   Source Clock:      clock_27mhz rising
@@ -1984,19 +1927,19 @@ Delay:               10.000ns (Levels of Logic = 8)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              3   0.568   1.009  sensor_init/fnc_sel_reg_0_1 (sensor_init/fnc_sel_reg_0_1)
-     LUT3_L:I0->LO         1   0.439   0.140  m_i2c_dev_address/Mmux_out_reg6_SW0 (N282)
+     FDE:C->Q              3   0.568   1.010  sensor_init/fnc_sel_reg_0_1 (sensor_init/fnc_sel_reg_0_1)
+     LUT3_L:I0->LO         1   0.439   0.140  m_i2c_dev_address/Mmux_out_reg6_SW0 (N301)
      LUT4:I3->O            4   0.439   0.747  m_i2c_dev_address/Mmux_out_reg6 (i2c_dev_address<5>)
-     MUXF5:S->O            1   0.699   0.557  master/data_in_ready_next_or00001_SW0 (N332)
-     LUT4_D:I3->LO         1   0.439   0.140  master/phy_start_bit1_SW0 (N505)
-     LUT4:I3->O           10   0.439   0.920  master/phy_start_bit1 (master/phy_start_bit)
-     LUT4:I2->O            2   0.439   0.742  master/delay_next<8>1111 (master/N711)
+     MUXF5:S->O            1   0.699   0.557  master/data_in_ready_next_or00001_SW0 (N353)
+     LUT4_D:I3->LO         1   0.439   0.140  master/phy_start_bit1_SW0 (N691)
+     LUT4:I3->O            9   0.439   0.903  master/phy_start_bit1 (master/phy_start_bit)
+     LUT4:I3->O            2   0.439   0.742  master/delay_next<8>1111 (master/N711)
      LUT4:I3->O           16   0.439   1.035  master/delay_next<8>140 (master/N0)
      LUT4:I2->O            1   0.439   0.000  master/delay_next<8> (master/delay_next<8>)
      FDR:D                     0.370          master/delay_reg_8
     ----------------------------------------
-    Total                     10.000ns (4.710ns logic, 5.290ns route)
-                                       (47.1% logic, 52.9% route)
+    Total                      9.983ns (4.710ns logic, 5.273ns route)
+                                       (47.2% logic, 52.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
@@ -2020,22 +1963,25 @@ Offset:              3.540ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
-  Total number of paths / destination ports: 5 / 3
+  Total number of paths / destination ports: 37 / 7
 -------------------------------------------------------------------------
-Offset:              5.953ns (Levels of Logic = 1)
-  Source:            sensor_init/fifo_read_en_reg (FF)
-  Destination:       user3<4> (PAD)
+Offset:              9.935ns (Levels of Logic = 4)
+  Source:            sensor_init/instruction_count_FFd7 (FF)
+  Destination:       led<1> (PAD)
   Source Clock:      clock_27mhz rising
 
-  Data Path: sensor_init/fifo_read_en_reg to user3<4>
+  Data Path: sensor_init/instruction_count_FFd7 to led<1>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             18   0.568   1.023  sensor_init/fifo_read_en_reg (sensor_init/fifo_read_en_reg)
-     OBUF:I->O                 4.361          user3_4_OBUF (user3<4>)
+     FDE:C->Q             26   0.568   1.357  sensor_init/instruction_count_FFd7 (sensor_init/instruction_count_FFd7)
+     LUT2_D:I0->O          6   0.439   1.079  sensor_init/data_out_reg_mux0000<7>212 (sensor_init/N50)
+     LUT4_D:I0->O          2   0.439   0.735  sensor_init/data_out_reg_or00001 (sensor_init/data_out_reg_or0000)
+     LUT3:I2->O            1   0.439   0.517  led_not0001<1>1 (led_1_OBUF)
+     OBUF:I->O                 4.361          led_1_OBUF (led<1>)
     ----------------------------------------
-    Total                      5.953ns (4.929ns logic, 1.023ns route)
-                                       (82.8% logic, 17.2% route)
+    Total                      9.935ns (6.246ns logic, 3.689ns route)
+                                       (62.9% logic, 37.1% route)
 
 =========================================================================
 Timing constraint: Default path analysis
@@ -2058,15 +2004,15 @@ Delay:               5.887ns (Levels of Logic = 2)
 =========================================================================
 
 
-Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 9.31 secs
+Total REAL time to Xst completion: 14.00 secs
+Total CPU time to Xst completion: 13.12 secs
  
 --> 
 
 
-Total memory usage is 503676 kilobytes
+Total memory usage is 521692 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  476 (   0 filtered)
-Number of infos    :   71 (   0 filtered)
+Number of warnings :  405 (   0 filtered)
+Number of infos    :   66 (   0 filtered)
 

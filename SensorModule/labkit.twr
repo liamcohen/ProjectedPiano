@@ -37,10 +37,10 @@ Setup/Hold to clock clock_27mhz
             |  Setup to  |  Hold to   |                    | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s)   | Phase  |
 ------------+------------+------------+--------------------+--------+
-button0     |    2.907(R)|   -0.727(R)|analyzer3_clock_OBUF|   0.000|
-switch<0>   |    6.517(R)|   -4.411(R)|analyzer3_clock_OBUF|   0.000|
-user3<0>    |    1.343(R)|   -1.071(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>    |    1.020(R)|   -0.748(R)|analyzer3_clock_OBUF|   0.000|
+button0     |    2.844(R)|   -0.739(R)|analyzer3_clock_OBUF|   0.000|
+switch<0>   |    5.784(R)|   -3.747(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |    2.389(R)|   -2.117(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |    2.056(R)|   -1.784(R)|analyzer3_clock_OBUF|   0.000|
 ------------+------------+------------+--------------------+--------+
 
 Clock clock_27mhz to Pad
@@ -48,9 +48,13 @@ Clock clock_27mhz to Pad
             | clk (edge) |                    | Clock  |
 Destination |   to PAD   |Internal Clock(s)   | Phase  |
 ------------+------------+--------------------+--------+
-user3<0>    |   14.459(R)|analyzer3_clock_OBUF|   0.000|
-user3<1>    |   14.148(R)|analyzer3_clock_OBUF|   0.000|
-user3<4>    |   11.913(R)|analyzer3_clock_OBUF|   0.000|
+led<0>      |   18.235(R)|analyzer3_clock_OBUF|   0.000|
+led<1>      |   17.316(R)|analyzer3_clock_OBUF|   0.000|
+led<2>      |   16.962(R)|analyzer3_clock_OBUF|   0.000|
+led<3>      |   18.135(R)|analyzer3_clock_OBUF|   0.000|
+user3<0>    |   15.050(R)|analyzer3_clock_OBUF|   0.000|
+user3<1>    |   15.389(R)|analyzer3_clock_OBUF|   0.000|
+user3<4>    |   11.521(R)|analyzer3_clock_OBUF|   0.000|
 ------------+------------+--------------------+--------+
 
 Clock to Setup on destination clock clock_27mhz
@@ -58,7 +62,7 @@ Clock to Setup on destination clock clock_27mhz
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock_27mhz    |    7.854|         |         |         |
+clock_27mhz    |    8.010|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
@@ -69,14 +73,14 @@ clock_27mhz    |analyzer3_clock|    9.905|
 ---------------+---------------+---------+
 
 
-Analysis completed Fri Dec  1 16:00:55 2017 
+Analysis completed Mon Dec  4 22:03:33 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 352 MB
+Peak Memory Usage: 359 MB
 
 
 

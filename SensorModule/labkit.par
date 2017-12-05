@@ -1,7 +1,7 @@
 Release 10.1.03 par K.39 (lin64)
 Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
 
-eecs-digital-49::  Fri Dec 01 16:00:27 2017
+eecs-digital-49::  Mon Dec 04 22:03:09 2017
 
 par -w -intstyle ise -ol std -t 1 labkit_map.ncd labkit.ncd labkit.pcf 
 
@@ -35,7 +35,7 @@ Device Utilization Summary:
       Number of LOCed IOBs                 576 out of 576   100%
 
    Number of RAMB16s                         1 out of 144     1%
-   Number of SLICEs                        483 out of 33792   1%
+   Number of SLICEs                        694 out of 33792   2%
 
 
 Overall effort level (-ol):   Standard 
@@ -377,71 +377,71 @@ WARNING:Par:288 - The signal user4<9>_IBUF has no load.  PAR will not attempt to
 Starting Placer
 
 Phase 1.1
-Phase 1.1 (Checksum:14ae16b) REAL time: 1 secs 
+Phase 1.1 (Checksum:14ea275) REAL time: 1 secs 
 
 Phase 2.7
-Phase 2.7 (Checksum:14ae16b) REAL time: 1 secs 
+Phase 2.7 (Checksum:14ea275) REAL time: 1 secs 
 
 Phase 3.31
-Phase 3.31 (Checksum:14ae16b) REAL time: 1 secs 
+Phase 3.31 (Checksum:14ea275) REAL time: 1 secs 
 
 Phase 4.2
 
 ......
-Phase 4.2 (Checksum:14b6e32) REAL time: 1 secs 
+Phase 4.2 (Checksum:14f2f3c) REAL time: 2 secs 
 
 Phase 5.30
-Phase 5.30 (Checksum:14b6e32) REAL time: 1 secs 
+Phase 5.30 (Checksum:14f2f3c) REAL time: 2 secs 
 
 Phase 6.3
-Phase 6.3 (Checksum:14b6e32) REAL time: 2 secs 
+Phase 6.3 (Checksum:14f2f3c) REAL time: 2 secs 
 
 Phase 7.5
-Phase 7.5 (Checksum:14b6e32) REAL time: 2 secs 
+Phase 7.5 (Checksum:14f2f3c) REAL time: 2 secs 
 
 Phase 8.8
 ..............
-.........
+........
 ....
-.............
-.........................
-.............
-Phase 8.8 (Checksum:2e7c91a) REAL time: 6 secs 
+........................
+...........
+....................
+Phase 8.8 (Checksum:38113d5) REAL time: 6 secs 
 
 Phase 9.5
-Phase 9.5 (Checksum:2e7c91a) REAL time: 6 secs 
+Phase 9.5 (Checksum:38113d5) REAL time: 6 secs 
 
 Phase 10.18
-Phase 10.18 (Checksum:2e87adb) REAL time: 7 secs 
+Phase 10.18 (Checksum:38277b2) REAL time: 7 secs 
 
 Phase 11.5
-Phase 11.5 (Checksum:2e87adb) REAL time: 7 secs 
+Phase 11.5 (Checksum:38277b2) REAL time: 7 secs 
 
 Phase 12.27
-Phase 12.27 (Checksum:2e87adb) REAL time: 7 secs 
+Phase 12.27 (Checksum:38277b2) REAL time: 7 secs 
 
 Phase 13.24
-Phase 13.24 (Checksum:2e87adb) REAL time: 7 secs 
+Phase 13.24 (Checksum:38277b2) REAL time: 7 secs 
 
-REAL time consumed by placer: 7 secs 
+REAL time consumed by placer: 8 secs 
 CPU  time consumed by placer: 7 secs 
 Writing design to file labkit.ncd
 
 
-Total REAL time to Placer completion: 7 secs 
-Total CPU time to Placer completion: 7 secs 
+Total REAL time to Placer completion: 8 secs 
+Total CPU time to Placer completion: 8 secs 
 
 Starting Router
 
-Phase 1: 3971 unrouted;       REAL time: 14 secs 
+Phase 1: 5568 unrouted;       REAL time: 14 secs 
 
-Phase 2: 3383 unrouted;       REAL time: 14 secs 
+Phase 2: 4948 unrouted;       REAL time: 14 secs 
 
-Phase 3: 812 unrouted;       REAL time: 15 secs 
+Phase 3: 1346 unrouted;       REAL time: 14 secs 
 
-Phase 4: 812 unrouted; (58101)      REAL time: 15 secs 
+Phase 4: 1346 unrouted; (74107)      REAL time: 14 secs 
 
-Phase 5: 819 unrouted; (0)      REAL time: 15 secs 
+Phase 5: 1367 unrouted; (0)      REAL time: 14 secs 
 
 Phase 6: 0 unrouted; (0)      REAL time: 15 secs 
 
@@ -474,7 +474,7 @@ Generating Clock Report
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
 |analyzer3_clock_OBUF |              |      |      |            |             |
-|                     |     BUFGMUX3P| No   |  306 |  0.275     |  2.497      |
+|                     |     BUFGMUX3P| No   |  353 |  0.329     |  2.533      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -493,8 +493,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |  Check  | Worst Case |  Best Case | Timing |   Timing   
                                             |         |    Slack   | Achievable | Errors |    Score   
 ------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net ana | SETUP   |         N/A|     7.854ns|     N/A|           0
-  lyzer3_clock_OBUF                         | HOLD    |     1.248ns|            |       0|           0
+  Autotimespec constraint for clock net ana | SETUP   |         N/A|     8.010ns|     N/A|           0
+  lyzer3_clock_OBUF                         | HOLD    |     1.236ns|            |       0|           0
 ------------------------------------------------------------------------------------------------------
 
 
@@ -512,7 +512,7 @@ WARNING:Par:283 - There are 330 loadless signals in this design. This design wil
 Total REAL time to PAR completion: 22 secs 
 Total CPU time to PAR completion: 18 secs 
 
-Peak Memory Usage:  600 MB
+Peak Memory Usage:  606 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.

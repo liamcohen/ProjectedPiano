@@ -161,6 +161,8 @@ module get_spad_info(
 	parameter STOP_VARIABLE = 8'h00;
 	parameter SPAD_COUNT = 8'h01;
 	parameter SPAD_TYPE_IS_APERTURE = 8'h02;
+	parameter REF_SPAD_MAP = 8'h03;
+	parameter NEXT_VARIABLE = 9'h09;
 	 
 	//define state parameters
 	parameter S_RESET = 2'b00;
@@ -637,6 +639,7 @@ module get_spad_info(
 							if(!write_done) begin
 								instruction_count <= instruction_count;
 								write_start_reg <= 1'b0;
+								state <= S_WRITE;
 							end
 							else begin
 								write_start_reg <= 1'b1;
@@ -645,16 +648,22 @@ module get_spad_info(
 								data_out_reg <= 8'h00; //set LSB
 								
 								instruction_count <= 4'b0000;
+								state <= S_DONE;
 							end
-							state <= S_DONE;
 						end
 						default: state <= S_RESET;
 					endcase
 				end
 				S_DONE: begin
-					state <= S_RESET;
-					write_start_reg <= 1'b0;
-					done_reg <= 1'b1;
+					if(!write_done) begin
+						write_start_reg <= 1'b0;
+						state <= S_DONE;
+					end
+					else begin
+						state <= S_RESET;
+						write_start_reg <= 1'b0;
+						done_reg <= 1'b1;
+					end
 				end
 			endcase
 		end

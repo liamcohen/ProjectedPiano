@@ -75,7 +75,10 @@ module VL53L0X_INIT(
 	 output ram_wr_en,
 	 
 	 //status
-	 output init_error
+	 output init_error,
+	 
+	 //debug
+	 output [3:0] instruction_count_debug
     );
 	 
 	/////////////////////////////////////////////////////////////////////////////////
@@ -164,6 +167,8 @@ module VL53L0X_INIT(
 	parameter STOP_VARIABLE = 8'h00;
 	parameter SPAD_COUNT = 8'h01;
 	parameter SPAD_TYPE_IS_APERTURE = 8'h02;
+	parameter REF_SPAD_MAP = 8'h03;
+	parameter NEXT_VARIABLE = 9'h09;
 	
 
 	//define state parameters
@@ -206,7 +211,7 @@ module VL53L0X_INIT(
 	
 	////////////////////////////////////////////////////////////////////////////
 	// Local ROM to store large number of register writes
-	///////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
 	wire [15:0] rom_data;
 	reg [7:0] rom_addr_reg = 8'h00; 
 	
@@ -218,18 +223,14 @@ module VL53L0X_INIT(
 	
 	////////////////////////////////////////////////////////////////////////////
 	// Sub-FSM GetSPADInfo
-	///////////////////////////////////////////////////////////////////////////
-	wire spad_start;
+	////////////////////////////////////////////////////////////////////////////
+	reg spad_start = 1'b0;
 	wire spad_done;
 	
 	wire write_start_spad;
-	wire write_done_spad;
 	wire write_multi_start_spad;
-	wire write_multi_done_spad;
 	wire read_start_spad;
-	wire read_done_spad;
 	
-	wire timer_exp_spad;
 	wire timer_start_spad;
 	wire [3:0] timer_param_spad;
 	wire timer_reset_spad;
@@ -243,19 +244,10 @@ module VL53L0X_INIT(
 	wire [7:0] fifo_data_out_spad;
 	wire fifo_wr_en_spad;
 	wire fifo_ext_reset_spad;
-	wire fifo_full_spad;
-	wire fifo_write_ack_spad;
-	wire fifo_overflow_spad;
-		
-	wire [7:0] fifo_data_in_spad;
 	wire fifo_read_en_spad;
-	wire fifo_empty_spad;
-	wire fifo_read_valid_spad;
-	wire fifo_underflow_spad;
 	
 	wire [7:0] ram_addr_spad;
 	wire [7:0] ram_data_out_spad;
-	wire [7:0] ram_data_in_spad;
 	wire ram_wr_en_spad;
 	
 	wire spad_error;
@@ -267,13 +259,13 @@ module VL53L0X_INIT(
 		.done(spad_done),
 		
 		.write_start(write_start_spad),
-		.write_done(write_done_spad),
+		.write_done(write_done),
 		.write_multi_start(write_multi_start_spad),
-		.write_multi_done(write_multi_done_spad),
+		.write_multi_done(write_multi_done),
 		.read_start(read_start_spad),
-		.read_done(read_done_spad),
+		.read_done(read_done),
 		
-		.timer_exp(timer_exp_spad),
+		.timer_exp(timer_exp),
 		.timer_start(timer_start_spad),
 		.timer_param(timer_param_spad),
 		.timer_reset(timer_reset_spad),
@@ -287,26 +279,28 @@ module VL53L0X_INIT(
 		.fifo_data_out(fifo_data_out_spad),
 		.fifo_wr_en(fifo_wr_en_spad),
 	   .fifo_ext_reset(fifo_ext_reset_spad),
-	   .fifo_full(fifo_full_spad),
-	   .fifo_write_ack(fifo_write_ack_spad),
-	   .fifo_overflow(fifo_overflow_spad),
+	   .fifo_full(fifo_full),
+	   .fifo_write_ack(fifo_write_ack),
+	   .fifo_overflow(fifo_overflow),
 		
-		.fifo_data_in(fifo_data_in_spad),
+		.fifo_data_in(fifo_data_in),
 	   .fifo_read_en(fifo_read_en_spad),
-	   .fifo_empty(fifo_empty_spad),
-	   .fifo_read_valid(fifo_read_valid_spad),
-	   .fifo_underflow(fifo_underflow_spad),
+	   .fifo_empty(fifo_empty),
+	   .fifo_read_valid(fifo_read_valid),
+	   .fifo_underflow(fifo_underflow),
 		
 		.ram_addr(ram_addr_spad),
 	   .ram_data_out(ram_data_out_spad),
-	   .ram_data_in(ram_data_in_spad),
+	   .ram_data_in(ram_data_in),
 	   .ram_wr_en(ram_wr_en_spad),
 		
 		.spad_error(spad_error)
-		
 	);
 	
-	//main FSM implementation
+	////////////////////////////////////////////////////////////////////////////
+	// Main FSM implementation
+	////////////////////////////////////////////////////////////////////////////
+	
 	always @(posedge clk) begin
 		if(reset | comm_error) state <= S_RESET;
 		else begin
@@ -342,6 +336,8 @@ module VL53L0X_INIT(
 					ram_wr_en_reg <= 1'b0;
 					
 					init_error_reg <= 1'b0;
+					
+					spad_start <= 1'b0;
 					
 					instruction_count <= 4'b0000;
 				end
@@ -592,8 +588,202 @@ module VL53L0X_INIT(
 				S_STATIC_INIT: begin
 					case(instruction_count)
 						4'b0000: begin
+							//shift FSM Control to getSPADInfo
+							spad_start <= 1'b1;
 							
+							write_start_reg <= write_start_spad;
+							write_multi_start_reg <= write_multi_start_spad;
+							read_start_reg <= read_start_spad;
+							
+							timer_start_reg <= timer_start_spad;
+							timer_param_reg <= timer_param_spad;
+							timer_reset_reg <= timer_reset_spad;
+							
+							reg_address_out_reg <= reg_address_out_spad;
+							data_out_reg <= data_out_spad;
+							n_bytes_reg <= n_bytes_spad;
+							
+							fnc_sel_reg <= fnc_sel_spad;
+							
+							fifo_data_out_reg <= fifo_data_out_spad;
+							fifo_wr_en_reg <= fifo_wr_en_spad;
+							fifo_ext_reset_reg <= fifo_ext_reset_spad;
+							fifo_read_en_reg <= fifo_read_en_spad;
+							
+							ram_addr_reg <= ram_addr_spad;
+							ram_data_out_reg <= ram_data_out_spad;
+							ram_wr_en_reg <= ram_wr_en_spad;
+							
+							instruction_count <= instruction_count + 1;
+							state <= S_STATIC_INIT;
 						end
+						4'b0001: begin
+							if(!spad_done) begin
+								//let spad-info fsm control outputs until it is finished.
+								spad_start <= 1'b0;
+								
+								write_start_reg <= write_start_spad;
+								write_multi_start_reg <= write_multi_start_spad;
+								read_start_reg <= read_start_spad;
+								
+								timer_start_reg <= timer_start_spad;
+								timer_param_reg <= timer_param_spad;
+								timer_reset_reg <= timer_reset_spad;
+								
+								reg_address_out_reg <= reg_address_out_spad;
+								data_out_reg <= data_out_spad;
+								n_bytes_reg <= n_bytes_spad;
+								
+								fnc_sel_reg <= fnc_sel_spad;
+								
+								fifo_data_out_reg <= fifo_data_out_spad;
+								fifo_wr_en_reg <= fifo_wr_en_spad;
+								fifo_ext_reset_reg <= fifo_ext_reset_spad;
+								fifo_read_en_reg <= fifo_read_en_spad;
+								
+								ram_addr_reg <= ram_addr_spad;
+								ram_data_out_reg <= ram_data_out_spad;
+								ram_wr_en_reg <= ram_wr_en_spad;
+								
+								state <= S_STATIC_INIT;
+								instruction_count <= instruction_count;
+							end
+							else begin
+								state <= S_STATIC_INIT;
+								instruction_count <= instruction_count + 1;
+							end
+						end
+						4'b0010: begin
+							//setup register read
+							read_start_reg <= 1'b1;
+							fnc_sel_reg <= 2'b01; //sel read
+							n_bytes_reg <= 4'b0101; //i2c read has off by one error -- will fix in future, should be 4'b0110
+							reg_address_out_reg <= GLOBAL_CONFIG_SPAD_ENABLES_REF_0;
+								
+							instruction_count <= instruction_count + 1;
+							state <= S_STATIC_INIT;
+						end
+						4'b0011: begin
+							if(!read_done) begin
+								instruction_count <= instruction_count;
+								read_start_reg <= 1'b0;
+							end
+							else begin
+								fifo_read_en_reg <= 1'b1;
+								instruction_count <= instruction_count + 1;
+							end
+							ram_addr_reg <= REF_SPAD_MAP;
+							state <= S_STATIC_INIT;
+						end
+						4'b0100: begin
+							if(!fifo_read_valid) begin
+								instruction_count <= instruction_count;
+								fifo_read_en_reg <= 1'b0;
+							end
+							else begin
+								ram_data_out_reg <= fifo_data_in;
+								ram_wr_en_reg <= 1'b1;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						4'b0101: begin
+							fifo_read_en_reg <= 1'b1;
+							ram_wr_en_reg <= 1'b0;
+							
+							if(ram_addr_reg <= (REF_SPAD_MAP + 2))instruction_count <= instruction_count - 1;
+							else instruction_count <= instruction_count + 1;
+							
+							ram_addr_reg <= ram_addr_reg + 1;
+							state <= S_STATIC_INIT;
+						end
+						4'b0110: begin
+							if(!fifo_read_valid) begin
+								instruction_count <= instruction_count;
+								fifo_read_en_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'hFF;
+								data_out_reg <= 8'h01;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						4'b0111: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= DYNAMIC_SPAD_REF_EN_START_OFFSET;
+								data_out_reg <= 8'h00;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						4'b1000: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= DYNAMIC_SPAD_NUM_REQUESTED_REF_SPAD;
+								data_out_reg <= 8'h2C;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						4'b1001: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'hFF;
+								data_out_reg <= 8'h00;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						4'b1010: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= GLOBAL_CONFIG_REF_EN_START_SELECT;
+								data_out_reg <= 8'hB4;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						4'b1011: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+								state <= S_STATIC_INIT;
+							end
+							else begin
+								state <= S_RESET;
+							end
+						end
+						default: state <= S_RESET;
 					endcase
 				end
 				S_PERFORM_REF_CALIBRATION: begin
@@ -625,5 +815,6 @@ module VL53L0X_INIT(
 	assign fifo_ext_reset = fifo_ext_reset_reg;
 	
 	assign init_error = init_error_reg;
+	assign instruction_count_debug = instruction_count;
 
 endmodule
