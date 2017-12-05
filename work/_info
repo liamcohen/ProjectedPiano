@@ -1,0 +1,122 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/afs/athena.mit.edu/user/s/r/srflana/Documents/6.111work/Labs/Lab5/Lab5
+vac97
+!s100 l4oD9X[_IW1<T8[QDnZLR0
+I8Do@:Sdi01MPnZ;Wz:lg33
+VYXk6kHT]QSF:^OA@:mF2J1
+Z1 w1508816666
+Z2 8lab5.v
+Z3 Flab5.v
+L0 109
+Z4 OE;L;6.4a;39
+r1
+!s85 0
+31
+Z5 o+acc -L mtiAvm -L mtiOvm -L mtiUPF
+vac97commands
+!s100 @OcCEK^n3J7;63F2;7=mW3
+IdeJUU97kgV==VQ;6OFk9W2
+VfgQQb6>bl@1HVOemOfkS92
+R1
+R2
+R3
+L0 220
+R4
+r1
+!s85 0
+31
+R5
+vcoeffs31
+!s100 6a<?n=V17VSZ:M8ogUc=P2
+IdH1RgTUBXz7nhS8:G];k02
+V?D@h_E>QDQk0Z_?cj99J20
+w0
+R2
+R3
+L0 864
+R4
+r1
+!s85 0
+31
+R5
+vdebounce
+!s100 M[_W2R5l=cGg<W^mm1kTh3
+I82EaBlS?^?Ehak3eMIlAQ2
+VnlDBH;]395Ea:=dmAZD@M2
+R1
+R2
+R3
+L0 9
+R4
+r1
+!s85 0
+31
+R5
+vfir31
+!s100 F2cz88QcMZR9<MPCO@8gS1
+Io?UjcB7bH=cFA=X6nOPIH0
+Ve=2Z]z@8CGKjHY>ATZ7KA0
+w0
+R2
+R3
+L0 825
+R4
+r1
+!s85 0
+31
+R5
+vlab5audio
+!s100 EmZ7HD_c@WS3FAzi8e@Pz0
+ICzjDI@og`5PL@iJ?2SJ7_2
+V>6;O4:[B[bV_BAmCmPcmg1
+R1
+R2
+R3
+L0 42
+R4
+r1
+!s85 0
+31
+R5
+vmybram
+!s100 ^2Z:0U9MP^>JL:3A?k<U<0
+Ii^Weh;U[k>j?24N5nc:dB2
+VGM9]TZo^RUBWUlL>G2B`40
+w0
+R2
+R3
+L0 798
+R4
+r1
+!s85 0
+31
+R5
+vrecorder
+!s100 Sn5m?Ah>H3f1?:Mh8lR6z1
+I]TWV0Tz5L_zzbdaZ=TF?[1
+VHZ7hlK^dYdoACD2hB0=mR3
+w0
+R2
+R3
+L0 708
+R4
+r1
+!s85 0
+31
+R5
+vtone750hz
+!s100 c:<QDH0mCF@E4`cEoWARz3
+I@m<5VienkWYc3U]4aGKLf2
+V_miH[zKPGGdQYg5`n1Z[X3
+R1
+R2
+R3
+L0 284
+R4
+r1
+!s85 0
+31
+R5
