@@ -1,0 +1,1888 @@
+Release 10.1.03 - xst K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to /afs/athena.mit.edu/user/s/r/srflana/Documents/6.111work/Labs/Final Project/Synthesizedv2/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.03 secs
+ 
+--> 
+Parameter xsthdpdir set to /afs/athena.mit.edu/user/s/r/srflana/Documents/6.111work/Labs/Final Project/Synthesizedv2/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.03 secs
+ 
+--> 
+Reading design: lab5.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+     9.1) Device utilization summary
+     9.2) Partition Resource Summary
+     9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "lab5.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "lab5"
+Output Format                      : NGC
+Target Device                      : xc2v6000-4-bf957
+
+---- Source Options
+Top Module Name                    : lab5
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : lut
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : YES
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : YES
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Convert Tristates To Logic         : Yes
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Library Search Order               : lab5.lso
+Keep Hierarchy                     : NO
+Netlist Hierarchy                  : as_optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ready_generator.v" in library work
+Compiling verilog file "play_sound.v" in library work
+Module <ready_generator> compiled
+Compiling verilog file "lab5.v" in library work
+Module <play_sound> compiled
+Module <debounce> compiled
+Module <lab5audio> compiled
+Module <ac97> compiled
+Module <ac97commands> compiled
+Module <tone750hz> compiled
+Module <lab5> compiled
+Module <fsm> compiled
+Module <mybram> compiled
+Module <fir31> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/xvga.v" in library work
+Module <coeffs31> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/visual.v" in library work
+Module <xvga> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/right_key.v" in library work
+Module <visual> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/piano.v" in library work
+Module <right_key> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/middle_key.v" in library work
+Module <piano> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/left_key.v" in library work
+Module <middle_key> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/key_colors.v" in library work
+Module <left_key> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/keystoning.v" in library work
+Module <key_colors> compiled
+Compiling verilog file "../ProjectedPiano-VisualModule/final_project/blob.v" in library work
+Module <keystoning> compiled
+Module <blob> compiled
+No errors in compilation
+Analysis of file <"lab5.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <lab5> in library <work>.
+
+Analyzing hierarchy for module <debounce> in library <work>.
+
+Analyzing hierarchy for module <lab5audio> in library <work>.
+
+Analyzing hierarchy for module <fsm> in library <work> with parameters.
+	LOGSIZE = "00000000000000000000000000010011"
+	MAX_MEM_ADDR = "00000000000001111111111111111111"
+	PLAYBACK = "00000000000000000000000000000010"
+	RECORD = "00000000000000000000000000000001"
+	USER = "00000000000000000000000000000000"
+	WIDTH = "00000000000000000000000000100100"
+
+Analyzing hierarchy for module <visual> in library <work>.
+
+Analyzing hierarchy for module <play_sound> in library <work>.
+
+Analyzing hierarchy for module <ac97> in library <work>.
+
+Analyzing hierarchy for module <ac97commands> in library <work>.
+
+Analyzing hierarchy for module <xvga> in library <work>.
+
+Analyzing hierarchy for module <keystoning> in library <work> with parameters.
+	BOARD_HEIGHT = "1100000000"
+	KEY_START_VERTICAL = "0011000000"
+	PIANO_HALF = "00000000000000000000001000000001"
+	PIANO_LENGTH = "00000000000000000000010000000010"
+	PIANO_MIDDLE = "00000000000000000000001000000001"
+	SPACE = "00000000000000000000000000000100"
+	WHITE_KEY_HEIGHT = "0011000000"
+	WHITE_KEY_WIDTH = "00000000000000000000000001100011"
+
+Analyzing hierarchy for module <ready_generator> in library <work>.
+
+Analyzing hierarchy for module <tone750hz> in library <work>.
+
+Analyzing hierarchy for module <piano> in library <work> with parameters.
+	BLACK = "000000000000000000000000"
+	BLACK_KEY_HEIGHT = "0001100000"
+	BLACK_KEY_START_HORIZONTAL = "00000000000000000000000001000101"
+	BLACK_KEY_WIDTH = "00000000000000000000000000111100"
+	BOARD_HEIGHT = "1100000000"
+	BOARD_WIDTH = "10000000000"
+	KEY_START_VERTICAL = "0011000000"
+	PRESSED = "111111110000000000000000"
+	SPACING = "00000000000000000000000001100111"
+	WHITE = "111111111111111111111111"
+	WHITE_KEY_HEIGHT = "0011000000"
+	WHITE_KEY_START_HORIZONTAL = "00000000000000000000000000000000"
+	WHITE_KEY_WIDTH = "00000000000000000000000001100011"
+
+Analyzing hierarchy for module <key_colors> in library <work> with parameters.
+	BLACK = "000000000000000000000000"
+	RED = "111111110000000000000000"
+	WHITE = "111111111111111111111111"
+
+Analyzing hierarchy for module <left_key> in library <work> with parameters.
+	BLACK_KEY_HEIGHT = "0001100000"
+	BLACK_KEY_WIDTH = "00000000000000000000000000011110"
+	HEIGHT = "0011000000"
+	WHITE_KEY_WIDTH = "00000000000000000000000001100011"
+	WIDTH = "00000000000000000000000001100011"
+
+Analyzing hierarchy for module <blob> in library <work> with parameters.
+	HEIGHT = "00000000000000000000000001011111"
+	WIDTH = "00000000000000000000000000111100"
+
+Analyzing hierarchy for module <middle_key> in library <work> with parameters.
+	BLACK_KEY_HEIGHT = "0001100000"
+	BLACK_KEY_WIDTH = "00000000000000000000000000011110"
+	HEIGHT = "0011000000"
+	WHITE_KEY_WIDTH = "00000000000000000000000001100011"
+	WIDTH = "00000000000000000000000001100011"
+
+Analyzing hierarchy for module <right_key> in library <work> with parameters.
+	BLACK_KEY_HEIGHT = "0001100000"
+	BLACK_KEY_WIDTH = "00000000000000000000000000011110"
+	HEIGHT = "0011000000"
+	WHITE_KEY_WIDTH = "00000000000000000000000001100011"
+	WIDTH = "00000000000000000000000001100011"
+
+WARNING:Xst:2591 - "../ProjectedPiano-VisualModule/final_project/visual.v" line 41: attribute on instance <CLKFX_DIVIDE> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "../ProjectedPiano-VisualModule/final_project/visual.v" line 41: attribute on instance <CLKFX_MULTIPLY> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "../ProjectedPiano-VisualModule/final_project/visual.v" line 41: attribute on instance <CLKIN_PERIOD> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "../ProjectedPiano-VisualModule/final_project/visual.v" line 41: attribute on instance <CLK_FEEDBACK> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <lab5>.
+Module <lab5> is correct for synthesis.
+ 
+    Set user-defined property "INIT =  FFFF" for instance <reset_sr> in unit <lab5>.
+Analyzing module <debounce> in library <work>.
+Module <debounce> is correct for synthesis.
+ 
+Analyzing module <lab5audio> in library <work>.
+Module <lab5audio> is correct for synthesis.
+ 
+Analyzing module <ac97> in library <work>.
+INFO:Xst:1432 - Contents of array <l_cmd_addr> may be accessed with a negative index, causing simulation mismatch.
+INFO:Xst:1433 - Contents of array <l_cmd_addr> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+INFO:Xst:1432 - Contents of array <l_cmd_data> may be accessed with a negative index, causing simulation mismatch.
+INFO:Xst:1433 - Contents of array <l_cmd_data> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+INFO:Xst:1432 - Contents of array <l_right_data> may be accessed with a negative index, causing simulation mismatch.
+INFO:Xst:1433 - Contents of array <l_right_data> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+Module <ac97> is correct for synthesis.
+ 
+    Set user-defined property "INIT =  0" for signal <ready> in unit <ac97>.
+    Set user-defined property "INIT =  00000" for signal <left_in_data> in unit <ac97>.
+    Set user-defined property "INIT =  00000" for signal <right_in_data> in unit <ac97>.
+    Set user-defined property "INIT =  0" for signal <ac97_sdata_out> in unit <ac97>.
+    Set user-defined property "INIT =  0" for signal <ac97_synch> in unit <ac97>.
+    Set user-defined property "INIT =  0000" for signal <bit_count>.
+    Set user-defined property "INIT =  0" for signal <l_left_v>.
+    Set user-defined property "INIT =  0" for signal <l_right_v>.
+    Set user-defined property "INIT =  0" for signal <l_cmd_v>.
+Analyzing module <ac97commands> in library <work>.
+Module <ac97commands> is correct for synthesis.
+ 
+    Set user-defined property "INIT =  0" for signal <command_valid> in unit <ac97commands>.
+    Set user-defined property "INIT =  0000" for signal <state>.
+    Set user-defined property "INIT =  0" for signal <command>.
+Analyzing module <fsm> in library <work>.
+	LOGSIZE = 32'sb00000000000000000000000000010011
+	MAX_MEM_ADDR = 32'sb00000000000001111111111111111111
+	PLAYBACK = 32'sb00000000000000000000000000000010
+	RECORD = 32'sb00000000000000000000000000000001
+	USER = 32'sb00000000000000000000000000000000
+	WIDTH = 32'sb00000000000000000000000000100100
+Module <fsm> is correct for synthesis.
+ 
+Analyzing module <visual> in library <work>.
+Module <visual> is correct for synthesis.
+ 
+    Set user-defined property "CLKDV_DIVIDE =  2.0000000000000000" for instance <vclk1> in unit <visual>.
+    Set user-defined property "CLKFX_DIVIDE =  10" for instance <vclk1> in unit <visual>.
+    Set user-defined property "CLKFX_MULTIPLY =  24" for instance <vclk1> in unit <visual>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <vclk1> in unit <visual>.
+    Set user-defined property "CLKIN_PERIOD =  37.0000000000000000" for instance <vclk1> in unit <visual>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <vclk1> in unit <visual>.
+    Set user-defined property "CLK_FEEDBACK =  NONE" for instance <vclk1> in unit <visual>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <vclk1> in unit <visual>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <vclk1> in unit <visual>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <vclk1> in unit <visual>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <vclk1> in unit <visual>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <vclk1> in unit <visual>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <vclk1> in unit <visual>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <vclk1> in unit <visual>.
+    Set user-defined property "SIM_MODE =  SAFE" for instance <vclk1> in unit <visual>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <vclk1> in unit <visual>.
+Analyzing module <xvga> in library <work>.
+Module <xvga> is correct for synthesis.
+ 
+Analyzing module <keystoning> in library <work>.
+	BOARD_HEIGHT = 10'b1100000000
+	KEY_START_VERTICAL = 10'b0011000000
+	PIANO_HALF = 32'sb00000000000000000000001000000001
+	PIANO_LENGTH = 32'sb00000000000000000000010000000010
+	PIANO_MIDDLE = 32'sb00000000000000000000001000000001
+	SPACE = 32'sb00000000000000000000000000000100
+	WHITE_KEY_HEIGHT = 10'b0011000000
+	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001100011
+Module <keystoning> is correct for synthesis.
+ 
+Analyzing module <piano> in library <work>.
+	BLACK = 24'b000000000000000000000000
+	BLACK_KEY_HEIGHT = 10'b0001100000
+	BLACK_KEY_START_HORIZONTAL = 32'sb00000000000000000000000001000101
+	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000111100
+	BOARD_HEIGHT = 10'b1100000000
+	BOARD_WIDTH = 11'b10000000000
+	KEY_START_VERTICAL = 10'b0011000000
+	PRESSED = 24'b111111110000000000000000
+	SPACING = 32'sb00000000000000000000000001100111
+	WHITE = 24'b111111111111111111111111
+	WHITE_KEY_HEIGHT = 10'b0011000000
+	WHITE_KEY_START_HORIZONTAL = 32'sb00000000000000000000000000000000
+	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001100011
+Module <piano> is correct for synthesis.
+ 
+Analyzing module <key_colors> in library <work>.
+	BLACK = 24'b000000000000000000000000
+	RED = 24'b111111110000000000000000
+	WHITE = 24'b111111111111111111111111
+Module <key_colors> is correct for synthesis.
+ 
+Analyzing module <left_key> in library <work>.
+	BLACK_KEY_HEIGHT = 10'b0001100000
+	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000011110
+	HEIGHT = 10'b0011000000
+	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001100011
+	WIDTH = 32'sb00000000000000000000000001100011
+Module <left_key> is correct for synthesis.
+ 
+Analyzing module <blob> in library <work>.
+	HEIGHT = 32'b00000000000000000000000001011111
+	WIDTH = 32'sb00000000000000000000000000111100
+Module <blob> is correct for synthesis.
+ 
+Analyzing module <middle_key> in library <work>.
+	BLACK_KEY_HEIGHT = 10'b0001100000
+	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000011110
+	HEIGHT = 10'b0011000000
+	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001100011
+	WIDTH = 32'sb00000000000000000000000001100011
+Module <middle_key> is correct for synthesis.
+ 
+Analyzing module <right_key> in library <work>.
+	BLACK_KEY_HEIGHT = 10'b0001100000
+	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000011110
+	HEIGHT = 10'b0011000000
+	WHITE_KEY_WIDTH = 32'sb00000000000000000000000001100011
+	WIDTH = 32'sb00000000000000000000000001100011
+Module <right_key> is correct for synthesis.
+ 
+Analyzing module <play_sound> in library <work>.
+Module <play_sound> is correct for synthesis.
+ 
+Analyzing module <ready_generator> in library <work>.
+Module <ready_generator> is correct for synthesis.
+ 
+Analyzing module <tone750hz> in library <work>.
+Module <tone750hz> is correct for synthesis.
+ 
+    Set user-defined property "INIT =  00000" for signal <pcm_data> in unit <tone750hz>.
+    Set user-defined property "INIT =  00" for signal <index>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2561 - Always blocking tristate driving signal <flash_data> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user2> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user3> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <user4> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <ram1_data> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <daughtercard> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <systemace_data> in unit <lab5> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <tv_in_i2c_data> in unit <lab5> is removed.
+INFO:Xst:2679 - Register <data_out<35>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<34>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<33>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<32>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<31>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<30>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<29>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<28>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<27>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<26>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<25>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<24>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<23>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<22>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<21>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<20>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<19>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<18>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <data_out<17>> in unit <fsm> has a constant value of Z during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <debounce>.
+    Related source file is "lab5.v".
+    Found 1-bit register for signal <clean>.
+    Found 19-bit up counter for signal <count>.
+    Found 1-bit xor2 for signal <count$xor0000> created at line 22.
+    Found 1-bit register for signal <new>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   2 D-type flip-flop(s).
+Unit <debounce> synthesized.
+
+
+Synthesizing Unit <fsm>.
+    Related source file is "lab5.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <data_in<35:17>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <old_playback> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <filter_output> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <filter_input> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 17-bit register for signal <key_num_fsm>.
+    Found 2-bit register for signal <state>.
+    Found 19-bit register for signal <address>.
+    Found 36-bit tristate buffer for signal <data_out>.
+    Found 1-bit register for signal <we_ZBT>.
+    Found 19-bit adder for signal <address$share0000> created at line 802.
+    Found 3-bit up counter for signal <counter>.
+    Found 19-bit register for signal <max_used_mem>.
+    Found 1-bit register for signal <Mtridata_data_out<0>>.
+    Found 1-bit register for signal <Mtridata_data_out<10>>.
+    Found 1-bit register for signal <Mtridata_data_out<11>>.
+    Found 1-bit register for signal <Mtridata_data_out<12>>.
+    Found 1-bit register for signal <Mtridata_data_out<13>>.
+    Found 1-bit register for signal <Mtridata_data_out<14>>.
+    Found 1-bit register for signal <Mtridata_data_out<15>>.
+    Found 1-bit register for signal <Mtridata_data_out<16>>.
+    Found 1-bit register for signal <Mtridata_data_out<1>>.
+    Found 1-bit register for signal <Mtridata_data_out<2>>.
+    Found 1-bit register for signal <Mtridata_data_out<3>>.
+    Found 1-bit register for signal <Mtridata_data_out<4>>.
+    Found 1-bit register for signal <Mtridata_data_out<5>>.
+    Found 1-bit register for signal <Mtridata_data_out<6>>.
+    Found 1-bit register for signal <Mtridata_data_out<7>>.
+    Found 1-bit register for signal <Mtridata_data_out<8>>.
+    Found 1-bit register for signal <Mtridata_data_out<9>>.
+    Found 1-bit register for signal <Mtrien_data_out<0>>.
+    Found 1-bit register for signal <Mtrien_data_out<10>>.
+    Found 1-bit register for signal <Mtrien_data_out<11>>.
+    Found 1-bit register for signal <Mtrien_data_out<12>>.
+    Found 1-bit register for signal <Mtrien_data_out<13>>.
+    Found 1-bit register for signal <Mtrien_data_out<14>>.
+    Found 1-bit register for signal <Mtrien_data_out<15>>.
+    Found 1-bit register for signal <Mtrien_data_out<16>>.
+    Found 1-bit register for signal <Mtrien_data_out<1>>.
+    Found 1-bit register for signal <Mtrien_data_out<2>>.
+    Found 1-bit register for signal <Mtrien_data_out<3>>.
+    Found 1-bit register for signal <Mtrien_data_out<4>>.
+    Found 1-bit register for signal <Mtrien_data_out<5>>.
+    Found 1-bit register for signal <Mtrien_data_out<6>>.
+    Found 1-bit register for signal <Mtrien_data_out<7>>.
+    Found 1-bit register for signal <Mtrien_data_out<8>>.
+    Found 1-bit register for signal <Mtrien_data_out<9>>.
+    Found 19-bit comparator greatequal for signal <state$cmp_ge0000> created at line 863.
+    Found 1-bit register for signal <switched_to_record>.
+    Found 1-bit register for signal <switched_to_user>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  94 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+	inferred  36 Tristate(s).
+Unit <fsm> synthesized.
+
+
+Synthesizing Unit <ac97>.
+    Related source file is "lab5.v".
+    Register <l_right_v> equivalent to <l_left_v> has been removed
+    Found 20-bit register for signal <left_in_data>.
+    Found 1-bit register for signal <ac97_synch>.
+    Found 1-bit register for signal <ac97_sdata_out>.
+    Found 20-bit register for signal <right_in_data>.
+    Found 1-bit register for signal <ready>.
+    Found 1-bit 20-to-1 multiplexer for signal <$varindex0000> created at line 191.
+    Found 1-bit 20-to-1 multiplexer for signal <$varindex0001> created at line 194.
+    Found 1-bit 20-to-1 multiplexer for signal <$varindex0002> created at line 202.
+    Found 8-bit comparator greatequal for signal <ac97_sdata_out$cmp_ge0000> created at line 200.
+    Found 8-bit comparator lessequal for signal <ac97_sdata_out$cmp_le0000> created at line 200.
+    Found 8-bit up counter for signal <bit_count>.
+    Found 20-bit register for signal <l_cmd_addr>.
+    Found 20-bit register for signal <l_cmd_data>.
+    Found 1-bit register for signal <l_cmd_v>.
+    Found 20-bit register for signal <l_left_data>.
+    Found 8-bit comparator greatequal for signal <l_left_data$cmp_ge0000> created at line 189.
+    Found 8-bit comparator greatequal for signal <l_left_data$cmp_ge0001> created at line 192.
+    Found 8-bit comparator greatequal for signal <l_left_data$cmp_ge0002> created at line 195.
+    Found 8-bit comparator greater for signal <l_left_data$cmp_gt0000> created at line 195.
+    Found 8-bit comparator greater for signal <l_left_data$cmp_gt0001> created at line 192.
+    Found 8-bit comparator greater for signal <l_left_data$cmp_gt0002> created at line 189.
+    Found 8-bit comparator lessequal for signal <l_left_data$cmp_le0000> created at line 179.
+    Found 8-bit comparator lessequal for signal <l_left_data$cmp_le0001> created at line 189.
+    Found 8-bit comparator lessequal for signal <l_left_data$cmp_le0002> created at line 192.
+    Found 8-bit comparator lessequal for signal <l_left_data$cmp_le0003> created at line 195.
+    Found 8-bit comparator less for signal <l_left_data$cmp_lt0000> created at line 195.
+    Found 8-bit comparator less for signal <l_left_data$cmp_lt0001> created at line 192.
+    Found 8-bit comparator less for signal <l_left_data$cmp_lt0002> created at line 189.
+    Found 1-bit register for signal <l_left_v>.
+    Found 20-bit register for signal <l_right_data>.
+    Found 8-bit comparator greatequal for signal <left_in_data$cmp_ge0000> created at line 210.
+    Found 8-bit comparator lessequal for signal <left_in_data$cmp_le0000> created at line 210.
+    Found 8-bit comparator greater for signal <right_in_data$cmp_gt0000> created at line 213.
+    Found 8-bit comparator less for signal <right_in_data$cmp_lt0000> created at line 213.
+    Summary:
+	inferred   1 Counter(s).
+	inferred 125 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred  19 Comparator(s).
+	inferred   3 Multiplexer(s).
+Unit <ac97> synthesized.
+
+
+Synthesizing Unit <ac97commands>.
+    Related source file is "lab5.v".
+    Found 1-bit register for signal <command_valid>.
+    Found 24-bit register for signal <command>.
+    Found 4-bit up counter for signal <state>.
+    Found 5-bit adder for signal <vol>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  25 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <ac97commands> synthesized.
+
+
+Synthesizing Unit <xvga>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/xvga.v".
+    Found 10-bit up counter for signal <vcount>.
+    Found 1-bit register for signal <vsync>.
+    Found 11-bit up counter for signal <hcount>.
+    Found 1-bit register for signal <blank>.
+    Found 1-bit register for signal <hsync>.
+    Found 1-bit register for signal <hblank>.
+    Found 1-bit register for signal <vblank>.
+    Summary:
+	inferred   2 Counter(s).
+	inferred   5 D-type flip-flop(s).
+Unit <xvga> synthesized.
+
+
+Synthesizing Unit <key_colors>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/key_colors.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 24-bit register for signal <high_db_color>.
+    Found 24-bit register for signal <gb_color>.
+    Found 24-bit register for signal <bb_color>.
+    Found 24-bit register for signal <high_e_color>.
+    Found 24-bit register for signal <ab_color>.
+    Found 24-bit register for signal <high_d_color>.
+    Found 24-bit register for signal <high_c_color>.
+    Found 24-bit register for signal <eb_color>.
+    Found 24-bit register for signal <g_color>.
+    Found 24-bit register for signal <f_color>.
+    Found 24-bit register for signal <e_color>.
+    Found 24-bit register for signal <db_color>.
+    Found 24-bit register for signal <d_color>.
+    Found 24-bit register for signal <high_eb_color>.
+    Found 24-bit register for signal <c_color>.
+    Found 24-bit register for signal <b_color>.
+    Found 24-bit register for signal <a_color>.
+    Summary:
+	inferred 408 D-type flip-flop(s).
+Unit <key_colors> synthesized.
+
+
+Synthesizing Unit <left_key>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/left_key.v".
+    Found 14-bit subtractor for signal <$sub0000> created at line 34.
+    Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 34.
+    Found 10-bit adder for signal <pixel$addsub0000> created at line 34.
+    Found 10-bit adder for signal <pixel$addsub0001> created at line 35.
+    Found 14-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 34.
+    Found 11-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 35.
+    Found 10-bit comparator greatequal for signal <pixel$cmp_ge0002> created at line 35.
+    Found 10-bit comparator less for signal <pixel$cmp_lt0000> created at line 34.
+    Found 12-bit comparator less for signal <pixel$cmp_lt0001> created at line 35.
+    Found 10-bit comparator less for signal <pixel$cmp_lt0002> created at line 35.
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+	inferred   6 Comparator(s).
+Unit <left_key> synthesized.
+
+
+Synthesizing Unit <blob>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/blob.v".
+    Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 35.
+    Found 10-bit adder carry out for signal <add0001$addsub0000> created at line 35.
+    Found 11-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 35.
+    Found 10-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 35.
+    Found 12-bit comparator less for signal <pixel$cmp_lt0000> created at line 35.
+    Found 11-bit comparator less for signal <pixel$cmp_lt0001> created at line 35.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <blob> synthesized.
+
+
+Synthesizing Unit <middle_key>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/middle_key.v".
+    Found 14-bit subtractor for signal <$sub0000> created at line 34.
+    Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 34.
+    Found 11-bit adder carry out for signal <add0001$addsub0000> created at line 34.
+    Found 10-bit adder for signal <pixel$addsub0000> created at line 34.
+    Found 10-bit adder for signal <pixel$addsub0001> created at line 36.
+    Found 14-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 34.
+    Found 11-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 36.
+    Found 10-bit comparator greatequal for signal <pixel$cmp_ge0002> created at line 36.
+    Found 10-bit comparator less for signal <pixel$cmp_lt0000> created at line 34.
+    Found 12-bit comparator less for signal <pixel$cmp_lt0001> created at line 34.
+    Found 12-bit comparator less for signal <pixel$cmp_lt0002> created at line 36.
+    Found 10-bit comparator less for signal <pixel$cmp_lt0003> created at line 36.
+    Summary:
+	inferred   5 Adder/Subtractor(s).
+	inferred   7 Comparator(s).
+Unit <middle_key> synthesized.
+
+
+Synthesizing Unit <right_key>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/right_key.v".
+    Found 11-bit adder carry out for signal <add0000$addsub0000> created at line 34.
+    Found 11-bit adder carry out for signal <add0001$addsub0000> created at line 35.
+    Found 10-bit adder for signal <pixel$addsub0000> created at line 34.
+    Found 10-bit adder for signal <pixel$addsub0001> created at line 35.
+    Found 11-bit comparator greatequal for signal <pixel$cmp_ge0000> created at line 35.
+    Found 10-bit comparator greatequal for signal <pixel$cmp_ge0001> created at line 35.
+    Found 12-bit comparator less for signal <pixel$cmp_lt0000> created at line 34.
+    Found 10-bit comparator less for signal <pixel$cmp_lt0001> created at line 34.
+    Found 12-bit comparator less for signal <pixel$cmp_lt0002> created at line 35.
+    Found 10-bit comparator less for signal <pixel$cmp_lt0003> created at line 35.
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+	inferred   6 Comparator(s).
+Unit <right_key> synthesized.
+
+
+Synthesizing Unit <ready_generator>.
+    Related source file is "ready_generator.v".
+    Found 1-bit register for signal <ready>.
+    Found 12-bit up counter for signal <counter>.
+    Found 12-bit comparator greatequal for signal <counter$cmp_ge0000> created at line 55.
+    Found 12-bit register for signal <divider_num>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  13 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+Unit <ready_generator> synthesized.
+
+
+Synthesizing Unit <tone750hz>.
+    Related source file is "lab5.v".
+    Found 64x20-bit ROM for signal <pcm_data>.
+    Found 9-bit up counter for signal <index>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   1 Counter(s).
+Unit <tone750hz> synthesized.
+
+
+Synthesizing Unit <lab5audio>.
+    Related source file is "lab5.v".
+WARNING:Xst:646 - Signal <right_in_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <left_in_data<11:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <audio_reset_b>.
+    Found 8-bit register for signal <out_data>.
+    Found 3-bit register for signal <ready_sync>.
+    Found 10-bit up counter for signal <reset_count>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  12 D-type flip-flop(s).
+Unit <lab5audio> synthesized.
+
+
+Synthesizing Unit <play_sound>.
+    Related source file is "play_sound.v".
+WARNING:Xst:646 - Signal <tone2<12:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tone<12:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 8-bit register for signal <to_ac97_data>.
+    Found 17-bit register for signal <old_key_num>.
+    Found 1-bit register for signal <restart>.
+    Found 17-bit comparator not equal for signal <restart$cmp_ne0000> created at line 38.
+    Found 8-bit adder for signal <to_ac97_data$add0000> created at line 43.
+    Summary:
+	inferred  26 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <play_sound> synthesized.
+
+
+Synthesizing Unit <piano>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/piano.v".
+Unit <piano> synthesized.
+
+
+Synthesizing Unit <keystoning>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/keystoning.v".
+WARNING:Xst:1780 - Signal <tan_angle> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <pvcount> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <old_angle_up> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <old_angle_down> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <counter> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <angle_up> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <angle_down> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <angle> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 11-bit register for signal <phcount>.
+    Found 11-bit subtractor for signal <phcount$addsub0000> created at line 78.
+    Found 12-bit adder for signal <phcount$addsub0001>.
+    Found 12x11-bit multiplier for signal <phcount$mult0000> created at line 78.
+    Found 11-bit subtractor for signal <phcount$sub0000> created at line 78.
+    Found 11-bit register for signal <x>.
+    Found 11-bit subtractor for signal <x$sub0000> created at line 75.
+    Summary:
+	inferred  22 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   1 Multiplier(s).
+Unit <keystoning> synthesized.
+
+
+Synthesizing Unit <visual>.
+    Related source file is "../ProjectedPiano-VisualModule/final_project/visual.v".
+WARNING:Xst:647 - Input <switch> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <border> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <b>.
+    Found 1-bit register for signal <hs>.
+    Found 24-bit register for signal <rgb>.
+    Found 1-bit register for signal <vs>.
+    Summary:
+	inferred  27 D-type flip-flop(s).
+Unit <visual> synthesized.
+
+
+Synthesizing Unit <lab5>.
+    Related source file is "lab5.v".
+WARNING:Xst:2565 - Inout <user3<28>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<29>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<9>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<10>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<11>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<11>> is never assigned.
+WARNING:Xst:647 - Input <clock1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <clock2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<12>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<13>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<13>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_aef> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<14>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<14>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_aff> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<15>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<20>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<21>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<16>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<22>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<17>> is never assigned.
+WARNING:Xst:647 - Input <systemace_irq> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<18>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<23>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<0>> is never assigned.
+WARNING:Xst:647 - Input <clock_feedback_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<19>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<24>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<1>> is never assigned.
+WARNING:Xst:647 - Input <disp_data_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user2<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<25>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<30>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<11>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<31>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<26>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<32>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<27>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<13>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<33>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<28>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<14>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<34>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<29>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<20>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<40>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<35>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<16>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<21>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<41>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<36>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<22>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<17>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<37>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<42>> is never assigned.
+WARNING:Xst:2565 - Inout <flash_data<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<23>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<18>> is never assigned.
+WARNING:Xst:647 - Input <keyboard_clock> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <daughtercard<38>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<43>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<24>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<19>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<39>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<3>> is never assigned.
+WARNING:Xst:2565 - Inout <tv_in_i2c_data> is never assigned.
+WARNING:Xst:2565 - Inout <user4<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<25>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<31>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<5>> is never assigned.
+WARNING:Xst:647 - Input <flash_sts> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user4<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<27>> is never assigned.
+WARNING:Xst:647 - Input <rs232_rxd> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user1<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<28>> is never assigned.
+WARNING:Xst:647 - Input <mouse_data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user1<7>> is never assigned.
+WARNING:Xst:647 - Input <rs232_cts> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user2<29>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<9>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<11>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<13>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<14>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<20>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<15>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<16>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<21>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<22>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<17>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<11>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<23>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<18>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <daughtercard<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<19>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<24>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<13>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<25>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<14>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<31>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<20>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<27>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<16>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<21>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_data_valid> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user4<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<22>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<17>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_hff> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user1<10>> is never assigned.
+WARNING:Xst:2565 - Inout <user4<29>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<23>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<18>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<11>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_ycrcb> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<24>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<19>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<12>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<7>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<25>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<13>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<31>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<3>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<14>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<32>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<9>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<27>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<4>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<20>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_line_clock1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<33>> is never assigned.
+WARNING:Xst:647 - Input <tv_in_line_clock2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<5>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<21>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<16>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<29>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<34>> is never assigned.
+WARNING:Xst:647 - Input <keyboard_data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<6>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<17>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<22>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<35>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<7>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<18>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<23>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<3>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<10>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<8>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<24>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<19>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<4>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<11>> is never assigned.
+WARNING:Xst:2565 - Inout <user2<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<25>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<30>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<5>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<12>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<31>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<6>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<13>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<27>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<7>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<14>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<28>> is never assigned.
+WARNING:Xst:2565 - Inout <ram1_data<8>> is never assigned.
+WARNING:Xst:2565 - Inout <systemace_data<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user1<29>> is never assigned.
+WARNING:Xst:647 - Input <systemace_mpbrdy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <ram1_data<9>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<10>> is never assigned.
+WARNING:Xst:647 - Input <mouse_clock> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <user3<11>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<12>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<13>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<14>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<20>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<15>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<21>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<16>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<22>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<17>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<23>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<18>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<24>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<19>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<0>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<30>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<25>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<1>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<31>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<26>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<2>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<27>> is never assigned.
+WARNING:Xst:2565 - Inout <user3<3>> is never assigned.
+WARNING:Xst:1780 - Signal <up> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <right> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <playback> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <left> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <from_ac97_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <filter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <enter> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <down> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <b3> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <b2> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <b1> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <b0> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <old_vdown>.
+    Found 1-bit register for signal <old_vup>.
+    Found 5-bit updown counter for signal <volume>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   2 D-type flip-flop(s).
+Unit <lab5> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 2
+ 64x20-bit ROM                                         : 2
+# Multipliers                                          : 1
+ 12x11-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 68
+ 10-bit adder                                          : 20
+ 10-bit adder carry out                                : 7
+ 11-bit adder carry out                                : 24
+ 11-bit subtractor                                     : 3
+ 12-bit adder                                          : 1
+ 14-bit subtractor                                     : 7
+ 19-bit adder                                          : 1
+ 5-bit adder                                           : 1
+ 8-bit adder                                           : 1
+ 9-bit adder                                           : 3
+# Counters                                             : 24
+ 10-bit up counter                                     : 2
+ 11-bit up counter                                     : 1
+ 12-bit up counter                                     : 2
+ 19-bit up counter                                     : 13
+ 3-bit up counter                                      : 1
+ 4-bit up counter                                      : 1
+ 5-bit updown counter                                  : 1
+ 8-bit up counter                                      : 1
+ 9-bit up counter                                      : 2
+# Registers                                            : 120
+ 1-bit register                                        : 83
+ 11-bit register                                       : 2
+ 12-bit register                                       : 2
+ 17-bit register                                       : 2
+ 19-bit register                                       : 2
+ 2-bit register                                        : 1
+ 20-bit register                                       : 6
+ 24-bit register                                       : 19
+ 3-bit register                                        : 1
+ 8-bit register                                        : 2
+# Comparators                                          : 115
+ 10-bit comparator greatequal                          : 17
+ 10-bit comparator less                                : 20
+ 11-bit comparator greatequal                          : 17
+ 11-bit comparator less                                : 7
+ 12-bit comparator greatequal                          : 2
+ 12-bit comparator less                                : 24
+ 14-bit comparator greatequal                          : 7
+ 17-bit comparator not equal                           : 1
+ 19-bit comparator greatequal                          : 1
+ 8-bit comparator greatequal                           : 5
+ 8-bit comparator greater                              : 4
+ 8-bit comparator less                                 : 4
+ 8-bit comparator lessequal                            : 6
+# Multiplexers                                         : 3
+ 1-bit 20-to-1 multiplexer                             : 3
+# Tristates                                            : 36
+ 1-bit tristate buffer                                 : 36
+# Xors                                                 : 13
+ 1-bit xor2                                            : 13
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Loading device for application Rf_Device from file '2v6000.nph' in environment /afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE.
+
+Synthesizing (advanced) Unit <keystoning>.
+INFO:Xst:2385 - HDL ADVISOR - You can improve the performance of the multiplier Mmult_phcount_mult0000 by adding 1 register level(s).
+Unit <keystoning> synthesized (advanced).
+WARNING:Xst:1426 - The value init of the FF/Latch l_left_v hinder the constant cleaning in the block ac97.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1710 - FF/Latch <l_cmd_addr_0> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_1> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_2> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_3> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_4> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_5> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_6> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_7> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_8> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_9> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_10> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_addr_11> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_data_0> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_data_1> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_data_2> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <l_cmd_data_3> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1426 - The value init of the FF/Latch command_valid hinder the constant cleaning in the block ac97commands.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1293 - FF/Latch <command_5> has a constant value of 0 in block <ac97commands>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <command_7> has a constant value of 0 in block <ac97commands>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <command_13> has a constant value of 0 in block <ac97commands>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <command_14> has a constant value of 0 in block <ac97commands>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <command_16> has a constant value of 0 in block <ac97commands>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <command_22> has a constant value of 0 in block <ac97commands>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <command_0> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_8> 
+INFO:Xst:2261 - The FF/Latch <command_4> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_12> 
+INFO:Xst:2261 - The FF/Latch <command_2> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_10> 
+INFO:Xst:2261 - The FF/Latch <command_1> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_9> 
+WARNING:Xst:1710 - FF/Latch <bb_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_c_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <bb_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_eb_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_e_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_db_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <high_d_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <eb_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <d_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <c_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <db_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_8> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_9> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_10> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_11> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_12> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_13> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_14> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_15> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <g_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ab_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <e_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_16> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_17> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_18> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_19> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_20> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_21> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_22> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <f_color_23> (without init value) has a constant value of 1 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_0> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_1> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_2> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_3> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_4> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_5> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_6> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <gb_color_7> (without init value) has a constant value of 0 in block <key_colors>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <high_eb_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <high_eb_color_17> <high_eb_color_18> <high_eb_color_19> <high_eb_color_20> <high_eb_color_21> <high_eb_color_22> <high_eb_color_23> 
+INFO:Xst:2261 - The FF/Latch <c_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <c_color_1> <c_color_2> <c_color_3> <c_color_4> <c_color_5> <c_color_6> <c_color_7> <c_color_8> <c_color_9> <c_color_10> <c_color_11> <c_color_12> <c_color_13> <c_color_14> <c_color_15> 
+INFO:Xst:2261 - The FF/Latch <db_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <db_color_17> <db_color_18> <db_color_19> <db_color_20> <db_color_21> <db_color_22> <db_color_23> 
+INFO:Xst:2261 - The FF/Latch <f_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <f_color_1> <f_color_2> <f_color_3> <f_color_4> <f_color_5> <f_color_6> <f_color_7> <f_color_8> <f_color_9> <f_color_10> <f_color_11> <f_color_12> <f_color_13> <f_color_14> <f_color_15> 
+INFO:Xst:2261 - The FF/Latch <gb_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <gb_color_17> <gb_color_18> <gb_color_19> <gb_color_20> <gb_color_21> <gb_color_22> <gb_color_23> 
+INFO:Xst:2261 - The FF/Latch <e_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <e_color_1> <e_color_2> <e_color_3> <e_color_4> <e_color_5> <e_color_6> <e_color_7> <e_color_8> <e_color_9> <e_color_10> <e_color_11> <e_color_12> <e_color_13> <e_color_14> <e_color_15> 
+INFO:Xst:2261 - The FF/Latch <a_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <a_color_1> <a_color_2> <a_color_3> <a_color_4> <a_color_5> <a_color_6> <a_color_7> <a_color_8> <a_color_9> <a_color_10> <a_color_11> <a_color_12> <a_color_13> <a_color_14> <a_color_15> 
+INFO:Xst:2261 - The FF/Latch <high_d_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <high_d_color_1> <high_d_color_2> <high_d_color_3> <high_d_color_4> <high_d_color_5> <high_d_color_6> <high_d_color_7> <high_d_color_8> <high_d_color_9> <high_d_color_10> <high_d_color_11> <high_d_color_12> <high_d_color_13> <high_d_color_14> <high_d_color_15> 
+INFO:Xst:2261 - The FF/Latch <ab_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <ab_color_17> <ab_color_18> <ab_color_19> <ab_color_20> <ab_color_21> <ab_color_22> <ab_color_23> 
+INFO:Xst:2261 - The FF/Latch <high_db_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <high_db_color_17> <high_db_color_18> <high_db_color_19> <high_db_color_20> <high_db_color_21> <high_db_color_22> <high_db_color_23> 
+INFO:Xst:2261 - The FF/Latch <d_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <d_color_1> <d_color_2> <d_color_3> <d_color_4> <d_color_5> <d_color_6> <d_color_7> <d_color_8> <d_color_9> <d_color_10> <d_color_11> <d_color_12> <d_color_13> <d_color_14> <d_color_15> 
+INFO:Xst:2261 - The FF/Latch <g_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <g_color_1> <g_color_2> <g_color_3> <g_color_4> <g_color_5> <g_color_6> <g_color_7> <g_color_8> <g_color_9> <g_color_10> <g_color_11> <g_color_12> <g_color_13> <g_color_14> <g_color_15> 
+INFO:Xst:2261 - The FF/Latch <eb_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <eb_color_17> <eb_color_18> <eb_color_19> <eb_color_20> <eb_color_21> <eb_color_22> <eb_color_23> 
+INFO:Xst:2261 - The FF/Latch <high_c_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <high_c_color_1> <high_c_color_2> <high_c_color_3> <high_c_color_4> <high_c_color_5> <high_c_color_6> <high_c_color_7> <high_c_color_8> <high_c_color_9> <high_c_color_10> <high_c_color_11> <high_c_color_12> <high_c_color_13> <high_c_color_14> <high_c_color_15> 
+INFO:Xst:2261 - The FF/Latch <b_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <b_color_1> <b_color_2> <b_color_3> <b_color_4> <b_color_5> <b_color_6> <b_color_7> <b_color_8> <b_color_9> <b_color_10> <b_color_11> <b_color_12> <b_color_13> <b_color_14> <b_color_15> 
+INFO:Xst:2261 - The FF/Latch <high_e_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <high_e_color_1> <high_e_color_2> <high_e_color_3> <high_e_color_4> <high_e_color_5> <high_e_color_6> <high_e_color_7> <high_e_color_8> <high_e_color_9> <high_e_color_10> <high_e_color_11> <high_e_color_12> <high_e_color_13> <high_e_color_14> <high_e_color_15> 
+INFO:Xst:2261 - The FF/Latch <bb_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <bb_color_17> <bb_color_18> <bb_color_19> <bb_color_20> <bb_color_21> <bb_color_22> <bb_color_23> 
+WARNING:Xst:1293 - FF/Latch <divider_num_11> has a constant value of 0 in block <ready_generator>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1426 - The value init of the FF/Latch divider_num_2 hinder the constant cleaning in the block generator2.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch divider_num_3 hinder the constant cleaning in the block generator2.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch divider_num_6 hinder the constant cleaning in the block generator2.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch divider_num_9 hinder the constant cleaning in the block generator2.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch divider_num_10 hinder the constant cleaning in the block generator2.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1293 - FF/Latch <divider_num_8> has a constant value of 0 in block <generator2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <divider_num_7> has a constant value of 0 in block <generator2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <divider_num_5> has a constant value of 0 in block <generator2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <divider_num_4> has a constant value of 0 in block <generator2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <divider_num_1> has a constant value of 0 in block <generator2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <divider_num_0> has a constant value of 0 in block <generator2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <Mtridata_data_out<0>> (without init value) has a constant value of 0 in block <r>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_11> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_10> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_9> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_8> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_7> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_6> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_5> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_4> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_3> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_2> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_1> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_0> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_cmd_data_18> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_cmd_data_17> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_cmd_data_11> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_cmd_data_9> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_cmd_addr_18> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_cmd_addr_12> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <left_in_data_0> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_1> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_2> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_3> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_4> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_5> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_6> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_7> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_8> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_9> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_10> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_11> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_12> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_13> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_14> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_15> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_16> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_17> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_18> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <left_in_data_19> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_0> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_1> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_2> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_3> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_4> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_5> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_6> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_7> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_8> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_9> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_10> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_11> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_12> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_13> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_14> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_15> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_16> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_17> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_18> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <right_in_data_19> of sequential type is unconnected in block <ac97>.
+WARNING:Xst:2677 - Node <clean> of sequential type is unconnected in block <benter>.
+WARNING:Xst:2677 - Node <clean> of sequential type is unconnected in block <sw0>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 2
+ 64x20-bit ROM                                         : 2
+# Multipliers                                          : 1
+ 12x11-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 68
+ 10-bit adder                                          : 20
+ 10-bit adder carry out                                : 7
+ 11-bit adder carry out                                : 24
+ 11-bit subtractor                                     : 3
+ 12-bit adder                                          : 1
+ 14-bit subtractor                                     : 7
+ 19-bit adder                                          : 1
+ 5-bit adder                                           : 4
+ 8-bit adder                                           : 1
+# Counters                                             : 24
+ 10-bit up counter                                     : 2
+ 11-bit up counter                                     : 1
+ 12-bit up counter                                     : 2
+ 19-bit up counter                                     : 13
+ 3-bit up counter                                      : 1
+ 4-bit up counter                                      : 1
+ 5-bit updown counter                                  : 1
+ 8-bit up counter                                      : 1
+ 9-bit up counter                                      : 2
+# Registers                                            : 379
+ Flip-Flops                                            : 379
+# Comparators                                          : 115
+ 10-bit comparator greatequal                          : 17
+ 10-bit comparator less                                : 20
+ 11-bit comparator greatequal                          : 17
+ 11-bit comparator less                                : 7
+ 12-bit comparator greatequal                          : 2
+ 12-bit comparator less                                : 24
+ 14-bit comparator greatequal                          : 7
+ 17-bit comparator not equal                           : 1
+ 19-bit comparator greatequal                          : 1
+ 8-bit comparator greatequal                           : 5
+ 8-bit comparator greater                              : 4
+ 8-bit comparator less                                 : 4
+ 8-bit comparator lessequal                            : 6
+# Multiplexers                                         : 3
+ 1-bit 20-to-1 multiplexer                             : 3
+# Xors                                                 : 13
+ 1-bit xor2                                            : 13
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1989 - Unit <lab5>: instances <bup>, <debouncing7> of unit <debounce> are equivalent, second instance is removed
+WARNING:Xst:1989 - Unit <lab5>: instances <bdown>, <debouncing6> of unit <debounce> are equivalent, second instance is removed
+INFO:Xst:2261 - The FF/Latch <l_right_data_0> in Unit <ac97> is equivalent to the following 11 FFs/Latches, which will be removed : <l_right_data_1> <l_right_data_2> <l_right_data_3> <l_right_data_4> <l_right_data_5> <l_right_data_6> <l_right_data_7> <l_right_data_8> <l_right_data_9> <l_right_data_10> <l_right_data_11> 
+WARNING:Xst:1710 - FF/Latch <Mtridata_data_out<0>> (without init value) has a constant value of 0 in block <fsm>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <l_right_data_0> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <sw0/clean> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <sw0/new> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <benter/clean> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <benter/new> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <xxx2/index_6> of sequential type is unconnected in block <play_sound>.
+WARNING:Xst:2677 - Node <xxx2/index_7> of sequential type is unconnected in block <play_sound>.
+WARNING:Xst:2677 - Node <xxx2/index_8> of sequential type is unconnected in block <play_sound>.
+WARNING:Xst:2677 - Node <xxx/index_6> of sequential type is unconnected in block <play_sound>.
+WARNING:Xst:2677 - Node <xxx/index_7> of sequential type is unconnected in block <play_sound>.
+WARNING:Xst:2677 - Node <xxx/index_8> of sequential type is unconnected in block <play_sound>.
+
+Optimizing unit <lab5> ...
+
+Optimizing unit <ac97> ...
+
+Optimizing unit <ac97commands> ...
+
+Optimizing unit <xvga> ...
+
+Optimizing unit <key_colors> ...
+
+Optimizing unit <left_key> ...
+
+Optimizing unit <blob> ...
+
+Optimizing unit <middle_key> ...
+
+Optimizing unit <right_key> ...
+
+Optimizing unit <ready_generator> ...
+
+Optimizing unit <play_sound> ...
+
+Optimizing unit <piano> ...
+
+Optimizing unit <keystoning> ...
+
+Optimizing unit <visual> ...
+WARNING:Xst:1426 - The value init of the FF/Latch player/generator2/divider_num_2 hinder the constant cleaning in the block lab5.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch player/generator2/divider_num_3 hinder the constant cleaning in the block lab5.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch player/generator2/divider_num_6 hinder the constant cleaning in the block lab5.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch player/generator2/divider_num_9 hinder the constant cleaning in the block lab5.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch player/generator2/divider_num_10 hinder the constant cleaning in the block lab5.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1710 - FF/Latch <a/ac97/l_cmd_data_18> (without init value) has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_data_17> (without init value) has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_data_11> (without init value) has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_data_9> (without init value) has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_addr_18> (without init value) has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_addr_12> (without init value) has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <player/generator2/divider_num_0> has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <player/generator2/divider_num_1> has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <player/generator2/divider_num_4> has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <player/generator2/divider_num_5> has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <player/generator2/divider_num_7> has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <player/generator2/divider_num_8> has a constant value of 0 in block <lab5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_19> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_18> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_17> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_16> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_15> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_14> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_13> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_12> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_11> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_10> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_9> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_8> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_7> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_6> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_5> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_4> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_3> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_2> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_1> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/right_in_data_0> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_19> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_18> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_17> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_16> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_15> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_14> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_13> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_12> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_11> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_10> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_9> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_8> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_7> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_6> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_5> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_4> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_3> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_2> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_1> of sequential type is unconnected in block <lab5>.
+WARNING:Xst:2677 - Node <a/ac97/left_in_data_0> of sequential type is unconnected in block <lab5>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_12> in Unit <lab5> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_4> 
+INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_13> in Unit <lab5> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_5> 
+INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_14> in Unit <lab5> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_6> 
+INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_16> in Unit <lab5> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_8> 
+INFO:Xst:2261 - The FF/Latch <vmod/rgb_15> in Unit <lab5> is equivalent to the following 15 FFs/Latches, which will be removed : <vmod/rgb_14> <vmod/rgb_13> <vmod/rgb_12> <vmod/rgb_11> <vmod/rgb_10> <vmod/rgb_9> <vmod/rgb_8> <vmod/rgb_7> <vmod/rgb_6> <vmod/rgb_5> <vmod/rgb_4> <vmod/rgb_3> <vmod/rgb_2> <vmod/rgb_1> <vmod/rgb_0> 
+INFO:Xst:2261 - The FF/Latch <player/generator2/divider_num_2> in Unit <lab5> is equivalent to the following 4 FFs/Latches, which will be removed : <player/generator2/divider_num_3> <player/generator2/divider_num_6> <player/generator2/divider_num_9> <player/generator2/divider_num_10> 
+Found area constraint ratio of 100 (+ 5) on block lab5, actual ratio is 3.
+INFO:Xst:2260 - The FF/Latch <r/Mtrien_data_out<0>> in Unit <lab5> is equivalent to the following 16 FFs/Latches : <r/Mtrien_data_out<1>> <r/Mtrien_data_out<2>> <r/Mtrien_data_out<3>> <r/Mtrien_data_out<5>> <r/Mtrien_data_out<6>> <r/Mtrien_data_out<4>> <r/Mtrien_data_out<7>> <r/Mtrien_data_out<8>> <r/Mtrien_data_out<10>> <r/Mtrien_data_out<11>> <r/Mtrien_data_out<9>> <r/Mtrien_data_out<12>> <r/Mtrien_data_out<13>> <r/Mtrien_data_out<15>> <r/Mtrien_data_out<16>> <r/Mtrien_data_out<14>> 
+
+Final Macro Processing ...
+
+Processing Unit <lab5> :
+	Found 2-bit shift register for signal <a/ready_sync_1>.
+Unit <lab5> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 539
+ Flip-Flops                                            : 539
+# Shift Registers                                      : 1
+ 2-bit shift register                                  : 1
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : lab5.ngr
+Top Level Output File Name         : lab5
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : NO
+
+Design Statistics
+# IOs                              : 576
+
+Cell Usage :
+# BELS                             : 3638
+#      GND                         : 1
+#      INV                         : 688
+#      LUT1                        : 601
+#      LUT2                        : 100
+#      LUT3                        : 103
+#      LUT3_D                      : 2
+#      LUT3_L                      : 6
+#      LUT4                        : 356
+#      LUT4_D                      : 3
+#      LUT4_L                      : 7
+#      MULT_AND                    : 1
+#      MUXCY                       : 1420
+#      MUXF5                       : 49
+#      MUXF6                       : 16
+#      MUXF7                       : 1
+#      VCC                         : 1
+#      XORCY                       : 283
+# FlipFlops/Latches                : 540
+#      FD                          : 70
+#      FDE                         : 173
+#      FDR                         : 60
+#      FDRE                        : 210
+#      FDRS                        : 4
+#      FDS                         : 22
+#      FDSE                        : 1
+# Shift Registers                  : 2
+#      SRL16                       : 2
+# Clock Buffers                    : 3
+#      BUFG                        : 3
+# IO Buffers                       : 296
+#      IBUF                        : 19
+#      IBUFG                       : 1
+#      IOBUF                       : 17
+#      OBUF                        : 240
+#      OBUFT                       : 19
+# DCMs                             : 1
+#      DCM                         : 1
+# MULTs                            : 1
+#      MULT18X18                   : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v6000bf957-4 
+
+ Number of Slices:                     1037  out of  33792     3%  
+ Number of Slice Flip Flops:            540  out of  67584     0%  
+ Number of 4 input LUTs:               1868  out of  67584     2%  
+    Number used as logic:              1866
+    Number used as Shift registers:       2
+ Number of IOs:                         576
+ Number of bonded IOBs:                 296  out of    684    43%  
+ Number of MULT18X18s:                    1  out of    144     0%  
+ Number of GCLKs:                         3  out of     16    18%  
+ Number of DCMs:                          1  out of     12     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clock_27mhz                        | IBUFG+BUFG             | 410   |
+ac97_bit_clock                     | IBUF+BUFG              | 55    |
+clock_27mhz                        | vmod/vclk1:CLKFX       | 77    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 34.255ns (Maximum Frequency: 29.193MHz)
+   Minimum input arrival time before clock: 3.540ns
+   Maximum output required time after clock: 6.983ns
+   Maximum combinational path delay: 6.500ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clock_27mhz'
+  Clock period: 34.255ns (frequency: 29.193MHz)
+  Total number of paths / destination ports: 38558 / 1082
+-------------------------------------------------------------------------
+Delay:               14.273ns (Levels of Logic = 6)
+  Source:            vmod/ks/x_2 (FF)
+  Destination:       vmod/ks/phcount_10 (FF)
+  Source Clock:      clock_27mhz rising 2.4X
+  Destination Clock: clock_27mhz rising 2.4X
+
+  Data Path: vmod/ks/x_2 to vmod/ks/phcount_10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               5   0.568   1.056  vmod/ks/x_2 (vmod/ks/x_2)
+     LUT3_D:I0->O          5   0.439   0.804  vmod/ks/Madd_phcount_addsub0001_xor<4>111 (vmod/ks/N9)
+     LUT4:I2->O            7   0.439   0.816  vmod/ks/Madd_phcount_addsub0001_xor<11>11 (vmod/ks/phcount_addsub0001<11>)
+     MULT18X18:A11->P19    1   7.044   0.726  vmod/ks/Mmult_phcount_mult0000 (vmod/ks/phcount_mult0000<19>)
+     LUT2:I1->O            1   0.439   0.000  vmod/ks/Msub_phcount_sub0000_lut<9> (vmod/ks/Msub_phcount_sub0000_lut<9>)
+     MUXCY:S->O            0   0.298   0.000  vmod/ks/Msub_phcount_sub0000_cy<9> (vmod/ks/Msub_phcount_sub0000_cy<9>)
+     XORCY:CI->O           1   1.274   0.000  vmod/ks/Msub_phcount_sub0000_xor<10> (vmod/ks/phcount_sub0000<10>)
+     FD:D                      0.370          vmod/ks/phcount_10
+    ----------------------------------------
+    Total                     14.273ns (10.871ns logic, 3.402ns route)
+                                       (76.2% logic, 23.8% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'ac97_bit_clock'
+  Clock period: 8.417ns (frequency: 118.814MHz)
+  Total number of paths / destination ports: 1441 / 78
+-------------------------------------------------------------------------
+Delay:               8.417ns (Levels of Logic = 8)
+  Source:            a/ac97/bit_count_0 (FF)
+  Destination:       a/ac97/ac97_sdata_out (FF)
+  Source Clock:      ac97_bit_clock rising
+  Destination Clock: ac97_bit_clock rising
+
+  Data Path: a/ac97/bit_count_0 to a/ac97/ac97_sdata_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              13   0.568   0.954  a/ac97/bit_count_0 (a/ac97/bit_count_0)
+     INV:I->O              6   0.439   0.793  a/ac97/Mcount_bit_count_lut<0>_INV_0 (a/ac97/Mcount_bit_count_lut<0>)
+     MUXF6:S->O            1   0.570   0.000  a/ac97/Mmux__varindex0001_6_f6 (a/ac97/Mmux__varindex0001_6_f6)
+     MUXF7:I1->O           1   0.447   0.803  a/ac97/Mmux__varindex0001_5_f7 (a/ac97/Mmux__varindex0001_5_f7)
+     LUT4:I0->O            1   0.439   0.726  a/ac97/ac97_sdata_out_mux000059 (a/ac97/ac97_sdata_out_mux000059)
+     LUT3:I1->O            1   0.439   0.000  a/ac97/ac97_sdata_out_mux000094_F (N196)
+     MUXF5:I0->O           1   0.436   0.558  a/ac97/ac97_sdata_out_mux000094 (a/ac97/ac97_sdata_out_mux000094)
+     LUT4:I3->O            1   0.439   0.000  a/ac97/ac97_sdata_out_mux000024711 (a/ac97/ac97_sdata_out_mux00002471)
+     MUXF5:I0->O           1   0.436   0.000  a/ac97/ac97_sdata_out_mux00002471_f5 (a/ac97/ac97_sdata_out_mux0000247)
+     FDS:D                     0.370          a/ac97/ac97_sdata_out
+    ----------------------------------------
+    Total                      8.417ns (4.583ns logic, 3.833ns route)
+                                       (54.5% logic, 45.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
+  Total number of paths / destination ports: 240 / 232
+-------------------------------------------------------------------------
+Offset:              3.540ns (Levels of Logic = 2)
+  Source:            button0 (PAD)
+  Destination:       debouncing/count_0 (FF)
+  Destination Clock: clock_27mhz rising
+
+  Data Path: button0 to debouncing/count_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   0.825   0.955  button0_IBUF (button0_IBUF)
+     LUT3:I1->O           20   0.439   1.041  debouncing/count_or00001 (debouncing/count_or0000)
+     FDRE:R                    0.280          debouncing/count_0
+    ----------------------------------------
+    Total                      3.540ns (1.544ns logic, 1.996ns route)
+                                       (43.6% logic, 56.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
+  Total number of paths / destination ports: 92 / 76
+-------------------------------------------------------------------------
+Offset:              6.983ns (Levels of Logic = 2)
+  Source:            r/state_0 (FF)
+  Destination:       led<0> (PAD)
+  Source Clock:      clock_27mhz rising
+
+  Data Path: r/state_0 to led<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q             36   0.568   1.098  r/state_0 (r/state_0)
+     INV:I->O              1   0.439   0.517  led_0_not00001_INV_0 (led_0_OBUF)
+     OBUF:I->O                 4.361          led_0_OBUF (led<0>)
+    ----------------------------------------
+    Total                      6.983ns (5.368ns logic, 1.615ns route)
+                                       (76.9% logic, 23.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'ac97_bit_clock'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              5.654ns (Levels of Logic = 1)
+  Source:            a/ac97/ac97_synch (FF)
+  Destination:       ac97_synch (PAD)
+  Source Clock:      ac97_bit_clock rising
+
+  Data Path: a/ac97/ac97_synch to ac97_synch
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              3   0.568   0.725  a/ac97/ac97_synch (a/ac97/ac97_synch)
+     OBUF:I->O                 4.361          ac97_synch_OBUF (ac97_synch)
+    ----------------------------------------
+    Total                      5.654ns (4.929ns logic, 0.725ns route)
+                                       (87.2% logic, 12.8% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Delay:               6.500ns (Levels of Logic = 2)
+  Source:            clock_27mhz (PAD)
+  Destination:       ram0_clk (PAD)
+
+  Data Path: clock_27mhz to ram0_clk
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUFG:I->O            3   1.414   0.725  clock_27mhz_IBUFG (analyzer3_clock_OBUF1)
+     OBUF:I->O                 4.361          ram0_clk_OBUF (ram0_clk)
+    ----------------------------------------
+    Total                      6.500ns (5.775ns logic, 0.725ns route)
+                                       (88.9% logic, 11.1% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 11.00 secs
+Total CPU time to Xst completion: 10.27 secs
+ 
+--> 
+
+
+Total memory usage is 501640 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  674 (   0 filtered)
+Number of infos    :   64 (   0 filtered)
+
