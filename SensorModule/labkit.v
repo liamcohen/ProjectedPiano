@@ -302,8 +302,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    // systemace_irq and systemace_mpbrdy are inputs
 
    // Logic Analyzer
-   assign analyzer1_data = 16'h0;
-   assign analyzer1_clock = 1'b1;
+   //assign analyzer1_data = 16'h0;
+   //assign analyzer1_clock = 1'b1;
    assign analyzer2_data = 16'h0;
    assign analyzer2_clock = 1'b1;
    //assign analyzer3_data = 16'h0;
@@ -874,14 +874,17 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	
 	wire init_done;
 	
-	wire [7:0] ram_addr;
-	wire [7:0] ram_data_out;
-	wire [7:0] ram_data_in;
-	wire ram_wr_en;
+	wire [7:0] log_mem_addr;
+	wire [7:0] log_mem_data_in;
+	wire [7:0] log_mem_data_out;
+	
+	wire mem_start;
+	wire mem_done;
+	wire mem_rw;
 	
 	wire init_error;
 	
-	wire [3:0] instruction_count_debug;
+	wire [4:0] instruction_count_debug;
 	
 	VL53L0X_INIT sensor_init(
 		.reset(reset_button),
@@ -921,10 +924,12 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	   .fifo_read_valid(read_data_valid),
 	   .fifo_underflow(read_data_underflow),
 		
-		.ram_addr(ram_addr),
-	   .ram_data_out(ram_data_out),
-	   .ram_data_in(ram_data_in),
-	   .ram_wr_en(ram_wr_en),
+		.mem_addr(log_mem_addr),
+	   .mem_data_out(log_mem_data_out),
+	   .mem_data_in(log_mem_data_in),
+	   .mem_done(mem_done),
+		.mem_start(mem_start),
+		.mem_rw(mem_rw),
 		
 		.init_error(init_error), 
 		
@@ -937,12 +942,34 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	// 
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	
+	wire [7:0] ram_addr;
+	wire [7:0] ram_data_out;
+	wire [7:0] ram_data_in;
+	wire ram_wr_en;
+	
 	RAM ram(
 		.addra(ram_addr),
 		.dina(ram_data_out),
 		.douta(ram_data_in),
 		.wea(ram_wr_en),
 		.clka(clock_27mhz)
+	);
+	
+	mem_ctl ctl(
+		.clk(clock_27mhz),
+		.reset(reset_button),
+		.start(mem_start),
+		.done(mem_done),
+		.rw(mem_rw),
+		
+		.mem_wr_en(ram_wr_en),
+		.mem_addr(ram_addr),
+		.mem_data_in(ram_data_in),
+		.mem_data_out(ram_data_out),
+		
+		.log_mem_addr(log_mem_addr),
+		.log_mem_data_in(log_mem_data_in),
+		.log_mem_data_out(log_mem_data_out)
 	);
 	
 	//assigned constants for testing modules
@@ -955,12 +982,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign stop_on_idle = 1'b1;
 	
 	//logic analyzer outputs for debugging
-	assign user3[4] = read_data_empty;
+	assign user3[4] = message_failure;
 	assign analyzer3_clock = clock_27mhz;
-	assign analyzer3_data = 16'b0;
+	assign analyzer3_data = {ram_addr, ram_data_out};
+	assign analyzer1_data = {5'b0, user3[1], user3[0], ram_wr_en, ram_data_in};
+   assign analyzer1_clock = clock_27mhz;
 	//assign analyzer3_data = {fifo_out_debug, user3[1], user3[0], fifo_underflow_debug, state_out_WRITEMULTI, test_done_WRITEMULTI};
 	//assign analyzer3_data = {i2c_data_out_WRITE, user3[1], user3[0], 1'b0, state_out_WRITE, clk_200Hz};
-	assign led = {4'hF, ~instruction_count_debug};
+	assign led = {3'b111, ~instruction_count_debug};
 	
 	//physical pin delegation for i2c communication to slave
 	assign scl_i = user3[0];

@@ -66,10 +66,12 @@ module get_spad_info(
 	 
 	 //inputs and outputs to read RAM
 	 //ram instantiated in labkit so that gobal variables can be stored and updated
-	 output [7:0] ram_addr,
-	 output [7:0] ram_data_out,
-	 input [7:0] ram_data_in,
-	 output ram_wr_en,
+	 output [7:0] mem_addr,
+	 output [7:0] mem_data_out,
+	 input [7:0] mem_data_in,
+	 output mem_start,
+	 input mem_done,
+	 output mem_rw,
 	 
 	 //status
 	 output spad_error
@@ -196,10 +198,10 @@ module get_spad_info(
 	reg fifo_wr_en_reg = 1'b0;
 	reg fifo_ext_reset_reg = 1'b1;
 	
-	reg [7:0] rom_addr_reg = 8'h00;
-	reg [7:0] ram_addr_reg = 8'h00;
-	reg [7:0] ram_data_out_reg = 8'h00;
-	reg ram_wr_en_reg = 1'b0;
+	reg [7:0] mem_addr_reg = 8'h00;
+	reg [7:0] mem_data_out_reg = 8'h00;
+	reg mem_start_reg = 1'b0;
+	reg mem_rw_reg = 1'b0;
 	
 	reg spad_error_reg = 1'b0;
 	
@@ -233,10 +235,10 @@ module get_spad_info(
 					fifo_wr_en_reg <= 1'b0;
 					fifo_ext_reset_reg <= 1'b1;
 					
-					rom_addr_reg <= 8'h00;
-					ram_addr_reg <= 8'h00;
-					ram_data_out_reg <= 8'h00;
-					ram_wr_en_reg <= 1'b0;
+					mem_addr_reg <= 8'h00;
+					mem_data_out_reg <= 8'h00;
+					mem_rw_reg <= 1'b0;
+					mem_start_reg <= 1'b0;
 					
 					spad_error_reg <= 1'b0;
 					
@@ -513,25 +515,28 @@ module get_spad_info(
 								fifo_read_en_reg <= 1'b0;
 							end
 							else begin
-								ram_addr_reg <= SPAD_COUNT;
-								ram_data_out_reg <= fifo_data_in & 8'h7F;
-								ram_wr_en_reg <= 1'b1;
+								mem_addr_reg <= SPAD_COUNT;
+								mem_data_out_reg <= fifo_data_in & 8'h7F;
+								mem_rw_reg <= 1'b1;
+								mem_start_reg <= 1'b1;
 								
 								instruction_count <= instruction_count + 1;
 							end
 							state <= S_WRITE;
 						end
 						4'b0100: begin
-							ram_addr_reg <= SPAD_TYPE_IS_APERTURE;
-							ram_data_out_reg <= (fifo_data_in >> 7) & 8'h01;
-							ram_wr_en_reg <= 1'b1;
-							
-							write_start_reg <= 1'b1;
-							fnc_sel_reg <= 2'b10; //write
-							reg_address_out_reg <= 8'h81;
-							data_out_reg <= 8'h00; //set LSB
-							
-							instruction_count <= instruction_count + 1;
+							if(!mem_done) begin
+								instruction_count <= instruction_count;
+								mem_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'h81;
+								data_out_reg <= 8'h00; //set LSB
+								
+								instruction_count <= instruction_count + 1;
+							end
 							state <= S_WRITE;
 						end
 						4'b0101: begin
@@ -540,6 +545,11 @@ module get_spad_info(
 								write_start_reg <= 1'b0;
 							end
 							else begin
+								mem_addr_reg <= SPAD_TYPE_IS_APERTURE;
+								mem_data_out_reg <= (fifo_data_in >> 7) & 8'h01;
+								mem_start_reg <= 1'b1;
+								mem_rw_reg <= 1'b1;
+								
 								write_start_reg <= 1'b1;
 								fnc_sel_reg <= 2'b10; //write
 								reg_address_out_reg <= 8'hFF;
@@ -553,6 +563,7 @@ module get_spad_info(
 							if(!write_done) begin
 								instruction_count <= instruction_count;
 								write_start_reg <= 1'b0;
+								mem_start_reg <= 1'b0;
 							end
 							else begin
 								read_start_reg <= 1'b1;
@@ -690,6 +701,11 @@ module get_spad_info(
 	assign fifo_data_out = fifo_data_out_reg;
 	assign fifo_wr_en = fifo_wr_en_reg;
 	assign fifo_ext_reset = fifo_ext_reset_reg;
+	
+	assign mem_addr = mem_addr_reg;
+	assign mem_data_out = mem_data_out_reg;
+	assign mem_start = mem_start_reg;
+	assign mem_rw = mem_rw_reg;
 	
 	assign spad_error = spad_error_reg;
 

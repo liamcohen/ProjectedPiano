@@ -102,18 +102,13 @@ module i2c_read_reg(
 	 
 	 //FIFO outputs
 	 output [7:0] data_out,
-	 output fifo_read_en,
+	 input fifo_read_en,
 	 output fifo_empty,
 	 output fifo_read_valid,
 	 output fifo_underflow,
 	 
 	 //status
-	 output message_failure,
-	 output i2c_control,
-	 input i2c_relinquish, //from other i2c comm modules, forces tristate of necessary busses
-	 
-	 //debug
-	 output [3:0] fifo_data_count
+	 output message_failure
 	);
 	//write_reg_i2c acts as a module which will, given that the I2C bus is available,
 	//upon start, will take the data available at reg_address and data and upon
@@ -169,7 +164,6 @@ module i2c_read_reg(
 	wire bus_valid;
 	assign bus_valid = ~i2c_bus_busy & ~i2c_bus_active;
 	wire i2c_bus_free = ~i2c_bus_busy & ~i2c_bus_control;
-	assign i2c_bus_free_output = i2c_bus_free;
 	
 	//define I2C read FIFO
 	wire fifo_reset;
@@ -193,8 +187,7 @@ module i2c_read_reg(
 		.valid(fifo_read_valid),
 		.wr_ack(fifo_write_ack),
 		.overflow(fifo_overflow),
-		.underflow(fifo_underflow),
-		.data_count(fifo_data_count)
+		.underflow(fifo_underflow)
 	);
 	
 	assign fifo_reset = fifo_reset_reg;
@@ -203,7 +196,7 @@ module i2c_read_reg(
 	//define state transition diagram
 	//and state outputs 
 	always @(posedge clk) begin
-		if(reset | i2c_relinquish) state <= S_RESET;
+		if(reset) state <= S_RESET;
 		else if(i2c_missed_ack) begin
 			state <= S_RESET;
 			message_failure_reg <= 1'b1; //missed_ack --> pulse message_failure 
@@ -468,7 +461,6 @@ module i2c_read_reg(
 	assign i2c_cmd_valid = i2c_cmd_valid_reg;
 	
 	assign message_failure = message_failure_reg;
-	assign i2c_control = i2c_control_reg;
 	
 	//debugging
 	assign state_out = state;

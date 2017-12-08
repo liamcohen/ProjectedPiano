@@ -852,6 +852,7 @@ proc restore { { project_dir "" } } {
       "labkit.ucf" 
       "labkit.v" 
       "load_fifo.v" 
+      "mem_ctl.v" 
       "mux4.v" 
       "test_i2c_write_reg.v" 
       "test_write_multi.v" 

@@ -11,7 +11,7 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Tue Dec  5 16:15:00 2017
+Mapped Date    : Thu Dec  7 23:39:05 2017
 
 Mapping design into LUTs...
 Running directed packing...
@@ -23,24 +23,26 @@ Design Summary
 
 Design Summary:
 Number of errors:      0
-Number of warnings:  332
+Number of warnings:  412
 Logic Utilization:
-  Number of Slice Flip Flops:           219 out of  67,584    1%
-  Number of 4 input LUTs:               350 out of  67,584    1%
+  Number of Slice Flip Flops:           566 out of  67,584    1%
+  Number of 4 input LUTs:             1,523 out of  67,584    2%
 Logic Distribution:
-  Number of occupied Slices:            240 out of  33,792    1%
-    Number of Slices containing only related logic:     240 out of     240 100%
-    Number of Slices containing unrelated logic:          0 out of     240   0%
+  Number of occupied Slices:            858 out of  33,792    2%
+    Number of Slices containing only related logic:     858 out of     858 100%
+    Number of Slices containing unrelated logic:          0 out of     858   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         433 out of  67,584    1%
-    Number used as logic:               350
-    Number used as a route-thru:         83
+  Total Number of 4 input LUTs:       1,612 out of  67,584    2%
+    Number used as logic:             1,507
+    Number used as a route-thru:         89
+    Number used as Shift registers:      16
   Number of bonded IOBs:                576 out of     684   84%
+  Number of RAMB16s:                      2 out of     144    1%
   Number of BUFGMUXs:                     1 out of      16    6%
 
-Peak Memory Usage:  483 MB
-Total REAL time to MAP completion:  1 secs 
-Total CPU time to MAP completion:   1 secs 
+Peak Memory Usage:  497 MB
+Total REAL time to MAP completion:  2 secs 
+Total CPU time to MAP completion:   2 secs 
 
 NOTES:
 
