@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Tue Dec  5 16:38:20 2017">
+  <application stringID="Xst" timeStamp="Fri Dec  8 16:32:07 2017">
     <section stringID="XST_HDL_SYNTHESIS_REPORT">
       <item dataType="int" stringID="XST_ADDERSSUBTRACTORS" value="62">
         <item dataType="int" stringID="XST_10BIT_ADDER" value="20"/>

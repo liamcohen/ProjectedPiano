@@ -5,14 +5,14 @@ Parameter TMPDIR set to /afs/athena.mit.edu/user/z/k/zklawans/Desktop/6.111/Fina
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.02 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/z/k/zklawans/Desktop/6.111/FinalProject/GitHub/ProjectedPiano/final_project/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.02 secs
  
 --> 
 Reading design: labkit.prj
@@ -1369,12 +1369,12 @@ Delay:               7.166ns (Levels of Logic = 3)
 
 
 Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.60 secs
+Total CPU time to Xst completion: 6.84 secs
  
 --> 
 
 
-Total memory usage is 483536 kilobytes
+Total memory usage is 483556 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  559 (   0 filtered)
