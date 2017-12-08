@@ -34,6 +34,7 @@ module piano (
    input blank,      // XVGA blanking (1 means output black pixel)
 	input [16:0] key_num,	// keys pressed on piano
 	input note_ready,		// key_num valid note(s) on piano
+	input [1:0] state, // 00: user, 01: record, 10: playback
    
    output phsync, // piano's horizontal sync
    output pvsync, // piano's vertical sync
@@ -44,6 +45,7 @@ module piano (
    parameter PRESSED = 24'hFF_00_00;
    parameter WHITE = 24'hFF_FF_FF;
    parameter BLACK = 24'h00_00_00;
+	parameter GREEN = 24'h00_FF_00;
    parameter BOARD_WIDTH = 11'd1024;
    parameter BOARD_HEIGHT = 10'd768;
    parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 2;
@@ -73,6 +75,25 @@ module piano (
    assign phsync = hsync;
    assign pvsync = vsync;
    assign pblank = blank;
+	
+	reg [23:0] mode_color;
+	wire [23:0] mode_pixel;
+	
+	always @(posedge vclock)
+	begin
+	
+		case (state)
+			0: mode_color <= BLACK;
+			1: mode_color <= PRESSED;
+			2: mode_color <= GREEN;
+			default: mode_color <= BLACK;
+		endcase
+	
+	end
+	
+	// Mode indicator blob
+//	blob mode(.x(800), .y(70), .hcount(hcount), .vcount(vcount), .color(mode_color), .pixel(mode_pixel));
+	circle #(.RADIUS(35)) mode(.x(800), .y(70), .hcount(hcount), .vcount(vcount), .color(mode_color), .pixel(mode_pixel));
    
    // C key
    left_key #(.WIDTH(WHITE_KEY_WIDTH), .HEIGHT(WHITE_KEY_HEIGHT),
@@ -181,7 +202,8 @@ module piano (
    
    assign pixel = c_pixel | db_pixel | d_pixel | eb_pixel | e_pixel | f_pixel
                   | gb_pixel | g_pixel | ab_pixel | a_pixel | bb_pixel | b_pixel
-                  | high_c_pixel | high_db_pixel | high_d_pixel | high_eb_pixel | high_e_pixel;
+                  | high_c_pixel | high_db_pixel | high_d_pixel | high_eb_pixel
+						| high_e_pixel | mode_pixel;
      
 endmodule
 

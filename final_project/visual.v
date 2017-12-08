@@ -21,6 +21,7 @@
 module visual(
 	input clock_27mhz,
 	input [16:0] key_num,
+	input [1:0] state,
 	input note_ready, reset,
 	input [7:0] switch,
 	
@@ -81,7 +82,7 @@ module visual(
    keystoning ks(.clk(clock_65mhz),.reset(reset),
       .hcount(hcount),.vcount(vcount),
       .hsync(hsync),.vsync(vsync),.blank(blank),
-		.key_num(key_num), .note_ready(note_ready),
+		.key_num(key_num), .note_ready(note_ready), .state(state),
       .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
 
    // switch[1:0] selects which video generator to use:
@@ -94,25 +95,25 @@ module visual(
    
    reg b,hs,vs;
    always @(posedge clock_65mhz) begin
-      if (switch[1:0] == 2'b01) begin
-    // 1 pixel outline of visible area (white)
-    hs <= hsync;
-    vs <= vsync;
-    b <= blank;
-    rgb <= {24{border}};
-      end else if (switch[1:0] == 2'b10) begin
-    // color bars
-    hs <= hsync;
-    vs <= vsync;
-    b <= blank;
-    rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
-      end else begin
+//      if (switch[1:0] == 2'b01) begin
+//    // 1 pixel outline of visible area (white)
+//    hs <= hsync;
+//    vs <= vsync;
+//    b <= blank;
+//    rgb <= {24{border}};
+//      end else if (switch[1:0] == 2'b10) begin
+//    // color bars
+//    hs <= hsync;
+//    vs <= vsync;
+//    b <= blank;
+//    rgb <= {{8{hcount[8]}}, {8{hcount[7]}}, {8{hcount[6]}}} ;
+//      end else begin
          // default: piano
     hs <= phsync;
     vs <= pvsync;
     b <= pblank;
     rgb <= pixel;
-      end
+//      end
    end
 	
 	assign vga_out_red = rgb[23:16];

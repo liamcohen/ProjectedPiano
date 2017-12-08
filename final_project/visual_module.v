@@ -323,7 +323,8 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    // instantiate visual module
 	wire [16:0] key_num = {left, up, down, right, enter, b3, b2, b1, b0, switch};
 	wire note_ready = 1;
-	visual vmod(.clock_27mhz(clock_27mhz), .key_num(key_num), .note_ready(note_ready),
+	wire [1:0] state = switch[1:0];
+	visual vmod(.clock_27mhz(clock_27mhz), .key_num(key_num), .state(state), .note_ready(note_ready),
 					.reset(reset), .switch(switch), .vga_out_red(vga_out_red),
 					.vga_out_green(vga_out_green), .vga_out_blue(vga_out_blue),
 					.vga_out_sync_b(vga_out_sync_b), .vga_out_blank_b(vga_out_blank_b),
