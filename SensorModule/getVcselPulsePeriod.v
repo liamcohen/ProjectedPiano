@@ -221,7 +221,7 @@ module getVcselPulsePeriod(
 	reg mem_start_reg = 1'b0;
 	reg mem_rw_reg = 1'b0;
 	
-	reg [7:0] vcsel_pulse_period_reg = 8'h00;
+	reg [7:0] vcsel_pulse_period_reg = 8'h00; //hold previous value until next iteration
 	
 	reg error_reg = 1'b0;
 	
