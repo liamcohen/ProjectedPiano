@@ -160,11 +160,28 @@ module get_spad_info(
 	/////////////////////////////////////////////////////////////////////////////////
 	// Memory map for variables: ram is global 
 	/////////////////////////////////////////////////////////////////////////////////
-	parameter STOP_VARIABLE = 8'h00;
-	parameter SPAD_COUNT = 8'h01;
-	parameter SPAD_TYPE_IS_APERTURE = 8'h02;
-	parameter REF_SPAD_MAP = 8'h03;
-	parameter NEXT_VARIABLE = 9'h09;
+	parameter STOP_VARIABLE = 8'h00;//8-bit
+	parameter SPAD_COUNT = 8'h01;//8-bit
+	parameter SPAD_TYPE_IS_APERTURE = 8'h02;//bool
+	parameter REF_SPAD_MAP = 8'h03; //array
+	parameter SEQUENCE_STEP_ENABLE_TCC = 8'h09;//bool
+	parameter SEQUENCE_STEP_ENABLE_MSRC = 8'h0A;//bool
+	parameter SEQUENCE_STEP_ENABLE_DSS = 8'h0B;//bool
+	parameter SEQUENCE_STEP_ENABLE_PRE_RANGE = 8'h0C;//bool
+	parameter SEQUENCE_STEP_ENABLE_FINAL_RANGE = 8'h0D;//bool
+	parameter SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_VPP = 8'h0E;//16-bit
+	parameter SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_VPP = 8'h10;//16-bit
+	parameter SEQUENCE_STEP_TIMEOUTS_MSRC_DTM = 8'h12; //16-bit
+	parameter SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_MCLKS = 8'h14; //16-bit
+	parameter SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_MCLKS = 8'h16; //16-bit
+	parameter SEQUENCE_STEP_TIMEOUTS_MSRC_DTU = 8'h18; //32-bit
+	parameter SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US = 8'h22; //32-b-t
+	parameter SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US = 8'h26; //32 bit
+	parameter MEASUREMENT_TIMING_BUDGET = 8'h30; //32-bit
+	
+	//define data_types
+	parameter VcselPeriodPreRange = 8'h00;
+	parameter VcselPeriodFinalRange = 8'h01;
 	 
 	//define state parameters
 	parameter S_RESET = 2'b00;

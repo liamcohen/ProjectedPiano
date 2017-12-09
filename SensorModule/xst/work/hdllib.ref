@@ -9,10 +9,14 @@ MO i2c_default NULL i2c_default.v vlg5E/i2c__default.bin 1511200813
 MO i2c_master NULL i2c_master.v vlg65/i2c__master.bin 1512707918
 MO debounce NULL "../../../6.111 Labs/Lab2/ise/lab2_3/display/debounce.v" vlg1D/debounce.bin 1512707918
 MO labkit NULL labkit.v vlg7B/labkit.bin 1512707918
+MO get_measurement_timing_budget NULL get_measurement_timing_budget.v vlg6E/get__measurement__timing__budget.bin 1512777389
 MO i2c_write_reg NULL i2c_write_reg.v vlg79/i2c__write__reg.bin 1512707918
 MO i2c_write_reg_multi NULL write_multi.v vlg63/i2c__write__reg__multi.bin 1512707917
 MO RAM NULL ./RAM.v vlg14/_r_a_m.bin 1512707917
 MO get_spad_info NULL get_spad_info.v vlg56/get__spad__info.bin 1512707917
-MO mem_ctl NULL mem_ctl.v vlg19/mem__ctl.bin 1512707917
+MO mem_ctl NULL mem_ctl.v vlg19/mem__ctl.bin 1512759242
+MO timeoutMclksToMicroseconds NULL timeoutMclksToMicroseconds.v vlg21/timeout_mclks_to_microseconds.bin 1512771842
+MO timeoutMicrosecondsToMclks NULL timeoutMicrosecondsToMclks.v vlg79/timeout_microseconds_to_mclks.bin 1512773630
 MO axis_fifo NULL axis_fifo.v vlg44/axis__fifo.bin 1510178557
 MO test_write_multi NULL test_write_multi.v vlg0C/test__write__multi.bin 1511824750
+MO getVcselPulsePeriod NULL getVcselPulsePeriod.v vlg5D/get_vcsel_pulse_period.bin 1512777389

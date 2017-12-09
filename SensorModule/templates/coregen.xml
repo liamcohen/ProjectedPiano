@@ -71,6 +71,27 @@ ROM YourInstanceName (
 
  
 		</Template>
+		<Template label="num_divider" treetype="template">
+		</Template>
+		<Template label="div" treetype="template">
+		</Template>
+		<Template label="divider_module" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+divider_module YourInstanceName (
+    .clk(clk),
+    .rfd(rfd),
+    .dividend(dividend), // Bus [31 : 0] 
+    .divisor(divisor), // Bus [31 : 0] 
+    .quotient(quotient), // Bus [31 : 0] 
+    .fractional(fractional)); // Bus [31 : 0] 
+
+ 
+		</Template>
 	</Folder>
 	<Folder label="VHDL Component Instantiation" treetype="folder">
 		<Template label="FIFO" treetype="template">
@@ -201,6 +222,42 @@ your_instance_name : ROM
             clka =&gt; clka,
             addra =&gt; addra,
             douta =&gt; douta);
+ 
+		</Template>
+		<Template label="num_divider" treetype="template">
+		</Template>
+		<Template label="div" treetype="template">
+		</Template>
+		<Template label="divider_module" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component divider_module
+    port (
+    clk: IN std_logic;
+    rfd: OUT std_logic;
+    dividend: IN std_logic_VECTOR(31 downto 0);
+    divisor: IN std_logic_VECTOR(31 downto 0);
+    quotient: OUT std_logic_VECTOR(31 downto 0);
+    fractional: OUT std_logic_VECTOR(31 downto 0));
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : divider_module
+        port map (
+            clk =&gt; clk,
+            rfd =&gt; rfd,
+            dividend =&gt; dividend,
+            divisor =&gt; divisor,
+            quotient =&gt; quotient,
+            fractional =&gt; fractional);
  
 		</Template>
 	</Folder>

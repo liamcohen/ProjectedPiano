@@ -844,6 +844,9 @@ proc restore { { project_dir "" } } {
       "ROM.xco" 
       "VL53L0X_INIT.v" 
       "axis_fifo.v" 
+      "divider_module.xco" 
+      "getVcselPulsePeriod.v" 
+      "get_measurement_timing_budget.v" 
       "get_spad_info.v" 
       "i2c_init.v" 
       "i2c_master.v" 
@@ -856,6 +859,8 @@ proc restore { { project_dir "" } } {
       "mux4.v" 
       "test_i2c_write_reg.v" 
       "test_write_multi.v" 
+      "timeoutMclksToMicroseconds.v" 
+      "timeoutMicrosecondsToMclks.v" 
       "write_multi.v"}
 
   HandleException {
@@ -884,6 +889,13 @@ proc restore { { project_dir "" } } {
       "ROM.veo" 
       "ROM.vhd" 
       "ROM.vho" 
+      "divider_module.asy" 
+      "divider_module.ngc" 
+      "divider_module.sym" 
+      "divider_module.v" 
+      "divider_module.veo" 
+      "divider_module.vhd" 
+      "divider_module.vho" 
       "labkit_guide.ncd"}
 
   set origination 2

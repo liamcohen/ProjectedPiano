@@ -1,0 +1,4 @@
+set -tmpdir "./xst/projnav.tmp"
+elaborate
+-ifn get_measurement_timing_budget.prj
+-ifmt mixed

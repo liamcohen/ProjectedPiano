@@ -1,0 +1,12 @@
+# Output products list for <division_module>
+division_module.asy
+division_module.ngc
+division_module.sym
+division_module.v
+division_module.veo
+division_module.vhd
+division_module.vho
+division_module.xco
+division_module_div_gen_v2_0_xst_1.ngc_xst.xrpt
+division_module_flist.txt
+division_module_xmdf.tcl
