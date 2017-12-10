@@ -239,6 +239,8 @@ module i2c_write_reg(
 				S_CHECK_I2C_FREE: begin
 					if(i2c_bus_free) begin
 						state <= S_RESET;
+						done_reg <= 1'b1;
+						i2c_cmd_valid_reg <= 1'b0;
 					end
 					else begin
 						state <= S_CHECK_I2C_FREE_TIMEOUT;

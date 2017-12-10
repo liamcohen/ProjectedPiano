@@ -80,7 +80,10 @@ module VL53L0X_INIT(
 	 output init_error,
 	 
 	 //debug
-	 output [4:0] instruction_count_debug
+	 output [4:0] instruction_count_debug,
+	 output [5:0] instruction_count_timeout_debug,
+	 output [31:0] timeout_period_us,
+	 output timing_start_out
     );
 	 
 	/////////////////////////////////////////////////////////////////////////////////
@@ -326,6 +329,90 @@ module VL53L0X_INIT(
 	);
 	
 	////////////////////////////////////////////////////////////////////////////
+	// Sub-FSM getMeasurementTimingBudget
+	////////////////////////////////////////////////////////////////////////////
+	reg timing_start = 1'b0;
+	wire timing_done;
+	wire [31:0] timing_budget;
+	
+	wire write_start_timing;
+	wire write_multi_start_timing;
+	wire read_start_timing;
+	
+	wire timer_start_timing;
+	wire [3:0] timer_param_timing;
+	wire timer_reset_timing;
+	
+	wire [7:0] reg_address_out_timing;
+	wire [7:0] data_out_timing;
+	wire [3:0] n_bytes_timing;
+	
+	wire [1:0] fnc_sel_timing;
+	
+	wire [7:0] fifo_data_out_timing;
+	wire fifo_wr_en_timing;
+	wire fifo_ext_reset_timing;
+	wire fifo_read_en_timing;
+	
+	wire [7:0] mem_addr_timing;
+	wire [7:0] mem_data_out_timing;
+	wire mem_start_timing;
+	wire mem_rw_timing;
+	
+	wire timing_error;
+	wire [5:0] instruction_count_timeout;
+	
+	getMeasurementTimingBudget getMeasurementTimingBudget(
+		.reset(reset),
+		.clk(clk),
+		.start(timing_start),
+		.done(timing_done),
+		.timing_budget(timing_budget),
+		
+		.write_start(write_start_timing),
+		.write_done(write_done),
+		.write_multi_start(write_multi_start_timing),
+		.write_multi_done(write_multi_done),
+		.read_start(read_start_timing),
+		.read_done(read_done),
+		
+		.timer_exp(timer_exp),
+		.timer_start(timer_start_timing),
+		.timer_param(timer_param_timing),
+		.timer_reset(timer_reset_timing),
+		
+		.reg_address_out(reg_address_out_timing),
+		.data_out(data_out_timing),
+		.n_bytes(n_bytes_timing),
+		
+		.fnc_sel(fnc_sel_timing),
+		
+		.fifo_data_out(fifo_data_out_timing),
+		.fifo_wr_en(fifo_wr_en_timing),
+	   .fifo_ext_reset(fifo_ext_reset_timing),
+	   .fifo_full(fifo_full),
+	   .fifo_write_ack(fifo_write_ack),
+	   .fifo_overflow(fifo_overflow),
+		
+		.fifo_data_in(fifo_data_in),
+	   .fifo_read_en(fifo_read_en_timing),
+	   .fifo_empty(fifo_empty),
+	   .fifo_read_valid(fifo_read_valid),
+	   .fifo_underflow(fifo_underflow),
+		
+		.mem_addr(mem_addr_timing),
+	   .mem_data_out(mem_data_out_timing),
+	   .mem_data_in(mem_data_in),
+	   .mem_start(mem_start_timing),
+		.mem_done(mem_done),
+		.mem_rw(mem_rw_timing),
+		
+		.timing_budget_error(timing_error),
+		.instruction_count_debug(instruction_count_timeout),
+		.timeout_period_us(timeout_period_us)
+	);
+	
+	////////////////////////////////////////////////////////////////////////////
 	// Main FSM implementation
 	////////////////////////////////////////////////////////////////////////////
 	
@@ -367,6 +454,7 @@ module VL53L0X_INIT(
 					init_error_reg <= 1'b0;
 					
 					spad_start <= 1'b0;
+					timing_start <= 1'b0;
 					
 					instruction_count <= 5'b00000;
 					count <= 8'h00;
@@ -1097,19 +1185,137 @@ module VL53L0X_INIT(
 							end
 							state <= S_STATIC_INIT;
 						end
+						///////////////////////////////////////////////////////////////
+						// getMeasurementTimingBudget
+						///////////////////////////////////////////////////////////////
 						5'b11011: begin
 							if(!write_done) begin
 								write_start_reg <= 1'b0;
 								instruction_count <= instruction_count;
+							end
+							else begin
+								//shift FSM Control to getMeasurementTimingBudget
+								timing_start <= 1'b1;
+								
+								write_start_reg <= write_start_timing;
+								write_multi_start_reg <= write_multi_start_timing;
+								read_start_reg <= read_start_timing;
+								
+								timer_start_reg <= timer_start_timing;
+								timer_param_reg <= timer_param_timing;
+								timer_reset_reg <= timer_reset_timing;
+								
+								reg_address_out_reg <= reg_address_out_timing;
+								data_out_reg <= data_out_timing;
+								n_bytes_reg <= n_bytes_timing;
+								
+								fnc_sel_reg <= fnc_sel_timing;
+								
+								fifo_data_out_reg <= fifo_data_out_timing;
+								fifo_wr_en_reg <= fifo_wr_en_timing;
+								fifo_ext_reset_reg <= fifo_ext_reset_timing;
+								fifo_read_en_reg <= fifo_read_en_timing;
+								
+								mem_addr_reg <= mem_addr_timing;
+								mem_data_out_reg <= mem_data_out_timing;
+								mem_start_reg <= mem_start_timing;
+								mem_rw_reg <= mem_rw_timing;
+								
+								init_error_reg <= timing_error;
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						5'b11100: begin
+							if(!timing_done) begin
+								//keep FSM Control under getMeasurementTimingBudget until done
+								timing_start <= 1'b0;
+								
+								write_start_reg <= write_start_timing;
+								write_multi_start_reg <= write_multi_start_timing;
+								read_start_reg <= read_start_timing;
+								
+								timer_start_reg <= timer_start_timing;
+								timer_param_reg <= timer_param_timing;
+								timer_reset_reg <= timer_reset_timing;
+								
+								reg_address_out_reg <= reg_address_out_timing;
+								data_out_reg <= data_out_timing;
+								n_bytes_reg <= n_bytes_timing;
+								
+								fnc_sel_reg <= fnc_sel_timing;
+								
+								fifo_data_out_reg <= fifo_data_out_timing;
+								fifo_wr_en_reg <= fifo_wr_en_timing;
+								fifo_ext_reset_reg <= fifo_ext_reset_timing;
+								fifo_read_en_reg <= fifo_read_en_timing;
+								
+								mem_addr_reg <= mem_addr_timing;
+								mem_data_out_reg <= mem_data_out_timing;
+								mem_start_reg <= mem_start_timing;
+								mem_rw_reg <= mem_rw_timing;
+								
+								init_error_reg <= timing_error;
+								
+								instruction_count <= instruction_count;
 								state <= S_STATIC_INIT;
 							end
 							else begin
-								//write_start_reg <= 1'b1;
-								//fnc_sel_reg <= 2'b10; //write
-								//reg_address_out_reg <= SYSTEM_SEQUENCE_CONFIG;
-								//data_out_reg <= 8'hE8;
-								state <= S_RESET;
+								state <= S_STATIC_INIT;
+								
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'h00;
+								data_out_reg <= timing_budget[7:0];
+								
 								instruction_count <= instruction_count + 1;
+							end
+						end
+						5'b11101: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'h00;
+								data_out_reg <= timing_budget[15:8];
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						5'b11110: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'h00;
+								data_out_reg <= timing_budget[23:16];
+								
+								instruction_count <= instruction_count + 1;
+							end
+							state <= S_STATIC_INIT;
+						end
+						5'b11111: begin
+							if(!write_done) begin
+								instruction_count <= instruction_count;
+								write_start_reg <= 1'b0;
+								state <= S_STATIC_INIT;
+							end
+							else begin
+								write_start_reg <= 1'b1;
+								fnc_sel_reg <= 2'b10; //write
+								reg_address_out_reg <= 8'h00;
+								data_out_reg <= timing_budget[31:24];
+								
+								instruction_count <= instruction_count + 1;
+								state <= S_RESET;
 							end
 							//state <= S_STATIC_INIT;
 						end
@@ -1151,5 +1357,7 @@ module VL53L0X_INIT(
 	
 	assign init_error = init_error_reg;
 	assign instruction_count_debug = instruction_count;
+	assign instruction_count_timeout_debug = instruction_count_timeout;
+	assign timing_start_out = timing_start;
 
 endmodule

@@ -308,8 +308,8 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer2_clock = 1'b1;
    //assign analyzer3_data = 16'h0;
    //assign analyzer3_clock = 1'b1;
-   assign analyzer4_data = 16'h0;
-   assign analyzer4_clock = 1'b1;
+   //assign analyzer4_data = 16'h0;
+   //assign analyzer4_clock = 1'b1;
 	
 	//Buttons for initiating i2c communications -- for testing (plus overall system reset)
 	wire reset_button;
@@ -872,6 +872,13 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.clk_1000Hz(clk_10Hz)
 	);
 	
+	wire clk_1Hz;
+	divider #(27000000) div4 ( //pulse every 1s
+		.clk(clock_27mhz),
+		.reset(reset_button),
+		.clk_1000Hz(clk_1Hz)
+	);
+	
 	wire init_done;
 	
 	wire [7:0] log_mem_addr;
@@ -885,11 +892,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire init_error;
 	
 	wire [4:0] instruction_count_debug;
+	wire [5:0] instruction_count_timeout_debug;
+	wire [31:0] timeout_period_us;
+	wire timing_start;
 	
 	VL53L0X_INIT sensor_init(
 		.reset(reset_button),
 		.clk(clock_27mhz),
-		.start(clk_10Hz),
+		.start(clk_1Hz),
 		.done(init_done),
 		.comm_error(message_failure),
 		
@@ -933,7 +943,10 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		
 		.init_error(init_error), 
 		
-		.instruction_count_debug(instruction_count_debug)
+		.instruction_count_debug(instruction_count_debug),
+		.instruction_count_timeout_debug(instruction_count_timeout_debug),
+		.timeout_period_us(timeout_period_us),
+		.timing_start_out(timing_start)
 	);
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -984,12 +997,14 @@ module labkit (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	//logic analyzer outputs for debugging
 	assign user3[4] = message_failure;
 	assign analyzer3_clock = clock_27mhz;
-	assign analyzer3_data = {ram_addr, ram_data_out};
-	assign analyzer1_data = {5'b0, user3[1], user3[0], ram_wr_en, ram_data_in};
+	assign analyzer3_data = {timeout_period_us[15:0]};
+	assign analyzer1_data = {timeout_period_us[31:16]};
+	assign analyzer4_data = {13'b0, timing_start, user3[1], user3[0]};
+	assign analyzer4_clock = clock_27mhz;
    assign analyzer1_clock = clock_27mhz;
 	//assign analyzer3_data = {fifo_out_debug, user3[1], user3[0], fifo_underflow_debug, state_out_WRITEMULTI, test_done_WRITEMULTI};
 	//assign analyzer3_data = {i2c_data_out_WRITE, user3[1], user3[0], 1'b0, state_out_WRITE, clk_200Hz};
-	assign led = {3'b111, ~instruction_count_debug};
+	assign led = {2'b11, ~instruction_count_timeout_debug};
 	
 	//physical pin delegation for i2c communication to slave
 	assign scl_i = user3[0];

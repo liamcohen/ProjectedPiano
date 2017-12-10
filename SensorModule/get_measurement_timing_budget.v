@@ -19,7 +19,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module get_measurement_timing_budget(
+module getMeasurementTimingBudget (
     //FSM start and done
 	 input clk,
 	 input reset,
@@ -75,7 +75,11 @@ module get_measurement_timing_budget(
 	 output mem_rw,
 	 
 	 //status
-	 output timing_budget_error
+	 output timing_budget_error,
+	 
+	 //debug
+	 output [5:0] instruction_count_debug,
+	 output [31:0] timeout_period_us
     );
 	 
 	/////////////////////////////////////////////////////////////////////////////////
@@ -190,13 +194,13 @@ module get_measurement_timing_budget(
 	/////////////////////////////////////////////////////////////////////////////////
 	// Program Constants
 	/////////////////////////////////////////////////////////////////////////////////
-	parameter StartOverhead      = 1910; 
-   parameter EndOverhead        = 960;
-   parameter MsrcOverhead       = 660;
-   parameter TccOverhead        = 590;
-   parameter DssOverhead        = 690;
-   parameter PreRangeOverhead   = 660;
-	parameter FinalRangeOverhead = 550;
+	parameter StartOverhead      = 32'd1910; 
+   parameter EndOverhead        = 32'd960;
+   parameter MsrcOverhead       = 32'd660;
+   parameter TccOverhead        = 32'd590;
+   parameter DssOverhead        = 32'd690;
+   parameter PreRangeOverhead   = 32'd660;
+	parameter FinalRangeOverhead = 32'd550;
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Some temporary registers
@@ -213,7 +217,7 @@ module get_measurement_timing_budget(
 	
 	//define state register and counters
 	reg [1:0] state = 2'b00;
-	reg [4:0] instruction_count = 6'b000000;
+	reg [5:0] instruction_count = 6'b000000;
 	
 	//define output registers
 	reg done_reg = 1'b0;
@@ -335,9 +339,9 @@ module get_measurement_timing_budget(
 	////////////////////////////////////////////////////////////////////////////
 	reg timeout_convert_start = 1'b0;
 	wire timeout_convert_done;
-	reg [15:0] timeout_period_mclks= 8'h0000;
+	reg [15:0] timeout_period_mclks= 16'h0000;
 	reg [7:0] vcsel_period_pclks = 8'h00;
-	wire [31:0] timeout_period_us;
+	//wire [31:0] timeout_period_us;
 	
 	timeoutMclksToMicroseconds timeoutMclksToMicroseconds(
 		.clk(clk),
@@ -406,7 +410,7 @@ module get_measurement_timing_budget(
 					vcsel_period_type <= 8'h00;
 					
 					timeout_convert_start <= 1'b0;
-					timeout_period_mclks <= 8'h0000;
+					timeout_period_mclks <= 16'h0000;
 					vcsel_period_pclks <= 8'h00;
 					
 					instruction_count <= 6'b000000;
@@ -884,7 +888,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US;
 								mem_data_out_reg <= timeout_period_us[7:0];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -899,7 +903,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US + 1;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US + 1;
 								mem_data_out_reg <= timeout_period_us[15:8];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -914,7 +918,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US + 2;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US + 2;
 								mem_data_out_reg <= timeout_period_us[23:16];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -929,7 +933,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US + 3;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US + 3;
 								mem_data_out_reg <= timeout_period_us[31:24];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -1171,7 +1175,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp0_16 <= mem_data_in & 16'h00FF; //set LSB of FINAL_RANGE_MCLKS
+								tmp0_16 <= {8'h00, mem_data_in} & 16'h00FF; //set LSB of FINAL_RANGE_MCLKS
 								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_MCLKS + 1;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
@@ -1186,7 +1190,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp0_16 <= tmp0_16 + ((mem_data_in << 8) & 16'hFF00); //set MSB of FINAL_RANGE_MCLKS
+								tmp0_16 <= tmp0_16 + ({mem_data_in, 8'h00} & 16'hFF00); //set MSB of FINAL_RANGE_MCLKS
 								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_MCLKS;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
@@ -1201,7 +1205,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_16 <= mem_data_in & 16'h00FF;//set LSB of PRE_RANGE_MCLKS
+								tmp1_16 <= {8'h00, mem_data_in} & 16'h00FF;//set LSB of PRE_RANGE_MCLKS
 								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_MCLKS + 1;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
@@ -1216,7 +1220,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_16 <= tmp1_16 + ((mem_data_in << 8) & 16'hFF00); //set MSB of PRE_RANGE_MCLKS
+								tmp1_16 <= tmp1_16 + ({mem_data_in, 8'h00} & 16'hFF00); //set MSB of PRE_RANGE_MCLKS
 								instruction_count <= instruction_count + 1;
 							end
 							state <= S_GET_TIMEOUTS;
@@ -1275,7 +1279,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US;
 								mem_data_out_reg <= timeout_period_us[7:0];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -1290,7 +1294,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US + 1;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US + 1;
 								mem_data_out_reg <= timeout_period_us[15:8];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -1305,7 +1309,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US + 2;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US + 2;
 								mem_data_out_reg <= timeout_period_us[23:16];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -1321,7 +1325,7 @@ module get_measurement_timing_budget(
 								state <= S_GET_TIMEOUTS;
 							end
 							else begin
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US + 3;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US + 3;
 								mem_data_out_reg <= timeout_period_us[31:24];
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
@@ -1375,7 +1379,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= mem_data_in & 32'h000000FF; 
+								tmp1_32 <= {8'h00, 8'h00, 8'h00, mem_data_in} & 32'h000000FF; 
 								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_MSRC_DTU + 1;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
@@ -1390,7 +1394,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 8) & 32'h0000FF00; 
+								tmp1_32 <= tmp1_32 + ({8'h00, 8'h00, mem_data_in, 8'h00} & 32'h0000FF00); 
 								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_MSRC_DTU + 2;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
@@ -1405,7 +1409,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 16) & 32'h00FF0000; 
+								tmp1_32 <= tmp1_32 + ({8'h00, mem_data_in, 8'h00, 8'h00} & 32'h00FF0000); 
 								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_MSRC_DTU + 3;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
@@ -1420,7 +1424,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 24) & 32'hFF000000; 
+								tmp1_32 <= tmp1_32 + ({mem_data_in, 8'h00, 8'h00, 8'h00} & 32'hFF000000); 
 								instruction_count <= instruction_count + 1;
 							end
 							state <= S_DONE;
@@ -1443,17 +1447,11 @@ module get_measurement_timing_budget(
 						 }
 						*/
 						6'b000111: begin
-							if(!mem_done) begin
-								mem_start_reg <= 1'b0;
-								instruction_count <= instruction_count;
-							end
-							else begin
-								mem_addr_reg <= SEQUENCE_STEP_ENABLE_DSS;
-								mem_rw_reg <= 1'b0;
-								mem_start_reg <= 1'b1;
+							mem_addr_reg <= SEQUENCE_STEP_ENABLE_DSS;
+							mem_rw_reg <= 1'b0;
+							mem_start_reg <= 1'b1;
 
-								instruction_count <= instruction_count + 1;
-							end
+							instruction_count <= instruction_count + 1;
 							state <= S_DONE;
 						end
 						6'b001000: begin
@@ -1468,17 +1466,11 @@ module get_measurement_timing_budget(
 							state <= S_DONE;
 						end
 						6'b001001: begin
-							if(!mem_done) begin
-								mem_start_reg <= 1'b0;
-								instruction_count <= instruction_count;
-							end
-							else begin
-								mem_addr_reg <= SEQUENCE_STEP_ENABLE_MSRC;
-								mem_rw_reg <= 1'b0;
-								mem_start_reg <= 1'b1;
+							mem_addr_reg <= SEQUENCE_STEP_ENABLE_MSRC;
+							mem_rw_reg <= 1'b0;
+							mem_start_reg <= 1'b1;
 
-								instruction_count <= instruction_count + 1;
-							end
+							instruction_count <= instruction_count + 1;
 							state <= S_DONE;
 						end
 						6'b001010: begin
@@ -1509,17 +1501,11 @@ module get_measurement_timing_budget(
   						 }
 						*/
 						6'b001100: begin
-							if(!mem_done) begin
-								mem_start_reg <= 1'b0;
-								instruction_count <= instruction_count;
-							end
-							else begin
-								mem_addr_reg <= SEQUENCE_STEP_ENABLE_PRE_RANGE;
-								mem_rw_reg <= 1'b0;
-								mem_start_reg <= 1'b1;
+							mem_addr_reg <= SEQUENCE_STEP_ENABLE_PRE_RANGE;
+							mem_rw_reg <= 1'b0;
+							mem_start_reg <= 1'b1;
 
-								instruction_count <= instruction_count + 1;
-							end
+							instruction_count <= instruction_count + 1;
 							state <= S_DONE;
 						end
 						6'b001101: begin
@@ -1529,7 +1515,7 @@ module get_measurement_timing_budget(
 							end
 							else begin
 								tmp0_8 <= mem_data_in;
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1543,8 +1529,8 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= mem_data_in & 32'h000000FF; 
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US + 1;
+								tmp1_32 <= {8'h00, 8'h00, 8'h00, mem_data_in} & 32'h000000FF; 
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US + 1;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1558,8 +1544,8 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 8) & 32'h0000FF00; 
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US + 2;
+								tmp1_32 <= tmp1_32 + ({8'h00, 8'h00, mem_data_in, 8'h00} & 32'h0000FF00); 
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US + 2;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1573,8 +1559,8 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 16) & 32'h00FF0000; 
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_REANGE_US + 3;
+								tmp1_32 <= tmp1_32 + ({8'h00, mem_data_in, 8'h00, 8'h00} & 32'h00FF0000); 
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_PRE_RANGE_US + 3;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1588,7 +1574,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 24) & 32'hFF000000; 
+								tmp1_32 <= tmp1_32 + ({mem_data_in, 8'h00, 8'h00, 8'h00} & 32'hFF000000); 
 								instruction_count <= instruction_count + 1;
 							end
 							state <= S_DONE;
@@ -1607,17 +1593,11 @@ module get_measurement_timing_budget(
   						 }
 						*/
 						6'b010011: begin
-							if(!mem_done) begin
-								mem_start_reg <= 1'b0;
-								instruction_count <= instruction_count;
-							end
-							else begin
-								mem_addr_reg <= SEQUENCE_STEP_ENABLE_FINAL_RANGE;
-								mem_rw_reg <= 1'b0;
-								mem_start_reg <= 1'b1;
+							mem_addr_reg <= SEQUENCE_STEP_ENABLE_FINAL_RANGE;
+							mem_rw_reg <= 1'b0;
+							mem_start_reg <= 1'b1;
 
-								instruction_count <= instruction_count + 1;
-							end
+							instruction_count <= instruction_count + 1;
 							state <= S_DONE;
 						end
 						6'b010100: begin
@@ -1627,7 +1607,7 @@ module get_measurement_timing_budget(
 							end
 							else begin
 								tmp0_8 <= mem_data_in;
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US;
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1641,8 +1621,8 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= mem_data_in & 32'h000000FF; 
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US + 1;
+								tmp1_32 <= {8'h00, 8'h00, 8'h00, mem_data_in} & 32'h000000FF; 
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US + 1;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1656,8 +1636,8 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 8) & 32'h0000FF00; 
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US + 2;
+								tmp1_32 <= tmp1_32 + ({8'h00, 8'h00, mem_data_in, 8'h00} & 32'h0000FF00); 
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US + 2;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1671,8 +1651,8 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 16) & 32'h00FF0000; 
-								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_REANGE_US + 3;
+								tmp1_32 <= tmp1_32 + ({8'h00, mem_data_in, 8'h00, 8'h00} & 32'h00FF0000); 
+								mem_addr_reg <= SEQUENCE_STEP_TIMEOUTS_FINAL_RANGE_US + 3;
 								mem_rw_reg <= 1'b0;
 								mem_start_reg <= 1'b1;
 
@@ -1686,7 +1666,7 @@ module get_measurement_timing_budget(
 								instruction_count <= instruction_count;
 							end
 							else begin
-								tmp1_32 <= tmp1_32 + (mem_data_in << 24) & 32'hFF000000; 
+								tmp1_32 <= tmp1_32 + ({mem_data_in, 8'h00, 8'h00, 8'h00} & 32'hFF000000); 
 								instruction_count <= instruction_count + 1;
 							end
 							state <= S_DONE;
@@ -1737,7 +1717,7 @@ module get_measurement_timing_budget(
 							end
 							state <= S_DONE;
 						end
-						6'b011100: begin
+						6'b011101: begin
 							if(!mem_done) begin 
 								instruction_count <= instruction_count;
 								mem_start_reg <= 1'b0;
@@ -1748,11 +1728,21 @@ module get_measurement_timing_budget(
 								mem_rw_reg <= 1'b1;
 								mem_start_reg <= 1'b1;
 								
-								instruction_count <= 6'b000000;
-								done_reg <= 1'b1;
-								timing_budget_reg <= tmp0_32;
+								instruction_count <= instruction_count + 1;
 							end
-							state <= S_RESET;
+							state <= S_DONE;
+						end
+						6'b011110: begin
+							if(!mem_done) begin
+								mem_start_reg <= 1'b0;
+								instruction_count <= instruction_count;
+								state <= S_DONE;
+							end
+							else begin
+								timing_budget_reg <= tmp0_32;
+								done_reg <= 1'b1;
+								state <= S_RESET;
+							end
 						end
 					endcase
 				end
@@ -1789,5 +1779,6 @@ module get_measurement_timing_budget(
 	assign mem_rw = mem_rw_reg;
 	
 	assign timing_budget_error = timing_budget_error_reg;
+	assign instruction_count_debug = instruction_count;
 
 endmodule

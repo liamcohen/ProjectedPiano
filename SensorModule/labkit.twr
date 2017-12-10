@@ -37,10 +37,10 @@ Setup/Hold to clock clock_27mhz
             |  Setup to  |  Hold to   |                    | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s)   | Phase  |
 ------------+------------+------------+--------------------+--------+
-button0     |    4.724(R)|   -1.940(R)|analyzer1_clock_OBUF|   0.000|
-switch<0>   |    7.185(R)|   -5.187(R)|analyzer1_clock_OBUF|   0.000|
-user3<0>    |    1.676(R)|   -1.404(R)|analyzer1_clock_OBUF|   0.000|
-user3<1>    |    1.604(R)|   -1.332(R)|analyzer1_clock_OBUF|   0.000|
+button0     |    3.519(R)|   -0.313(R)|analyzer1_clock_OBUF|   0.000|
+switch<0>   |    6.199(R)|   -3.633(R)|analyzer1_clock_OBUF|   0.000|
+user3<0>    |    2.056(R)|   -1.784(R)|analyzer1_clock_OBUF|   0.000|
+user3<1>    |    1.973(R)|   -1.701(R)|analyzer1_clock_OBUF|   0.000|
 ------------+------------+------------+--------------------+--------+
 
 Clock clock_27mhz to Pad
@@ -48,39 +48,32 @@ Clock clock_27mhz to Pad
                   | clk (edge) |                    | Clock  |
 Destination       |   to PAD   |Internal Clock(s)   | Phase  |
 ------------------+------------+--------------------+--------+
-analyzer1_data<0> |   15.831(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<1> |   15.645(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<2> |   15.968(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<3> |   15.738(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<4> |   15.038(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<5> |   15.043(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<6> |   15.337(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<7> |   15.632(R)|analyzer1_clock_OBUF|   0.000|
-analyzer1_data<8> |   13.066(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<0> |   13.522(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<1> |   12.614(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<2> |   13.009(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<3> |   12.639(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<4> |   13.301(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<5> |   13.689(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<6> |   13.241(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<7> |   13.198(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<8> |   13.252(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<9> |   13.777(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<10>|   12.352(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<11>|   15.463(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<12>|   13.257(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<13>|   13.874(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<14>|   13.850(R)|analyzer1_clock_OBUF|   0.000|
-analyzer3_data<15>|   13.664(R)|analyzer1_clock_OBUF|   0.000|
-led<0>            |   19.283(R)|analyzer1_clock_OBUF|   0.000|
-led<1>            |   17.909(R)|analyzer1_clock_OBUF|   0.000|
-led<2>            |   18.906(R)|analyzer1_clock_OBUF|   0.000|
-led<3>            |   19.790(R)|analyzer1_clock_OBUF|   0.000|
-led<4>            |   17.762(R)|analyzer1_clock_OBUF|   0.000|
-user3<0>          |   13.600(R)|analyzer1_clock_OBUF|   0.000|
-user3<1>          |   14.208(R)|analyzer1_clock_OBUF|   0.000|
-user3<4>          |   14.591(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<0> |   13.607(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<1> |   12.969(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<2> |   12.860(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<3> |   13.636(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<4> |   14.766(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<5> |   13.698(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<6> |   13.948(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<7> |   14.134(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<8> |   14.143(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<9> |   13.817(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<10>|   14.746(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<11>|   14.662(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<12>|   12.722(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<13>|   13.977(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<14>|   13.262(R)|analyzer1_clock_OBUF|   0.000|
+analyzer3_data<15>|   15.376(R)|analyzer1_clock_OBUF|   0.000|
+analyzer4_data<2> |   13.813(R)|analyzer1_clock_OBUF|   0.000|
+led<0>            |   19.597(R)|analyzer1_clock_OBUF|   0.000|
+led<1>            |   18.063(R)|analyzer1_clock_OBUF|   0.000|
+led<2>            |   19.833(R)|analyzer1_clock_OBUF|   0.000|
+led<3>            |   18.074(R)|analyzer1_clock_OBUF|   0.000|
+led<4>            |   18.047(R)|analyzer1_clock_OBUF|   0.000|
+led<5>            |   18.848(R)|analyzer1_clock_OBUF|   0.000|
+user3<0>          |   13.640(R)|analyzer1_clock_OBUF|   0.000|
+user3<1>          |   14.159(R)|analyzer1_clock_OBUF|   0.000|
+user3<4>          |   15.904(R)|analyzer1_clock_OBUF|   0.000|
 ------------------+------------+--------------------+--------+
 
 Clock to Setup on destination clock clock_27mhz
@@ -88,28 +81,29 @@ Clock to Setup on destination clock clock_27mhz
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock_27mhz    |    8.302|         |         |         |
+clock_27mhz    |   32.716|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
----------------+------------------+---------+
-Source Pad     |Destination Pad   |  Delay  |
----------------+------------------+---------+
-clock_27mhz    |analyzer1_clock   |   11.421|
-clock_27mhz    |analyzer3_clock   |   10.894|
-user3<0>       |analyzer1_data<9> |    9.115|
-user3<1>       |analyzer1_data<10>|    9.358|
----------------+------------------+---------+
+---------------+-----------------+---------+
+Source Pad     |Destination Pad  |  Delay  |
+---------------+-----------------+---------+
+clock_27mhz    |analyzer1_clock  |   11.428|
+clock_27mhz    |analyzer3_clock  |   10.894|
+clock_27mhz    |analyzer4_clock  |   21.658|
+user3<0>       |analyzer4_data<0>|   10.621|
+user3<1>       |analyzer4_data<1>|   10.896|
+---------------+-----------------+---------+
 
 
-Analysis completed Thu Dec  7 23:39:45 2017 
+Analysis completed Sat Dec  9 19:57:12 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 366 MB
+Peak Memory Usage: 397 MB
 
 
 

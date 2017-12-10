@@ -51,7 +51,6 @@ module timeoutMclksToMicroseconds(
 				if(start) state <= S_CONVERT_0;
 				else state <= S_RESET;
 				
-				timeout_period_us_reg <= 1'b0;
 				done_reg <= 1'b0;
 				macro_period_ns <= 0;
 			end
@@ -60,7 +59,7 @@ module timeoutMclksToMicroseconds(
 				state <= S_CONVERT_1;
 			end
 			S_CONVERT_1: begin
-				timeout_period_us_reg <= (((timeout_period_mclks * macro_period_ns) + (macro_period_ns >> 2)) * 66) >> 16;
+				timeout_period_us_reg <= (((timeout_period_mclks * macro_period_ns) + (macro_period_ns >> 1)) * 66) >> 16;
 				state <= S_DONE;
 			end
 			S_DONE: begin

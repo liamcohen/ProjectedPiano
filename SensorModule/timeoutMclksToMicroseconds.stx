@@ -5,7 +5,7 @@ Parameter TMPDIR set to ./xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.02 secs
  
 --> 
 
@@ -20,7 +20,7 @@ Analysis of file <"timeoutMclksToMicroseconds.prj"> succeeded.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 
