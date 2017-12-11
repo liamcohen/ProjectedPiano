@@ -56,6 +56,7 @@ module piano
    parameter WHITE = 24'hFF_FF_FF;
    parameter BLACK = 24'h00_00_00;
 	parameter GREEN = 24'h00_FF_00;
+	parameter BLUE = 24'h07_F8_FF;
    
    wire [23:0] c_pixel, db_pixel, d_pixel, eb_pixel, e_pixel, f_pixel, gb_pixel,
 					g_pixel, ab_pixel, a_pixel, bb_pixel, b_pixel, high_c_pixel,
@@ -86,7 +87,7 @@ module piano
 			0: mode_color <= BLACK;
 			1: mode_color <= PRESSED;
 			2: mode_color <= GREEN;
-			default: mode_color <= BLACK;
+			default: mode_color <= BLUE;
 		endcase
 	
 	end

@@ -5,14 +5,14 @@ Parameter TMPDIR set to /afs/athena.mit.edu/user/z/k/zklawans/Desktop/6.111/Fina
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.02 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/z/k/zklawans/Desktop/6.111/FinalProject/GitHub/ProjectedPiano/final_project/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.02 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: labkit.prj
@@ -163,6 +163,7 @@ Analyzing hierarchy for module <piano> in library <work> with parameters.
 	BLACK_KEY_HEIGHT = "0001100000"
 	BLACK_KEY_START_HORIZONTAL = "00000000000000000000000001000101"
 	BLACK_KEY_WIDTH = "00000000000000000000000000111100"
+	BLUE = "000001111111100011111111"
 	BOARD_HEIGHT = "1100000000"
 	BOARD_WIDTH = "10000000000"
 	GREEN = "000000001111111100000000"
@@ -207,10 +208,10 @@ Analyzing hierarchy for module <right_key> in library <work> with parameters.
 	WHITE_KEY_WIDTH = "00000000000000000000000001100011"
 	WIDTH = "00000000000000000000000001100011"
 
-WARNING:Xst:2591 - "visual.v" line 42: attribute on instance <CLKFX_DIVIDE> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
-WARNING:Xst:2591 - "visual.v" line 42: attribute on instance <CLKFX_MULTIPLY> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
-WARNING:Xst:2591 - "visual.v" line 42: attribute on instance <CLKIN_PERIOD> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
-WARNING:Xst:2591 - "visual.v" line 42: attribute on instance <CLK_FEEDBACK> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "visual_module.v" line 305: attribute on instance <CLKFX_DIVIDE> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "visual_module.v" line 305: attribute on instance <CLKFX_MULTIPLY> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "visual_module.v" line 305: attribute on instance <CLKIN_PERIOD> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "visual_module.v" line 305: attribute on instance <CLK_FEEDBACK> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
 
 =========================================================================
 *                            HDL Analysis                               *
@@ -218,6 +219,22 @@ WARNING:Xst:2591 - "visual.v" line 42: attribute on instance <CLK_FEEDBACK> over
 Analyzing top module <labkit>.
 Module <labkit> is correct for synthesis.
  
+    Set user-defined property "CLKDV_DIVIDE =  2.0000000000000000" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "CLKFX_DIVIDE =  10" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "CLKFX_MULTIPLY =  20" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "CLKIN_PERIOD =  37.0000000000000000" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "CLK_FEEDBACK =  NONE" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "SIM_MODE =  SAFE" for instance <vclk1> in unit <labkit>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <vclk1> in unit <labkit>.
     Set user-defined property "INIT =  FFFF" for instance <reset_sr> in unit <labkit>.
 Analyzing module <debounce> in library <work>.
 Module <debounce> is correct for synthesis.
@@ -225,22 +242,6 @@ Module <debounce> is correct for synthesis.
 Analyzing module <visual> in library <work>.
 Module <visual> is correct for synthesis.
  
-    Set user-defined property "CLKDV_DIVIDE =  2.0000000000000000" for instance <vclk1> in unit <visual>.
-    Set user-defined property "CLKFX_DIVIDE =  10" for instance <vclk1> in unit <visual>.
-    Set user-defined property "CLKFX_MULTIPLY =  24" for instance <vclk1> in unit <visual>.
-    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <vclk1> in unit <visual>.
-    Set user-defined property "CLKIN_PERIOD =  37.0000000000000000" for instance <vclk1> in unit <visual>.
-    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <vclk1> in unit <visual>.
-    Set user-defined property "CLK_FEEDBACK =  NONE" for instance <vclk1> in unit <visual>.
-    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <vclk1> in unit <visual>.
-    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <vclk1> in unit <visual>.
-    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <vclk1> in unit <visual>.
-    Set user-defined property "DSS_MODE =  NONE" for instance <vclk1> in unit <visual>.
-    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <vclk1> in unit <visual>.
-    Set user-defined property "FACTORY_JF =  C080" for instance <vclk1> in unit <visual>.
-    Set user-defined property "PHASE_SHIFT =  0" for instance <vclk1> in unit <visual>.
-    Set user-defined property "SIM_MODE =  SAFE" for instance <vclk1> in unit <visual>.
-    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <vclk1> in unit <visual>.
 Analyzing module <xvga> in library <work>.
 Module <xvga> is correct for synthesis.
  
@@ -260,6 +261,7 @@ Analyzing module <piano> in library <work>.
 	BLACK_KEY_HEIGHT = 10'b0001100000
 	BLACK_KEY_START_HORIZONTAL = 32'sb00000000000000000000000001000101
 	BLACK_KEY_WIDTH = 32'sb00000000000000000000000000111100
+	BLUE = 24'b000001111111100011111111
 	BOARD_HEIGHT = 10'b1100000000
 	BOARD_WIDTH = 11'b10000000000
 	GREEN = 24'b000000001111111100000000
@@ -469,7 +471,7 @@ Unit <right_key> synthesized.
 
 Synthesizing Unit <piano>.
     Related source file is "piano.v".
-    Found 4x24-bit ROM for signal <mode_color$mux0000> created at line 85.
+    Found 4x24-bit ROM for signal <mode_color$mux0000> created at line 86.
     Found 24-bit register for signal <mode_color>.
     Summary:
 	inferred   1 ROM(s).
@@ -810,7 +812,6 @@ WARNING:Xst:2565 - Inout <user3<31>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<2>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<27>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<3>> is never assigned.
-WARNING:Xst:653 - Signal <clock_65mhz> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 Unit <labkit> synthesized.
 
 
@@ -1082,24 +1083,6 @@ INFO:Xst:2261 - The FF/Latch <high_c_color_0> in Unit <key_colors> is equivalent
 INFO:Xst:2261 - The FF/Latch <b_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <b_color_1> <b_color_2> <b_color_3> <b_color_4> <b_color_5> <b_color_6> <b_color_7> <b_color_8> <b_color_9> <b_color_10> <b_color_11> <b_color_12> <b_color_13> <b_color_14> <b_color_15> 
 INFO:Xst:2261 - The FF/Latch <high_e_color_0> in Unit <key_colors> is equivalent to the following 15 FFs/Latches, which will be removed : <high_e_color_1> <high_e_color_2> <high_e_color_3> <high_e_color_4> <high_e_color_5> <high_e_color_6> <high_e_color_7> <high_e_color_8> <high_e_color_9> <high_e_color_10> <high_e_color_11> <high_e_color_12> <high_e_color_13> <high_e_color_14> <high_e_color_15> 
 INFO:Xst:2261 - The FF/Latch <bb_color_16> in Unit <key_colors> is equivalent to the following 7 FFs/Latches, which will be removed : <bb_color_17> <bb_color_18> <bb_color_19> <bb_color_20> <bb_color_21> <bb_color_22> <bb_color_23> 
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db_up>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db_up>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db_down>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db_down>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db_left>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db_left>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db_right>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db_right>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db_enter>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db_enter>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db3>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db3>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <clean> (without init value) has a constant value of 0 in block <db0>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <new> (without init value) has a constant value of 0 in block <db0>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -1143,34 +1126,11 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1710 - FF/Latch <db0/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db0/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db1/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db1/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db2/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db2/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db3/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db3/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_enter/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_enter/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_right/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_right/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_left/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_left/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_down/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_down/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_up/new> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <db_up/clean> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <mode_color_0> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_1> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_2> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_3> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_4> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_5> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_6> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mode_color_7> (without init value) has a constant value of 0 in block <piano>. This FF/Latch will be trimmed during the optimization process.
-INFO:Xst:2261 - The FF/Latch <mode_color_8> in Unit <piano> is equivalent to the following 7 FFs/Latches, which will be removed : <mode_color_9> <mode_color_10> <mode_color_11> <mode_color_12> <mode_color_13> <mode_color_14> <mode_color_15> 
-INFO:Xst:2261 - The FF/Latch <mode_color_16> in Unit <piano> is equivalent to the following 7 FFs/Latches, which will be removed : <mode_color_17> <mode_color_18> <mode_color_19> <mode_color_20> <mode_color_21> <mode_color_22> <mode_color_23> 
+INFO:Xst:2261 - The FF/Latch <mode_color_8> in Unit <piano> is equivalent to the following 2 FFs/Latches, which will be removed : <mode_color_9> <mode_color_10> 
+INFO:Xst:2261 - The FF/Latch <mode_color_11> in Unit <piano> is equivalent to the following 4 FFs/Latches, which will be removed : <mode_color_12> <mode_color_13> <mode_color_14> <mode_color_15> 
+INFO:Xst:2261 - The FF/Latch <mode_color_16> in Unit <piano> is equivalent to the following 2 FFs/Latches, which will be removed : <mode_color_17> <mode_color_18> 
+INFO:Xst:2261 - The FF/Latch <mode_color_19> in Unit <piano> is equivalent to the following 4 FFs/Latches, which will be removed : <mode_color_20> <mode_color_21> <mode_color_22> <mode_color_23> 
+INFO:Xst:2261 - The FF/Latch <mode_color_0> in Unit <piano> is equivalent to the following 7 FFs/Latches, which will be removed : <mode_color_1> <mode_color_2> <mode_color_3> <mode_color_4> <mode_color_5> <mode_color_6> <mode_color_7> 
 
 Optimizing unit <labkit> ...
 
@@ -1196,28 +1156,29 @@ Optimizing unit <visual> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-INFO:Xst:2261 - The FF/Latch <vmod/ks/p/kc/db_color_16> in Unit <labkit> is equivalent to the following 3 FFs/Latches, which will be removed : <vmod/ks/p/kc/eb_color_16> <vmod/ks/p/kc/gb_color_16> <vmod/ks/p/kc/ab_color_16> 
-INFO:Xst:2261 - The FF/Latch <vmod/ks/p/kc/d_color_0> in Unit <labkit> is equivalent to the following 4 FFs/Latches, which will be removed : <vmod/ks/p/kc/c_color_0> <vmod/ks/p/kc/e_color_0> <vmod/ks/p/kc/f_color_0> <vmod/ks/p/kc/g_color_0> 
-INFO:Xst:2261 - The FF/Latch <vmod/rgb_15> in Unit <labkit> is equivalent to the following 7 FFs/Latches, which will be removed : <vmod/rgb_14> <vmod/rgb_13> <vmod/rgb_12> <vmod/rgb_11> <vmod/rgb_10> <vmod/rgb_9> <vmod/rgb_8> 
-INFO:Xst:2261 - The FF/Latch <vmod/rgb_23> in Unit <labkit> is equivalent to the following 7 FFs/Latches, which will be removed : <vmod/rgb_22> <vmod/rgb_21> <vmod/rgb_20> <vmod/rgb_19> <vmod/rgb_18> <vmod/rgb_17> <vmod/rgb_16> 
+INFO:Xst:2261 - The FF/Latch <vmod/rgb_23> in Unit <labkit> is equivalent to the following 4 FFs/Latches, which will be removed : <vmod/rgb_22> <vmod/rgb_21> <vmod/rgb_20> <vmod/rgb_19> 
+INFO:Xst:2261 - The FF/Latch <vmod/rgb_10> in Unit <labkit> is equivalent to the following 2 FFs/Latches, which will be removed : <vmod/rgb_9> <vmod/rgb_8> 
+INFO:Xst:2261 - The FF/Latch <vmod/rgb_18> in Unit <labkit> is equivalent to the following 2 FFs/Latches, which will be removed : <vmod/rgb_17> <vmod/rgb_16> 
 INFO:Xst:2261 - The FF/Latch <vmod/rgb_7> in Unit <labkit> is equivalent to the following 7 FFs/Latches, which will be removed : <vmod/rgb_6> <vmod/rgb_5> <vmod/rgb_4> <vmod/rgb_3> <vmod/rgb_2> <vmod/rgb_1> <vmod/rgb_0> 
-Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 1.
+INFO:Xst:2261 - The FF/Latch <vmod/rgb_15> in Unit <labkit> is equivalent to the following 4 FFs/Latches, which will be removed : <vmod/rgb_14> <vmod/rgb_13> <vmod/rgb_12> <vmod/rgb_11> 
+Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 2.
 FlipFlop vmod/ks/phcount_0 has been replicated 2 time(s)
 FlipFlop vmod/ks/phcount_1 has been replicated 2 time(s)
+FlipFlop vmod/ks/phcount_10 has been replicated 2 time(s)
 FlipFlop vmod/ks/phcount_2 has been replicated 2 time(s)
-FlipFlop vmod/ks/phcount_3 has been replicated 2 time(s)
-FlipFlop vmod/ks/phcount_4 has been replicated 2 time(s)
-FlipFlop vmod/ks/phcount_5 has been replicated 2 time(s)
-FlipFlop vmod/xvga1/vcount_0 has been replicated 2 time(s)
-FlipFlop vmod/xvga1/vcount_1 has been replicated 4 time(s)
-FlipFlop vmod/xvga1/vcount_2 has been replicated 4 time(s)
-FlipFlop vmod/xvga1/vcount_3 has been replicated 4 time(s)
-FlipFlop vmod/xvga1/vcount_4 has been replicated 3 time(s)
-FlipFlop vmod/xvga1/vcount_5 has been replicated 4 time(s)
-FlipFlop vmod/xvga1/vcount_6 has been replicated 3 time(s)
-FlipFlop vmod/xvga1/vcount_7 has been replicated 1 time(s)
-FlipFlop vmod/xvga1/vcount_8 has been replicated 1 time(s)
-FlipFlop vmod/xvga1/vcount_9 has been replicated 3 time(s)
+FlipFlop vmod/ks/phcount_3 has been replicated 3 time(s)
+FlipFlop vmod/ks/phcount_4 has been replicated 3 time(s)
+FlipFlop vmod/ks/phcount_5 has been replicated 4 time(s)
+FlipFlop vmod/ks/phcount_6 has been replicated 4 time(s)
+FlipFlop vmod/ks/phcount_7 has been replicated 3 time(s)
+FlipFlop vmod/ks/phcount_8 has been replicated 3 time(s)
+FlipFlop vmod/ks/phcount_9 has been replicated 3 time(s)
+FlipFlop vmod/xvga1/vcount_1 has been replicated 2 time(s)
+FlipFlop vmod/xvga1/vcount_3 has been replicated 2 time(s)
+FlipFlop vmod/xvga1/vcount_4 has been replicated 2 time(s)
+FlipFlop vmod/xvga1/vcount_7 has been replicated 2 time(s)
+FlipFlop vmod/xvga1/vcount_8 has been replicated 2 time(s)
+FlipFlop vmod/xvga1/vcount_9 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -1225,8 +1186,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 107
- Flip-Flops                                            : 107
+# Registers                                            : 318
+ Flip-Flops                                            : 318
 
 =========================================================================
 
@@ -1255,34 +1216,35 @@ Design Statistics
 # IOs                              : 576
 
 Cell Usage :
-# BELS                             : 2337
+# BELS                             : 2996
 #      GND                         : 1
-#      INV                         : 631
-#      LUT1                        : 375
-#      LUT2                        : 54
-#      LUT2_L                      : 2
-#      LUT3                        : 36
-#      LUT3_D                      : 3
-#      LUT3_L                      : 2
-#      LUT4                        : 92
-#      LUT4_D                      : 3
-#      LUT4_L                      : 4
-#      MUXCY                       : 1070
-#      MUXF5                       : 7
+#      INV                         : 667
+#      LUT1                        : 546
+#      LUT2                        : 58
+#      LUT2_L                      : 1
+#      LUT3                        : 49
+#      LUT3_D                      : 4
+#      LUT3_L                      : 1
+#      LUT4                        : 135
+#      LUT4_D                      : 4
+#      LUT4_L                      : 3
+#      MUXCY                       : 1286
+#      MUXF5                       : 4
 #      VCC                         : 1
-#      XORCY                       : 56
-# FlipFlops/Latches                : 107
-#      FD                          : 38
-#      FDR                         : 19
-#      FDRE                        : 41
-#      FDRS                        : 2
-#      FDS                         : 7
+#      XORCY                       : 236
+# FlipFlops/Latches                : 318
+#      FD                          : 60
+#      FDE                         : 18
+#      FDR                         : 21
+#      FDRE                        : 203
+#      FDRS                        : 5
+#      FDS                         : 11
 # Shift Registers                  : 1
 #      SRL16                       : 1
 # Clock Buffers                    : 1
 #      BUFG                        : 1
-# IO Buffers                       : 249
-#      IBUF                        : 8
+# IO Buffers                       : 258
+#      IBUF                        : 17
 #      IBUFG                       : 1
 #      OBUF                        : 240
 # DCMs                             : 1
@@ -1296,13 +1258,13 @@ Device utilization summary:
 
 Selected Device : 2v6000bf957-4 
 
- Number of Slices:                      652  out of  33792     1%  
- Number of Slice Flip Flops:            107  out of  67584     0%  
- Number of 4 input LUTs:               1203  out of  67584     1%  
-    Number used as logic:              1202
+ Number of Slices:                      792  out of  33792     2%  
+ Number of Slice Flip Flops:            318  out of  67584     0%  
+ Number of 4 input LUTs:               1469  out of  67584     2%  
+    Number used as logic:              1468
     Number used as Shift registers:       1
  Number of IOs:                         576
- Number of bonded IOBs:                 249  out of    684    36%  
+ Number of bonded IOBs:                 258  out of    684    37%  
  Number of MULT18X18s:                    3  out of    144     2%  
  Number of GCLKs:                         1  out of     16     6%  
  Number of DCMs:                          1  out of     12     8%  
@@ -1328,10 +1290,8 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-analyzer1_data_0_OBUF              | NONE(reset_sr)         | 1     |
-clock_27mhz                        | vmod/vclk1:CLKFX       | 107   |
+clock_27mhz                        | vclk1:CLKFX            | 319   |
 -----------------------------------+------------------------+-------+
-INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
 ----------------------------------------
@@ -1341,10 +1301,10 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 50.869ns (Maximum Frequency: 19.658MHz)
-   Minimum input arrival time before clock: 2.970ns
+   Minimum period: 39.931ns (Maximum Frequency: 25.043MHz)
+   Minimum input arrival time before clock: 3.546ns
    Maximum output required time after clock: 6.403ns
-   Maximum combinational path delay: 7.051ns
+   Maximum combinational path delay: 7.097ns
 
 Timing Detail:
 --------------
@@ -1352,58 +1312,55 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock_27mhz'
-  Clock period: 50.869ns (frequency: 19.658MHz)
-  Total number of paths / destination ports: 411257 / 192
+  Clock period: 39.931ns (frequency: 25.043MHz)
+  Total number of paths / destination ports: 717795 / 740
 -------------------------------------------------------------------------
-Delay:               21.195ns (Levels of Logic = 14)
-  Source:            vmod/xvga1/vcount_1_1 (FF)
+Delay:               19.965ns (Levels of Logic = 11)
+  Source:            vmod/ks/phcount_1_1 (FF)
   Destination:       vmod/rgb_23 (FF)
-  Source Clock:      clock_27mhz rising 2.4X
-  Destination Clock: clock_27mhz rising 2.4X
+  Source Clock:      clock_27mhz rising 2.0X
+  Destination Clock: clock_27mhz rising 2.0X
 
-  Data Path: vmod/xvga1/vcount_1_1 to vmod/rgb_23
+  Data Path: vmod/ks/phcount_1_1 to vmod/rgb_23
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             1   0.568   0.802  vmod/xvga1/vcount_1_1 (vmod/xvga1/vcount_1)
-     LUT4:I0->O            3   0.439   0.933  vmod/ks/p/mode/Msub_y_length_xor<8>11_SW0 (N33)
-     LUT4:I1->O            1   0.439   0.552  vmod/ks/p/mode/Msub_mult0000_addsub0000_xor<9>12_SW0_SW0 (N65)
-     LUT4:I2->O           17   0.439   1.046  vmod/ks/p/mode/Msub_mult0000_addsub0000_xor<9>12 (vmod/ks/p/mode/N26)
-     LUT4:I2->O            2   0.439   0.701  vmod/ks/p/mode/Msub_mult0000_addsub0000_xor<9>1 (vmod/ks/p/mode/mult0000_addsub0000<9>)
-     MULT18X18:A9->P21     4   7.458   0.956  vmod/ks/p/mode/Mmult__mult0000 (vmod/ks/p/mode/_mult0000<21>)
-     LUT2:I1->O            1   0.439   0.000  vmod/ks/p/mode/Madd__add0000_lut<21> (vmod/ks/p/mode/Madd__add0000_lut<21>)
-     MUXCY:S->O            1   0.298   0.000  vmod/ks/p/mode/Madd__add0000_cy<21> (vmod/ks/p/mode/Madd__add0000_cy<21>)
-     MUXCY:CI->O           1   0.053   0.000  vmod/ks/p/mode/Madd__add0000_cy<22> (vmod/ks/p/mode/Madd__add0000_cy<22>)
-     MUXCY:CI->O           0   0.053   0.000  vmod/ks/p/mode/Madd__add0000_cy<23> (vmod/ks/p/mode/Madd__add0000_cy<23>)
+     FD:C->Q               1   0.568   0.802  vmod/ks/phcount_1_1 (vmod/ks/phcount_1_1)
+     LUT3_D:I0->O          7   0.439   0.851  vmod/ks/p/mode/Msub_add0000_addsub0000_xor<10>1111 (vmod/ks/p/mode/N23)
+     LUT4_D:I2->O          1   0.439   0.558  vmod/ks/p/mode/Msub_add0000_addsub0000_xor<10>141 (vmod/ks/p/mode/N7)
+     LUT4:I3->O            2   0.439   0.701  vmod/ks/p/mode/Msub_add0000_addsub0000_xor<10>1 (vmod/ks/p/mode/add0000_addsub0000<10>)
+     MULT18X18:A10->P23    2   7.872   0.910  vmod/ks/p/mode/Mmult_add0000_mult0000 (vmod/ks/p/mode/add0000_mult0000<23>)
+     LUT2:I1->O            1   0.439   0.000  vmod/ks/p/mode/Madd__add0000_lut<23>1 (vmod/ks/p/mode/Madd__add0000_lut<23>1)
+     MUXCY:S->O            0   0.298   0.000  vmod/ks/p/mode/Madd__add0000_cy<23> (vmod/ks/p/mode/Madd__add0000_cy<23>)
      XORCY:CI->O           2   1.274   0.910  vmod/ks/p/mode/Madd__add0000_xor<24> (vmod/ks/p/mode/_add0000<24>)
      LUT2:I1->O            1   0.439   0.000  vmod/ks/p/mode/Mcompar_pixel_cmp_le0000_lut<9> (vmod/ks/p/mode/Mcompar_pixel_cmp_le0000_lut<9>)
      MUXCY:S->O            1   0.298   0.000  vmod/ks/p/mode/Mcompar_pixel_cmp_le0000_cy<9> (vmod/ks/p/mode/Mcompar_pixel_cmp_le0000_cy<9>)
-     MUXCY:CI->O           2   0.942   0.910  vmod/ks/p/mode/Mcompar_pixel_cmp_le0000_cy<10> (vmod/ks/p/mode/pixel_cmp_le0000)
-     LUT2:I1->O            1   0.439   0.000  vmod/ks/keystoned_pixel<23>9511 (vmod/ks/keystoned_pixel<16>951)
+     MUXCY:CI->O           5   0.942   0.979  vmod/ks/p/mode/Mcompar_pixel_cmp_le0000_cy<10> (vmod/ks/p/mode/pixel_cmp_le0000)
+     LUT2:I1->O            1   0.439   0.000  vmod/ks/keystoned_pixel<23>9111 (vmod/ks/keystoned_pixel<19>911)
      FDRS:D                    0.370          vmod/rgb_23
     ----------------------------------------
-    Total                     21.195ns (14.387ns logic, 6.809ns route)
-                                       (67.9% logic, 32.1% route)
+    Total                     19.965ns (14.256ns logic, 5.710ns route)
+                                       (71.4% logic, 28.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
-  Total number of paths / destination ports: 12 / 12
+  Total number of paths / destination ports: 232 / 231
 -------------------------------------------------------------------------
-Offset:              2.970ns (Levels of Logic = 2)
-  Source:            switch<1> (PAD)
-  Destination:       vmod/ks/p/kc/high_eb_color_16 (FF)
-  Destination Clock: clock_27mhz rising 2.4X
+Offset:              3.546ns (Levels of Logic = 2)
+  Source:            button_left (PAD)
+  Destination:       db_left/count_0 (FF)
+  Destination Clock: clock_27mhz rising 2.0X
 
-  Data Path: switch<1> to vmod/ks/p/kc/high_eb_color_16
+  Data Path: button_left to db_left/count_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             3   0.825   0.724  switch_1_IBUF (switch_1_IBUF)
-     INV:I->O              2   0.439   0.702  led<1>1_INV_0 (led_1_OBUF)
-     FDR:R                     0.280          vmod/ks/p/kc/high_eb_color_16
+     IBUF:I->O             4   0.825   0.956  button_left_IBUF (button_left_IBUF)
+     LUT3:I1->O           21   0.439   1.046  db_left/count_or00001 (db_left/count_or0000)
+     FDRE:R                    0.280          db_left/count_0
     ----------------------------------------
-    Total                      2.970ns (1.544ns logic, 1.426ns route)
-                                       (52.0% logic, 48.0% route)
+    Total                      3.546ns (1.544ns logic, 2.002ns route)
+                                       (43.5% logic, 56.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
@@ -1412,7 +1369,7 @@ Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
 Offset:              6.403ns (Levels of Logic = 2)
   Source:            vmod/b (FF)
   Destination:       vga_out_blank_b (PAD)
-  Source Clock:      clock_27mhz rising 2.4X
+  Source Clock:      clock_27mhz rising 2.0X
 
   Data Path: vmod/b to vga_out_blank_b
                                 Gate     Net
@@ -1429,7 +1386,7 @@ Offset:              6.403ns (Levels of Logic = 2)
 Timing constraint: Default path analysis
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Delay:               7.051ns (Levels of Logic = 3)
+Delay:               7.097ns (Levels of Logic = 3)
   Source:            switch<1> (PAD)
   Destination:       led<1> (PAD)
 
@@ -1437,25 +1394,25 @@ Delay:               7.051ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             3   0.825   0.725  switch_1_IBUF (switch_1_IBUF)
+     IBUF:I->O             5   0.825   0.771  switch_1_IBUF (switch_1_IBUF)
      INV:I->O              2   0.439   0.701  led<1>1_INV_0 (led_1_OBUF)
      OBUF:I->O                 4.361          led_1_OBUF (led<1>)
     ----------------------------------------
-    Total                      7.051ns (5.625ns logic, 1.426ns route)
-                                       (79.8% logic, 20.2% route)
+    Total                      7.097ns (5.625ns logic, 1.472ns route)
+                                       (79.3% logic, 20.7% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.20 secs
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 9.62 secs
  
 --> 
 
 
-Total memory usage is 485588 kilobytes
+Total memory usage is 491784 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  563 (   0 filtered)
-Number of infos    :   39 (   0 filtered)
+Number of warnings :  518 (   0 filtered)
+Number of infos    :   41 (   0 filtered)
 

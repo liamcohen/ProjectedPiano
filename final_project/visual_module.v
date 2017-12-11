@@ -298,10 +298,20 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    assign analyzer3_clock = 1'b1;
    assign analyzer4_data = 16'h0;
    assign analyzer4_clock = 1'b1;
+	
+	// use FPGA's digital clock manager to produce a
+   // 65MHz clock (actually 64.8MHz)
+   wire clock_54mhz_unbuf,clock_54mhz;
+   DCM vclk1(.CLKIN(clock_27mhz),.CLKFX(clock_54mhz_unbuf));
+   // synthesis attribute CLKFX_DIVIDE of vclk1 is 10
+   // synthesis attribute CLKFX_MULTIPLY of vclk1 is 20
+   // synthesis attribute CLK_FEEDBACK of vclk1 is NONE
+   // synthesis attribute CLKIN_PERIOD of vclk1 is 37
+   BUFG vclk2(.O(clock_54mhz),.I(clock_54mhz_unbuf));
 
    // power-on reset generation
    wire power_on_reset;    // remain high for first 16 clocks
-   SRL16 reset_sr (.D(1'b0), .CLK(clock_65mhz), .Q(power_on_reset),
+   SRL16 reset_sr (.D(1'b0), .CLK(clock_54mhz), .Q(power_on_reset),
          .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
    defparam reset_sr.INIT = 16'hFFFF;
 
@@ -310,21 +320,21 @@ module labkit   (beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 
 	// debounce all buttons
 	wire b0, b1, b2, b3, enter, right, left, down, up;
-	debounce db0(.reset(reset), .clock(clock_65mhz), .noisy(~button0), .clean(b0));
-	debounce db1(.reset(reset), .clock(clock_65mhz), .noisy(~button1), .clean(b1));
-	debounce db2(.reset(reset), .clock(clock_65mhz), .noisy(~button2), .clean(b2));
-	debounce db3(.reset(reset), .clock(clock_65mhz), .noisy(~button3), .clean(b3));
-	debounce db_enter(.reset(reset), .clock(clock_65mhz), .noisy(~button_enter), .clean(enter));
-	debounce db_right(.reset(reset), .clock(clock_65mhz), .noisy(~button_right), .clean(right));
-	debounce db_left(.reset(reset), .clock(clock_65mhz), .noisy(~button_left), .clean(left));
-	debounce db_down(.reset(reset), .clock(clock_65mhz), .noisy(~button_down), .clean(down));
-	debounce db_up(.reset(reset), .clock(clock_65mhz), .noisy(~button_up), .clean(up));
+	debounce db0(.reset(reset), .clock(clock_54mhz), .noisy(~button0), .clean(b0));
+	debounce db1(.reset(reset), .clock(clock_54mhz), .noisy(~button1), .clean(b1));
+	debounce db2(.reset(reset), .clock(clock_54mhz), .noisy(~button2), .clean(b2));
+	debounce db3(.reset(reset), .clock(clock_54mhz), .noisy(~button3), .clean(b3));
+	debounce db_enter(.reset(reset), .clock(clock_54mhz), .noisy(~button_enter), .clean(enter));
+	debounce db_right(.reset(reset), .clock(clock_54mhz), .noisy(~button_right), .clean(right));
+	debounce db_left(.reset(reset), .clock(clock_54mhz), .noisy(~button_left), .clean(left));
+	debounce db_down(.reset(reset), .clock(clock_54mhz), .noisy(~button_down), .clean(down));
+	debounce db_up(.reset(reset), .clock(clock_54mhz), .noisy(~button_up), .clean(up));
 
    // instantiate visual module
 	wire [16:0] key_num = {left, up, down, right, enter, b3, b2, b1, b0, switch};
 	wire note_ready = 1;
 	wire [1:0] state = switch[1:0];
-	visual vmod(.clock_27mhz(clock_27mhz), .key_num(key_num), .state(state), .note_ready(note_ready),
+	visual vmod(.clock_54mhz(clock_54mhz), .key_num(key_num), .state(state), .note_ready(note_ready),
 					.reset(reset), .switch(switch), .vga_out_red(vga_out_red),
 					.vga_out_green(vga_out_green), .vga_out_blue(vga_out_blue),
 					.vga_out_sync_b(vga_out_sync_b), .vga_out_blank_b(vga_out_blank_b),
