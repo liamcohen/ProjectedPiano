@@ -18,8 +18,13 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module keystoning(
-    input clk,
+module keystoning
+	#(parameter WHITE_KEY_WIDTH = 99,
+					SPACE = 4,
+					PIANO_MIDDLE = (5 * WHITE_KEY_WIDTH) + (4 * SPACE) + 2,
+					BOARD_HEIGHT = 10'd768,
+					KEY_START_VERTICAL = BOARD_HEIGHT >> 2)
+    (input clk,
     input reset,
 	 input [10:0] hcount,
 	 input [9:0] vcount,
@@ -35,15 +40,7 @@ module keystoning(
 	 output pblank,
     output [23:0] keystoned_pixel
     );
-	
-	parameter WHITE_KEY_WIDTH = 99;
-	parameter SPACE = 4;
-	parameter PIANO_MIDDLE = (5 * WHITE_KEY_WIDTH) + (4 * SPACE) + 2;
-	parameter BOARD_HEIGHT = 10'd768;
-	parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
-   parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 2;
-	parameter PIANO_LENGTH = (10 * WHITE_KEY_WIDTH) + (9 * SPACE);
-	parameter PIANO_HALF = PIANO_LENGTH >> 1;
+	 
 	parameter BLACK = 24'h00_00_00;
 	parameter RED = 24'hFF_00_00;
 	parameter GREEN = 24'h00_FF_00;
@@ -57,13 +54,16 @@ module keystoning(
 	begin
 		
 		x <= hcount - PIANO_MIDDLE;
-//		if (x < 0) phcount <= hcount - (((vcount - KEY_START_VERTICAL) * (x * -1)) >> 9);
-//		else phcount <= hcount - (((vcount - KEY_START_VERTICAL) * (x * -1)) >> 9);
 		phcount <= hcount - (((vcount - KEY_START_VERTICAL) * (x * -1)) >> 10);
 		
 	end
 	
-	piano p(.vclock(clk), .reset(reset), .hcount(phcount), .vcount(vcount),
+	piano #(.BOARD_WIDTH(11'd1024), .BOARD_HEIGHT(BOARD_HEIGHT),
+			.WHITE_KEY_HEIGHT(BOARD_HEIGHT >> 2), .WHITE_KEY_WIDTH(WHITE_KEY_WIDTH),
+			.WHITE_KEY_START_HORIZONTAL(0), .KEY_START_VERTICAL(KEY_START_VERTICAL),
+			.BLACK_KEY_HEIGHT(BOARD_HEIGHT >> 3), .BLACK_KEY_WIDTH(60),
+			.BLACK_KEY_START_HORIZONTAL(69), .SPACING(SPACE + WHITE_KEY_WIDTH))
+		p(.vclock(clk), .reset(reset), .hcount(phcount), .vcount(vcount),
 			.hsync(hsync), .vsync(vsync), .blank(blank), .key_num(key_num),
 			.note_ready(note_ready), .state(state), .phsync(phsync), .pvsync(pvsync),
 			.pblank(pblank), .pixel(temp_pixel));

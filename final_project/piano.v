@@ -24,8 +24,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-module piano (
-   input vclock,  // 65MHz clock
+module piano 
+	#(parameter BOARD_WIDTH = 11'd1024,
+					BOARD_HEIGHT = 10'd768,
+					WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 2,
+					WHITE_KEY_WIDTH = 99,
+					WHITE_KEY_START_HORIZONTAL = 0,
+					KEY_START_VERTICAL = BOARD_HEIGHT >> 2,
+					BLACK_KEY_HEIGHT = BOARD_HEIGHT >> 3,
+					BLACK_KEY_WIDTH = 60,
+					BLACK_KEY_START_HORIZONTAL = 69,
+					SPACING = 103)
+   (input vclock,  // 65MHz clock
    input reset,      // 1 to initialize module
    input [10:0] hcount, // horizontal index of current pixel (0..1023)
    input [9:0]    vcount, // vertical index of current pixel (0..767)
@@ -46,16 +56,6 @@ module piano (
    parameter WHITE = 24'hFF_FF_FF;
    parameter BLACK = 24'h00_00_00;
 	parameter GREEN = 24'h00_FF_00;
-   parameter BOARD_WIDTH = 11'd1024;
-   parameter BOARD_HEIGHT = 10'd768;
-   parameter WHITE_KEY_HEIGHT = BOARD_HEIGHT >> 2;
-   parameter WHITE_KEY_WIDTH = 99;
-   parameter WHITE_KEY_START_HORIZONTAL = 0;
-   parameter KEY_START_VERTICAL = BOARD_HEIGHT >> 2;
-   parameter BLACK_KEY_HEIGHT = BOARD_HEIGHT >> 3;
-   parameter BLACK_KEY_WIDTH = 60;
-   parameter BLACK_KEY_START_HORIZONTAL = 69;
-   parameter SPACING = 103;
    
    wire [23:0] c_pixel, db_pixel, d_pixel, eb_pixel, e_pixel, f_pixel, gb_pixel,
 					g_pixel, ab_pixel, a_pixel, bb_pixel, b_pixel, high_c_pixel,
@@ -92,7 +92,6 @@ module piano (
 	end
 	
 	// Mode indicator blob
-//	blob mode(.x(800), .y(70), .hcount(hcount), .vcount(vcount), .color(mode_color), .pixel(mode_pixel));
 	circle #(.RADIUS(35)) mode(.x(800), .y(70), .hcount(hcount), .vcount(vcount), .color(mode_color), .pixel(mode_pixel));
    
    // C key
