@@ -1,0 +1,142 @@
+# //  ModelSim SE 6.4a Aug 28 2008 Linux 4.2.0-42-generic
+# //
+# //  Copyright 1991-2008 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {fir31_test.fdo} 
+# Model Technology ModelSim SE vlog 6.4a Compiler 2008.08 Aug 28 2008
+# -- Compiling module debounce
+# -- Compiling module lab5audio
+# -- Compiling module ac97
+# -- Compiling module ac97commands
+# -- Compiling module tone750hz
+# -- Compiling module lab5
+# ** Error: lab5.v(441): Net type of 'vga_out_red' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(441): Net type of 'vga_out_green' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(441): Net type of 'vga_out_blue' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(445): Net type of 'tv_out_ycrcb' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(450): Net type of 'tv_in_ycrcb' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(457): Net type of 'ram0_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(458): Net type of 'ram0_address' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(460): Net type of 'ram0_bwe_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(462): Net type of 'ram1_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(463): Net type of 'ram1_address' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(465): Net type of 'ram1_bwe_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(470): Net type of 'flash_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(471): Net type of 'flash_address' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(488): Net type of 'switch' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(489): Net type of 'led' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(491): Net type of 'user1' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(491): Net type of 'user2' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(491): Net type of 'user3' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(491): Net type of 'user4' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(493): Net type of 'daughtercard' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(495): Net type of 'systemace_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(496): Net type of 'systemace_address' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(500): Net type of 'analyzer1_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(500): Net type of 'analyzer2_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(500): Net type of 'analyzer3_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(501): Net type of 'analyzer4_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(438): Net type of 'beep' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(438): Net type of 'audio_reset_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(438): Net type of 'ac97_sdata_out' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(439): Net type of 'ac97_sdata_in' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(438): Net type of 'ac97_synch' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(439): Net type of 'ac97_bit_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(442): Net type of 'vga_out_sync_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(442): Net type of 'vga_out_blank_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(442): Net type of 'vga_out_pixel_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(443): Net type of 'vga_out_hsync' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(443): Net type of 'vga_out_vsync' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(446): Net type of 'tv_out_reset_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(446): Net type of 'tv_out_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(446): Net type of 'tv_out_i2c_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(446): Net type of 'tv_out_i2c_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(447): Net type of 'tv_out_pal_ntsc' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(447): Net type of 'tv_out_hsync_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(447): Net type of 'tv_out_vsync_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(447): Net type of 'tv_out_blank_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(448): Net type of 'tv_out_subcar_reset' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(451): Net type of 'tv_in_data_valid' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(451): Net type of 'tv_in_line_clock1' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(451): Net type of 'tv_in_line_clock2' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(451): Net type of 'tv_in_aef' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(452): Net type of 'tv_in_hff' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(452): Net type of 'tv_in_aff' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(453): Net type of 'tv_in_i2c_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(455): Net type of 'tv_in_i2c_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(453): Net type of 'tv_in_fifo_read' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(453): Net type of 'tv_in_fifo_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(453): Net type of 'tv_in_iso' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(454): Net type of 'tv_in_reset_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(454): Net type of 'tv_in_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(459): Net type of 'ram0_adv_ld' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(459): Net type of 'ram0_clk' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(459): Net type of 'ram0_cen_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(459): Net type of 'ram0_ce_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(459): Net type of 'ram0_oe_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(459): Net type of 'ram0_we_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(464): Net type of 'ram1_adv_ld' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(464): Net type of 'ram1_clk' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(464): Net type of 'ram1_cen_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(464): Net type of 'ram1_ce_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(464): Net type of 'ram1_oe_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(464): Net type of 'ram1_we_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(468): Net type of 'clock_feedback_out' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(467): Net type of 'clock_feedback_in' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(472): Net type of 'flash_ce_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(472): Net type of 'flash_oe_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(472): Net type of 'flash_we_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(472): Net type of 'flash_reset_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(473): Net type of 'flash_sts' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(472): Net type of 'flash_byte_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(475): Net type of 'rs232_txd' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(476): Net type of 'rs232_rxd' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(475): Net type of 'rs232_rts' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(476): Net type of 'rs232_cts' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(478): Net type of 'mouse_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(478): Net type of 'mouse_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(478): Net type of 'keyboard_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(478): Net type of 'keyboard_data' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(480): Net type of 'clock_27mhz' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(480): Net type of 'clock1' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(480): Net type of 'clock2' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(482): Net type of 'disp_blank' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(484): Net type of 'disp_data_out' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(482): Net type of 'disp_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(482): Net type of 'disp_rs' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(482): Net type of 'disp_ce_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(482): Net type of 'disp_reset_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(483): Net type of 'disp_data_in' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(486): Net type of 'button0' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(486): Net type of 'button1' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(486): Net type of 'button2' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(486): Net type of 'button3' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(486): Net type of 'button_enter' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(486): Net type of 'button_right' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(487): Net type of 'button_left' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(487): Net type of 'button_down' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(487): Net type of 'button_up' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(497): Net type of 'systemace_ce_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(497): Net type of 'systemace_we_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(497): Net type of 'systemace_oe_b' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(498): Net type of 'systemace_irq' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(498): Net type of 'systemace_mpbrdy' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(502): Net type of 'analyzer1_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(502): Net type of 'analyzer2_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(502): Net type of 'analyzer3_clock' must be explicitly declared (`default_nettype is "none").
+# ** Error: lab5.v(502): Net type of 'analyzer4_clock' must be explicitly declared (`default_nettype is "none").
+# -- Compiling module recorder
+# -- Compiling module mybram
+# -- Compiling module fir31
+# -- Compiling module coeffs31
+# ** Error: /afs/csail.mit.edu/proj/redsocs/modeltech/linux/vlog failed.
+# Error in macro ./fir31_test.fdo line 5
+# /afs/csail.mit.edu/proj/redsocs/modeltech/linux/vlog failed.
+#     while executing
+# "vlog +acc  "lab5.v""
