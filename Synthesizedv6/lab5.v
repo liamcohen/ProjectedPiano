@@ -297,8 +297,8 @@ module tone750hz (
    end
    
    always @(posedge clock) begin
-	    if (restart) index <= 0;
-       else if (ready) index <= index+1;
+      if (restart) index <= 0;
+      else if (ready) index <= index+1;
    end
    
    // one cycle of a sinewave in 64 20-bit samples
@@ -706,75 +706,65 @@ defparam reset_sr.INIT = 16'hFFFF;
    // led is active low
    //assign led = playback ? ~{filter,2'b00, volume} : ~{filter,7'hFF};
 	//assign led[7:2] = 6'b111111;
-	wire button0c, button1c, button2c, button3c, button_enterc, button_rightc,
-	  button_leftc, button_downc, button_upc;
+   wire button0c, button1c, button2c, button3c, button_enterc, button_rightc,
+	button_leftc, button_downc, button_upc;
 	
-	debounce debouncing8(.clock(clk_27mhz),.reset(reset),.noisy(~button_left),.clean(button_leftc));
-	debounce debouncing7(.clock(clk_27mhz),.reset(reset),.noisy(~button_up),.clean(button_upc));
-	debounce debouncing6(.clock(clk_27mhz),.reset(reset),.noisy(~button_down),.clean(button_downc));
-	debounce debouncing5(.clock(clk_27mhz),.reset(reset),.noisy(~button_right),.clean(button_rightc));
+   debounce debouncing8(.clock(clk_27mhz),.reset(reset),.noisy(~button_left),.clean(button_leftc));
+   debounce debouncing7(.clock(clk_27mhz),.reset(reset),.noisy(~button_up),.clean(button_upc));
+   debounce debouncing6(.clock(clk_27mhz),.reset(reset),.noisy(~button_down),.clean(button_downc));
+   debounce debouncing5(.clock(clk_27mhz),.reset(reset),.noisy(~button_right),.clean(button_rightc));
 	
-	debounce debouncing4(.clock(clk_27mhz),.reset(reset),.noisy(~button_enter),.clean(button_enterc));
-	debounce debouncing3(.clock(clk_27mhz),.reset(reset),.noisy(~button3),.clean(button3c));
-	debounce debouncing2(.clock(clk_27mhz),.reset(reset),.noisy(~button2),.clean(button2c));
+   debounce debouncing4(.clock(clk_27mhz),.reset(reset),.noisy(~button_enter),.clean(button_enterc));
+   debounce debouncing3(.clock(clk_27mhz),.reset(reset),.noisy(~button3),.clean(button3c));
+   debounce debouncing2(.clock(clk_27mhz),.reset(reset),.noisy(~button2),.clean(button2c));
    debounce debouncing1(.clock(clk_27mhz),.reset(reset),.noisy(~button1),.clean(button1c));
-	debounce debouncing(.clock(clk_27mhz),.reset(reset),.noisy(~button0),.clean(button0c));
+   debounce debouncing(.clock(clk_27mhz),.reset(reset),.noisy(~button0),.clean(button0c));
 	
-	wire [16:0] key_num;
-	//replace with Liam's sensor data
-	assign key_num[16:0] = {button_leftc,button_upc,button_downc,button_rightc,button_enterc,button3c&~button2c, button2c&~button3c,button3c&button2c,button0c,switch[7:5],user3[4:0]};
+   wire [16:0] key_num;
+   //the lowest 5 bits are Liam's sensor data, the rest are buttons on the FPGA
+   assign key_num[16:0] = {button_leftc,button_upc,button_downc,button_rightc,button_enterc,button3c&~button2c, button2c&~button3c,button3c&button2c,button0c,switch[7:5],user3[4:0]};
    // record module
+   wire [16:0] key_num_fsm;
+   wire [1:0] state;
 	
-	wire [16:0] key_num_fsm;
-	wire [1:0] state;
+
+   wire calibrating;
+   assign calibrating = switch[0];
+   wire [7:0]to_ac97_data2;
 	
-	/*
-   sound sound_mod(.clock(clock_27mhz), .reset(reset), .ready(ready),
-              .playback(button_enterc), .record(button3c),
-				  .we_ZBT(ram0_we_b), .data_in(ram0_data),
-				  .data_out(ram0_data), .address(ram0_address),
-				  .key_num(key_num[16:0]),.key_num_fsm(key_num_fsm[16:0]),
-				  .state(state[1:0]),.to_ac97_data(to_ac97_data));
-	*/
-	wire calibrating;
-	assign calibrating = switch[0];
-	wire [7:0]to_ac97_data2;
+   fsm r(.clock(clk_27mhz), .reset(reset), .ready(ready),.playback(button1c), .record(button0c),
+	 .we_ZBT0(ram0_we_b), .data_in0(ram0_data),.calibrating(calibrating&switch[6]),
+	 .data_out0(ram0_data), .address0(ram0_address),
+         .we_ZBT1(ram1_we_b), .data_in1(ram1_data),
+	 .data_out1(ram1_data), .address1(ram1_address),
+	 .key_num(key_num[16:0]),.key_num_fsm(key_num_fsm[16:0]),
+	 .from_ac97_data(from_ac97_data),.to_ac97_data(to_ac97_data2),
+	 .state(state[1:0]),.led(led[7:0]));
+   wire b0, b1, b2, b3, enter, right, left, down, up;
 	
-	fsm r(.clock(clk_27mhz), .reset(reset), .ready(ready),
-              .playback(button1c), .record(button0c),
-				  .we_ZBT0(ram0_we_b), .data_in0(ram0_data),.calibrating(calibrating&switch[6]),
-				  .data_out0(ram0_data), .address0(ram0_address),
-				  .we_ZBT1(ram1_we_b), .data_in1(ram1_data),
-				  .data_out1(ram1_data), .address1(ram1_address),
-				  .key_num(key_num[16:0]),.key_num_fsm(key_num_fsm[16:0]),
-				  .from_ac97_data(from_ac97_data),.to_ac97_data(to_ac97_data2),
-				  .state(state[1:0]),.led(led[7:0]));
-	wire b0, b1, b2, b3, enter, right, left, down, up;
-	
-	// use FPGA's digital clock manager to produce a
+    // use FPGA's digital clock manager to produce a
    // 54MHz clock (actually 64.8MHz)
    
   clock_divider c(.clk_54mhz(clock_54mhz),.restart(reset),.clk_27mhz(clk_27mhz));
     
 	
-	wire note_ready = 1;
-	visual vmod(.clock_54mhz(clock_54mhz), .key_num(key_num_fsm), .note_ready(note_ready),
-					.state(state[1:0]),.reset(reset), .switch(switch), .vga_out_red(vga_out_red),
-					.vga_out_green(vga_out_green), .vga_out_blue(vga_out_blue),
-					.vga_out_sync_b(vga_out_sync_b), .vga_out_blank_b(vga_out_blank_b),
-					.vga_out_pixel_clock(vga_out_pixel_clock), .vga_out_hsync(vga_out_hsync),
-					.vga_out_vsync(vga_out_vsync));
-				  
-	//assign led[1:0] = ~state[1:0];
-				  
-	assign analyzer3_clock = clock_27mhz;
-	assign analyzer3_data = {8'b0,to_ac97_data}; 
+  wire note_ready = 1;
+  visual vmod(.clock_54mhz(clock_54mhz), .key_num(key_num_fsm), .note_ready(note_ready),
+	      .state(state[1:0]),.reset(reset), .switch(switch), .vga_out_red(vga_out_red),
+	      .vga_out_green(vga_out_green), .vga_out_blue(vga_out_blue),
+	      .vga_out_sync_b(vga_out_sync_b), .vga_out_blank_b(vga_out_blank_b),
+	      .vga_out_pixel_clock(vga_out_pixel_clock), .vga_out_hsync(vga_out_hsync),
+	      .vga_out_vsync(vga_out_vsync));
+
 	
+		
+ //for debugging	
+  assign analyzer3_clock = clock_27mhz;
+  assign analyzer3_data = {8'b0,to_ac97_data}; 
+					  
 	
-				  
-	
-	play_sound player(.clock(clk_27mhz),.key_num(key_num_fsm[16:0]),.shift(switch[1]&switch[0]),.state(state[1:0]),
-	.to_ac97_data2(to_ac97_data2),.to_ac97_data(to_ac97_data));
+ play_sound player(.clock(clk_27mhz),.key_num(key_num_fsm[16:0]),.shift(switch[1]&switch[0]),.state(state[1:0]),
+	           .to_ac97_data2(to_ac97_data2),.to_ac97_data(to_ac97_data));
 	
    // output useful things to the logic analyzer connectors
    assign analyzer1_clock = ac97_bit_clock;
@@ -784,8 +774,7 @@ defparam reset_sr.INIT = 16'hFFFF;
    assign analyzer1_data[3] = ac97_synch;
    assign analyzer1_data[15:4] = 0;
 
-   //assign analyzer3_clock = ready;
-   //assign analyzer3_data = {from_ac97_data, to_ac97_data};
+  
 endmodule
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -824,293 +813,138 @@ CALIBRATION = 3, PLAYBACK = 2, RECORD = 1, USER = 0, RECORDING_LEN = 32768)
   //output reg done
 );  
    
-	reg [LOGSIZE-1:0] max_used_mem;
-	reg [2:0] counter;
-	reg old_playback;
-	reg [7:0] filter_input;
-	wire [17:0] filter_output;
-	reg [4:0] note_num;
+   reg [LOGSIZE-1:0] max_used_mem;
+   reg [2:0] counter;
+   reg old_playback;
+   reg [7:0] filter_input;
+   wire [17:0] filter_output;
+   reg [4:0] note_num;
+
+   //help with pressing the record button twice to switch into user and record mode
+   reg switched_to_record;
+   reg switched_to_user;
+   reg [18:0] address_in;
+   wire recording_done;
+   wire done_prev;
 	
-	//help with pressing the record button twice to switch into user and record mode
-	reg switched_to_record;
-	reg switched_to_user;
-	reg [18:0] address_in;
-	wire recording_done;
-	wire done_prev;
-	
-	recorder r(.clock(clock),.reset(reset),.record(record),.ready(ready&state==2'b11),.address_in(address_in),
-					.from_ac97_data(from_ac97_data),.to_ac97_data(to_ac97_data),.we_ZBT(we_ZBT1),.data_in(data_in1),
-					.data_out(data_out1),.address(address1),.led(led),.recording_done(recording_done),
-					.done_prev(done_prev));
+   recorder r(.clock(clock),.reset(reset),.record(record),.ready(ready&state==2'b11),.address_in(address_in),
+	      .from_ac97_data(from_ac97_data),.to_ac97_data(to_ac97_data),.we_ZBT(we_ZBT1),.data_in(data_in1),
+	      .data_out(data_out1),.address(address1),.led(led),.recording_done(recording_done),
+	      .done_prev(done_prev));
 	
    always @ (posedge clock) begin
       if (ready) begin
-			case (state)
-				USER: begin
-				   if (calibrating) begin
-					   state <= CALIBRATION;
-						address_in <= 0;
-						note_num <= 0;
-					end
-					if (~record & ~playback) switched_to_user <= 1;
-					if (record & switched_to_user) begin 
-					   state <= RECORD;
-					   address0 <= 0;
-					   counter <= 0;
-						switched_to_record <= 0;
-						switched_to_user <= 0;
-					end
-					else if (playback) begin
-					   state <= PLAYBACK;
-						address0 <= 0;
-					   counter <= 0;
-						switched_to_user <= 0;
-					end
-				   //else if (key_num[16:0] == 0) begin
-					//data_out <= 8'b0;
-					//end
-					// eventually make an else if note ready
-					else begin
-					key_num_fsm[16:0] <= key_num[16:0];
-					end
+         case (state)
+	    USER: begin
+	       if (calibrating) begin
+	          state <= CALIBRATION;
+	          address_in <= 0;
+	          note_num <= 0;
+	       end
+	       if (~record & ~playback) switched_to_user <= 1;
+	       if (record & switched_to_user) begin 
+	          state <= RECORD;
+	          address0 <= 0;
+	          counter <= 0;
+	          switched_to_record <= 0;
+	          switched_to_user <= 0;
+	       end
+	       else if (playback) begin
+	          state <= PLAYBACK;
+	          address0 <= 0;
+	          counter <= 0;
+	          switched_to_user <= 0;
+	       end
+				   
+	       else begin
+	          key_num_fsm[16:0] <= key_num[16:0];
+	       end
+			
+	   end
+	      RECORD: begin
+	         if (calibrating) begin
+		    state <= CALIBRATION;
+		    address_in <= 0;
+		    note_num <= 0;
+		 end
+		if (playback) begin
+	           state <= PLAYBACK;
+		   address0 <= 0;
+		   counter <= 0;
+		end
 					
-				end
-				RECORD: begin
-				   if (calibrating) begin
-					   state <= CALIBRATION;
-						address_in <= 0;
-						note_num <= 0;
-					end
-					if (playback) begin
-					   state <= PLAYBACK;
-					   address0 <= 0;
-					   counter <= 0;
-					end
-					//else if (key_num[16:0] == 0) begin
-					//data_out <= 8'b0;
-					//data_out[16:0] <= key_num[16:0];
-					//end
-					// eventually make an else if note ready
-					else begin
-					   key_num_fsm[16:0] <= key_num[16:0];
-					   data_out0[16:0] <= key_num[16:0];
-					end
-					if (~record) begin
-					   switched_to_record <= 1;
-						max_used_mem <= 0;
-					end
-					// for ZBT		
-					max_used_mem <= address0;
-					if (we_ZBT0 == 0) address0 <= address0 + 1;
-					//if memory full or rewgo back to user mode
-					if (address0 == MAX_MEM_ADDR|(switched_to_record & record)) begin 
-					   we_ZBT0 <= 1;
-					   state <= USER;
-				      address0 <= 0;
-					   counter <= 0;
-					end
-					else if (counter == 0) we_ZBT0 <= 0;
-					else we_ZBT0 <= 1;
-				end
+		else begin
+		   key_num_fsm[16:0] <= key_num[16:0];
+		   data_out0[16:0] <= key_num[16:0];
+		end
+		if (~record) begin
+		   switched_to_record <= 1;
+		   max_used_mem <= 0;
+		end
+		// for ZBT		
+		max_used_mem <= address0;
+		if (we_ZBT0 == 0) address0 <= address0 + 1;
+		//if memory full or rewgo back to user mode
+		if (address0 == MAX_MEM_ADDR|(switched_to_record & record)) begin 
+		   we_ZBT0 <= 1;
+		   state <= USER;
+	           address0 <= 0;
+		   counter <= 0;
+		end
+		else if (counter == 0) we_ZBT0 <= 0;
+		else we_ZBT0 <= 1;
+	      end
 					
-				PLAYBACK: begin
+	      PLAYBACK: begin
 					// for ZBT
-					//if (address == max_used_mem) address <= 0;
-					if (calibrating) begin
-					   state <= CALIBRATION;
-						address_in <= 0;
-						note_num <= 0;
-					end
-					if (address0 >= max_used_mem) state <= USER;
-					else if (record) begin 
-					   state <= RECORD;
-					   address0 <= 0;
-					   counter <= 0;
-						switched_to_record <= 0;
-					end
-					else if (counter == 0) address0 <= address0 + 1;
 					
-					key_num_fsm[16:0] <= data_in0[16:0];
-					
-					data_out0 <= 36'hZ;
-					we_ZBT0 <= 1;
-					
-				end
+	         if (calibrating) begin
+		   state <= CALIBRATION;
+		   address_in <= 0;
+		   note_num <= 0;
+		end
+		if (address0 >= max_used_mem) state <= USER;
+		else if (record) begin 
+		   state <= RECORD;
+		   address0 <= 0;
+		   counter <= 0;
+		   switched_to_record <= 0;
+		end
+		else if (counter == 0) address0 <= address0 + 1;
+
+		key_num_fsm[16:0] <= data_in0[16:0];
+
+		data_out0 <= 36'hZ;
+		we_ZBT0 <= 1;
+
+	   end
+           
+	   CALIBRATION: begin
+	      if (~calibrating) state <= USER;
 				
-				CALIBRATION: begin
-				   if (~calibrating) state <= USER;
+	        //display 1st note by setting key_num equal to it
+		//start with 1_0000_0000_0000_0000 and do a bit shift for whatever note you're on
+		//starting address is 0
+		//instantiate recorder
+		//when done shift to new note number and make that the new address. 0 + 32768*note_num
+		//once note number is greater than 16 switch back to user mode
 					
-					//display 1st note by setting key_num equal to it
-					//start with 1_0000_0000_0000_0000 and do a bit shift for whatever note you're on
-					//starting address is 0
-					//instantiate recorder
-					//when done shift to new note number and make that the new address. 0 + 32768*note_num
-					//once note number is greater than 16 switch back to user mode
-					
-					key_num_fsm[16:0] <= 17'b1_0000_0000_0000_0000 >> note_num;
-					
-					
-					if (note_num >= 16) state <= USER;
+	      key_num_fsm[16:0] <= 17'b1_0000_0000_0000_0000 >> note_num;
+								
+	      if (note_num >= 16) state <= USER;
                
-               else if (recording_done & ~done_prev) begin
-					   //key_num_fsm[16:0] <= 17'b0_0000_0000_0000_0001 >> note_num;
-					    //once you've saved all the notes go back to user mode
-					   note_num <= note_num + 1;
-						address_in[18:0] <= (note_num+1)<< 14;
-               end
-					
-					
-					
-				end
-			default: state <= 0;
-			endcase
-			counter <= counter + 1;
+              else if (recording_done & ~done_prev) begin
+	         //key_num_fsm[16:0] <= 17'b0_0000_0000_0000_0001 >> note_num;
+		//once you've saved all the notes go back to user mode
+		note_num <= note_num + 1;
+		address_in[18:0] <= (note_num+1)<< 14;
+              end
+	   end
+	   default: state <= 0;
+	endcase
+	counter <= counter + 1;
       end
    end
 endmodule
 
-///////////////////////////////////////////////////////////////////////////////
-//
-// Verilog equivalent to a BRAM, tools will infer the right thing!
-// number of locations = 1<<LOGSIZE, width in bits = WIDTH.
-// default is a 16K x 1 memory.
-//
-///////////////////////////////////////////////////////////////////////////////
 
-module mybram #(parameter LOGSIZE=14, WIDTH=1)
-              (input wire [LOGSIZE-1:0] addr,
-               input wire clk,
-               input wire [WIDTH-1:0] din,
-               output reg [WIDTH-1:0] dout,
-               input wire we);
-   // let the tools infer the right number of BRAMs
-   (* ram_style = "block" *)
-   reg [WIDTH-1:0] mem[(1<<LOGSIZE)-1:0];
-   always @(posedge clk) begin
-     if (we) mem[addr] <= din;
-     dout <= mem[addr];
-   end
-endmodule
-
-///////////////////////////////////////////////////////////////////////////////
-//
-// 31-tap FIR filter, 8-bit signed data, 10-bit signed coefficients.
-// ready is asserted whenever there is a new sample on the X input,
-// the Y output should also be sampled at the same time.  Assumes at
-// least 32 clocks between ready assertions.  Note that since the
-// coefficients have been scaled by 2**10, so has the output (it's
-// expanded from 8 bits to 18 bits).  To get an 8-bit result from the
-// filter just divide by 2**10, ie, use Y[17:10].
-//
-///////////////////////////////////////////////////////////////////////////////
-
-module fir31(
-  input wire clock,reset,ready,
-  input wire signed [7:0] x,
-  output reg signed [17:0] y
-	);
-	
-	reg signed [7:0] sample [31:0];
-	reg [4:0] offset = 0;
-	reg signed [17:0] accumulator;
-	reg [4:0] index;
-	wire signed [9:0] coeff;
-	integer k = 0;
-	wire [4:0] index2 = offset - index;
-	reg calculating = 0;
-	
-	coeffs31 c31(.index(index), .coeff(coeff));
-	
-	initial
-	begin
-		for (k = 0; k < 32; k = k + 1)
-		begin
-			sample[k] = 0;
-		end
-	end
-
-   always @(posedge clock)
-	begin
-		// ready logic
-		if (ready)
-		begin
-			accumulator <= 0;
-			index <= 0;
-			offset <= offset + 1;
-			sample[offset] <= x;
-			calculating <= 1;
-		end
-		
-		// reset logic
-		if (reset)
-		begin
-			accumulator <= 0;
-			index <= 0;
-			calculating <= 0;
-		end
-		
-		if (calculating)
-		begin				
-			index <= index + 1;
-			// calculating
-			if (index < 31) accumulator <= accumulator + (coeff * sample[index2]);
-			// finished calculating
-			else
-			begin
-				y <= accumulator;
-				calculating <= 0;
-			end
-		end
-   end
-endmodule
-
-///////////////////////////////////////////////////////////////////////////////
-//
-// Coefficients for a 31-tap low-pass FIR filter with Wn=.125 (eg, 3kHz for a
-// 48kHz sample rate).  Since we're doing integer arithmetic, we've scaled
-// the coefficients by 2**10
-// Matlab command: round(fir1(30,.125)*1024)
-//
-///////////////////////////////////////////////////////////////////////////////
-
-module coeffs31(
-  input wire [4:0] index,
-  output reg signed [9:0] coeff
-);
-  // tools will turn this into a 31x10 ROM
-  always @(index)
-    case (index)
-      5'd0:  coeff = -10'sd1;
-      5'd1:  coeff = -10'sd1;
-      5'd2:  coeff = -10'sd3;
-      5'd3:  coeff = -10'sd5;
-      5'd4:  coeff = -10'sd6;
-      5'd5:  coeff = -10'sd7;
-      5'd6:  coeff = -10'sd5;
-      5'd7:  coeff = 10'sd0;
-      5'd8:  coeff = 10'sd10;
-      5'd9:  coeff = 10'sd26;
-      5'd10: coeff = 10'sd46;
-      5'd11: coeff = 10'sd69;
-      5'd12: coeff = 10'sd91;
-      5'd13: coeff = 10'sd110;
-      5'd14: coeff = 10'sd123;
-      5'd15: coeff = 10'sd128;
-      5'd16: coeff = 10'sd123;
-      5'd17: coeff = 10'sd110;
-      5'd18: coeff = 10'sd91;
-      5'd19: coeff = 10'sd69;
-      5'd20: coeff = 10'sd46;
-      5'd21: coeff = 10'sd26;
-      5'd22: coeff = 10'sd10;
-      5'd23: coeff = 10'sd0;
-      5'd24: coeff = -10'sd5;
-      5'd25: coeff = -10'sd7;
-      5'd26: coeff = -10'sd6;
-      5'd27: coeff = -10'sd5;
-      5'd28: coeff = -10'sd3;
-      5'd29: coeff = -10'sd1;
-      5'd30: coeff = -10'sd1;
-      default: coeff = 10'hXXX;
-    endcase
-endmodule
