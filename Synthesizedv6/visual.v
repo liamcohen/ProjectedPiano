@@ -79,12 +79,11 @@ module visual(
    wire phsync,pvsync,pblank;
 //	wire [16:0] key_num = {left, up, down, right, enter, b3, b2, b1, b0, switch};
 //	wire note_ready = 1;
-   keystoning 
-		ks(.clk(clock_54mhz),.reset(reset),
-      .hcount(hcount),.vcount(vcount),
-      .hsync(hsync),.vsync(vsync),.blank(blank),
+   keystoning ks(.clk(clock_54mhz),.reset(reset),
+                 .hcount(hcount),.vcount(vcount),
+                 .hsync(hsync),.vsync(vsync),.blank(blank),
 		.key_num(key_num), .note_ready(note_ready), .state(state),
-      .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
+                .phsync(phsync),.pvsync(pvsync),.pblank(pblank),.keystoned_pixel(pixel));
 
    // switch[1:0] selects which video generator to use:
    //  00: piano
@@ -117,10 +116,10 @@ module visual(
 //      end
    end
 	
-	assign vga_out_red = rgb[23:16];
+   assign vga_out_red = rgb[23:16];
    assign vga_out_green = rgb[15:8];
    assign vga_out_blue = rgb[7:0];
-	assign vga_out_sync_b = 1'b1;    // not used
+   assign vga_out_sync_b = 1'b1;    // not used
    assign vga_out_blank_b = ~b;
    assign vga_out_pixel_clock = ~clock_54mhz;
    assign vga_out_hsync = hs;
