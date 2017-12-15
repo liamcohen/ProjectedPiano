@@ -24,12 +24,12 @@ module clock_divider(
     output reg clk_27mhz
     );
     reg counter = 0;
-        always @(posedge clk_54mhz) begin
-            counter <= counter + 1;
-            if (restart) counter <= 0;
-            else if (counter == 1 ) begin
-                clk_27mhz <= 1;
-            end
-            else clk_27mhz <= 0;
-         end
+    always @(posedge clk_54mhz) begin
+       counter <= counter + 1;
+       if (restart) counter <= 0;
+       else if (counter == 1 ) begin
+          clk_27mhz <= 1;
+       end
+       else clk_27mhz <= 0;
+       end
 endmodule
