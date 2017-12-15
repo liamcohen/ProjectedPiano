@@ -765,6 +765,9 @@ defparam reset_sr.INIT = 16'hFFFF;
 	
  play_sound player(.clock(clk_27mhz),.key_num(key_num_fsm[16:0]),.shift(switch[1]&switch[0]),.state(state[1:0]),
 	           .to_ac97_data2(to_ac97_data2),.to_ac97_data(to_ac97_data));
+	           //extra signals needed for load instrument sound
+                   //.from_ac97_data(from_ac97_data),.instrument(switch[1]),.we_ZBT(1'b0),.data_in(ram1_data),.data_out(ram1_data),.address(ram1_address));
+	
 	
    // output useful things to the logic analyzer connectors
    assign analyzer1_clock = ac97_bit_clock;
